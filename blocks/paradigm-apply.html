@@ -84,6 +84,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -116,18 +117,25 @@
     pack.sets.forEach(function (s) { setsById[s.id] = s; });
     var modes = [{ id: 'induce', label: L('① 归纳', '① Find the rule') }, { id: 'apply', label: L('② 用到新词', '② New words') },
       { id: 'use', label: L('③ 放进句子', '③ In a sentence') }, { id: 'edge', label: L('规则的边界', 'Where it stops') }];
-    if (pack.wug) modes.push({ id: 'wug', label: L('儿童：怪物词', 'Child: wug words') });
+    // child-only mode: its tab is shown only in the child version (syncChildTab), and mode=wug is ignored outside it
+    if (pack.wug) modes.push({ id: 'wug', label: L('怪物词', 'Wug words') });
     var want = params.get('rule') || params.get('focus');
     var st = {
       set: setsById[want] ? setsById[want] : pack.sets[0],
-      mode: modes.some(function (m) { return m.id === params.get('mode'); }) ? params.get('mode') : (B.variant === 'child' && pack.wug ? 'wug' : 'induce'),
+      mode: modes.some(function (m) { return m.id === params.get('mode'); }) && (params.get('mode') !== 'wug' || B.variant === 'child') ? params.get('mode') : (B.variant === 'child' && pack.wug ? 'wug' : 'induce'),
       kanaOnly: false, queue: [], idx: 0, item: null,
       rows: {}, shelf: {}, induce: {}, streak: {}, record: {}, selPair: null
     };
 
     var ui = KTBlock.chrome(B, { title: title, subtitle: T(pack, 'subtitle'), modes: modes, mode: st.mode,
       onMode: function (m) { st.mode = m; ui.setMode(m); B.emit('view', { mode: m, rule: st.set.id }); newRound(); },
-      onVariant: function () { newRound(); } });
+      onVariant: function () {
+        if (B.variant !== 'child' && st.mode === 'wug') { st.mode = 'induce'; ui.setMode('induce'); }
+        else if (B.variant === 'child' && pack.wug && st.mode === 'induce') { st.mode = 'wug'; ui.setMode('wug'); }
+        syncChildTab(); newRound();
+      } });
+    function syncChildTab() { var tab = ui.header.querySelector('[data-mode="wug"]'); if (tab) tab.style.display = B.variant === 'child' ? '' : 'none'; }
+    syncChildTab();
     var bar = h('div', { class: 'kb-bar' });
     var stage = h('div', { class: 'kb-card pa-stage' });
     var side = h('aside', { class: 'pa-side' });

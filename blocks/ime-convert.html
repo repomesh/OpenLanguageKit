@@ -59,6 +59,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -528,7 +529,7 @@
     function render() {
       renderBar(); stage.innerHTML = ''; input = null;
       if (!st.item) {
-        stage.append(h('div', { class: 'done', text: st.queue.length ? '✔' : '📭' }), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('没有题。', 'Nothing here.') }),
+        stage.append(h('div', { class: 'done' }, [st.queue.length ? '✔' : KTBlock.icon('inbox')]), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('没有题。', 'Nothing here.') }),
           h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: enterMode }, L('再来一轮', 'Another round'))]));
       } else if (st.mode === 'judge') renderJudge(); else renderType();
       renderSide();

@@ -136,6 +136,30 @@ The Chinese denominator is the weakest of the three languages:
 - It only reaches category level, not the item level of the 572 grammar points.
 - Once the original text of the standard's Appendix A is obtained, the `std:g-*` category units should be split into item-level units and `check.py` rerun, to see which grammar points have no knowledge point.
 
+## Spanish and French (added 2026-11-17, A1–A2)
+
+These two languages use the same structure and validation rules as the first three, with two differences:
+
+- **The instruction language is English.** `path.json` declares `"instructionLang": "en"`: KC labels, descriptions, mastery statements, common errors, unit goals and primitive bindings are written in English, and examples are `{es, en}` / `{fr, en}`. The instruction language and the language being learned are two separate dimensions; `check.py` checks the gloss field of examples against `instructionLang`. The first three languages have no such field: their instruction language is Chinese (examples in the Chinese course are glossed in English).
+- **Only A1 and A2 are built.** B1 and above are not there yet.
+
+**Spanish** `es/`: 485 source units, 159 KCs, 3 tracks. The denominator is the A1 and A2 "Niveles de referencia" of the Instituto Cervantes *Plan Curricular*. The official site was under maintenance, so the text was read from 2011 web-archive snapshots; `scope` in `sources.json` records how deep each inventory was read.
+
+| Source | Units | Verification |
+| --- | ---: | --- |
+| Grammar, pronunciation, orthography, functions, pragmatic tactics, genres, general notions: down to x.y sections | 387 | content_checked |
+| Specific notions (chapter × level), cultural references, sociocultural knowledge, intercultural skills, learning procedures: headings only | 94 | index_checked |
+| Supplements `sup:*`: listening, spoken production, mediation, cognates and false friends | 4 | unverified |
+
+**French** `fr/`: 309 source units, 183 KCs, 3 tracks. The denominator is the Eaquals and CIEP *Inventaire linguistique des contenus clés aux niveaux du CECR* (2015), built by the same method as the Core Inventory used for English.
+
+| Source | Units | Verification |
+| --- | ---: | --- |
+| Annexe E (every A1 and A2 entry), the "less key" rows of Annexe D, Annexe C text types, Annexe B scenarios, headings found only in Annexe F | 291 | content_checked (levels in Annexes C and D are shading, read by eye from page images; spot-check them) |
+| Supplements `sup:*`: pronunciation, orthography, writing, mediation, regional varieties, spoken register, classroom language | 18 | unverified |
+
+Examples and explanations in both languages are original and have not been reviewed by native-speaker teachers; the lists are in each directory's `REVIEW.md`. Track ids carry a language prefix (`es-child`, `fr-teen` and so on).
+
 ## Boundaries
 
 - A Core Inventory level is "the position most relevant for teaching"; it is not a guarantee of mastery, nor an exam requirement (the original says "Teaching not testing").

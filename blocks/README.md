@@ -11,11 +11,11 @@
 
 | 积木 | 教学原语 | 做什么 | 数据包 |
 | --- | --- | --- | --- |
-| `sound-grid.html` 音节表 / 字母表 | 音形对应拼读 | 把一个文字系统按声音排成表。四个模式：浏览（点格听音，同行同列一起亮）、听音找字、形近辨认、遮住回想 | `kana-hiragana` `kana-katakana` `pinyin` `alphabet-en` `phonics-en` `alphabet-fr` |
+| `sound-grid.html` 音节表 / 字母表 | 音形对应拼读 | 把一个文字系统按声音排成表。四个模式：浏览（点格听音，同行同列一起亮）、听音找字、形近辨认、遮住回想 | `kana-hiragana` `kana-katakana` `pinyin` `alphabet-en` `phonics-en` `alphabet-fr` `alphabet-es` |
 | `blend.html` 拼读 | 音形对应拼读 | 一个音一个格子：先一格一格读，再连起来；换一个音变出新词；听音摆字；"规则外"单独练不按规则读的词 | `blend-en` `blend-fr` `blend-ja` `blend-zh` |
 | `tone-contour.html` 声调与音高 | 声调与音高轮廓 | 把音高画成线：看线听音、听音选线、变调先预测再听（写的调和说的调不一样） | `tones-zh` `pitch-ja` |
 | `hanzi-parts.html` 汉字部件 | 字形构件与书写 | 拆字（结构图、表意和表音部件）、拼字、同族字（声旁什么时候失效）、猜一猜没见过的字 | `hanzi-zh` `kanji-ja` |
-| `picture-talk.html` 看图说话 | 看图描述与核对 | 一幅场景图上做四件事：指认（听句子点图，图上没有的要说没有）、描述（首稿锁定后连到图上，核对名字、位置、数量，再用词卡补说没说到的）、判断（位置不对、数量不对、动作和状态弄混、只是推断）、提问（排出问句，页面按图的元素清单回答） | `picture-en` `picture-zh` |
+| `picture-talk.html` 看图说话 | 看图描述与核对 | 一幅场景图上做四件事：指认（听句子点图，图上没有的要说没有）、描述（首稿锁定后连到图上，核对名字、位置、数量，再用词卡补说没说到的）、判断（位置不对、数量不对、动作和状态弄混、只是推断）、提问（排出问句，页面按图的元素清单回答） | `picture-en` `picture-zh` `picture-es` `picture-fr` |
 | `story-frames.html` 连环画 | 排序与复述（画与画之间用“预测下一步”） | 六幅画一个故事：先押下一幅再揭晓、按发生的先后排序（有一幅是补叙）、放连接词、看三步动画说过程、撤掉文字复述 | `story-en` `story-zh` |
 | `classifier-match.html` 量词与可数性 | 计量方式：量词与可数性 | 把桌上的东西放进量词、助数词或“能不能直接数”的盒子，再给每个盒子选共同点；放进“个／つ”这类通用盒子不算错，只标黄并说出更常用的量词。第二步给新东西选盒子，判断按规律、规律之外、两个都行还是不用量词，日语再选读音，英语再选 many / much 等；第三步按真实任务拼一张购物单或点单，一律用通用量词超过六成算回避。 | `classifier-match-en` `classifier-match-ja` `classifier-match-zh` |
 | `clause-constraint.html` 连接形式与后句限制 | 后句限制核对 | 连接形式固定，一张张试后句卡并判断成立与否，不成立时说出被违反的限制，学习者自己的限制表随之点亮；然后只换连接形式，从锁定的几类限制（后句类型、时态与时间、主语、都成立但意思不同）中选出原因；最后在请求、建议等情境下写整句，页面按连接形式和句末类型做确定性检查。 | `clause-constraint-en` `clause-constraint-ja` `clause-constraint-zh` |
@@ -28,12 +28,12 @@
 | `role-marking.html` 角色与标记 | 格与语义角色标记 | 在一张场景图上先把每个名词连到它的角色（做事的人、对象、地点、到达点、工具、同伴……），再选助词或介词；选错时图按所选标记的意思重画，最后问这个标记由角色、动词还是母语分法决定，并用新图自己组一句至少三个角色的话。 | `role-marking-en` `role-marking-ja` `role-marking-zh` |
 | `slot-order.html` 语序槽位 | 语序槽位 | 先在看不到槽名的轨道上把词块排成句子（点击、拖动或方向键），第一次排序单独保存；然后给每个词块贴槽名，页面指出违反了哪条位置规则，可展开学习者母语的语序轨道对照。另有判句（含“换了位置也对”）和自己造句后贴槽名抽查。 | `slot-order-en` `slot-order-ja` `slot-order-zh` |
 | `sound-contrast.html` 最小对立辨音 | 最小对立辨音 | 两个词只差一个音：先听出是哪一个（混入“一样／不一样”题），再分清“换了一个词”“同一个词换了读法”和“第三个词”，最后说给同伴听，看对方能不能分辨；侧栏的对立矩阵按两边分别累计。 | `sound-contrast-en` `sound-contrast-ja` `sound-contrast-zh` |
-| `viewpoint-direction.html` 视点与方向 | 视点与方向 | 先在场景图上把“我”（👁）放到位置上、画出箭头（谁给谁、往哪儿走、谁受了影响），再选授受、来去或被动形式；选错时图上出现一只红色虚线的眼睛，告诉你听的人会以为你站在哪儿。第二步事情不变、“我”挪位置，判断形式要变、不用变还是两种都行；第三步讲两件自己的事，一来一去。 | `viewpoint-direction-en` `viewpoint-direction-ja` `viewpoint-direction-zh` |
+| `viewpoint-direction.html` 视点与方向 | 视点与方向 | 先在场景图上把“我”（眼睛图标）放到位置上、画出箭头（谁给谁、往哪儿走、谁受了影响），再选授受、来去或被动形式；选错时图上出现一只红色虚线的眼睛，告诉你听的人会以为你站在哪儿。第二步事情不变、“我”挪位置，判断形式要变、不用变还是两种都行；第三步讲两件自己的事，一来一去。 | `viewpoint-direction-en` `viewpoint-direction-ja` `viewpoint-direction-zh` |
 | `cross-language-align.html` 翻译与中介对齐 | 翻译与中介对齐 | 三步：原文按意义块切好，旁边放着逐词直译稿，逐块决定保留还是改掉（人名、数字处逐词稿本来就对）；给别人的转述逐行标注处理方式（换说法、增补、删冗余、删了不该删的、加了意见）；最后为指定听者写转述，页面按关键词核对关键块、意见词和逐词照搬。 | `cross-language-align-en` `cross-language-align-ja` `cross-language-align-zh` |
 | `culture-incident.html` 文化情境判读 | 文化情境判读 | 读一段四到六句的小误会（配人物关系卡），先点出从哪一句开始不对劲并写一句解释（锁定）；再逐题判断属于哪一类（说法本身／礼貌或称呼／话题或时机／客套或言外之意／其实没有文化误会），揭示双方心里的想法，与第一次解释并排对照；最后改写那一句：从预写的改写里选，选中的改写会重演到对方的新回应，并给出可接受改写的特点让学习者对照自己写的句子。 | `culture-incident-en` `culture-incident-ja` `culture-incident-zh` |
 | `entry-sense-pick.html` 词典义项选择 | 词典义项选择 | 从句子里的形式写出要查的词典形（汉语写出这句里的读音，多音词按读音分词条），词条打开后在几个义项里选一个，给其余每个义项一个锁定的排除理由，并点出原句里的线索词；每组都有两个义项都说得通的句子和必须转查短语的句子。之后用自己的话改写放回原句、挑出同一义项的新句、自己写一句，记进带原句和义项编号的生词本。 | `entry-sense-pick-en` `entry-sense-pick-zh` |
 | `exchange-script.html` 交际回合与分支 | 交际回合与分支 | 一段有目的的对话（打电话、借东西、点餐、投诉、婉拒邀请），每一回合选一句，对方按预先写好的分支接话；结局显示事情办成没有、关系怎么样；回看时给自己每一句归类再看别的分支；最后在关键回合不看选项自己说，自选用了哪一步，和范例并排对照。 | `exchange-script-en` `exchange-script-ja` `exchange-script-zh` |
-| `false-friend-check.html` 同形异义核对 | 同形异义核对 | 先只看词形写下按母语字面的猜测（锁定、不计分），再打开真实例句标出相同、偏移（要选偏在哪儿）或完全不同；每组至少三分之一是真同义词，把它们判成“完全不同”会提示过度防备；然后在三个句子里挑出只有真实义才说得通的一句并自己写一句，做过的词归进自己的假朋友表。 | `false-friend-check-ja` `false-friend-check-en` |
+| `false-friend-check.html` 同形异义核对 | 同形异义核对 | 先只看词形写下按母语字面的猜测（锁定、不计分），再打开真实例句标出相同、偏移（要选偏在哪儿）或完全不同；每组至少三分之一是真同义词，把它们判成“完全不同”会提示过度防备；然后在三个句子里挑出只有真实义才说得通的一句并自己写一句，做过的词归进自己的假朋友表。 | `false-friend-check-ja` `false-friend-check-en` `false-friend-check-es` `false-friend-check-fr` |
 | `figurative-decode.html` 字面与言外之意 | 字面与言外之意 | 一段语境里分三步：先锁定字面层，再判断落差类型（比喻、夸张、反话、暗示、固定习语或就是字面意思）并选出真正的意思，最后在语境里点出线索；另有同一句两种语境、用对了吗两个模式，儿童版看图选意思。 | `figurative-decode-en` `figurative-decode-ja` `figurative-decode-zh` |
 | `number-system-map.html` 数位体系转换 | 数位体系转换 | 一张数量卡上先估、再算、再读：只看源语言的句子（不给阿拉伯数字）在数轴上点出量级并锁定；再在数字之间点出目标语的分隔位置（英语三位逗号、中文四位万线）并选最高一级；最后用目标语写出完整的数量，页面把它解析回数字，显示“你写的是 X，原数是 Y”。另有“规则之外”（年份、电话、成数、分数、复数 -s、零、一万以内）和“自己的数”两种模式。 | `number-system-map-en` `number-system-map-zh` |
 | `oral-to-print.html` 口语词连到文字 | 口语词连到文字 | 从孩子已经会说的话出发：选一张图，看“我的话”写成字，点着听、点着读，放上识字墙；再听一个提示，在三张没有图、没有拼音的卡里找出说过的字或词（有时一张都没有），判断它在新组合里意思变没变、是不是只是长得像；最后读给家人听，由听的人记下听懂没有。另有“说的和写的”：同音字、不规则拼写、口语形式。 | `oral-to-print-en` `oral-to-print-zh` |
@@ -41,6 +41,8 @@
 | `repair-and-backchannel.html` 会话修复与接应 | 会话修复与接应 | 一段预先写好的对话里埋着麻烦时刻（说太快、生词、数字、等你接话、跑题、要插话），也有看似麻烦其实不用打断的时刻；修复按钮一直在，选一种修复再选说法，对方按你的修复回应，没修复的会在结局里出错；回看时给自己的做法归类；第 3 步没有按钮自己说；第 4 步反过来判断对方的“嗯”是不是答应。 | `repair-and-backchannel-en` `repair-and-backchannel-ja` `repair-and-backchannel-zh` |
 | `template-write.html` 按真实格式填写 | 按真实格式填写 | 按虚构身份的情境卡在仿真表格、便条、聊天界面和邮件上直接写，第一稿锁定；再逐栏自己判断（合格／格式不对／内容不对／放错栏／缺了／该留空），然后看页面的确定性核对、读的人看到的样子（如手机通知只显示开头）和范文；最后同一件事换一个收件人重写，两版一样不算通过。语气和语法页面不判，记为自评。 | `template-write-en` `template-write-ja` `template-write-zh` |
 | `variety-map.html` 变体对照 | 变体对照 | 同一意思的几种变体（英式／美式、共通语／关西方言、日本字形／简体／繁体、简体／繁体、大陆／台湾／香港用语）做成没有标签的卡片，分进各自的列，另有“各变体通用”和“不是变体，是错误”两列；放进去后标出决定变体的那个部分。然后在具体场合里逐句判断最合适、也可以、不得体还是错误，看对方的反应；最后整段改写或逐空选字，页面按受控词表标色，混用即不通过，简繁一对多的字成对出现。 | `variety-map-en` `variety-map-ja` `variety-map-zh` |
+| `picture-book.html` 绘本阅读 | prim:reading-aid-fade | 两本原创图文书，按两条工作流读，先回答两个问题选一条。儿童段用八页绘本《蓝色的纸船》；青少年和成人段用七页图文故事《末班车之后》（来新城市第一周的年轻人深夜错过末班车，图里有真实的街头文字：站牌、时刻表、店招、告示、车头显示屏，文字由数据包按语言填进图中的空白牌子）。学认字：看图说、听着指字并“听音找词”、先读后听的解码题、注音按两轮无注音读对逐词撤除、在没图的新句子（成人书里是真实的招牌和告示文字）里再认一次。借读书学语言：看封面预测并说出根据、一口气读完并标出生词写下猜测、翻页前再猜两次、回头判断“是什么告诉你意思”（有的词这一页根本看不出来，正确做法是去查）、要看图和前几页的推断题并点出依据页、只看图复述并用上两三个新词（自评）。三个年龄段教法不同：儿童由大人陪、按顺序、指令可以听、记录给大人；青少年自己定顺序、每步说明为什么、有和同学一起的做法、规律在作答之后点明、看得到自己“不用帮忙就能读”的清单；成人先定这一小段的目标和时间（5／10／15 分钟）、规律和与母语的对比放在作答之前、线索种类先讲清、记录按“做到了什么”写。每页附一份给图像模型的图片说明。 | en / zh / ja |
+| `space-3d.html` 空间与视角（3D） | prim:viewpoint-direction | 一个可以转动的场景：在外面看，或者换到说话人、听话人、小熊的眼睛里看，答完后看哪个词跟着视点变、哪个不变。三组：这儿／那儿（こそあ、这／那、this／that），说话人换成对方后同一样东西要不要换词；来／去（行く／来る、come／go、bring／take），说话人换个地方后同一段路要不要换词；前后左右，按看的人（相对参照）还是按车、人、房子自己的前面（固有参照），树和球没有自己的前面。最后自己摆一个场景、写一句话，页面按场景核对。 | en / ja / zh |
 
 `registry.js` 列出了所有积木、数据包，以及绑定到课程知识点的现成页面（artifact）。
 
@@ -61,7 +63,7 @@ blocks/story-frames.html?set=story-zh&mode=order
 | --- | --- |
 | `set` | 数据包 id（必填） |
 | `mode` | 打开时的模式，取值见各积木的模式按钮 |
-| `variant=child` | 儿童版：更大的点击区、更少的选项、更慢的语速 |
+| `variant=child` | 儿童版。在每个积木上都只做两件事：字更大（共享的格子和大字尺寸调大），朗读更慢（默认 0.75 倍速，标准版 0.9）。内容和做法上的实质差别（题目、题量、选项数、反馈方式等）只在 `curriculum/primitives/age-design.json` 的 `blocks` 里列出的积木上有，各变了什么也写在那里；页面上的“儿童版”开关只在这些积木上出现。这个选择只看网址参数，不再跨积木记住：在一个积木里切到儿童版，不会改变另一个积木 |
 | `kc` | 课程知识点 id，会写进每条学习证据 |
 | `focus` | 只练一部分。sound-grid 是逗号分隔的行 id，如 `focus=a,k,s`；blend 是 `tags` 里的一个键 |
 | `lang` | 界面语言（说明、按钮、反馈用的语言，不是要学的语言）：`lang=zh` 或 `lang=en`。见下面“界面语言” |
@@ -158,3 +160,9 @@ python3 curriculum/primitives/check.py   # 也会检查 registry.js：积木文�
 ```
 
 浏览所有积木和它们绑定的知识点，用工作台：`python3 workspace/serve.py`，然后打开 `http://127.0.0.1:4180/workspace/`。
+
+`?band=child|youth|adult`：2026-11-17 起的新积木（`picture-book`、`space-3d`）按年龄段教学法（`curriculum/primitives/age-bands.json`）给出三种做法，旧的 `variant=child` 等同于 `band=child`。`space-3d` 是唯一联网的积木：它从 cdnjs 加载 Three.js r128，加载不到或没有 WebGL 时退回二维图，题目、检查和证据不变。
+
+西班牙语和法语（2026-11-17 加入）：第一批数据包是 `listen-and-do-es/fr`、`slot-order-es/fr`、`paradigm-apply-es/fr`、`exchange-script-es/fr`、`real-document-scan-es/fr`，各自放在 `data/<slug>-es.js` / `-fr.js`。第二批（同日）：`alphabet-es`（sound-grid）、`picture-es/fr`（picture-talk，复用公园图：注册表里用 `scenes` 指出场景所在的文件，页面先加载它）、`false-friend-check-es/fr`（面向英语母语者：`nativeLang: "en"`，`pair` 是形似的英语词，`pairLabel` 是它的标签）。`number-system-map`、`classifier-match`、`role-marking` 没有做，原因见 `GAPS.md`。都还没有经过母语教师核对，见 `GAPS.md`。
+
+界面图标：按钮和提示里的图标用 `KTBlock.icon(name, label)`（内联 SVG，`runtime/block.js` 的 `ICONS`），场景图里用 `KTBlock.iconSvg(name, x, y, size, color)`，不用 emoji；数据包里代表词或人物的图片（`pic`）是学习内容，可以保留。`KTBlock.chrome({ childSwitch: false })` 用于数据包没有儿童版内容的情况：不显示“儿童版”开关。

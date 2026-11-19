@@ -1,0 +1,1321 @@
+{
+ "note": "Teaching method by age band. Each of the three bands has a set of practices (dimensions); each says what to do, what to avoid and what it rests on. basis literature means the research nodes in refs discuss this point directly (still read each node's scope and limits); design_inference means it is a design judgement drawn from related research and teaching experience and has not been tested directly. The age boundaries are planning conventions, not hard developmental stages: go by the learner's literacy, learning experience and goals, and borrow across bands. variants says how each pedagogical primitive is done in each band. The Chinese file age-bands.json is the original; both files must have the same keys.",
+ "dimensionLabels": {
+  "session": "Length and shape of one session",
+  "pace": "Pace and repetition",
+  "input": "Listening and speaking first, or reading and writing",
+  "rules": "Whether and how rules are explained",
+  "feedback": "Feedback and correction",
+  "autonomy": "Who decides what to learn",
+  "motivation": "Motivation and rewards",
+  "media": "Use of pictures, sound, animation and text",
+  "reading": "The role of reading",
+  "social": "Learning with whom",
+  "evidence": "Who sees the evidence and how it is worded"
+ },
+ "bands": [
+  {
+   "id": "child",
+   "label": "Under 12",
+   "ages": [
+    "5-7",
+    "8-12"
+   ],
+   "summary": "Learns by listening, looking, moving and repeating; picks up usable phrases whole and sees the patterns later. An adult (parent or teacher) is part of the learning.",
+   "subBands": [
+    {
+     "id": "preliterate",
+     "ages": [
+      "5-7"
+     ],
+     "note": "Cannot yet read alone: the page does not rely on text to set the task; instructions are spoken and shown. Reading and writing start on words the child can already say."
+    },
+    {
+     "id": "literate",
+     "ages": [
+      "8-12"
+     ],
+     "note": "Literate in the first language: short written instructions are fine, and the child can start comparing how two languages are written. Still mostly concrete situations."
+    }
+   ],
+   "dimensions": {
+    "session": {
+     "do": "10–20 minutes, cut into 3–5 short activities that alternate lively and quiet; one clear small task per activity.",
+     "avoid": "One activity that drags on, or several new kinds of activity at once.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:young-learner-characteristics"
+     ]
+    },
+    "pace": {
+     "do": "Very little new material each time (a few words or one chunk); the same material returns in different activities on different days.",
+     "avoid": "Adult density of knowledge points; meeting something once and never again.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:spaced-practice",
+      "ped:retrieval-practice"
+     ]
+    },
+    "input": {
+     "do": "Understand and say it first, then recognise and write it; reading and writing use words the child can already say.",
+     "avoid": "Explaining in text what the child has not yet heard.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:young-learner-characteristics",
+      "ped:simple-view-of-reading"
+     ]
+    },
+    "rules": {
+     "do": "Whole phrases and many examples, so the pattern shows through contrast; for ages 8–12 one plain sentence may name the pattern.",
+     "avoid": "Grammar terms, conjugation tables, long explanations.",
+     "basis": "literature",
+     "refs": [
+      "ped:age-implicit-explicit",
+      "ped:young-learner-characteristics"
+     ]
+    },
+    "feedback": {
+     "do": "Immediate, specific about what was different this time, with another go straight away; a matter-of-fact tone.",
+     "avoid": "Losing points, red crosses with sound effects, comparison in front of others; a vague “well done”.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:corrective-feedback"
+     ]
+    },
+    "autonomy": {
+     "do": "Limited choices (one of two or three themes or characters); the order is held by the course and the adult.",
+     "avoid": "Asking the child to plan their own path.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:scaffolding"
+     ]
+    },
+    "motivation": {
+     "do": "Driven by story, characters, curiosity and “I did it”; small collections are fine.",
+     "avoid": "Streaks, leaderboards, time pressure; tying rewards tightly to accuracy.",
+     "basis": "design_inference",
+     "refs": []
+    },
+    "media": {
+     "do": "Pictures and sound are the main channel: the picture shows the meaning being learned and can be checked against; actions and gestures go with words.",
+     "avoid": "Decorative pictures and animation that pull attention away; long text on screen together with narration.",
+     "basis": "literature",
+     "refs": [
+      "ped:multimedia-learning",
+      "ped:seductive-details",
+      "ped:embodied-gesture-learning",
+      "ped:total-physical-response"
+     ]
+    },
+    "reading": {
+     "do": "Mainly learning to read: sound–spelling, word recognition, matching text to picture, reading along; in shared picture-book reading the adult asks and the child points and says.",
+     "avoid": "Making comprehension of long text the goal; using reading to teach language the child has not heard.",
+     "basis": "literature",
+     "refs": [
+      "ped:learning-to-read-vs-reading-to-learn",
+      "ped:simple-view-of-reading",
+      "ped:dialogic-reading"
+     ]
+    },
+    "social": {
+     "do": "Designed so an adult can sit alongside: a one-line prompt for the adult (what to ask, how to respond); peer activities use turn-taking and cooperation.",
+     "avoid": "Assuming the child does everything alone at a screen.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:zpd",
+      "ped:dialogic-reading"
+     ]
+    },
+    "evidence": {
+     "do": "Reported to the parent or teacher as “what they can do this week, where they still need help”; the child sees what they have done.",
+     "avoid": "Showing the child scores, levels or mastery probabilities.",
+     "basis": "design_inference",
+     "refs": []
+    }
+   }
+  },
+  {
+   "id": "youth",
+   "label": "12 to university",
+   "ages": [
+    "13-17",
+    "18-22"
+   ],
+   "summary": "Can analyse and generalise, and cares about peers and identity. Rules can be taught, but let them find the pattern first; content has to connect to their world, and the choices have to be real.",
+   "subBands": [
+    {
+     "id": "secondary",
+     "ages": [
+      "13-17"
+     ],
+     "note": "Secondary school: exams are often part of the picture; say how a practice relates to the exam and to real use."
+    },
+    {
+     "id": "tertiary",
+     "ages": [
+      "18-22"
+     ],
+     "note": "University: academic reading and writing, study-abroad or job goals appear; autonomy is close to an adult's."
+    }
+   ],
+   "dimensions": {
+    "session": {
+     "do": "20–40 minutes with one or two tasks that produce something; say at the start what will be made.",
+     "avoid": "Many scattered mini-games; input with no output.",
+     "basis": "design_inference",
+     "refs": []
+    },
+    "pace": {
+     "do": "Can move knowledge point by knowledge point with more new material; review by retrieval and spacing, and let the learner see their own review plan.",
+     "avoid": "Pushing ahead without coming back.",
+     "basis": "literature",
+     "refs": [
+      "ped:retrieval-practice",
+      "ped:spaced-practice"
+     ]
+    },
+    "input": {
+     "do": "Listening, speaking, reading and writing together; material they would really look at (short-video scripts, lyric-like texts, posts, game and anime language).",
+     "avoid": "Pictures and sentences made for small children.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:comprehensible-input"
+     ]
+    },
+    "rules": {
+     "do": "Examples first so they work out the pattern, then a short rule with its term, then use; show where the rule stops working.",
+     "avoid": "Memorising rules without use; or no explanation at all.",
+     "basis": "literature",
+     "refs": [
+      "ped:explicit-instruction",
+      "ped:noticing-hypothesis",
+      "ped:age-implicit-explicit"
+     ]
+    },
+    "feedback": {
+     "do": "Name the kind of error and let them fix it; correct spoken production privately.",
+     "avoid": "Exposing errors in front of peers; right/wrong with no reason.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:corrective-feedback",
+      "ped:adolescent-motivation-autonomy"
+     ]
+    },
+    "autonomy": {
+     "do": "Real choices inside the course: theme, material, form of output, which part first; they set their own goals and look back at them.",
+     "avoid": "The system deciding all content and order.",
+     "basis": "literature",
+     "refs": [
+      "ped:adolescent-motivation-autonomy"
+     ]
+    },
+    "motivation": {
+     "do": "Tied to identity, interests and who they want to become; progress made visible (what they can now read and say).",
+     "avoid": "Points alone; public ranking against peers.",
+     "basis": "literature",
+     "refs": [
+      "ped:adolescent-motivation-autonomy"
+     ]
+    },
+    "media": {
+     "do": "Pictures set the situation and make comparisons (timelines, relation diagrams, contrast tables); text sits next to the picture; they can make their own picture-and-text output.",
+     "avoid": "Decoration unrelated to the content; blocks of adult textbook text.",
+     "basis": "literature",
+     "refs": [
+      "ped:multimedia-learning",
+      "ped:dual-coding"
+     ]
+    },
+    "reading": {
+     "do": "Moving from learning to read to reading to learn: read a lot slightly below level, with prediction, inference and retelling; a new script still needs decoding work.",
+     "avoid": "Only intensive reading and sentence-by-sentence translation.",
+     "basis": "literature",
+     "refs": [
+      "ped:extensive-reading",
+      "ped:learning-to-read-vs-reading-to-learn",
+      "ped:l2-reading-threshold"
+     ]
+    },
+    "social": {
+     "do": "Plenty of peer tasks: information gaps, peer review, joint output; allow anonymous or small-group sharing.",
+     "avoid": "Forced solo performance in front of everyone.",
+     "basis": "literature",
+     "refs": [
+      "ped:interaction-hypothesis",
+      "ped:negotiated-interaction"
+     ]
+    },
+    "evidence": {
+     "do": "Shown to the learner directly, saying what the evidence does and does not show; exam-related items marked separately.",
+     "avoid": "One total score; presenting practice results as an exam prediction.",
+     "basis": "design_inference",
+     "refs": []
+    }
+   }
+  },
+  {
+   "id": "adult",
+   "label": "Adults (after university)",
+   "ages": [
+    "adult"
+   ],
+   "summary": "Comes with a clear purpose and limited time, with first-language literacy and life experience to draw on, and more fear of making mistakes in public. Say why this is being learned and where it can be used right away, and let them steer.",
+   "subBands": [],
+   "dimensions": {
+    "session": {
+     "do": "Fits into spare moments: complete small units of 5–15 minutes, plus deeper units of 30–45 minutes; each unit ends with something to take away.",
+     "avoid": "Assuming a fixed long slot every day; losing progress after an interruption.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:adult-l2-constraints"
+     ]
+    },
+    "pace": {
+     "do": "The learner sets the pace; frequent, immediately useful content first; review is scheduled automatically but can be adjusted.",
+     "avoid": "A fixed term-style schedule; learning unused content first for completeness.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:andragogy",
+      "ped:spaced-practice"
+     ]
+    },
+    "input": {
+     "do": "Use first-language literacy: text, side-by-side comparison and rules can come first; still make sure there is enough listening and speaking, so reading does not replace talking.",
+     "avoid": "Copying the listening-only start used with children; or reading without speaking.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:adult-l2-constraints",
+      "ped:age-implicit-explicit"
+     ]
+    },
+    "rules": {
+     "do": "Explain the rule directly and briefly, compare with the first language, and use it at once in their own situation; state the exceptions.",
+     "avoid": "Avoiding explanation; or explaining without practice.",
+     "basis": "literature",
+     "refs": [
+      "ped:explicit-instruction",
+      "ped:age-implicit-explicit",
+      "ped:skill-acquisition"
+     ]
+    },
+    "feedback": {
+     "do": "Give the reason and a next step they can act on; let them practise privately until confident before facing a person.",
+     "avoid": "Praise written for small children; right/wrong with no explanation.",
+     "basis": "design_inference",
+     "refs": [
+      "ped:corrective-feedback",
+      "ped:adult-l2-constraints"
+     ]
+    },
+    "autonomy": {
+     "do": "Ask the purpose first; let the learner choose a route, skip what they know and change the order (prerequisites are still flagged); say why each step is where it is.",
+     "avoid": "A compulsory route with no reasons given.",
+     "basis": "literature",
+     "refs": [
+      "ped:andragogy"
+     ]
+    },
+    "motivation": {
+     "do": "Tied to real tasks: this week's errand, the person to meet, the email to write; use their own material.",
+     "avoid": "Points and character-raising as the main thread.",
+     "basis": "literature",
+     "refs": [
+      "ped:andragogy"
+     ]
+    },
+    "media": {
+     "do": "Pictures where words fall short: space, process, comparison, articulation; real material (forms, notices, menus) first.",
+     "avoid": "Cartoon decoration; reading the full text aloud while also showing it.",
+     "basis": "literature",
+     "refs": [
+      "ped:multimedia-learning"
+     ]
+    },
+    "reading": {
+     "do": "Mainly reading to learn: reading to get things done and find information, scanning before close reading; a new script gets separate, concentrated decoding work.",
+     "avoid": "Giving beginners only children's books.",
+     "basis": "literature",
+     "refs": [
+      "ped:l2-reading-threshold",
+      "ped:extensive-reading",
+      "ped:simple-view-of-reading"
+     ]
+    },
+    "social": {
+     "do": "Low-risk chances to speak: scripted dialogues first, then a real person; peers are exchange partners or colleagues.",
+     "avoid": "Requiring speech in front of a group from the start.",
+     "basis": "literature",
+     "refs": [
+      "ped:adult-l2-constraints",
+      "ped:interaction-hypothesis"
+     ]
+    },
+    "evidence": {
+     "do": "For the learner, worded by task (“can order a meal unaided”), with how many performances of what kind it rests on.",
+     "avoid": "Mastery probabilities, level predictions; treating self-report as a test result.",
+     "basis": "design_inference",
+     "refs": []
+    }
+   }
+  }
+ ],
+ "variants": {
+  "prim:sound-contrast": {
+   "child": {
+    "fit": "core",
+    "how": "Two pictures and sound only, no text; instructions are spoken and shown. At most 6 items a round, and after each one the character on the card does something instead of showing a tick or cross. Ages 5–7 do only picture choice and \"same or different\"; ages 8–12 can add \"neither\" and \"same word, said differently\", with one plain sentence saying that some differences do not matter. In step 3 a parent or teacher is the listener: the child sees the target, the screen hides it, and the adult taps the word they heard. Contrasts the child already has in their first language (tones for heritage Chinese children) stay out; a child who cannot yet split a word into sounds plays the sound games first.",
+    "watch": "The child keeps tapping the more familiar or prettier picture, and the adult reads that as hearing the difference."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Word pairs come from places they actually hear them: song lyrics, game lines, short videos, words that really get mixed up; photos or clean icons replace cartoon animals. Spelling and the name of the contrast can be switched on, but let them hear where the difference is before naming it. Step 3 is done in pairs, each taking a turn as listener, inside a small group, and results are shown only to the learner. For secondary students, say how this relates to the confusable items on listening exams.",
+    "watch": "A classmate acting as listener goes easy to spare the speaker embarrassment, so \"can be told apart\" comes out too high."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Phonetic or pinyin layers and the name of the contrast (aspirated vs unaspirated, short vs long beats, /θ/ vs /s/) can be shown from the start, with one line comparing it to the first language to explain the mix-up. Pairs come from places where a mix-up really costs something: 13 vs 30 in a price, the name of the clinic you booked, \"buy\" vs \"sell\". In step 3 the learner can start with a delayed blind listen to their own recording, then use a voice assistant or a language partner as listener; the assistant counts as one listener only. Fits a 5–15 minute unit on a single contrast.",
+    "watch": "The adult treats telling their own recording apart as proof that their pronunciation is fine and never gets a real listener."
+   }
+  },
+  "prim:contour-match": {
+   "child": {
+    "fit": "adapt",
+    "how": "Contours become concrete things: Chinese tones are roads a toy car drives on (flat, uphill, valley, downhill), English stress is elephant steps and mouse steps. The child drags stickers, gestures and claps; no numbers or terms. Ages 5–7 only listen and drag, no recording; ages 8–12 add step 3 with an adult listening blind and pointing to the road they heard. Heritage Chinese children use it for a different job: matching tones they already say to the tone marks in pinyin, and the tone-change items (they say ní hǎo but it is written nǐ) are their reverse half.",
+    "watch": "The child gets it right by copying the gesture, and cannot do it with a word they have not seen acted out."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Have them listen to a few sets of words and draw the contours themselves to find the pattern, then give the names of the tone or stress rules. Material uses words and short phrases they know (names, catchphrases, a line from a song); sentence intonation can come in, comparing the same tone in a question and a statement. In step 3 two learners listen to each other blind and draw what they heard before comparing. Say how tone sandhi and \"written one way, said another\" show up on exams and in real speech.",
+    "watch": "Once they know the rule names they recite \"third plus third becomes second\" and stop actually listening to the contour."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Pitch numbers, contour names and rule names can be shown directly, with a comparison to first-language intonation. Japanese items always carry a following particle, otherwise final-accent and flat words cannot be told apart. Pick words where the contour causes real misunderstandings (buy vs sell in Chinese, chopsticks vs bridge in Japanese, REcord vs reCORD), and add sentence intonation in short phrases to show that question intonation does not change word tones. Step 3 starts with the learner blind-listening to themselves after a few items, then a language partner; the page never scores the pitch curve of a recording.",
+    "watch": "The adult answers by reading the pitch numbers, so the eyes do the work and the ear is lost once the numbers go."
+   }
+  },
+  "prim:rhythm-shadow": {
+   "child": {
+    "fit": "adapt",
+    "how": "Each sentence is at most 4 seconds; tapping becomes beating a little drum or clapping, and pauses are shown as an animal hopping between squares. Material is songs, rhymes and the repeated line in a story. Only step 1 and one round of saying it while clapping; no five-way sorting and no rewrite. The reverse half stays as one question: one line is said in a single breath, and the child is asked \"do we stop here?\".",
+    "watch": "The child claps happily but to their own beat rather than to the pauses in the recording."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Material is rap, lyrics, film lines, speeches and podcasts, and they pick a clip they want to sound like. They tap first and look at the overlaid timeline, then learn names like sense group and focus stress. Step 3 is recorded for themselves or compared in a small group, not performed in front of the class; the shortened version can become a dub or subtitles. Say how this relates to fluency on speaking exams, but the page gives no score.",
+    "watch": "Copying a speaker they admire, they also copy the fillers and stumbles, skipping the \"speaker searching for a word\" category in step 2."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from meetings, podcasts, news interviews, or a talk or self-introduction the learner actually has to give; terms such as sense group, focus stress and weak forms are shown. Fits a 5–15 minute unit: one or two sentences, one round of shadowing. In step 3 they write the shorter version and say it again, practising in private before taking it into the real situation.",
+    "watch": "The adult focuses on getting every sound right, so shadowing turns into word-by-word reading with more pauses than before."
+   }
+  },
+  "prim:record-self-transcribe": {
+   "child": {
+    "fit": "defer",
+    "how": "This primitive needs the learner to type a transcript in the target language, which most children under 12 cannot do, and 5–7 year olds should not try. Use picture description first: the child talks about a picture, then taps icons to show which things they mentioned, with an adult keeping the record. Children of 8–12 who can write in the target language can try a light version: pick \"which of these three is what I just said\", with only two categories, \"used the words\" and \"got stuck\".",
+    "watch": "Asking a child to type their own transcript turns it into a typing and spelling task and squeezes out the speaking.",
+    "instead": "prim:picture-describe"
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Topics are theirs: a game or show they like, something that happened at school, their view on a post; 4–6 prepared phrases. Recordings and transcripts are seen only by the learner, never played to the class. Categories are practised on samples first, and names come after they have seen examples. Step 3 is one rewritten and re-recorded sentence. For secondary students, link it to speaking exams: exams score fluency, and here they first learn to see their own restarts and fillers.",
+    "watch": "Embarrassed by their own transcript, the teenager quietly removes the restarts and fillers, so it records what they meant to say, not what they said."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Topics are things they really have to say at work or in daily life: presenting a project, asking for leave, giving a progress update, describing symptoms to a doctor; 5–6 prepared phrases. The recording stays on the page and practice is private, with nobody listening. Step 3 is one rewritten and re-recorded sentence that they can take into the next meeting. Say clearly that restarting is a skill, not a fault, so the adult does not chase zero pauses by memorising a script.",
+    "watch": "The adult writes a script and reads it aloud, so the recording becomes reading practice and the transcript loses its point."
+   }
+  },
+  "prim:sound-spelling-blend": {
+   "child": {
+    "fit": "core",
+    "how": "This is a main activity in early English for ages 5–8: letter blocks are big bricks that make only their sound (never the letter name), each round has 5 familiar CVC words with pictures, the blending track is a slow snail, and there are no written instructions. Words that do not follow the rules (said, one) go into a separate \"tricky words\" box, so the child learns \"this one you cannot sound out\". For reading aloud, a parent listens and taps which of three pictures they heard. Heritage Chinese children use it the other way round: start from words they can say, build the pinyin, then read pinyin and pick the picture.",
+    "watch": "The child has memorised what a few words look like and still reads the old word after one letter changes, so no blending is happening."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Use it when a teenager starts a new writing system (Japanese kana, pinyin) or needs to catch up on English phonics. No children's pictures: words come from their world (game titles, brands, anime character names, place names), and they can find the rule from a few sets of words before it is named. The reverse half becomes an \"exceptions list\" they collect themselves. Rounds are short and dense and lead straight into reading.",
+    "watch": "A secondary student catching up on phonics sees it as primary-school stuff and guesses from word shape instead of building the word block by block."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "For adults catching up on phonics or learning a new script: words come from street signs, menus, names and station names, and rule names can be shown directly (short-vowel CVC, silent e, contracted kana, iou written as iu). For Japanese kana the aim is to stop relying on romaji, so the romaji layer is off by default. One rule per 5–15 minute unit, ending with being able to read one kind of real sign. Adults who already read fluently do not need block-by-block blending.",
+    "watch": "The adult keeps the romaji or phonetic layer on and reads the helper layer instead of the target script."
+   }
+  },
+  "prim:character-anatomy": {
+   "child": {
+    "fit": "core",
+    "how": "For English at ages 5–7 the focus is letter formation: the four-line grid is drawn as sky, grass and underground, letters are grouped as \"tall\", \"small\" and \"hanging\", they are taught by starting-stroke family, b and d are told apart by \"stick first or tummy first\", and tracing support is removed in three steps. Heritage Chinese children get radicals as \"family\" character cards, build characters with blocks first, then guess new characters from the same family; ages 5–7 write only basic strokes and simple characters. The reverse half becomes \"some family members do not look like the rest\", with no folk etymologies.",
+    "watch": "The child traces beautifully, but once the shadow is gone the start point and direction fall apart, because they were following a line rather than learning a movement."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "For teenagers learning Chinese characters, kana or a new alphabet: give a few sets of characters with the same component and let them find the meaning and sound components before naming them, and be explicit about when the sound component stops helping. Choose characters they will actually write (their own name, characters from works they like, high-frequency exam characters). Handwriting is only for targets that need writing; characters needed only for reading do not require step 3. For Chinese students learning Japanese, focus on the differences between Chinese and Japanese character forms and stroke direction in pairs like シ/ツ.",
+    "watch": "Once they learn about sound components, students treat them as a master key and force readings onto every new character."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Adults use components as memory hooks; rules and exceptions are stated directly, with a reminder that sound components are not always reliable. Chinese speakers learning Japanese focus on the paired forms (東/东, 単/单) and stroke direction in シ/ツ and ソ/ン, with links between on/kun readings and sound components shown. English speakers learning Chinese take one small set of characters with a shared component per unit and finish able to recognise one kind of real sign or menu item. Adult English handwriting rarely needs this primitive; use it only when legibility is a real problem.",
+    "watch": "To remember characters the adult invents far-fetched origin stories and later treats them as fact."
+   }
+  },
+  "prim:reading-aid-fade": {
+   "child": {
+    "fit": "core",
+    "how": "Used in shared picture-book reading: for heritage Chinese children each character's pinyin is a sticker that \"flies away\" after two correct readings and goes into a little book; for English at 5–7 the aid layer is sound dots and lines plus the picture, removing the dots first and the picture last. When the child reads aloud, a parent listens with only the text and three reading options on their side. The meaning question in step 3 becomes \"what is this page about?\", checked by turning the picture back on, so reading aloud and understanding are recorded separately.",
+    "watch": "The child recites the page from memory of the story or recording; the sticker flies away, but shown on its own the character is not recognised."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Material is what they read anyway: manga, light novels, lyrics, game text, social posts, with furigana or pinyin. Aids are removed for characters they have mastered, so they can watch their \"read correctly without help\" list grow. Keep the meaning question in step 3, which shows that reading a word aloud is not understanding it. Secondary students get exam-required characters marked separately.",
+    "watch": "The student opens every aid before reading, so what is logged as blind reading is really peek-then-read."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Japanese for adults: furigana appears only on kanji the learner has not mastered, and when they import news, manuals or notices, readings for mastered characters are removed automatically; Chinese for adults can drop tone marks first and keep the pinyin letters. Material is real text they need to read, one passage per 5–15 minute unit. The \"read without help\" list can be exported; names, place names and special kanji readings can keep their aids for good.",
+    "watch": "Keen to read real material, the adult imports texts where well over a third of the characters are new, and fading turns into looking up the whole passage."
+   }
+  },
+  "prim:word-shape-split": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only two-part compounds (sunflower, fire+car for \"train\" in Chinese, rain+umbrella in Japanese); the cut is a scissors animation and the meaning is two pictures joined. Ages 5–7 do it orally: hear the word, see the two pictures, say what they mean together; ages 8–12 can tap the cut on the written word. Skip \"means the opposite\"; keep one reverse-half example (Chinese \"east-west\" meaning \"thing\") told as \"this word tricks you if you split it\". Step 3 becomes saying another word with the same part.",
+    "watch": "Splitting is fun, so the child splits everything, including words that are a single part."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Good for exam and subject vocabulary: Greek and Latin roots, two- and four-character Sino words. Students split first, then work out what a morpheme means from a few sets of words. Keep step 2 (\"don't trust it completely\") and say plainly that splitting works most of the time. In step 3 they write their own sentences with the word family, on topics they choose. A group \"word-family wall\" works well.",
+    "watch": "Students treat roots as a shortcut for memorising vocabulary and learn lists of roots without checking the split meaning in sentences."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Choose professional and academic words (roots in medicine, law, IT; four-character Sino compounds), with morpheme terms and etymology shown. Adults can use what their first language gives them: Chinese speakers split Japanese kanji words, English speakers split Latin roots. Step 3 is two sentences about their own work. The reverse half lists the exceptions directly and says they are the minority.",
+    "watch": "The adult trusts the first-language reading too much and splits Japanese words such as 手紙 or 勉強 by their Chinese meaning."
+   }
+  },
+  "prim:recall-before-reveal": {
+   "child": {
+    "fit": "core",
+    "how": "Items are a picture with a word or a short phrase; the child says it aloud and a parent or teacher taps \"remembered\" or \"nearly\". Batches of 5–6; for ages 5–7 it is all pictures and sound. Items not recalled go onto a sticker calendar and come back a few days later inside other activities. Keep the tone ordinary: \"we'll see these again in two days\", never \"wrong\".",
+    "watch": "The adult cannot wait and gives the first sound, so what gets logged as \"remembered\" was really prompted."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Put the review plan in the open: students see their own \"only these next time\" list and its spacing and can adjust it. Cues come from their situations (making plans with friends, teaming up in a game, phrases needed for homework), and step 3 is a short paragraph about their own life. Explain why trying from blank beats looking first; secondary students get exam items marked separately, but review is not limited to them.",
+    "watch": "To get everything right the student peeks before writing, or only puts easy items into review, so the list fills with things they already know."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Cues are concrete situations from work or life (what you need to say at Monday's meeting, at the doctor's), 8–12 items per batch, finishable in 5–15 minutes. Step 3 is an email or message of five or six sentences; the list can be exported to a calendar and the learner sets the spacing. Items they have mastered should \"graduate\" rather than be reviewed for completeness.",
+    "watch": "The adult marks every \"nearly\" as \"remembered\", so the review list shrinks while the items are not actually secure."
+   }
+  },
+  "prim:chunk-harvest": {
+   "child": {
+    "fit": "adapt",
+    "how": "Material is a picture-book page, a song or a stretch of a cartoon; collect only two items at a time (a fixed phrase or a common combination), read by an adult while the child points to \"I want this one\". Trying out becomes choosing from pictures, and step 3 is one spoken sentence of their own. Ages 5–7 work entirely through sound and pictures; the \"literal translation also works\" example is covered in one sentence.",
+    "watch": "The child collects single words they find fun (names, sound effects) rather than phrases they can reuse."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "They pick the material: lyrics, show subtitles, game dialogue, posts and comments. Let them sort phrases into the five types from examples before the types are named. The phrase book is their own, and can be swapped with or built together with classmates. Step 3 is a post, a comment or a message to a friend.",
+    "watch": "Students harvest lots of slang from popular material and cannot tell which phrases would not work in an essay or an exam."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material is foreign press, work email, podcast transcripts or documents the learner brings; the five phrase types are named directly. Collect three to five phrases they need right away, and step 3 is a real email or comment to send. The phrase book is grouped by work situation and can be exported.",
+    "watch": "The adult collects dozens at a time, the phrase book turns into a word list, and very few phrases ever get used."
+   }
+  },
+  "prim:usage-boundary": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for ages 8–12: one high-frequency word with four sentences, judged just \"can say / can't say\", without the five categories; wrong sentences are explained with a picture. One of the four sounds odd but is fine. Ages 5–7 do no judging; they hear correct sentences and use them. Step 3 is one spoken sentence.",
+    "watch": "The child judges by what sounds familiar, so a familiar error (a literal translation from the first language) is judged as fine."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Choose words students really get wrong in writing; sentences come from their own work (anonymised) or are swapped between classmates. Let them sort examples into the five categories before naming them; always include sentences that look wrong but are fine, and explain why. Step 3 is a short paragraph using two senses of the word. For secondary students, separate what an exam marks wrong from what real use accepts.",
+    "watch": "Having learned the five category names, students force every sentence into one of them and will not accept that some are fine."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Choose words the learner really misuses in writing; sentences come from their own emails and reports (anonymised), the five categories are named directly, and the comparison with the first language explains why the error happens. Step 3 is three or four sentences of work writing. One word per 5–15 minute unit.",
+    "watch": "The adult judges by how the equivalent word works in their first language, so anything acceptable there is judged acceptable here."
+   }
+  },
+  "prim:scene-walkthrough": {
+   "child": {
+    "fit": "core",
+    "how": "Scenes come from the child's life: going to school, a birthday, the park, buying ice cream. The timeline is a row of pictures, at most two spoken options, all by sound for ages 5–7; in step 3 the story takes a turn (the ice cream has run out) and the child says three sentences from pictures or acts it out with an adult. The \"it's different there\" moment uses one concrete example (how birthdays go in another country).",
+    "watch": "The child memorises the first route and says it the same way when the story changes."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Use scenes they will really face: a convenience store abroad, joining a club, the first day as an exchange student, booking tickets online, going to a concert. Options and situations use screenshots of real material, not children's pictures. Step 3 can be a role play in pairs or a short video. For secondary students it can line up with the textbook's situation units.",
+    "watch": "Scenes picked straight from the textbook (asking the way, ordering food) feel irrelevant, and students go through them half-heartedly."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Pick scenes from what the learner has to do this week: reporting a repair to a landlord, opening a bank account, seeing a doctor, returning goods, starting a job. Ask about their purpose first and skip moments they can already handle. Step 3 is five to seven sentences or a role play with a partner, practised against the scripted dialogue before the real thing.",
+    "watch": "The adult walks through once, assumes it is learned, and is stuck when the real situation goes a different way."
+   }
+  },
+  "prim:classifier-match": {
+   "child": {
+    "fit": "adapt",
+    "how": "Heritage Chinese children play \"measure-word shop\": the child is the shopkeeper, a customer asks for \"two ... of shoes\", and the child puts them in the right basket; start with two or three boxes and add more. English at ages 5–7 builds a breakfast tray (a cup of, a slice of), spoken only; ages 8–12 add \"count one by one / a heap of it\" and How many / How much ordering. The reverse half gets one example (an umbrella's measure word is not about shape). A child who uses the general measure word everywhere is not marked wrong, just shown the more natural one.",
+    "watch": "The child memorises which word goes with each object and cannot reason about a new one."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Let students work out what the objects in each classifier box have in common before giving category names and an exceptions list. Japanese sound changes (いっぽん, にほん, さんぼん) become a rhythm drill. Step 3 uses their own tasks: an online shopping list, buying for a party, ordering at a bubble-tea shop or izakaya.",
+    "watch": "Students learn the exceptions list well but put the number in the wrong position when ordering in step 3."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Material is menus, supermarket receipts and purchase lists for a work trip; category names and the exceptions list can be shown directly and compared with how the first language counts things. Adults learning Japanese also get the option of the native counting series (ひとつ, ふたつ...) and when it can replace a special counter. Step 3 is a real shopping list or order message.",
+    "watch": "The adult wants every classifier to be perfect and freezes in situations where the general one would be understood."
+   }
+  },
+  "prim:context-guess": {
+   "child": {
+    "fit": "adapt",
+    "how": "A short illustrated story read by an adult; one target word appears three times, the options are pictures, and the child points each time and decides whether to change at the next appearance. No coverage figures, no triage. Step 3 is saying \"which sentence told me\". Keep one reverse-half word that cannot be guessed, where the right move is to ask the adult. Ages 5–7 do it entirely by ear.",
+    "watch": "The child guesses from the illustration and never uses the sentence."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "This is a key activity as learners move from learning to read to reading to learn: material is slightly hard authentic text (news, popular science, an intro to a work they like), and coverage figures can be shown to them. Let them sort the five triage types from examples before naming them. Say that exam questions on exact word meaning are not a place to guess; step 3 is a sentence written for a classmate to decode.",
+    "watch": "Having learned that unknown words can be skipped, students skip the key words they must look up and cannot give the gist afterwards."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material is news, academic abstracts, manuals, or documents the learner must read at work; both coverage figures and the clue-type terms are shown. Adults tend to look up every word, so the focus is on what can be skipped; step 3 is two sentences. One short text per 5–15 minute unit.",
+    "watch": "Unable to drop the look-up habit, the adult marks every blocking word as \"must look up\" in step 1."
+   }
+  },
+  "prim:form-for-meaning": {
+   "child": {
+    "fit": "core",
+    "how": "The child hears a spoken sentence and taps which of two pictures it means (the cat chases the dog / the dog chases the cat; eating / finished eating), 6 items a set, with no rule given. This is how children naturally notice form while listening, and 5–7 year olds can do it. Step 2 (\"me too / not me\") uses pictures. Keep one reverse-half item where the sentence alone cannot decide, with two pictures that both fit.",
+    "watch": "The pictures give the answer away (only one looks like the things in the sentence), so the child can tap correctly without listening to the form."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Sentences come from their world (game plots, messages from friends, headlines). They judge meaning first, and after a round say \"which form told you\", before the rule is named. Explain that this primitive deliberately has no production; choosing and using come next. For secondary students it maps onto grammar comprehension items on exams.",
+    "watch": "Students who already know the rule apply it before thinking about meaning, so it turns into a grammar quiz rather than understanding through form."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Sentences come from news and work email; the closing screen names the term and the rule and can compare how the first language marks the distinction. Adults usually get these right quickly, so keep units short (5–15 minutes) and move to production once judgements are stable. State the reverse half directly: some forms have two readings.",
+    "watch": "The adult works out the meaning from the content words and common sense and gets it right without looking at the form."
+   }
+  },
+  "prim:paradigm-apply": {
+   "child": {
+    "fit": "adapt",
+    "how": "Ages 5–7 do an oral wug test: an unfamiliar creature on screen, \"This is a wug. Now there are two ...\", the child says the word and a parent taps which of three options the child said; all new words are made up, so they cannot be memorised. Ages 8–12 can do a written version (plurals, -ing, -ed spelling) with one plain sentence naming the pattern. Heritage Chinese children apply reduplication (看看, 高高兴兴) to new words. The reverse half uses one common word that does not follow the pattern (go-went).",
+    "watch": "The parent supplies the ending before the child speaks and taps their own answer."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "This is where teenagers are strong: group the forms they know, find the rule themselves, then get the rule name and term and apply it to new words. Their own conjugation table grows on the derivation card and can be practised in sets (\"te-form only\"). Step 3 sentences use their situations (asking a friend to do something, talking about the weekend). Tell secondary students which forms the exam favours.",
+    "watch": "Students memorise the table, skip the induction in step 1, and get the \"looks like A, is really B\" words wrong."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Adults learning Japanese go through the full derivation chain with verb class and sound-change group names; adults learning English group irregular verbs into vowel-change families (sing-sang, ring-rang, but bring-brought). State the rule directly, compare with the first language, and list exceptions separately. Step 3 sentences are things they really need to say (asking a colleague for help, reporting what they did yesterday).",
+    "watch": "The adult applies the rule so strictly that regularised forms that exist in dialects or casual speech are marked wrong."
+   }
+  },
+  "prim:choose-by-intent": {
+   "child": {
+    "fit": "adapt",
+    "how": "The context is a picture with one sentence; at most two contrasting forms, marked by colour, not by grammar terms. The child chooses, then hears what the meaning becomes with the other form (shown in a second picture). Ages 5–7 work by sound and picture; ages 8–12 can get one plain sentence on the difference. Step 3 is one sentence about themselves using the form named.",
+    "watch": "The child learns \"blue goes with this kind of picture\" and chooses by how the picture looks rather than by what they want to say."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Contexts come from their lives and favourite works (chat screenshots, scenes from a story). They choose, swap, say what changed, and then get the term. Every set includes one item where both forms are right but mean different things, showing that \"which one\" is not the same as \"right or wrong\". Step 3 is two or three sentences about themselves.",
+    "watch": "Students hunt for trigger words (\"already\" means present perfect) and are caught out by items where the cue points one way and the answer is the other."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Contexts come from work or daily life; terms can be shown directly, compared with how the first language expresses the same idea. Step 3 is two or three sentences, ideally from an email or message they need to write this week. Short units, one contrast at a time.",
+    "watch": "The adult chooses by the first-language equivalent, and where the first language has only one form, picks at random."
+   }
+  },
+  "prim:slot-order": {
+   "child": {
+    "fit": "adapt",
+    "how": "Ages 8–12: the track is a little train with fixed carriage colours (who | does what | what | where | when), and word blocks are passengers. Ages 5–7 skip the written version: an adult says a sentence and the child puts three pictures (girl / eat / apple) into the carriages. Keep one reverse-half item where another carriage also works (tomorrow I go / I go tomorrow). Heritage Chinese children already have spoken word order right; use it only for lining up modifiers in long written sentences.",
+    "watch": "The child places passengers by colour and gets the order right, then cannot do it once the blocks lose their colours."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Students order the blocks before slot names appear, then see the names and work out the rule, and finally compare with a first-language track. Sentences are about their lives (this week's plans, a line from something they like). For English focus on question inversion, indirect questions and frequency adverbs; for Japanese on predicate-final order and the position of quantities. In step 3 they write a sentence about themselves and label its slots.",
+    "watch": "Students treat the slot order as fixed law and refuse sentences where moving a part is fine and only shifts the emphasis."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Sentences come from work email and reports; slot names use the terms, and a first-language track is overlaid to show where the orders differ. Adults usually understand the rule but speak in first-language order, so step 3 has them write and say their own sentence. One rule per unit.",
+    "watch": "The adult gets every exercise right and still writes emails in first-language order."
+   }
+  },
+  "prim:role-marking": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only two or three spatial roles (where, where to, with whom), shown as icons (footprints = to, house = at, two figures = together), no terms; sentences are built from word cards, and for ages 5–7 an adult reads while the child places them. Keep one reverse-half item where the role looks the same but the marker differs (there is a cat in the room / we play in the room). Step 3 is one sentence about a new picture.",
+    "watch": "The child learns \"house icon means に\" and still picks に for an action happening in that place."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Students first find the match between roles and markers from a set of sentences, then get role names and verb frames. Scenes come from their lives (commuting to school, clubs, part-time jobs). State the reverse half directly (\"the role is the starting point, not the whole rule\") and have them collect fixed combinations decided by the verb. Step 3 is one sentence with three roles.",
+    "watch": "Students map one first-language word (Chinese 在, English \"at\") onto a single particle and never notice it has to split here."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Scenes come from commuting, errands and work; role names and verb frame cards are shown and compared directly with the first language (does Chinese 在 become で or に, does 给 become に or ために). Step 3 is one sentence with four roles, or two sentences contrasting two roles of the same noun. One verb family per unit.",
+    "watch": "The adult knows the frame cards but translates first-language prepositions when speaking, putting a particle in the right place but choosing the wrong one."
+   }
+  },
+  "prim:aspect-timeline": {
+   "child": {
+    "fit": "adapt",
+    "how": "No abstract timeline: use a three-panel strip (starting / doing / done), the child places a picture in one panel, and at most two contrasting forms (Chinese 在 / 了; -ing / -ed), shown by colour, not terms. Ages 5–7 listen and place; ages 8–12 also say a sentence. The reverse half is one word that cannot be \"in progress\" (know), explained in one plain sentence.",
+    "watch": "The child chooses the panel by whether the picture has motion lines, not by listening to the form."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "A timeline suits teenagers who can analyse: they place events, state the link between form and timeline shape themselves, and then get the terms (progressive, perfect, experience, resulting state). Events come from their own lives (how long they have studied the language, where they have been, the show they are following). State the reverse half directly: time words do not decide the form, and verb type can block a timeline. Step 3 is writing about themselves with at least two timeline shapes.",
+    "watch": "Students place the timeline correctly and still choose the form by time words (\"yesterday\" means past simple)."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Show both the speech time S and the reference time R, allow two events at once (past perfect, たところ vs ていたところ), show the terms directly and compare with how the first language marks time. Step 3 is three or four sentences about themselves (work history, a move, their learning history) with at least two timeline shapes.",
+    "watch": "Where their first language has no aspect distinction, the adult uses one form everywhere and places the timeline to fit that habit."
+   }
+  },
+  "prim:attach-position": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for ages 8–12, and only two types: \"covers the word right after it\" and \"attaches to which noun\", with sentences paired with pictures that show the difference (only I ate the apple / I ate only the apple). No comma switch and no rewriting. Keep one reverse-half item where moving the word changes nothing. Ages 5–7 just hear two sentences and tap two pictures.",
+    "watch": "The child just looks at which picture \"only\" is nearest and turns moving it into a find-the-object game."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Suits students who are starting to write longer sentences and essays: material comes from their essays and textbooks, with the comma switch and parallel structure both included; they see the effect before getting the terms (restrictive / non-restrictive, parallelism). State the reverse half directly: most positions are not wrong, they mean something else. Step 3 fixes two places in their own essay.",
+    "watch": "Once they know the terms, students judge by commas alone and forget that what the writer means is the standard."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Drafts come from academic writing, CVs, notice emails or the learner's own documents; terms are shown directly (dangling modifier, parallel structure, restrictive clause). These misreadings are costly in an adult's formal writing, so step 3 rewrites two places and gives reasons. Short units, one attachment type each.",
+    "watch": "The adult punctuates the target language by first-language habit and cannot see that a comma changes what the reader understands."
+   }
+  },
+  "prim:combine-unpack": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only two sentences into one: two picture cards show two events, and there are only two ways to join them (and / because; Japanese て / から; Chinese 和, 然后 / 因为), with colour showing which event is the \"why\". Ages 5–7 say it; ages 8–12 can write it. No counting of events, no terms. Keep one reverse-half item where saying it as two sentences is just as good.",
+    "watch": "Having learned \"because\", the child joins every pair of events that happen one after the other with it."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Writing is getting longer at this stage: material is ideally the \"and then... and then\" sentences from students' own essays, and they see the effect of the four ways of joining before the names come. Step 2 includes both \"what was lost\" and \"nothing was lost\", showing that longer is not always better. Step 3 rewrites three of their own sentences and must genuinely subordinate one event. Peer swapping works well.",
+    "watch": "Students believe longer means more advanced and squeeze each paragraph into one or two hard-to-read sentences."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from work email, reports and academic paragraphs, or the learner's own drafts; step 1 adds compressing by nominalisation, and step 2 says which situation suits the tight version and which the loose one (a report vs. a quick chat). Compare with the first language, for instance how forcing \"because... so...\" onto loose Chinese run-on sentences sounds stiff.",
+    "watch": "The adult translates first-language run-on sentences one by one; each is correct, but the reader cannot tell which point matters."
+   }
+  },
+  "prim:strip-skeleton": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for 8–12 year olds starting to read storybooks on their own: sentences of at most 12 words / 20 characters, two big cards \"who? did what?\" to find the core, and modifiers as picture bubbles (\"what kind?\", \"where?\"). The only question is \"if we take this away, do we still know which one?\"; no terms. Ages 5–7 skip it, since reading long sentences is not the goal at that age.",
+    "watch": "The child strips every bubble, including the one that says which one, and the core no longer says who it is about."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Long sentences in textbooks, exam passages and academic articles are exactly the difficulty at this stage: use the texts they are reading, strip first, then work out which kinds of modifier cannot be stripped, and name them. Explain how skipping helps in exam reading and why it is wrong for literary texts. Step 3 is putting it back together, which can be compared with a classmate.",
+    "watch": "Having learned to skip, students skip in detail questions and literary texts too, and drop key restrictions along the way."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from news, manuals, abstracts and work documents (not contracts), with layer names shown directly. Step 2 writes a \"marker to spot when skimming next time\" for each skippable chunk (a comma, a long clause before の, several 的), so the adult leaves with a habit for reading long sentences. Units of 5–15 minutes, three or four sentences.",
+    "watch": "Used to translating word by word, the adult still translates the whole sentence in their head while stripping and gets no faster."
+   }
+  },
+  "prim:reference-chain": {
+   "child": {
+    "fit": "adapt",
+    "how": "Two or three picture-book sentences with an illustration; references are only he/she/it (Japanese この人 / それ; Chinese 他, 她, 它), and the child drags each pronoun onto the person or thing in the picture. Omission appears only as question-and-answer gaps like \"who ate it?\". For ages 5–7 an adult reads and the child points; ages 8–12 read for themselves. Reverse half: in one sentence \"it\" does not refer to the nearest thing.",
+    "watch": "The child always links a pronoun to the nearest noun, is right often enough, and concludes that the rule is \"find the closest one\"."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Material is the articles, novels and news they read; the five ways of referring are recognised in examples first and then named. Chinese students learning English need extra practice in \"you can't leave it out\"; English-background students learning Japanese need practice in \"don't put it in\". Step 3 continues the text by three sentences or revises a paragraph of their own essay where one name keeps repeating, and can be peer reviewed.",
+    "watch": "Students learn to supply every pronoun in English and then also put 私は in every Japanese sentence, applying the rule in the wrong direction."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material is news and commentary, adding summary nouns (this move, この措置, 此举) and formal reference (former/latter, 同社, 前者, Chinese 该 and 其), compared with the first language. Step 3 rewrites a paragraph from their own report. Adults most often misread work documents where \"this\" refers to a whole event, so choose items there.",
+    "watch": "The adult links \"this\" to the nearest noun instead of the whole preceding event and misreads a conclusion in a report."
+   }
+  },
+  "prim:discourse-map": {
+   "child": {
+    "fit": "adapt",
+    "how": "A three-part story (beginning, middle, end) replaces argument functions; the child puts three picture cards into the frame and says what each part \"is about\". Judging whether a sentence fits becomes \"is this sentence about the same thing?\". Ages 5–7 hear the story and order the pictures; ages 8–12 can write one part. Reverse half: one story has no \"something goes wrong\" part and is still a story.",
+    "watch": "The child orders the cards by colour or visual continuity rather than by what each part does in the story."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "This is the stage of argumentative writing and longer reading: material is textbook articles, commentary and topics they care about; they label functions in one or two texts first, then generalise the shapes and their names. Explain that discourse habits differ between languages (the third part of the Japanese four-part structure is a shift of view, not a rebuttal; Chinese topic sentences can come at the end). Step 3 adds a concession paragraph, possibly as a group.",
+    "watch": "Students treat the five-paragraph English essay as the only correct shape and judge Japanese and Chinese texts by it."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from commentary, reports and proposals, or work documents the learner has to write; add comparison and problem–solution shapes, with terms shown directly. Step 3 writes a concession paragraph and the sentence that turns back. Adults bring first-language discourse habits, so compare directly and say which readers expect which shape.",
+    "watch": "The adult has clear ideas but puts the conclusion last out of first-language habit, so the target-language reader is lost halfway through."
+   }
+  },
+  "prim:predict-next": {
+   "child": {
+    "fit": "core",
+    "how": "This already happens in shared picture-book reading: the adult stops partway and the child holds up a card for \"and it stays happy\" or \"something goes wrong\", with only two direction cards (and also / but; Japanese それから / でも; Chinese 还有 / 可是). In a three-panel strip they see two panels and guess the third. Ages 5–7 listen and hold up cards; ages 8–12 can read for themselves. Reverse half: once, the answer is \"the story jumps back to earlier\".",
+    "watch": "The child always guesses \"something goes wrong\" because stories often do, and scores well without listening to the connective."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Material is what they read and watch: novels, series, lectures, commentary. Add the \"it doesn't follow this sentence\" card; they bet first, check second, then work out the strength and position of connectives. Show how this relates to paragraph-ordering and gap-sentence items in reading exams. Step 3 is writing or saying the next sentence, which can be set as a bet for a classmate.",
+    "watch": "Students treat signal words as a master key, bet \"reversal\" whenever they see \"but\", and are caught by misleading signals."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from lectures, podcasts, commentary and meeting recordings; all direction cards are open, step 2 compares the strength of markers in the same family, and step 3 is picking up the thread in a meeting or report. What adults most need in meetings is to see a turn coming, and a unit can use a single five-minute recording.",
+    "watch": "Used to the first language leaving relations unmarked, the adult hears two unlinked sentences as parallel and misses that the second is a reversal."
+   }
+  },
+  "prim:source-stance": {
+   "child": {
+    "fit": "defer",
+    "how": "Separating the writer's own words from reported speech and judging stance and certainty belongs to the reading-to-learn stage; it is generally not the right main activity under 12, and not for ages 5–7. The piece a child can handle is \"how sure is it?\", which comes first in the thermometer version of scale placement (black clouds / some clouds / sunny). When reading stories, 8–12 year olds can sometimes be asked \"who said it? did they see it or guess?\", dragging speech bubbles to the speaker, without a certainty ladder.",
+    "watch": "Asked which side the writer is on, children answer by which character they like.",
+    "instead": "prim:scale-place"
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Secondary students start reading news and argument, university students academic literature: use topics they care about (online controversies, science news, reports on campus events). They sort sentences into tracks in the text before getting names for reporting verbs and stance. Always include \"follows, but they didn't say it\", and clickbait headlines make good examples. Step 3 reports the same claim twice.",
+    "watch": "Students treat an inference they agree with as what the text said, and keep getting the \"follows, but they didn't say it\" item wrong."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from news, research abstracts, meeting talk and minutes; add academic reporting verbs and reports within reports, compared with first-language ways of keeping distance. Step 3 corrects a set of distorted meeting minutes, something adults really write at work. Explain that polite softening (思います, 我觉得) does not necessarily mean uncertainty.",
+    "watch": "The adult reads every 思います as uncertainty and misjudges an opinion that was actually firm."
+   }
+  },
+  "prim:transcript-diff": {
+   "child": {
+    "fit": "adapt",
+    "how": "No writing: after hearing a sentence the child taps which of three pictures or word cards they heard, or puts word cards in the order heard. Only one kind of change is taught, linking, shown as two bricks clicking together. Material is a line from a song or story, recorded by a real speaker. Children of 8–12 who can write may write one or two words. Step 3 becomes ordering five word cards after a short stretch.",
+    "watch": "The child orders the cards from memory of the song rather than from listening to this recording."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Material is what they will listen to anyway: songs, series, game voice lines, YouTube and podcast clips. They hear the five kinds of change in examples before naming them. \"Misspelled but same meaning\" is not an error, so it does not turn into spelling practice. Step 3 is a longer stretch without the transcript, and they can compare with a classmate who caught more. Explain how this relates to dictation and listening exams.",
+    "watch": "Students care too much about spelling and count every misspelling as a mishearing, overlooking the places they truly did not hear."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from film and TV dialogue, podcasts and news, with a range of accents, or recordings of meetings the learner has to follow at work; the five kinds of change are named directly. Step 3 is a longer passage, looking at coverage and accuracy together. One clip per 5–15 minute unit, which fits a commute.",
+    "watch": "The adult replays until everything is right, so the first-listen information is lost and their real listening level is hidden."
+   }
+  },
+  "prim:listen-for-data": {
+   "child": {
+    "fit": "adapt",
+    "how": "The report becomes picture cards (how many apples, a clock face, a calendar square); the child taps or drags number cards, no typing; numbers 1–20, whole and half hours. Keep only two error types, \"wrong number\" and \"wrong thing\". The approximate-number row becomes \"he said 'lots', not a number\", which is the child's reverse half. Ages 5–7 use only pictures and sound.",
+    "watch": "The child drags as soon as they hear the first number and misses the unit or object after it, getting the number right and the thing wrong."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Material is what they run into: concert and match times and places, train tickets, online prices and discounts, school announcements. They listen first, then look at someone else's wrongly filled report, and the error types are named after they sort them. Explain how this relates to form-filling items in listening exams and how \"no exact number given\" might appear there.",
+    "watch": "Students bring exam habits with them, put a number in every box, and record an approximate figure as exact."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material comes from real situations: airport rebooking announcements, meeting budgets, delivery time windows, medicine doses. Each row is played once, the box limit forces them to note only what matters, and error types are named. These mistakes have real consequences for adults, so step 3 puts each number with its qualifier into a message to send.",
+    "watch": "The adult tries to note every detail, fills the boxes with modifiers and misses the time range that mattered."
+   }
+  },
+  "prim:listen-and-do": {
+   "child": {
+    "fit": "core",
+    "how": "One of the main activities for ages 5–7: each instruction has one action plus one property or position, objects are large and few (4–6), at most two replays, no text, no demonstration animation. It can be combined with movement (do it on screen, then in the room). In step 3 the child builds an instruction from picture word cards, and an adult reads it out and carries it out. Reverse half: one instruction is \"don't touch the red one\".",
+    "watch": "The child follows the adult's glance or gesture and gets it right on screen without listening to the instruction."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Scenes are ones they use: game maps, app settings screens, station and mall floor plans, lab procedures. Instructions have two or three steps in a row, with negatives and conditions, and directions from a character's point of view. Step 3 is an instruction written for a classmate to carry out, with partners taking turns. No childish classroom or toy scenes.",
+    "watch": "Students act on the key words alone, skip the negative or the condition, and do something they should not have."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Scenes are neighbourhood maps, stations, device panels or forms; instructions run two or three steps, with negatives and conditions, at adjustable speed. Adults use it to practise real instructions: directions, setup steps over the phone, a colleague handing over a task. Step 3 writes operating instructions for a colleague.",
+    "watch": "Used to reading first, the adult turns on the text before acting, so reading replaces the listening."
+   }
+  },
+  "prim:exchange-script": {
+   "child": {
+    "fit": "adapt",
+    "how": "Scenes come from the child's life: greetings, borrowing an eraser, buying ice cream, telling the teacher \"I don't understand\". Options are whole sentences with pictures and audio, chosen by ear for ages 5–7; endings are shown as faces, and words like \"relationship\" never appear. In step 3 a teacher or parent plays the other person and the child says the key line. Reverse half: one turn where saying it directly is best (\"Help!\", \"I want this one\").",
+    "watch": "The child decides the longest, most polite sentence must be best and picks it every turn."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Scenes they will really face: making plans with friends, messaging a seller online, asking a teacher for leave, answering the phone at a part-time job, asking for help at an exchange school. From intermediate level options are written as strategies; they try the branches and see the outcomes before the functions are named. In step 3 pairs act with role cards while the partner ticks the checklist; it happens in small groups, never as a performance for the class.",
+    "watch": "Finding the options \"too textbook\", students click through to the ending without really reading how the other person responds."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Scenes are work calls, complaints, rescheduling, declining an invitation, or something the learner has to handle this week; options are written as strategies with function names shown (softener, reason, request, alternative). They practise against the scripted dialogue until confident, then move to a real person; step 3 has them say three key turns on their own.",
+    "watch": "The adult does well on the page but keeps putting off practice with a real person, so the script never leaves rehearsal."
+   }
+  },
+  "prim:register-calibrate": {
+   "child": {
+    "fit": "adapt",
+    "how": "Parameters become pictures of people (mum, teacher, classmate, shop assistant) with only two levels, \"someone I know / an adult I don't know\"; only forms of address, greetings, please and thank you (Japanese おはよう / おはようございます; Chinese 你 / 您, 王老师好). No terms; the question is \"who would you say this to?\". Ages 5–7 listen and pick the person; ages 8–12 can write a sentence. Reverse half: being too polite to a classmate also sounds odd.",
+    "watch": "The child takes the polite forms as \"what good children say\" and uses them with classmates and family too."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Teenagers are alert to who gets spoken to how, so use their relationships: messaging a teacher, talking to older students, group chats, serving customers at a part-time job. They move the parameters and watch the same passage change before register and honorific terms are named. Step 3 writes for a third person (for example talking about their own teacher to an outsider). For secondary students, separate exam honorific items from real use.",
+    "watch": "Students have only two settings, as casual as with friends or the top-level honorifics they memorised, and cannot produce the middle level."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Work email, client calls, messages to a manager, leave requests; terms are shown directly (respectful, humble and polite forms; written register; hedging) and compared with first-language politeness. Step 3 is a complete short email, ideally one they actually need to send this week. State the reverse half directly: being too polite also gives you away, and formal does not mean long.",
+    "watch": "The adult carries first-language politeness over sentence by sentence and writes long, roundabout emails where the point is hard to find."
+   }
+  },
+  "prim:info-gap": {
+   "child": {
+    "fit": "core",
+    "how": "Information-gap games come naturally to children: a teacher or parent plays a role, the cards are pictures (the missing price in a toy shop, where an animal lives), and the child asks and sticks the answer on. Only two categories, \"was it a question?\" and \"did you find out?\"; an adult transcribes or the recording is kept. Children of 8–12 can play in pairs, taking turns to ask. Reverse half: one answer is already on their own card, so asking wastes a turn.",
+    "watch": "Instead of asking, the child peeks at the other card and the information gap disappears."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Peer tasks suit this age: each partner holds half the information (event plans, a trip, a puzzle) and must ask to finish. Gap cards use topics they care about. In step 2 they sort their own questions before the categories are named; in step 3 they write three questions before talking. It can be done within a small group, never in front of the class.",
+    "watch": "Two students swap the information in their first language and then write up a target-language \"transcript\" afterwards."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Tasks come from real needs: booking a meeting room, viewing a flat, a medical appointment, getting a supplier quote; the partner is a language exchange partner, colleague or teacher, possibly after practising against a scripted dialogue. Step 3 has at least one follow-up question, with categories named. Explain that key numbers should be confirmed by repeating them back, the most useful move in real errands.",
+    "watch": "Afraid of silence, the adult prepares only open questions and never confirms the key price or time."
+   }
+  },
+  "prim:culture-incident": {
+   "child": {
+    "fit": "adapt",
+    "how": "Small school incidents (borrowing something and not saying thanks, a classmate from abroad not eating the snack offered), shown in pictures; only three categories: what was said / how it was said / nothing was actually wrong. Mostly discussion with an adult or classmates, with no right-or-wrong marking. For ages 5–7 the adult tells the story and the child says what each person was thinking; ages 8–12 can rewrite one line. No religion or politics.",
+    "watch": "The discussion turns into \"people from that country are all like that\", and the child takes a stereotype away from one story."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Teenagers care about identity and how others see them, which makes this good for discussion: incidents come from exchange life, chatting with people abroad online, fan communities, misunderstandings in games. They write their own explanation, then see both inner monologues and compare readings in a small group. Always include a \"no cultural misunderstanding\" item, showing that people within one culture differ too. Step 3 rewrites one line.",
+    "watch": "Students put every awkward moment down to culture and explain away language errors or personality."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Work, neighbour, dinner and home-visit situations, with terms shown (face, in-group and out-group, implied meaning); adults have plenty of experience and can bring an incident of their own to analyse. Step 3 gives two rewrites and says which relationship each suits. Every ending is marked \"in this relationship, in this setting\".",
+    "watch": "The adult generalises from one unpleasant experience to the whole culture and always picks \"cultural cause\" in step 2."
+   }
+  },
+  "prim:attempt-then-compare": {
+   "child": {
+    "fit": "adapt",
+    "how": "The task becomes saying or writing two or three sentences about a picture (it can be recorded and typed up by an adult); the model is two or three sentences, with only two categories, \"it has something extra\" and \"this sentence isn't good\". The bad sentence should be obvious (it mentions something not in the picture). Ages 5–7 do it all orally, with an adult listening to the model alongside and asking \"what does it have that you didn't?\". Step 3 is saying it again.",
+    "watch": "After hearing the model the child repeats the model, so step 3 is no longer their own words."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Tasks are things they write: a message to a friend, a post, a paragraph of an application essay, a school essay. They write first (the draft is locked), then go through the model sentence by sentence building their own gap list, and finally rewrite from the list alone. Explain clearly why the botched sentence in the model is not worth copying. Lists can be swapped with classmates. For secondary students say what essay marking looks at.",
+    "watch": "Students treat the model as the answer key and write it out from memory in step 3."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Tasks are emails, notices, application paragraphs and work reports, ideally something due this week; gap categories use the terms, and the rewrite has a word limit. Adults can bring their own model (a well-written email from a colleague), but the page still slips in one botched sentence. The rewrite from step 3 can be sent as is.",
+    "watch": "Unwilling to write a draft that is \"not good enough\", the adult researches before writing, and step 1 no longer reveals the gaps."
+   }
+  },
+  "prim:one-fix-revision": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for ages 8–12, and only one category (capitals and full stops, mixing up Japanese は and を, wrong Chinese characters); drafts are three or four sentences, stickers replace options, and there are no terms. There is always one place that needs no change. Step 3 fixes a short piece the child wrote. Ages 5–7 have no written drafts yet and skip it; orally, \"say it again, clearly this time\" does the job.",
+    "watch": "The child thinks every highlighted spot needs changing and changes the one that was fine."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Use students' own essays, one category at a time: fix first, then sum up the checking move for that category, then name it. They can choose the order of spotlights. Step 3 uses the new move on another piece of their own or in peer revision, with corrections shown only to the writer. For secondary students explain how these errors cost marks in exam essays.",
+    "watch": "Students fix other people's drafts accurately and cannot see the same faults in their own."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Use their real emails or report paragraphs, with the spotlight order set by the learner; step 3 revises another of their own drafts. Adults are short of time, so one category per 5–15 minutes, leaving with one checking move (such as \"scan only the verbs\") to use themselves next time they write.",
+    "watch": "The adult wants to fix everything at once, skips \"one category at a time\", and never builds a checking habit for any of them."
+   }
+  },
+  "prim:picture-describe": {
+   "child": {
+    "fit": "core",
+    "how": "The picture has only 4–6 elements; the child describes it aloud and records it, then taps icons to show \"which things I mentioned\"; no writing. In step 3 a teacher or parent places stickers on paper following the child's description, then compares with the picture. The reverse half is one line: \"he looks tired\" is a guess, not something the picture shows. Three sentences is enough for ages 5–7.",
+    "watch": "The child lists nouns (cat, ball, tree) without positions or numbers, and the check still counts them all as \"mentioned\"."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Pictures are things they would describe: game screenshots, film stills, street photos, infographics. After describing, they check against the picture, separating state from action and fact from inference, and the categories are named. In step 3 pairs take turns, one describing and the other placing things on a \"blind canvas\", then compare. For secondary students link it to picture-description items on speaking exams.",
+    "watch": "Students describe at length but mix guesses and opinions into the facts without marking which ones are guesses."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Complex scenes such as streets, offices and kitchens, or scenes made from charts, separating states from actions and adding inference sentences. What adults most need is describing real things (a problem in the flat for the landlord, an accident scene, how a product looks), so step 3 describes it to someone who cannot see the picture. No cartoons.",
+    "watch": "The adult builds long sentences the first-language way and gets half the positions wrong, which only shows up in the check."
+   }
+  },
+  "prim:sequence-retell": {
+   "child": {
+    "fit": "core",
+    "how": "Four picture-book images, heard as a story first and then ordered; only three connecting words, first, then, finally (or 先, 然后, 最后). When retelling, the child can point at the pictures while an adult listens. Ages 8–12 can add \"at the same time\" and \"because\". Reverse half: one story tells the ending first and then what happened before, and the child must order by when things happened.",
+    "watch": "The child orders by picture number or book page rather than by thinking about what happened first."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Material is clips from series, manga panels, news events or their own experiences; after ordering they place connectives, seeing the effect before the names (flashback, simultaneous). Step 3 can be a dub, a voice-over for a short video, or telling it to a classmate. At least one flashback, with had done / 之前已经……了 explained.",
+    "watch": "Students use \"then\" for every sentence, the retelling becomes a flat list, and the flashback is told in telling order too."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Cooking, paperwork, news events or personal experiences, with flashback and simultaneous events; the retelling uses at least three different connectives and includes one flashback. Adults most often need to explain a process (walking a colleague through paperwork) or tell their own history (in an interview, describing symptoms to a doctor), so choose that kind of material.",
+    "watch": "The adult finds ordering too easy, skips steps 1 and 2, and handles flashback and simultaneity by first-language habit when retelling."
+   }
+  },
+  "prim:grow-text": {
+   "child": {
+    "fit": "adapt",
+    "how": "Three question buttons, \"for example?\", \"and then?\", \"so?\", replace terms, growing one sentence into three or four; ages 5–7 say it while an adult writes, ages 8–12 write. The change-over-time version uses a chart of their height or a bean sprout growing. Reverse half: one button has nothing to add this time, and saying \"nothing here\" is the right answer.",
+    "watch": "To use every button, the child makes up examples and numbers that do not exist."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "This is the core move in essays and short papers: starting from one claim, they choose a way to grow it and see the effect before the methods and opening patterns are named. Claims are on topics they care about; chart descriptions use data they understand (screen time, a class survey). Step 3 grows a paragraph on their own, possibly with peer review.",
+    "watch": "Students know only one method, \"give an example\", and pad every paragraph with examples."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Opinion paragraphs, chart descriptions in reports, weekly work updates, ideally with the learner's own data and claims; growth methods and opening patterns are named directly. Step 3 grows to at least four times the starting length. State the reverse half directly: if you have no figure, do not give one.",
+    "watch": "Writing a work report, the adult invents or inflates figures to look well supported."
+   }
+  },
+  "prim:carry-across": {
+   "child": {
+    "fit": "adapt",
+    "how": "The source is one line from a story (\"Can I...?\", \"It's my turn\"), and the new setting is home or school; only two categories, \"can carry / can't carry\", done orally. Young children with nothing of their own to tell can use a pretend character. Reverse half: one line is tied to something in the story (a magic wand) and cannot be carried home.",
+    "watch": "The child brings the story's characters and objects along and ends up retelling the same story."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Sources are expressions from works, videos or textbook passages they like, and the new setting is their own life (school, clubs, home, online). They carry first, then judge how far each phrase travels, then get the category names. Step 3 tells something of their own with no link to the source, as a post or told to a classmate.",
+    "watch": "Students pick only the easiest phrases to carry, and never meet the \"change the tone\" or \"can't carry\" categories."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Expressions from meetings, podcasts and news are carried into the learner's own work and life, with register adjustment allowed and the categories named. What adults most need is \"where can I use this right away\", so the new setting is something from this week. Point out that meeting language at a dinner table sounds odd.",
+    "watch": "The adult uses formal work phrases unchanged at a get-together with friends and does not notice the tone is off."
+   }
+  },
+  "prim:real-document-scan": {
+   "child": {
+    "fit": "adapt",
+    "how": "A picture menu, a timetable, a park sign, a theme-park map; the task is to point to one icon or one time, and conditions are judged only as \"allowed / not allowed\". Ages 5–7 rely on icons and a task read aloud by an adult; ages 8–12 read simple words themselves. Reverse half: one question has no answer on the document, and the right move is to ask an adult. No real bills or ID.",
+    "watch": "The child reads only the icons, and answers from the icon even when the text says otherwise (an exception, weekends only)."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Documents they meet: ticket pages for concerts and matches, train tickets and transfer maps, takeaway menus, school notices, study-abroad application guidelines. Tasks have two conditions and one footnote. Step 3 is a message to a friend (\"let's get the 9:40\"). For secondary students link it to chart and notice items in reading exams.",
+    "watch": "Used to exams where the answer is always in the text, students never choose \"not on the document\"."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Real-layout train timetables, rental notices, hospital registration forms, utility bills, application forms; tasks have two or three conditions and one footnote exception. This is the reading adults living abroad do most, and step 3 produces a message to send or a completed form. Learners are never asked to upload their own documents.",
+    "watch": "The adult stops at the first entry that looks right and misses the footnote saying \"no service on weekends and holidays\"."
+   }
+  },
+  "prim:scale-place": {
+   "child": {
+    "fit": "adapt",
+    "how": "The ladder becomes a volume knob or thermometer (\"how sure is it?\") with only three steps; sentences are a picture scene with one line, such as \"it will rain tomorrow\" with three skies (all clouds / some clouds / sunny). No terms. Ages 8–12 can say it twice, once very sure and once less sure. Reverse half: one item where \"most sure\" is right (the sky is full of black clouds). Ages 5–7 only listen and point.",
+    "watch": "The child decides that being less sure is more polite and picks the middle step every time."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Students put the sentence cards on the ladder and explain their order before the three ladders (likelihood, obligation, degree) are named. Situations are theirs (asking a teacher for leave, passing on a rumour in a group chat, advising a friend). State the reverse half directly: there is no best step, and one form can sit on two ladders. Step 3 says the same thing twice and notes when each version would be used.",
+    "watch": "Having learned to hedge, students put \"maybe\" in every sentence of an essay and their claims lose all force."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Situations come from email, meetings, medical instructions and news reports; terms can be shown directly (epistemic / deontic, degree of certainty) and compared with first-language strength. At work adults often run into trouble by sounding too strong or too weak, so step 3 writes a strong and a weak version of the same fact and says who each one is for.",
+    "watch": "The adult carries over first-language politeness and sounds so soft where a clear request is needed that the other side thinks it is optional."
+   }
+  },
+  "prim:viewpoint-direction": {
+   "child": {
+    "fit": "adapt",
+    "how": "The scene is two neighbouring rooms with animal characters, and the arrow is a gift or ball that slides; only one pair of forms (come/go, あげる/くれる, Chinese 来/去). The child acts first (pushes the ball across, stands where \"I\" is), then says a sentence. Ages 5–7 only act and listen; ages 8–12 add step 2, moving the viewpoint. Step 3 is about a gift they received or gave.",
+    "watch": "The child leaves the \"I\" marker on their own side, so moving the viewpoint is just moving an icon, not seeing it from somewhere else."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Students place things in the scene first, then state when the form must change, and then get the terms. Scenes come from their lives (a friend helping out, borrowing things, moving to a new school). State the reverse half directly: viewpoint is not always about physical position, and the Chinese 被 passive is not an equivalent of the English passive. Step 3 is an experience told with a consistent viewpoint.",
+    "watch": "Students treat 被 or the Japanese passive as a translation of the English passive and use it where nobody is affected."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Scenes come from work and daily life (a colleague handling something for you, moving house, borrowing things); add the honorific layer (くださる, いただく) and the viewpoint of passive-causatives, show terms directly and compare with the first language. Step 3 is three or four sentences with a consistent viewpoint, such as telling a manager who helped with what.",
+    "watch": "The adult takes care with honorifics but shifts viewpoint mid-account, moving \"I\" twice in one sentence."
+   }
+  },
+  "prim:clause-constraint": {
+   "child": {
+    "fit": "defer",
+    "how": "Checking which kinds of clause can follow and naming the constraint that was broken is explicit analysis of grammatical form, which is generally not the right main activity under 12, and not at all for ages 5–7. At this age children should first use connectives as whole chunks in sequencing and retelling (first... then..., when...) and hear and say them often before constraints come up. Children of 8–12 can sometimes play \"story chain\": the first half of a sentence with a picture, two cards for the second half (\"please...\" / \"then this happened...\"), one connective only, no constraint names.",
+    "watch": "Asked to explain why a clause cannot follow, the child memorises a rule instead of learning to use the connective.",
+    "instead": "prim:sequence-retell"
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Fix the first clause and let students try each second-clause card, sum up the constraint from the results, and only then get the terms. Situations come from their lives (inviting friends, travel plans, exam-week planning). State the reverse half directly: constraints have exceptions, and each set includes at least one item that breaks the surface pattern. Step 3 is a sentence ending in a request or intention. Show secondary students what these items look like on exams.",
+    "watch": "Students know the constraint table by heart but cannot produce one natural sentence that ends with a request."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Situations come from work email and travel arrangements; the constraint table is shown with its terms (expressions of intention, requests, established facts), the rule comes first and then the test. Step 3 writes two sentences for the same situation using two different connectives that both work. Adults most often go wrong in the request sentence of an email, so take items from there.",
+    "watch": "The adult maps the first-language \"if... then...\" onto one connective and uses it for every conditional."
+   }
+  },
+  "prim:oral-to-print": {
+   "child": {
+    "fit": "core",
+    "how": "For ages 5–8 and heritage children who speak but do not yet read: pictures come from the child's home, pets and toys; the child says a sentence, an adult writes it under the picture, and the child follows the words with a finger while hearing it played back. At most three new characters or words at a time; the word wall is a tree that grows a leaf each time one is recognised. The reverse half gets one item each for same-sounding and look-alike words (在/再, was/saw). Reading to a parent is the main output; no writing required.",
+    "watch": "The child \"reads\" their own card by remembering what they said, and cannot recognise the word in a new combination."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "For teenagers raised abroad who speak the heritage language well but read and write it poorly: topics come from family talk, friends' messages, shows they watch. Step 2 adds same-sounding characters (在/再, 的/得) and the written form of spoken words (啥 → 什么). The word wall becomes a personal word list they can match against their own chats. No childish pictures, and do not put them on a beginner's pace.",
+    "watch": "Fluent in speech, the teenager assumes they \"more or less\" read and write too, skips the same-sound items in step 2, and writes full of homophone errors."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "For adult heritage speakers who speak but cannot read or write: topics come from family, work, menus and text messages, and step 2 adds same-sounding characters and replacing spoken words with written ones. Each short unit ends with being able to read one real thing (a menu, a stretch of the family group chat). Absolute-beginner adults do not have these words in speech, so it does not apply; start them with phonics or character anatomy.",
+    "watch": "The adult feels that learning to read is \"like primary school\" and avoids reading aloud, reading silently so that misreadings go unnoticed."
+   }
+  },
+  "prim:oral-sound-play": {
+   "child": {
+    "fit": "core",
+    "how": "The core pre-reading activity for ages 5–7: clapping and hopping, words from animals and food, sound and pictures only. Each set does one operation (only rhymes, or only clapping syllables); a new game means a new activity. The reverse half is a pair that looks like it should rhyme but does not, and a pair that differs only in tone. In step 3 a teacher or parent is the listener; 8–12 year olds who can already blend do not need it.",
+    "watch": "The child claps along with the adult and gets it right by following their rhythm, not by counting the beats."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "For teenagers, drop rhyming games and practise only the layer they really struggle with: mora timing in Japanese (とうきょう, コーヒー, きって), or segmenting English words to stop adding vowels after consonants. Material is place names, loanwords and brand names; terms like mora, syllable and phoneme can be used, and it can be set up as a rhythm challenge. The listener is a classmate.",
+    "watch": "Students count syllables and clap とうきょう as two beats, because nobody made clear that a mora is not a syllable."
+   },
+   "adult": {
+    "fit": "adapt",
+    "how": "Adults use it the same way: mora timing for learners of Japanese, phoneme segmentation for people correcting added vowels in English; words from place names and loanwords, with terms shown directly. A few minutes at a time, as a warm-up or repair before another activity rather than a main thread. No children's pictures or animation.",
+    "watch": "The adult finds it too easy and skips it, then keeps dropping a beat on long vowels and double consonants."
+   }
+  },
+  "prim:reading-select": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for literate 8–12 year olds: one character with two readings at a time (长 cháng/zhǎng, 大人 おとな), with two pictures for the two meanings and just one question, \"is it about length or growing up?\"; no terms for the basis. Ages 5–7 skip it. Step 3 becomes saying one sentence for each reading from pictures. Keep one reverse-half item that just has to be memorised.",
+    "watch": "The child pairs each reading with its picture and stops looking at the sentence."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Secondary school is when learners meet most multi-reading characters, on/kun readings and English stress shift: let them find the basis from example sentences first, then name it. Material is textbook passages, lyrics, titles and names. In step 3 they write a sentence using one form with two readings and can set it for a classmate. High-frequency exam items are marked separately.",
+    "watch": "Students treat tendencies like \"nouns stressed first, verbs second\" as iron rules and apply them to hotel."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Material is headlines, station names, menus and personal names; the basis is shown with its terms (on and kun readings, special kanji readings, rendaku, alternate readings, stress shift). Adults draw on their first language, and Chinese speakers who read Japanese kanji by their Chinese sound need this compared directly. Step 3 asks them to explain the basis for each of the two readings.",
+    "watch": "Chinese-speaking adults guess Japanese readings from the Chinese sound, and the few lucky guesses make them check less and less."
+   }
+  },
+  "prim:false-friend-check": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for literate 8–12 year olds whose two languages share characters or loanwords (for example a Chinese-reading child learning Japanese): three words per set, the two meanings shown as pictures (手紙 as a letter and as a toilet roll), and the three levels shown as \"same / a bit different / totally different\" faces. The child says the guessed meaning first, then checks with the picture. The reverse half matters most: include plenty of \"same\" words so the child learns that most of them can be borrowed. Ages 5–7 skip it.",
+    "watch": "Having learned one or two funny false friends, the child decides every shared word is a trap."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "A standard activity for Chinese secondary and university students learning Japanese, or English-background students learning French or Spanish: write the guess first, then judge from real example sentences. Examples come from the manga, news and lyrics they read; the four kinds of shift are found from examples before being named. A shared class list of false friends can include the \"same meaning\" words too.",
+    "watch": "Students distrust every Sino-Japanese word, reading slows down, and they look up even 学生 and 問題."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Example sentences come from news, business email and rental contracts; the kinds of shift are named directly, and katakana loanwords and the more formal register of Sino-Japanese words are included. Adults bring a lot of first-language knowledge, so use the positive transfer: say up front that most words match, then focus on the shifted and totally different ones. Step 3 is two sentences in a work or daily-life situation.",
+    "watch": "The adult gets the meaning right but misses the register shift and uses a very formal Sino-Japanese word with friends."
+   }
+  },
+  "prim:cross-language-align": {
+   "child": {
+    "fit": "adapt",
+    "how": "The source is a picture with two or three simple sentences, and the child only does mediation like \"help a friend tell their mum\"; no terms for adding or removing, just \"what does mum have to know from this?\", with stickers on the key information. Suits ages 8–12; children in heritage-language families often really do relay things for relatives. Ages 5–7 relay one sentence orally. Reverse half: one name or number cannot be reworded.",
+    "watch": "When relaying, the child adds things the source did not say, or drops key pieces such as the time and place."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Use material they would really relay: school notices for parents, update notes for a game or app, messages from friends abroad, news clips. They split and align first, find adding, cutting and rewording in examples, then name them. Step 3 relays to a given person (a parent who does not speak the language, friends in a group chat). Show where a translation app's word-for-word draft sounds unnatural.",
+    "watch": "Students paste in the translation app's output, and the \"change at least one chunk\" in step 1 is just a synonym swap."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Sources are work emails, contract clauses, meeting remarks or news clips; treatments are named with their terms (addition, omission, shift). Adults often relay things for colleagues or family, so step 3 can specify a written or an oral channel, the oral one being a timed relay then transcribed. Practice translations must not be used externally for official legal or medical texts.",
+    "watch": "The adult treats politeness and softening as \"carrying no information\" and cuts them, so the relay reads as blunt."
+   }
+  },
+  "prim:number-system-map": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for 8–12 year olds who know numbers up to a thousand: numbers stay under ten thousand, blocks or coins show \"ten thousand is ten thousands\", and million never appears. Estimating size becomes \"about how many piles is this?\". Step 3 is saying one number from home or school (how many pupils, the price of a toy). Ages 5–7 practise counting itself, without conversion.",
+    "watch": "The child can read out the digits one by one but has no sense of how big the number is, so the estimate is a random tap."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Use numbers they care about: view counts, follower counts, ticket prices, city populations, tuition. Let them compare the two ways of grouping digits and find the conversion rule before it is stated; add percentages and approximate words. Step 3 is saying a large number from their own life using the other language's place values.",
+    "watch": "The student converts correctly with a calculator but swaps ten thousand and a hundred thousand when saying it aloud."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Adults meet large numbers every day at work and in life: news, financial reports, house prices, budgets, statistics, including 億 and billion, percentages, tenths (成), decimals and currencies. State the rule directly and compare it with first-language grouping. Step 3 is a full sentence with an approximate number, used in a real email or report.",
+    "watch": "In a meeting the adult converts \"fifteen ten-thousands\" into their first language before understanding it and falls behind the conversation."
+   }
+  },
+  "prim:variety-map": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only \"spot it\" and \"where would you hear it\": cartoon characters stand for regions (a British child says biscuit, an American child says cookie), and the child drags each phrase to its speaker. Children are not asked to produce varieties other than the one they are learning, and nobody judges which is better. Reverse half: one phrase is the same everywhere. Ages 5–7 work entirely by sound and pictures.",
+    "watch": "One region's character is drawn as funnier or more \"correct\", and the child learns that some accents are lower rather than that varieties differ."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Teenagers meet many varieties through series, games and the internet: use those sources, let them sort expressions into columns themselves, then discuss settings. Step 3 writes for a given setting and keeps to one variety throughout (a comment for Taiwanese users online, an application essay in British spelling). Reverse half: one item that looks like a variety but is an error. Accents are never ranked.",
+    "watch": "Students mix British and American spelling, or simplified and traditional characters, in one essay and do not care because both are \"correct\"."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Adults have real audiences: product information for the Taiwanese market, British official documents, clients in Kansai, colleagues in Hong Kong. Discuss why one text should stay consistent; step 3 includes converting a whole passage between simplified and traditional characters and making spelling consistent. Point out the errors conversion tools make (one simplified character mapping to several traditional ones).",
+    "watch": "The adult converts simplified to traditional in one click without checking one-to-many characters and regional vocabulary."
+   }
+  },
+  "prim:figurative-decode": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only for ages 8–12, only metaphors and idioms, no irony: first look at a picture of the literal meaning (literally adding legs to a drawn snake), have a laugh, then choose another picture for what it really means. Ages 5–7 just hear a line from a story and see the literal and real pictures. Reverse half: one line looks figurative but is literal (it really is pouring).",
+    "watch": "Having learned that \"this doesn't mean what it says\", the child reads every unfamiliar phrase as figurative."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Use material they know: internet slang, memes, lyrics, anime lines, dialogue in novels, including irony and implication. Write the literal layer first, judge the gap, then point to the clues. Discuss whether an expression belongs in an essay; for secondary students separate exam questions on rhetoric from real communication.",
+    "watch": "Students carry the implied meanings of memes into formal writing, or over-read places that need a literal reading."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Contexts come from novels, commentary and business conversations (polite refusals like 「検討します」, 「前向きに考えます」), including narrator irony. What adults most need is to hear a polite refusal at work, so step 3 asks whether the expression belongs in formal writing and meetings. Compare with first-language equivalents.",
+    "watch": "The adult takes 「前向きに考えます」 (\"we'll consider it positively\") as a yes and moves ahead on the literal meaning."
+   }
+  },
+  "prim:entry-sense-pick": {
+   "child": {
+    "fit": "defer",
+    "how": "Picking a sense from a multi-sense dictionary entry and giving reasons for rejecting the others belongs to the reading-to-learn stage; it is usually not a main activity under 12, and 5–7 year olds should not do it. First use context guessing in an illustrated story: one word appears several times and the child points to pictures and revises. Children of 8–12 can sometimes use a picture dictionary (bat as a bat for games and as an animal), tapping the picture that fits the sentence, with only the most common plural and -ing endings to undo.",
+    "watch": "The child always lands on the first sense and takes it as the only meaning.",
+    "instead": "prim:context-guess"
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Students start reading lots of authentic material and using dictionaries and translation apps: use learner-dictionary entries, with sentences from what they are reading. Point out that a translation app usually gives one sense, and here they learn to choose against the context. Sort the five reasons for rejecting a sense from examples first. In step 3 they rephrase the sense in their own words, put it back in the sentence and note it in their word book.",
+    "watch": "The student pastes the whole sentence into a translation app and works backwards from the translation instead of choosing in the entry."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Use full learner-dictionary entries (register labels, collocation boxes, usage notes), including phrasal verbs and multi-sense function words; sentences come from work documents and news the learner must read. State the reverse half directly (sometimes you have to go to the phrase entry). In step 3 the record is exported to their personal phrase book.",
+    "watch": "The adult lingers on every multi-sense word, looking up sentence after sentence until reading becomes dictionary work."
+   }
+  },
+  "prim:ime-convert": {
+   "child": {
+    "fit": "defer",
+    "how": "Input-method conversion needs pinyin or romaji spelling, recognition of the target characters and regular keyboard use, which most children under 12 do not yet have; 5–7 year olds should not do it at all. First get characters recognised and written: practise with character anatomy, and handle same-sounding characters (在/再, 他/她/它) in reading with pictures. Children of 8–12 who already type pinyin can do a three-option character pick only, with no whole-sentence typing on their own.",
+    "watch": "The child always taps the first candidate, which looks fast but involves no choosing at all.",
+    "instead": "prim:character-anatomy"
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Teenagers type and chat every day, so this is how they really write: sentences come from chats, comments, homework and their own posts. Same-sound errors in step 2 can be taken from their own chats (anonymised) or swapped with a classmate to find each other's. For Chinese students learning Japanese, focus on simplified characters slipping into Japanese and the boundary of okurigana. Step 3 is one sentence typed independently with frequency ordering switched off.",
+    "watch": "Used to predictive completion, the student lets the whole sentence appear from suggestions without making a single choice."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Use real sentences: email, work chat, forms, addresses, with proper nouns and multi-segment conversion; for Japanese add okurigana boundaries (変える/替える) and Chinese–Japanese character forms getting mixed up. Step 3 can be timed to match how fast real replies are written. The learner leaves with a list of their own frequent same-sound mistakes.",
+    "watch": "Typing Japanese at work with a Chinese input method, the adult gets Chinese character forms mixed in and cannot see it."
+   }
+  },
+  "prim:repair-and-backchannel": {
+   "child": {
+    "fit": "adapt",
+    "how": "Only two or three kinds of trouble (too fast, an unknown word, didn't catch it), and two or three fixed repair phrases with gesture pictures (ear = say it again, snail = slower please). No time window; in step 3 the teacher plays the other person and says one line too fast on purpose. Reverse half: one word the teacher is about to explain, so there is no need to interrupt. These repair phrases are chunks a child should have from the very start.",
+    "watch": "When the child does not understand they just nod and say \"yes\", because adults usually carry on anyway."
+   },
+   "youth": {
+    "fit": "core",
+    "how": "Pretending to understand is the most common problem at this age. Use their situations: chatting with an exchange student, online voice chat, part-time work, group work in class. They review what they did at each trouble moment before the repair types are named. Step 3 is practice with a partner using role cards, the partner speaking fast or using a new word at the marked points. Explain that the other person's \"mm\" or はい usually just means \"I'm listening\".",
+    "watch": "Not wanting to look lost in front of classmates, the student picks \"backchannel and carry on\" at every trouble moment."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Phone calls, meetings, clinic visits, adding interrupting, steering back, buying time and summarising others; the time window is close to a real pause. Adults can practise privately against the script until confident, then move to a real partner; step 3 requires at least one confirmation by paraphrase. These moves are what keeps an adult afloat in real conversations and are worth learning early.",
+    "watch": "The adult feels it is rude to ask someone to repeat, guesses or checks a recording later, and gets the key information wrong."
+   }
+  },
+  "prim:template-write": {
+   "child": {
+    "fit": "adapt",
+    "how": "A library card, a birthday invitation, a note to family; only three or four fields, icons showing what goes in each, letter cards allowed for writing; the only judgements are \"done right / something missing\". Ages 5–7 write only their name and draw; an adult writes the rest. Reverse half: one field can be left empty. Situation cards use made-up identities.",
+    "watch": "The child copies the sample card word for word, and on a new invitation the date and place are still the sample's."
+   },
+   "youth": {
+    "fit": "adapt",
+    "how": "Formats they meet: club sign-up forms, exchange programme applications, emails to teachers, shift notes at a part-time job, chat messages. They write first, then check field by field, guessing first \"what does the person reading this field use it for?\". Step 3 writes the same thing to a friend and to a teacher. No real personal information.",
+    "watch": "Students email a teacher in chat style, or message a friend with a letter opening."
+   },
+   "adult": {
+    "fit": "core",
+    "how": "Sign-up forms, rental registration, leave-request emails, messages to a teacher or client, rescheduling texts: all things adults really write. The same matter goes to two kinds of recipient, with a note on how the versions differ. Use made-up identities and no real ID details. Short units, one form or one message.",
+    "watch": "The adult fills in fields by first-language conventions (name order, date format, address order), so the content is right but the reader is confused."
+   }
+  }
+ }
+}

@@ -86,6 +86,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -107,15 +108,15 @@
 
   /* Semantic roles shared by all packs. Labels are interface text; the pack decides which markers fit. */
   var ROLE = {
-    agent: ['做事的人', 'Doer', '🙋'], figure: ['在某处的人或物', 'Who or what is somewhere', '📌'], object: ['动作对象', 'Thing acted on', '🎯'],
-    recipient: ['接受的人', 'Receiver', '🤲'], beneficiary: ['受益的人（为谁做）', 'Beneficiary (done for whom)', '🎁'],
-    place: ['动作发生处', 'Where the action happens', '🏟'], exist: ['存在处（待在哪儿）', 'Where someone or something is', '🏠'],
-    goal: ['到达点 / 终点', 'Arrival point / end point', '🏁'], direction: ['方向（朝哪儿去）', 'Direction (heading for)', '🧭'],
-    source: ['起点', 'Starting point', '🚩'], path: ['经过的路线', 'Route taken', '🛤'], instrument: ['工具或手段', 'Tool or means', '🔧'],
-    companion: ['同伴（和谁一起）', 'Companion (together with)', '👫'], target: ['感受、态度或能力的对象', 'What a feeling, attitude or ability is about', '💭'],
-    ref: ['距离的参照点', 'Reference point for distance', '📏']
+    agent: ['做事的人', 'Doer', 'doer'], figure: ['在某处的人或物', 'Who or what is somewhere', 'pin'], object: ['动作对象', 'Thing acted on', 'target'],
+    recipient: ['接受的人', 'Receiver', 'receive'], beneficiary: ['受益的人（为谁做）', 'Beneficiary (done for whom)', 'gift'],
+    place: ['动作发生处', 'Where the action happens', 'area'], exist: ['存在处（待在哪儿）', 'Where someone or something is', 'home'],
+    goal: ['到达点 / 终点', 'Arrival point / end point', 'flag'], direction: ['方向（朝哪儿去）', 'Direction (heading for)', 'compass'],
+    source: ['起点', 'Starting point', 'from'], path: ['经过的路线', 'Route taken', 'route'], instrument: ['工具或手段', 'Tool or means', 'wrench'],
+    companion: ['同伴（和谁一起）', 'Companion (together with)', 'people'], target: ['感受、态度或能力的对象', 'What a feeling, attitude or ability is about', 'thought'],
+    ref: ['距离的参照点', 'Reference point for distance', 'ruler']
   };
-  var CHILD = { place: ['在哪儿做', 'Where it happens', '🏠'], exist: ['在哪儿', 'Where it is', '🏠'], goal: ['去哪儿', 'Where to', '👣'], direction: ['往哪儿', 'Which way', '👣'], companion: ['和谁', 'With whom', '👫'], agent: ['谁', 'Who', '🙋'], figure: ['谁 / 什么', 'Who / what', '📌'], object: ['什么', 'What', '🎯'] };
+  var CHILD = { place: ['在哪儿做', 'Where it happens', 'home'], exist: ['在哪儿', 'Where it is', 'home'], goal: ['去哪儿', 'Where to', 'arrowRight'], direction: ['往哪儿', 'Which way', 'arrowRight'], companion: ['和谁', 'With whom', 'people'], agent: ['谁', 'Who', 'doer'], figure: ['谁 / 什么', 'Who / what', 'pin'], object: ['什么', 'What', 'target'] };
   var WHY = [
     { id: 'role', zh: '角色决定：这个角色就用这个标记', en: 'The role decides: this role takes this marker' },
     { id: 'verb', zh: '动词或这个词本身固定要求', en: 'Fixed by the verb or by the word itself' },
@@ -134,7 +135,7 @@
     var modes = [{ id: 'roles', label: L('连角色', 'Link roles') }, { id: 'mark', label: L('选标记', 'Choose markers') }, { id: 'build', label: L('自己造句', 'Make your own') }];
     var st = { mode: modes.some(function (m) { return m.id === params.get('mode'); }) ? params.get('mode') : 'roles', queue: [], idx: 0, S: null, record: {}, firstMarks: {}, build: null };
     function child() { return B.variant === 'child'; }
-    function roleLabel(r) { var c = child() && CHILD[r] ? CHILD[r] : ROLE[r]; return c ? c[2] + ' ' + L(c[0], c[1]) : r; }
+    function roleLabel(r) { var c = child() && CHILD[r] ? CHILD[r] : ROLE[r]; return c ? h('span', {}, [KTBlock.icon(c[2]), ' ' + L(c[0], c[1])]) : r; }   // an element: icon + words
     function roleShort(r) { var c = ROLE[r]; return c ? L(c[0], c[1]) : r; }
     function markerNote(m) { var o = pack.markers[m]; return o ? T(o, 'note') : ''; }
     function mlabel(m) { return m === '—' ? L('（不用）', '(none)') : m; }
@@ -170,7 +171,7 @@
         if (g === 'in') out.push('<path d="M140 92 L140 180 L260 180 L260 92" style="fill:none;stroke:var(--t2);stroke-width:4"/><line x1="262" y1="150" x2="284" y2="150" style="stroke:var(--t2);stroke-width:2;stroke-dasharray:3 3"/>');
         if (g === 'on') out.push('<line x1="130" y1="120" x2="270" y2="120" style="stroke:var(--t2);stroke-width:4"/>');
         if (g === 'under') out.push('<line x1="130" y1="128" x2="270" y2="128" style="stroke:var(--t2);stroke-width:4"/>');
-        if (g === 'at') out.push('<text x="200" y="128" text-anchor="middle" font-size="22">📍</text>');
+        if (g === 'at') out.push(KTBlock.iconSvg('pin', 200, 118, 24, 'var(--t2)'));
         nouns.forEach(function (n) { if (!P[n.k]) put(n, POS[roleOf(n)] || [330, 170]); });
       } else {
         nouns.forEach(function (n) { if (n !== frame) put(n, POS[roleOf(n)] || [200, 112]); });

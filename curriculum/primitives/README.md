@@ -53,6 +53,48 @@
 - 每个知识点至少一个 `primary`，最多三个原语。
 - `binding` 只写这个知识点特有的部分：比较什么、用什么材料、检查什么。原语契约里已经写过的通用内容不要重复。
 
+## 按年龄段的教学法
+
+`age-bands.json`（英文版 `age-bands.en.json`）把学习者分成三个年龄段：12 岁以下（`child`，细分为未识字的 5–7 岁和已识字的 8–12 岁）、12 岁到大学（`youth`）、成人（`adult`）。
+
+- `bands[].dimensions`：每个年龄段 11 个方面的做法（一次练习多长、进度和重复、先听说还是先读写、规则讲不讲、反馈、自主权、动机、图和声音和文字怎么用、阅读的定位、和谁一起学、证据给谁看）。每条有“这样做 / 避免 / 依据”。`basis: literature` 表示 `refs` 里的研究节点直接讨论了这一点；`design_inference` 表示是设计判断，没有被直接验证。
+- `variants`：每个原语在三个年龄段各自怎么做。`fit` 取 `core`（适合作主要活动）、`adapt`（要调整）、`defer`（这个年龄暂不适合，`instead` 指出先用哪个原语）。
+- 年龄界线是规划用的约定。学习者的识字情况、学习经验和目标优先，可以跨段取用。
+- 规划器把对应年龄段写进蓝图的 `ageBand`，把每个原语的做法写进 `ageVariant`。
+
+## 年龄怎样变成设计（age-design.json）
+
+`age-bands.json` 说每个年龄段“怎么做”，`age-design.json` 说“为什么这样做、变的是哪个量、变在哪一层、拿什么检验”。十个概念，每个走同一条链：
+
+1. **研究怎么说**（`construct.claim`，`refs` 指向 `pedagogy/graph.json`，`basis` 标明是文献还是设计推断）；
+2. **我们怎么理解**（`understood`）和这个理解的**边界**（`limits`）；
+3. **设计变量**（`variables`）：每个变量在三个年龄段各取什么值，属于哪一层（`kc` 知识点、`plan` 课程方案、`block` 练习页面）；
+4. **记录什么来检验**（`measures`）：`source: block` 表示练习页面的证据事件里已经有，`host` 表示要由承载它的 app 记录。
+
+年龄不只改变练习页面。`layers` 写明三层各自不变的和变的：知识点的语言事实不变，变的是选哪些、先后、用不用术语；课程方案的先修关系不变，变的是一次多久、一周多少、回访几成（`planDefaults`，规划器直接取用）；练习页面的契约和证据规则不变，变的是任务怎么给出、一屏多少、规律说不说、反馈怎么措辞。
+
+`blocks.<积木>` 逐个写明一个页面实际变了哪几个量（只写页面真的做了的）。不是每个积木都要分年龄：差别确实大的才分，分了就在这里写清楚。`build.py` 据此生成 `blocks/age-design.js`，页面用 `KTBlock.ageWhy(slug, band)` 显示“这一版和其他年龄的版本有什么不同，为什么”。规划器把当前年龄段的取值写进蓝图的 `ageDesign`。
+
+这些取值是设计起点，没有在学习者身上验证过。
+
+## 工作流
+
+`workflows.json`（英文版 `workflows.en.json`）为一个教学场景把几个原语排成一次完整的活动，并写明图、声音、文字在每一步各自做什么。原语契约里的检查、证据和反向那一半不变。
+
+同一个场景可以因目的不同而有不止一个工作流。绘本阅读现在有两个：`wf:picture-book-learn-to-read`（学习阅读：听得懂但读不出，练解码）和 `wf:picture-book-read-to-learn`（通过阅读学习：读得出但词汇和理解跟不上）。两者的材料、节奏、图的作用都不同，先分清是哪一种再做。
+
+## 图片的用途和图片指令
+
+`image-roles.json`（英文版 `image-roles.en.json`）列出图片在教学里的八种用途。每种写明图上必须有什么、不能有什么、能不能用图片模型生成、在三个年龄段各放在页面什么位置、适用于哪些原语。纯装饰的图没有用途。图片里不生成文字，文字由页面排版。真实材料（菜单、表格）用 HTML 做；空间和方向图用代码画。
+
+`blueprint/image-brief.js` 把用途、年龄段和事实清单变成给图片模型的提示语、摆放位置和验收清单。它不调用任何图片服务；生成的图要由人逐条核对之后才能用。
+
+```sh
+node blueprint/image-brief.js --list
+node blueprint/image-brief.js --role book-page --band child --setting "a vegetable garden" \
+  --characters "a small white rabbit with a blue scarf" --facts "the rabbit pulls a carrot out of the ground" --frame 2/6
+```
+
 ## 检查
 
 ```sh

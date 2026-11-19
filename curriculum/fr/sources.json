@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "language": "fr",
+  "sources": [
+    {
+      "id": "src:fr:inventaire",
+      "title": "Inventaire linguistique des contenus clés aux niveaux du CECR (Eaquals & CIEP, 2015)",
+      "url": "https://www.eaquals.org/wp-content/uploads/Inventaire_ONLINE_full.pdf",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read the full PDF (112 pages; printed page = PDF page − 2), downloaded from the Eaquals resource page. Itemised: Annexe E A1 and A2 key-content lists (pp. 56–58, every entry, read from rendered page images to fix column order); Annexe D référentiel (pp. 44–54): rows whose A1 or A2 cell is lightly shaded (« moins clé ») and that are not already key at or below that level, read visually because shading is not machine-readable; Annexe C text types (pp. 40–43), every row with a shaded A1 or A2 cell; Annexe B A1 and A2 scenarios (pp. 22–29), competences and strategies; Annexe F A1/A2 language realisations (pp. 62–73), headings checked and four points absent from Annexes D/E registered. Sections 2, 4 and 5 (purpose, structure, non-exhaustiveness) read. L'Inventaire (§5, p. 14–15) présente des contenus clés « non exhaustifs » et ne détaille ni l'orthographe ni la prononciation (seul le scénario A2 « Partir en vacances » cite « liaisons, rythme, intonation »).",
+      "licenseNote": "Only item names, levels and page locators are registered. All English explanations, French examples and mastery criteria are original; no examples are copied from Annexe F."
+    },
+    {
+      "id": "src:fr:cefr-2001",
+      "title": "Common European Framework of Reference for Languages (Council of Europe, 2001)",
+      "url": "https://rm.coe.int/1680459f97",
+      "authority": "official_framework",
+      "accessStatus": "unavailable",
+      "checkedOn": "2026-11-17",
+      "scope": "Not re-read in this round. Cited only as the general frame for supplement units (pronunciation, orthography, writing, mediation, classroom language, varieties) that the Inventaire does not itemise; section numbers are given from the framework's structure and are unverified.",
+      "licenseNote": "No text reproduced; only section references."
+    }
+  ]
+}

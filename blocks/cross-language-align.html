@@ -69,6 +69,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -210,7 +211,7 @@
               [o.draft ? h('span', { class: 'tag', text: L('逐词稿', 'draft') }) : null, h('span', { text: o.t })]);
           }).concat(r.err ? [h('div', { class: 'err', text: r.err })] : []));
         }
-        return h('div', { class: 'row' }, [h('div', {}, [srcCell(t, c, i, r.solved, h('span', {}, flags)), h('button', { class: 'kb-btn', style: 'margin-top:6px;font-size:.8rem', onclick: function () { say(c.s, t.src); } }, L('🔊 听原文', '🔊 Listen'))]), right]);
+        return h('div', { class: 'row' }, [h('div', {}, [srcCell(t, c, i, r.solved, h('span', {}, flags)), h('button', { class: 'kb-btn', style: 'margin-top:6px;font-size:.8rem', onclick: function () { say(c.s, t.src); } }, [KTBlock.icon('speaker'), L(' 听原文', ' Listen')])]), right]);
       })));
       var all = t.chunks.every(function (c) { return A[c.id].solved; });
       if (all) {
@@ -312,7 +313,7 @@
         if (missing[c.id]) el.classList.add('missing'); else if (covered[c.id]) el.classList.add('covered');
         return el;
       })));
-      stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { say(t.chunks.map(function (c) { return c.s; }).join(' '), t.src); } }, L('🔊 听原文', '🔊 Listen to the source'))]));
+      stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { say(t.chunks.map(function (c) { return c.s; }).join(' '), t.src); } }, [KTBlock.icon('speaker'), L(' 听原文', ' Listen to the source')])]));
       var ta = h('textarea', { 'aria-label': L('你的转述', 'Your relay'), placeholder: L('用' + lname(t.tgt) + '写给' + T(lis.name, 'zh') + '……', 'Write it in ' + lname(t.tgt) + ' for ' + T(lis.name, 'zh') + '…'), oninput: function (e) { R.drafts[lis.id] = e.target.value; } }, R.drafts[lis.id] || '');
       stage.append(ta);
       stage.append(h('p', { class: 'kb-note', text: L('页面只按关键词核对：关键信息有没有保留、有没有加“我觉得”之类的意见、是不是几乎照搬逐词稿。语体合不合适、读起来自不自然，页面判断不了，请你自己对照参考转述。', 'The page checks keywords only: whether key information is kept, whether opinions like "I think" were added, and whether it is almost the word-for-word draft. It cannot judge register or naturalness; compare with the sample relay yourself.') }));

@@ -57,6 +57,48 @@ Values of `status`:
 - Each knowledge point has at least one `primary` and at most three primitives.
 - `binding` states only what is specific to this knowledge point: what is compared, what material is used, what is checked. Do not repeat general content already written in the primitive contract.
 
+## Teaching method by age band
+
+`age-bands.en.json` (Chinese original: `age-bands.json`) puts learners in three bands: under 12 (`child`, split into pre-literate 5–7 and literate 8–12), 12 to university (`youth`), and adults (`adult`).
+
+- `bands[].dimensions`: for each band, practice on 11 points (session length, pace and repetition, listening and speaking first or reading and writing, whether rules are explained, feedback, autonomy, motivation, how pictures, sound and text are used, the role of reading, who the learner works with, who sees the evidence). Each has do / avoid / basis. `basis: literature` means the research nodes in `refs` discuss the point directly; `design_inference` means a design judgement that has not been tested directly.
+- `variants`: how each primitive is done in each band. `fit` is `core` (a natural main activity), `adapt` (works with changes) or `defer` (not yet right for this band; `instead` names the primitive to use first).
+- The age boundaries are planning conventions. The learner's literacy, learning experience and goals come first, and practices can be borrowed across bands.
+- The planner writes the band into the blueprint as `ageBand` and each primitive's version as `ageVariant`.
+
+## How age becomes design (age-design.json)
+
+`age-bands.en.json` says what to do for each band; `age-design.en.json` says why, which quantity changes, on which layer, and what checks it. Ten constructs, each one chain:
+
+1. **What research says** (`construct.claim`; `refs` point into `pedagogy/graph.json`; `basis` says literature or design inference);
+2. **How we read it** (`understood`) and the **limits** of that reading (`limits`);
+3. **Design variables** (`variables`): the value of each in the three bands, and its layer (`kc` knowledge points, `plan` course plan, `block` practice page);
+4. **What is recorded to check it** (`measures`): `source: block` means the page's evidence events already hold it, `host` means the app hosting the page must record it.
+
+Age changes more than the practice page. `layers` states what stays and what changes on each: the language facts of a knowledge point stay, while which points are chosen, their order and the use of terminology change; prerequisites stay in a course plan, while session length, weekly load and the share kept for revisiting change (`planDefaults`, used directly by the planner); a page's contract and evidence rules stay, while how the task is given, how much is on a screen, whether a rule is stated and how feedback is worded change.
+
+`blocks.<slug>` lists which variables one page really changes (only what the page does). Not every block needs age versions: split only where the difference is substantive, and write it down here when you do. `build.py` generates `blocks/age-design.js` from it, and a page shows "How this version differs from the other ages, and why" with `KTBlock.ageWhy(slug, band)`. The planner writes the current band's values into `ageDesign` in the blueprint.
+
+These values are design starting points and have not been tested with learners.
+
+## Workflows
+
+`workflows.en.json` (Chinese original: `workflows.json`) arranges several primitives into one complete activity for a teaching scenario, and says what the picture, the sound and the text each do at every step. The check, evidence and reverse half in the primitive contracts do not change.
+
+One scenario can have more than one workflow, depending on purpose. Picture-book reading has two: `wf:picture-book-learn-to-read` (understands by ear but cannot read it: decoding practice) and `wf:picture-book-read-to-learn` (can read the words but vocabulary and understanding lag). Material, pace and the job of the pictures differ between them; decide which it is first.
+
+## Picture roles and image briefs
+
+`image-roles.en.json` (Chinese original: `image-roles.json`) lists eight roles a picture can have in teaching. Each says what the picture must show, what it must not, whether it may come from an image model, where it goes on the page in each band, and which primitives it serves. A purely decorative picture has no role. No text is generated inside a picture; the page sets the text. Real documents (menus, forms) are built as HTML; spatial and direction diagrams are drawn by code.
+
+`blueprint/image-brief.js` turns a role, a band and a fact list into a prompt for an image model, a placement and an acceptance checklist. It calls no image service; a generated picture is used only after a person has checked it line by line.
+
+```sh
+node blueprint/image-brief.js --list
+node blueprint/image-brief.js --role book-page --band child --setting "a vegetable garden" \
+  --characters "a small white rabbit with a blue scarf" --facts "the rabbit pulls a carrot out of the ground" --frame 2/6
+```
+
 ## Checks
 
 ```sh

@@ -1,0 +1,2426 @@
+{
+  "lang": "es",
+  "map": [
+    {
+      "kc": "kt:es-orth-alphabet",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Pairs of letter names English speakers confuse: e/i, g/j, a/e, r/erre; learner taps the letter heard, then says each so a partner can tell them apart"
+        },
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "support",
+          "binding": "Hear a letter name and tap the letter card; younger learners point instead of writing"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-phon-vowels",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Vowel minimal pairs peso/piso/paso, mesa/misa, todo/toda; learner picks what was heard, then records each so a listener can tell them apart"
+        },
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "support",
+          "binding": "Learner records \"chocolate\", \"teléfono\", \"leche\", transcribes what a Spanish listener would hear, flags any vowel reduced to schwa"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-orth-spell-aloud",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Hear spelled names and emails and type them into form fields; check h, b/v, ll, tildes and @ are right"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Learner lacks a partner's surname and email and must get them with ¿Cómo se escribe? and check by reading back"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-greetings",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Greeting–how-are-you–goodbye turns; branches by clock time (9:00 / 16:00 / 22:00) check that the greeting matches the time and that the learner asks back"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Hola, ¿qué tal? to a classmate vs Buenos días, ¿cómo está? to an older neighbour; learner marks which one sounds too casual"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-thanks-apologies",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Short incidents (bump into someone, receive help, toast at dinner); learner picks the formula and the reply; branch shows reaction to lo siento vs perdón"
+        },
+        {
+          "primitive": "prim:culture-incident",
+          "role": "support",
+          "binding": "Learner thanks a waiter for every plate in a long string of gracias, or never thanks a friend: judge how each lands"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-str-repair-basic",
+      "uses": [
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "primary",
+          "binding": "Audio that speeds up or drops a key word; learner must use ¿Puede repetir?/Más despacio before answering; check repair is asked, not guessed"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Directions or price exchange where the partner speaks too fast; branch only continues after a repair phrase"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-str-nonverbal",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "Short clips of gestures (así así, shh, watch-glance); learner says what the speaker meant and what reply fits"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Learner must get an object they cannot name by pointing plus esto/eso, por favor, or una cosa para…; check the right object is obtained"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-orth-sound-spelling",
+      "uses": [
+        {
+          "primitive": "prim:sound-spelling-blend",
+          "role": "primary",
+          "binding": "Map ca/que/qui/co/cu and ga/gue/gui/ge/gi letter by letter to sounds, blend new words (guitarra, cigüeña excluded), then spell heard words"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Learner states the c/qu and g/gu rule, then applies it to unseen place names (Quito, Guernica, Cuenca); system shows which rule each step used"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-subject-pronouns-prodrop",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences without subject pronouns (Vivimos en Quito / Viven en Quito); learner must say who, using only the verb ending"
+        },
+        {
+          "primitive": "prim:reference-chain",
+          "role": "support",
+          "binding": "Three-sentence text about a family; learner links each dropped subject to the right person"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-ser-present",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner fills the ser grid, then applies it to new subjects (mi madre y yo, Pedro y tú); each step shows which person the form encodes"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Learner has ID cards with missing nationality or job and must ask ¿Eres…? / ¿De dónde es…? to complete them"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-countries-nationalities",
+      "uses": [
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "primary",
+          "binding": "Country shown, learner types masculine and feminine nationality before the answer appears; first attempt kept"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Rule -o/-a vs consonant + a vs invariable; apply to unseen nationalities (portugués, japonés, belga)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-introductions",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Party scene: learner introduces themself, then a friend to a third person; branch checks este/esta and encantado/a against the characters"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Same introduction to a classmate (Este es…) and to a new boss (Le presento a la señora…); learner flags the mismatched version"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-soc-tu-usted",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "Same question to a child, a classmate, a hotel receptionist and an elderly neighbour; learner sets tú/usted and checks verb form agrees"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences where only the verb ending shows tú vs usted (¿Habla inglés? / ¿Hablas inglés?); learner decides who is being addressed"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-soc-greeting-customs",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "Visitor offers a handshake to a friend's mother at a family meal in Seville; learner explains the reading and rewrites the moment"
+        },
+        {
+          "primitive": "prim:variety-map",
+          "role": "support",
+          "binding": "Grid of situations × countries (Spain, Mexico, Argentina): learner predicts kisses/handshake, then compares with the provided notes"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-soc-variety-awareness",
+      "uses": [
+        {
+          "primitive": "prim:variety-map",
+          "role": "primary",
+          "binding": "Same short dialogue in Madrid, Mexico City and Buenos Aires versions; learner marks vosotros/ustedes, seseo/distinción, coche/carro/auto, vos"
+        },
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "support",
+          "binding": "Hear a speaker and tap the region on a map; first-attempt choice kept, then explanation of the clue"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-cult-countries-capitals",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "A country fact sheet; learner finds capital, currency, languages and population needed for a quiz card"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Two partners each hold half the facts about three countries and must ask ¿Cuál es la capital de…? ¿Qué lenguas se hablan en…?"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-phon-intonation",
+      "uses": [
+        {
+          "primitive": "prim:contour-match",
+          "role": "primary",
+          "binding": "Hear \"Hablas español\" with rise or fall; learner picks the contour and the punctuation, then says it with the matching melody"
+        },
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "support",
+          "binding": "Minimal pairs of melody only (Es tarde. / ¿Es tarde?); learner must produce the version a partner identifies"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-orth-inverted-marks",
+      "uses": [
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "primary",
+          "binding": "Learner's own chat message: fix only ¿/¡ placement first, then only accents on question words"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences where the position of ¿ changes what is asked (Y tú, ¿vienes? / ¿Y tú vienes?); learner places it"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-numbers-0-100",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Phone numbers, ages and room numbers read aloud; learner fills slots; errors grouped as teen/ten, 6/7, pairs vs single digits"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Digits flash; learner says the number before audio confirms; first attempt kept"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-tener-present",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Mixed sentences about age, nationality and location; learner must pick tener / ser / estar by meaning, not by English verb"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Class survey: learner must ask ¿Cuántos años tienes? ¿Tienes hermanos? and fill a table"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-interrogatives-basic",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Drag question word, verb and subject into slots; violating order (¿Dónde Marta vive?) names the rule: verb right after the question word"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Learner must find out four facts about a character by asking; only well-formed questions get answers"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-personal-details",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Hotel check-in: learner (receptionist) must obtain name, ID number, phone and email; asked questions are logged"
+        },
+        {
+          "primitive": "prim:template-write",
+          "role": "support",
+          "binding": "A real-looking registration form (nombre, apellidos, domicilio, C.P., teléfono); each field constrains what is written"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-soc-names-surnames",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "A booking under \"Carmen Ruiz López\" cannot be found under \"López\"; learner explains why and how to ask for it"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Scan ID-card mock-ups and forms; find nombre, primer apellido and segundo apellido"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-phon-consonants",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Minimal pairs pero/perro, caro/carro, ano/año; learner picks what was heard, then must produce each so a listener scores it"
+        },
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "support",
+          "binding": "Learner records \"El perro de Rosa…\", transcribes what a listener hears and marks any English r or /v/"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-noun-gender",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner states the -o/-a and -ción tendencies, then applies them to unseen nouns; the system shows which rule each choice used and flags guesses on -e/consonant"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge el/la with problema, mano, día, foto, mapa: which follow the tendency and which are exceptions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-noun-plural",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Rule: vowel +s / consonant +es / z→ces; apply to unseen nouns (pez, avión, autobús, sofá) with each step shown"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Picture of a desk: learner lists objects with numbers; check plural endings and that numbers match the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-articles",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same picture story: learner chooses un/el for each mention and sees how the meaning (new vs already known) changes"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences where only the article tells whether the listener knows the object (¿Tienes un bolígrafo? / ¿Tienes el bolígrafo?)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-adjective-agreement",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Agreement rule for -o, -e and consonant adjectives; apply to unseen adjective–noun pairs (una calle ancha, unos coches azules)"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Describe a picture of a street; check each adjective agrees with the noun it is attached to and matches the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-demonstratives",
+      "uses": [
+        {
+          "primitive": "prim:viewpoint-direction",
+          "role": "primary",
+          "binding": "Scene with speaker, listener and objects at three distances; learner moves the speaker and must re-choose este/ese/aquel"
+        },
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "support",
+          "binding": "Hear \"Dame ese libro\" etc. and tap the object at the right distance from the speaker"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-classroom",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Teacher instructions (abrid, subrayad, escribid en parejas) trigger actions on a virtual desk; action is the evidence"
+        },
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "support",
+          "binding": "Learner collects classroom chunks from a recorded lesson into a personal phrase bank and uses one in the next task"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-colours-objects",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Lost-property picture with coloured objects; learner describes one, partner identifies it; check colour, size and agreement"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Object picture shown; learner types the noun with article and a colour before the answer appears"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-cognates-false-friends",
+      "uses": [
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "primary",
+          "binding": "Learner writes the English-based guess for each look-alike, then compares with the real meaning and marks same / shifted / different"
+        },
+        {
+          "primitive": "prim:context-guess",
+          "role": "support",
+          "binding": "Short text with eight cognates and two false friends; learner guesses, then confirms or revises on a second encounter"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-str-learning-procedures",
+      "uses": [
+        {
+          "primitive": "prim:entry-sense-pick",
+          "role": "primary",
+          "binding": "Learner looks up \"match\" for a given sentence in a bilingual dictionary page and must pick the right sense using labels"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Record a 30-second introduction, compare with a model, note one thing to change, record again"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-possessives-unstressed",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences where only the possessive shows one or many owners/things (su libro / sus libros / nuestros libros); learner picks the picture"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Family photo: learner presents people and their things; check possessive agrees with the thing, not the owner"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-de-possession",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Drag English-like pieces into Spanish order [cosa] de [dueño]; wrong order names the rule"
+        },
+        {
+          "primitive": "prim:cross-language-align",
+          "role": "support",
+          "binding": "Align \"my brother's teacher's car\" with \"el coche del profesor de mi hermano\" chunk by chunk"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-family",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Each partner has half a family tree and asks ¿Quién es…? ¿Cuántos hijos tiene…? to complete it"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Family tree with blanks; learner types the relation word before it is revealed; first attempt kept"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-describe-people",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Group photo: learner describes one person; elements (pelo, gafas, altura, ropa) are checked against the picture"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Feature cards: learner must choose ser / tener / llevar by meaning (alto, gafas, el pelo rizado, barba)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-coordination-y-o-pero",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Two short sentences to combine with y/pero/o; learner chooses the joiner by intended meaning and sees what is lost when split again"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Rule y→e before /i/, o→u before /o/; apply to unseen pairs (agua y hielo, madre e hija, siete u ocho)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-present-regular",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner derives the three ending sets, then conjugates unseen regular verbs (bailar, aprender, escribir); each step shows stem + ending"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences without subjects; learner must say who acts using only the verb ending"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-negation-word-order",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Drag no, pronoun and verb into slots; wrong placement names the rule \"no directly before the (pronoun +) verb\""
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Quiz show with false statements about the learner; they must correct each with No, no…, … / Sí, sí…"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-yes-no-questions",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Find-someone-who grid: learner must ask yes/no questions to fill names; only questions with correct verb person get answers"
+        },
+        {
+          "primitive": "prim:contour-match",
+          "role": "support",
+          "binding": "Learner hears statement vs question versions and marks punctuation; then says both"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-reflexive-verbs",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Pairs Lava el perro / Se lava; learner chooses which picture each sentence describes"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Picture strip of a morning; learner orders it and retells with reflexive verbs and times"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-telling-time",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Announcements and conversations with times; learner fills a schedule; errors grouped by y/menos, cuarto/media, 12/24-hour"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "A real bus timetable and shop opening hours; learner finds the time needed to make a plan"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-days-months-dates",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Pairs El lunes voy al gimnasio / Los lunes voy al gimnasio; learner marks once or every week on a calendar"
+        },
+        {
+          "primitive": "prim:template-write",
+          "role": "support",
+          "binding": "Weekly planner page: learner fills in days and dates; check lower case and day–number–de–month order"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-present-for-future",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Timeline with today, tomorrow and Saturday; learner places sentences (Mañana trabajo / Trabajo los lunes) as plan or habit"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Two diaries with gaps; learners ask ¿Qué haces el…? to find a free evening"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-daily-routine",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Picture strip of a day; learner orders it, then retells using primero/después/luego; check every picture is mentioned in order"
+        },
+        {
+          "primitive": "prim:carry-across",
+          "role": "support",
+          "binding": "After the model routine, learner tells their own real day and marks which chunks transferred"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-hay-existence",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Room picture: learner lists what there is with hay + quantity; check items exist in the picture and counts are right"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Two town maps with different services; learners ask ¿Hay una farmacia cerca? to find differences"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-estar-location",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Hear \"Las llaves están debajo del libro\" and drag objects to that place on a room picture"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "estar grid then unseen subjects (tus amigos y tú, el profesor); stressed endings shown"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-hay-vs-estar",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "For each sentence learner decides: introducing a new thing or locating a known one; picks hay or estar and sees how the other choice reads"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Only the determiner signals the choice (un/el, dos/los); learner must look at it to choose"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-place-expressions",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Instructions \"Pon el gato al lado de la silla\" moved onto a picture; the placement is the evidence"
+        },
+        {
+          "primitive": "prim:role-marking",
+          "role": "support",
+          "binding": "Scene picture: learner links each object to its landmark and chooses the preposition phrase"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-home-town",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Walk through a flat from the door: each room calls up its words; second walk-through in a different order from memory"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Floor plan: learner describes it; rooms and furniture mentioned are checked against the plan"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-weather-seasons",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Hace frío / Tengo frío / Está frío (la sopa): learner matches each to a picture (weather, person, object)"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "A real-style weather map/forecast; learner finds temperature and conditions for a city to plan an outfit"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-gustar",
+      "uses": [
+        {
+          "primitive": "prim:role-marking",
+          "role": "primary",
+          "binding": "Scene: person + liked thing; learner links who feels and what pleases, then chooses gusta/gustan by the thing, not the person"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Me gusta el libro / Me gustan los libros: learner picks one book or many books from the verb only"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-tambien-tampoco",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Statements positive/negative; learner wants to agree or disagree and must pick también/tampoco/sí/no; system shows the meaning of the other options"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Mingle: bot states likes; learner reacts; branch continues only with a correct reaction"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-muy-mucho",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Gap before adjective, verb or noun: learner must look at the next word class to choose muy or mucho/a/os/as"
+        },
+        {
+          "primitive": "prim:scale-place",
+          "role": "support",
+          "binding": "Place nada – poco – bastante – mucho – muchísimo on a scale, then choose the step that matches a picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-free-time",
+      "uses": [
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "primary",
+          "binding": "From a short interview, learner collects verb+noun leisure chunks (jugar al…, ir a…, hacer…) into their phrase bank and uses two about themselves"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge jugar/tocar/hacer/practicar with fútbol, guitarra, deporte, yoga; sort errors by boundary"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-preferences",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Pairs of options with a learner profile; learner states preference with prefiero / me gusta más and sees how each phrasing differs"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Plan a weekend: each partner knows only their own preferences and must ask ¿Qué prefieres…?"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-querer-want",
+      "uses": [
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "primary",
+          "binding": "Collect quiero/quería/me pone/me trae chunks from café dialogues; mark which sound softer; use one in the next role play"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Quiero un café / Quiero tomar un café / Quiero a mi abuela: learner picks what follows (noun, infinitive, person) and the marker needed"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-accept-refuse",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Dinner at a host's home: offers, second offers and requests; learner accepts or declines; branches show the host's reaction to a bare No"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Same refusal to a friend and to a host's grandmother; learner adds softeners where needed"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-ordering-food",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Restaurant script: greeting, menú del día choices, drinks, extra request, bill; branches when the dish is finished or the order is wrong"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "A real-style menú del día; learner finds a vegetarian first and second course and the price"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-food-drink",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Walk through a day of meals; each meal calls up its foods and drinks; second walk-through for a different country"
+        },
+        {
+          "primitive": "prim:variety-map",
+          "role": "support",
+          "binding": "Pairs zumo/jugo, patata/papa, tortilla (Spain/Mexico), comida/almuerzo: learner marks where each is used"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-soc-meals-timing",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "Visitor invites Spanish colleagues to dinner at 18:30 and nobody is hungry; learner explains and reschedules"
+        },
+        {
+          "primitive": "prim:variety-map",
+          "role": "support",
+          "binding": "Meal times table for Spain, Mexico, Argentina and the learner's country; learner predicts then checks"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-shopping-prices",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Clothes shop: ask for item, colour, size, price, try on, pay; branches for wrong size or out of stock"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "Market stall dialogues; learner notes product, quantity and price; errors grouped by number type"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-numbers-large",
+      "uses": [
+        {
+          "primitive": "prim:number-system-map",
+          "role": "primary",
+          "binding": "Convert between figures and words for prices and years; learner first estimates, then writes, then reads aloud; system marks decimal comma and thousands point"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "Price announcements and years in a short biography; learner fills a table"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-transactional",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Full transaction with branching assistant (out of stock, other size, card not accepted); every stage of the model sequence must be completed"
+        },
+        {
+          "primitive": "prim:discourse-map",
+          "role": "support",
+          "binding": "Learner labels each turn of a recorded transaction with its stage (greeting, request, options, price, payment, closing)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-ir-venir",
+      "uses": [
+        {
+          "primitive": "prim:viewpoint-direction",
+          "role": "primary",
+          "binding": "Map with speaker and listener; learner moves a character and must choose ir or venir from the speaker's position, including Ya voy"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "ir and venir grids, then new subjects; irregular forms highlighted"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-prep-a-en-de",
+      "uses": [
+        {
+          "primitive": "prim:role-marking",
+          "role": "primary",
+          "binding": "Journey picture: link origin, destination, transport and companion to de / a / en / con"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge sentences with en/a after estar, vivir, ir, llegar (llegar a vs llegar en is a common trap) and sort errors"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-ordinals",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Building plan; hear \"La señora vive en el quinto, puerta C\" and tap the flat"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Rule: agree in gender; primero/tercero shorten before masculine singular; apply to unseen phrases"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-directions-basic",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Street map: hear directions and trace the route; the end point is the evidence"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Each partner has a map with different places marked; they must ask ¿Dónde está…? and mark the answers"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-transport-travel",
+      "uses": [
+        {
+          "primitive": "prim:variety-map",
+          "role": "primary",
+          "binding": "autobús/camión/colectivo/guagua, billete/boleto, coger/tomar: learner marks where each is used and which is safe everywhere"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Ticket office: destination, one-way or return, time, platform; branches for sold-out trains"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-saber-conocer",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Gaps followed by a fact, a skill, a person or a place; learner must read what follows to choose saber or conocer"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Find someone who sabe… / conoce…; questions must use the right verb to be answered"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-opinion-creo-que",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Opinion turns on everyday topics (city vs countryside); learner gives opinion with creo que, asks back, and counters with sí, pero…"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Same disagreement said bluntly (Es caro.) and softened (Creo que es un poco caro, ¿no?); learner marks which fits talking to a host"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-evaluating",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Put fatal – mal – regular – bien – muy bien – estupendo on a scale; then pick the step matching each review"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Photos of a hotel, a meal and a beach; learner evaluates each; check adjectives agree and intensifiers are used"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-possibility",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Rank seguro – probable – posible – quizá – no sé; then choose the step that matches a speaker's evidence"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Ambiguous picture (a person running with a suitcase); learner speculates; check at least two possibility markers"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-str-backchannel",
+      "uses": [
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "primary",
+          "binding": "Learner listens to a story told in chunks and must react at each pause; absent or misplaced reactions are logged"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Friend tells weekend news; learner keeps it going with echo questions and ¿De verdad?"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-porque-por-que",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences where only the spelling (por qué / porque) shows question or answer; learner chooses"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Two facts (no vengo / estoy enfermo); learner joins with porque and splits back, seeing which is cause"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-para-infinitive",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same action, two continuations: learner wants to give a reason or a purpose and chooses porque or para"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Objects (abrebotellas, paraguas, llave); learner explains each with es para + infinitive"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-relative-que",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Two sentences (Tengo un amigo. Mi amigo vive en Cádiz.) combined with que and split back; learner sees what que replaces"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Crowd picture; learner identifies people with que-clauses; partner must find the person described"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-infinitive-uses",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences where the second verb must be infinitive, conjugated or participle; learner checks what the first verb requires"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge Me gusta bailar / *Me gusta bailando / Quiero ir / *Quiero voy and sort into error types"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-phon-stress-syllables",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Stress minimal pairs papa/papá, hablo/habló, término/termino/terminó; learner picks what was heard, then produces each"
+        },
+        {
+          "primitive": "prim:contour-match",
+          "role": "support",
+          "binding": "Learner marks the stressed syllable on a syllable grid while listening, then reads following the grid"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-phon-rhythm-linking",
+      "uses": [
+        {
+          "primitive": "prim:rhythm-shadow",
+          "role": "primary",
+          "binding": "Learner marks pauses and links on a transcript, shadows the audio and compares their pause curve with the model"
+        },
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "support",
+          "binding": "Dictation of linked speech (Va a ir a Alicante); learner aligns what they wrote with the original to see where linking hid word boundaries"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-orth-written-accents",
+      "uses": [
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "primary",
+          "binding": "Learner's own text: first pass fixes only esdrújulas, second pass only diacritic pairs (tú/tu, él/el)"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Rule: default stress → accent only when broken; apply to unseen words and show each decision step"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-orth-capitals-punctuation",
+      "uses": [
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "primary",
+          "binding": "Learner's own postcard: one pass for capitals and lower case, one for punctuation, one for abbreviations"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Real-style forms, envelopes and signs; learner finds and expands abbreviations (c/, n.º, Sra., tfno.)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-reading-signs-forms",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "A set of signs, a timetable and a menu; learner finds the one item that completes each task (when is it open, which door, what's vegetarian)"
+        },
+        {
+          "primitive": "prim:template-write",
+          "role": "support",
+          "binding": "A real-style registration form; every field constrains content and format (dates, surnames, postcode)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-short-messages",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Postcard and text-message templates; each slot (lugar, tiempo, actividad, despedida) constrains what is written"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Learner writes a note, compares with a model, marks one missing element, rewrites"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-describe-a1",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Photo of a room or person; learner writes a description; elements in the picture are checked (mentioned, position, number, colour)"
+        },
+        {
+          "primitive": "prim:grow-text",
+          "role": "support",
+          "binding": "Start from one anchor sentence and add one feature per step until a 50-word description"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-listening-a1",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Short announcements and dialogues; only the target slots are recorded; errors classified by number, time or name"
+        },
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "support",
+          "binding": "After answering, learner writes what they heard for one sentence and aligns it with the transcript"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-spoken-production-a1",
+      "uses": [
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "primary",
+          "binding": "Learner records a self-presentation, compares with a checklist (name, origin, family, routine, likes), re-records once"
+        },
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "support",
+          "binding": "Learner transcribes their own recording and marks one pronunciation and one grammar point to fix"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-present-stem-change",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner derives \"stressed stem vowel changes, nosotros/vosotros don't\" from querer and poder, then applies it to unseen verbs (cerrar, volver, servir) step by step"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences where only the stem shows the person (podemos / pueden); learner identifies the subject"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-present-irregular-yo",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Group verbs by pattern (-go, -oy, -zco); learner predicts the yo form of unseen members (componer, suponer, reconocer)"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Infinitive shown; learner types the yo form before it is revealed; first attempt and hint use logged separately"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-frequency-habits",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Put siempre – a menudo – a veces – casi nunca – nunca on a ladder, then place each person's habit from a diary"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Frequency survey: learner asks ¿Con qué frecuencia…? and records answers in a grid"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-work-study",
+      "uses": [
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "primary",
+          "binding": "colegio / college, carrera / career, suspender / suspend: learner predicts from English, then checks real meaning"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Job ads; learner finds requirements, hours and how to apply"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-estar-states",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Pictures of people and places (tired runner, closed shop); learner describes with estar + adjective; agreement and estar choice checked"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Same adjective with different subjects (La sopa está fría / Estoy frío? → Tengo frío) to show which combinations exist"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-ser-vs-estar",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same adjective (aburrido, listo, rico) with ser or estar; learner picks by intended meaning and sees how the other choice changes it"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge sentences against the permanent/temporary rule of thumb, including counterexamples (es joven, está muerto); sort into rule and exception"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-feelings",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Friend shares news (good, bad, surprising); learner reacts; branch shows the friend's response to a mismatched reaction"
+        },
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "support",
+          "binding": "excitado, embarazada, molestar: learner writes the English-based guess, then checks and rewrites"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-tener-sensations-doler",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Hace frío / Tengo frío / La sopa está fría: learner matches each to weather, person or object"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Pharmacy: describe symptoms, answer ¿Desde cuándo?, receive advice; branches for allergy or fever"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-body-health",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Hear \"Tócate la rodilla / Señala la espalda\" and tap the body part on a figure"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "A visit to the health centre from reception to pharmacy; each step calls up the words needed, then a second visit for a different problem"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-ir-a-infinitive",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Timeline now → future; learner places plans (voy a…) and evidence-based predictions (va a llover) and labels each"
+        },
+        {
+          "primitive": "prim:carry-across",
+          "role": "support",
+          "binding": "After the model, learner writes three real plans of their own and checks which chunks transferred"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-future-simple-recognition",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Forecast sentences with present vs future forms (llueve / lloverá); learner decides whether it is happening now or tomorrow"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "A horoscope and a weather forecast; learner finds the future predictions relevant to them"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-invitations",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Planning a night out: learner proposes, counter-proposes, accepts with conditions or declines with es que…; branches react to bare refusals"
+        },
+        {
+          "primitive": "prim:culture-incident",
+          "role": "support",
+          "binding": "A guest says \"Te invito\" and the visitor offers to split the bill; learner explains the expectation"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-wishes-me-gustaria",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Me gusta viajar / Me gustaría viajar: learner picks by intended meaning (habit vs wish) and sees what changes"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Quiero / Quería / Me gustaría in a shop, to a friend and to a teacher; learner marks the one that sounds too direct"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-tener-que-hay-que",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Ladder from obligatory (tienes que) through advisable (es importante) to unnecessary (no hace falta / no tienes que) to prohibited (no se puede); learner places rule cards"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "No tienes que venir / No puedes venir: learner picks the matching picture (optional vs forbidden)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-poder-permission-ability",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Sé / Puedo + infinitive in contexts of skill vs circumstance; learner chooses by meaning and sees the effect of the other choice"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Office situations (open window, use computer, leave early); learner asks permission and handles yes, conditional yes and refusal"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-requests-favours",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "Same request to a flatmate, a stranger and a boss; learner tunes ¿Me das…? / ¿Puedes…? / ¿Podría…? (recognition) and marks overly direct versions"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Moving day: learner asks for help and favours; partner agrees, agrees with reservations or refuses; learner must respond to each"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-advice-warnings",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Friend describes problems (insomnia, stress, no money); learner gives advice with varied structures; repetition of the same structure is flagged"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Learner writes a reply to an advice-column letter, compares with a model, rewrites one piece of advice"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-imperative-affirmative",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner derives tú imperative = él/ella present, then applies to unseen verbs; irregular eight are flagged; usted forms shown as a second set"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Recipe pictures out of order; learner orders them and writes one imperative per step"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-directions-a2",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Detailed directions in a 3D-style street plan; learner traces the route; the final position is the evidence"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Each partner has a map with different destinations; they must give and follow directions to swap locations"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-attention-getters",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "Same request to a child, a police officer and a waiter; learner picks oye/oiga, perdona/perdone and marks the mismatch"
+        },
+        {
+          "primitive": "prim:variety-map",
+          "role": "support",
+          "binding": "Phone-answering formulas by country; learner predicts who is answering from where"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-deixis-llevar-traer",
+      "uses": [
+        {
+          "primitive": "prim:viewpoint-direction",
+          "role": "primary",
+          "binding": "Scenes with speaker location marked; learner moves objects and chooses traer/llevar; changing the speaker position flips the answer"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences where only llevar/traer tells whether the object ends up with the speaker"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-direct-object-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:reference-chain",
+          "role": "primary",
+          "binding": "Short dialogues; learner links each lo/la/los/las to the noun it replaces and fixes mismatches in gender or number"
+        },
+        {
+          "primitive": "prim:attach-position",
+          "role": "support",
+          "binding": "Pronoun cards placed before the conjugated verb; learner drags them into position and reads the result aloud"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-personal-a",
+      "uses": [
+        {
+          "primitive": "prim:role-marking",
+          "role": "primary",
+          "binding": "Sentences with person and thing objects; learner marks who receives the action and decides whether a is needed"
+        },
+        {
+          "primitive": "prim:cross-language-align",
+          "role": "support",
+          "binding": "English \"I see Maria\" vs Spanish Veo a María: learner aligns the parts and spots the extra word"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-indirect-object-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:role-marking",
+          "role": "primary",
+          "binding": "Event pictures (giving, telling, sending); learner identifies giver, thing and receiver and picks the pronoun for each"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Unpack se lo doy into \"le + lo\" and \"to him/her + it\", then pack new pairs"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-clitic-position",
+      "uses": [
+        {
+          "primitive": "prim:attach-position",
+          "role": "primary",
+          "binding": "Pronoun and verb cards; learner chooses before or after-attached for each verb form and sees where the accent must be added"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "Build sentences from me, lo, voy a, dar in both legal orders; illegal orders are rejected with the rule shown"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-encantar-interesar",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner transfers the gustar pattern (thing = subject) to encantar, interesar, molestar and checks agreement with plural things"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Interest survey: learner asks ¿Te interesa…? and reports A Ana le encanta…, a Tom no le interesa nada…"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-prepositional-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Para mí / para mi madre: learner decides whether mi/mí is a pronoun or possessive from the following word"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Preposition + person prompts (con + yo, para + tú); learner types the form before it is revealed"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-preterito-perfecto",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Timeline with a bracket \"today / this week / my life\"; learner places events inside the bracket with he + participle"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Participle rule -ado/-ido derived from examples, then applied; irregulars collected as exceptions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-ya-todavia-no",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Preparing for a trip: a checklist scene; learner reports what is done and not done, then a second list (moving house) with no hints"
+        },
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "support",
+          "binding": "Expected-event marker on a timeline; learner places ya, todavía no, ya no and todavía"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-aspect-periphrases",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Action bar with start, middle, end and restart; learner attaches each periphrasis to its phase"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Acabo de comer / Termino de comer / Dejo de comer: learner chooses the picture each describes"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-preterite-regular",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner builds the two ending sets from hablar and comer, then conjugates unseen verbs; nosotros overlap with the present is pointed out"
+        },
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "support",
+          "binding": "Pairs hablo / habló, trabajo / trabajó; learner identifies who and when from stress alone"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-preterite-irregular",
+      "uses": [
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "primary",
+          "binding": "Infinitive + person prompts; learner types the irregular preterite before reveal; spaced re-appearance of missed items"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Stem groups (-u-, -i-, -j-) with shared endings; learner predicts unseen members of each group"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-past-time-markers",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Draggable life timeline; learner places events from hace / en / el año pasado cues"
+        },
+        {
+          "primitive": "prim:number-system-map",
+          "role": "support",
+          "binding": "Years and dates read aloud (mil novecientos noventa y nueve); learner writes the number and the hace equivalent"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-perfecto-vs-indefinido",
+      "uses": [
+        {
+          "primitive": "prim:variety-map",
+          "role": "primary",
+          "binding": "Same day narrated by a speaker from Madrid and one from Mexico City; learner notes where the tenses differ and states the regional norm"
+        },
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "support",
+          "binding": "Timeline with \"now-including\" bracket vs finished periods; learner sorts time markers and then events"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-orth-spelling-a2",
+      "uses": [
+        {
+          "primitive": "prim:sound-spelling-blend",
+          "role": "primary",
+          "binding": "Learner hears /ke/ /ge/ /θe/ (or /se/) and builds the spelling with letter tiles, then applies it to buscar → busqué"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "From buscar, llegar, empezar, learner derives \"keep the sound\" and predicts practicar, jugar, cruzar"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-imperfect",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Story timeline with a shaded background band and event points; learner tags each verb as band (imperfect) or point (preterite)"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Then-and-now pictures of a town; learner describes the old picture in the imperfect"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-sequencing-connectors",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Picture strip of a day; learner retells it with connectors; each frame must be linked"
+        },
+        {
+          "primitive": "prim:discourse-map",
+          "role": "support",
+          "binding": "A short story with connectors highlighted; learner draws the order of events and adds a missing connector"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-narrative",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Comic strip of an incident; learner tells it with background, events and ending; missing parts are flagged"
+        },
+        {
+          "primitive": "prim:grow-text",
+          "role": "support",
+          "binding": "Learner starts with three events, then adds setting, reactions and an ending in successive passes"
+        },
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "support",
+          "binding": "Listener role: learner reacts and asks ¿Y entonces? at the right moments in a recorded anecdote"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-describe-objects-a2",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Learner describes one of several similar objects; partner must pick it; success depends on contrasting features"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Lost-property scene; learner describes their item by shape, colour, material and condition; checklist of features"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-comparatives",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Two products on a scale of price, size and quality; learner states each relation with más/menos/tan"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Learner chooses between two flats and justifies the choice with three comparisons"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-exclamatives-que",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Holiday photos; learner reacts with a different exclamation pattern to each and gets feedback on agreement"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "Build ¡Qué + noun + tan + adjective! from cards; illegal orders (*¡Qué tan casa!) rejected"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-adverbs-mente",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Learner derives feminine + -mente from examples and applies it to unseen adjectives (tranquilo, cómodo, difícil)"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Adjective shown; learner types the adverb before reveal; accent errors logged separately"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-possessives-stressed",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Objects and owners in a scene; learner answers ¿De quién es? and must choose mío/mía/míos by the object"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "mi / mío placement: learner moves the possessive before or after the noun and the form changes accordingly"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-quantifiers-indefinites",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Kitchen scene: learner says what there is (algo, mucha leche, demasiadas manzanas) and isn't (nada de pan); a second room tests transfer"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Algún / ningún / todos in yes/no exchanges; learner picks the form that matches the answer"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-double-negation",
+      "uses": [
+        {
+          "primitive": "prim:cross-language-align",
+          "role": "primary",
+          "binding": "English \"I don't see anyone\" vs No veo a nadie: learner aligns words and notes Spanish needs a negative word in both places"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "Learner moves nadie / nunca to the front and back of the sentence and adds or removes no"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-article-uses-a2",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Learner judges sentences with and without articles against the generalisation / unspecified-amount rules and sorts exceptions"
+        },
+        {
+          "primitive": "prim:cross-language-align",
+          "role": "support",
+          "binding": "English \"I like coffee\" vs Me gusta el café: learner aligns and finds where Spanish adds or drops the article"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-noun-gender-exceptions",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Learner tests the -o/-a rule on a list and sorts the counterexamples into groups (-ma, short forms, stressed a)"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Spaced recall of article + noun for the exception list"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-estar-gerund",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Busy-street scene; learner says what each person is doing; gerund form and estar agreement checked"
+        },
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "support",
+          "binding": "Now marker on a timeline; learner distinguishes in-progress (estoy comiendo), habit (como) and plan (voy a comer)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-time-clauses",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Two simple sentences combined with cuando / antes de / después de, and complex sentences unpacked back into two"
+        },
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "support",
+          "binding": "Two events on a timeline; learner chooses the linking word from their order"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-duration-desde-hace",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Bar from a start point to now; learner labels the start (desde) or the length (desde hace)"
+        },
+        {
+          "primitive": "prim:cross-language-align",
+          "role": "support",
+          "binding": "English \"I have lived here for…\" vs Vivo aquí desde hace…: learner aligns tense and preposition"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-interrogatives-a2",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Partners hold different parts of a schedule; learner asks with cuál, cuándo, con quién and para qué to complete it"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "Questions with prepositions; learner moves the preposition to the front"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-si-conditional",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Condition and result cards; learner joins them with si and explains each part"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Si vs cuando with the same clause; learner chooses by certainty and sees the meaning change"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-por-eso-entonces",
+      "uses": [
+        {
+          "primitive": "prim:discourse-map",
+          "role": "primary",
+          "binding": "Short text with reasons and results; learner draws arrows from cause to effect and labels the connector"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Two sentences joined with porque, como, por eso or así que, then switched between them"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-por-para-basic",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same frame with por or para (Lo hago por ti / para ti); learner chooses by intended meaning and sees the other reading"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Learner checks \"for = para\" against examples and collects the counterexamples into por use groups"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-agree-disagree",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Debate cards (school uniforms, cars in the centre); learner responds and the partner pushes back; one response must be partial agreement"
+        },
+        {
+          "primitive": "prim:scale-place",
+          "role": "support",
+          "binding": "Place response expressions on a scale from total agreement to total disagreement"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-certainty",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Certainty ladder from sé que / estoy seguro to no tengo ni idea; learner places answers to a quiz by confidence"
+        },
+        {
+          "primitive": "prim:context-guess",
+          "role": "support",
+          "binding": "Mystery photos; learner guesses with a lo mejor / seguro que and checks"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-acordarse",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Acordarse de / recordar / olvidar(se de) in contexts; learner chooses the structure that fits"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Reunion with an old classmate: learner asks and answers ¿Te acuerdas de…?, including admitting they have forgotten"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-telephone",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Calls to a friend's home, a hotel and an office; branches for absent person, wrong number and message-taking"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "Voicemails: learner extracts caller, reason, number and time to call back"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-disc-reference-ellipsis",
+      "uses": [
+        {
+          "primitive": "prim:reference-chain",
+          "role": "primary",
+          "binding": "Learner draws links from each pronoun or omitted subject back to its referent in a short story"
+        },
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "support",
+          "binding": "Learner revises a repetitive paragraph, fixing only repetition; the change is compared with the original"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-spoken-interaction-a2",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Branching café chat and service encounters; each branch requires a turn-taking or repair move"
+        },
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "support",
+          "binding": "Learner practises interrupting, checking and closing formulas in a fast-paced dialogue"
+        },
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "support",
+          "binding": "Learner records a role play, transcribes it and marks where they missed a turn or closing"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-listening-a2",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Station and airport announcements; learner fills a departure board"
+        },
+        {
+          "primitive": "prim:predict-next",
+          "role": "support",
+          "binding": "Learner predicts the next line or decision in a conversation before hearing it"
+        },
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "support",
+          "binding": "After listening, learner compares their notes with the transcript and marks what they missed"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-fn-celebrations-wishes",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "Guest arrives, someone sneezes, a colleague gets a promotion: learner chooses the expected formula; a mismatched choice shows the reaction"
+        },
+        {
+          "primitive": "prim:template-write",
+          "role": "support",
+          "binding": "Card templates for birthday, wedding, get well; learner fills in and then writes one without a template"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-letters-emails",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Email skeletons for informal news and formal request; learner fills slots, then removes the scaffold for a second email"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Same content to a friend and to a language school; learner adjusts opening, pronouns and closing"
+        },
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "support",
+          "binding": "Feedback on one aspect only (register), learner revises and compares"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-reading-a2",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Flat ads, timetables and menus; learner answers task questions by scanning"
+        },
+        {
+          "primitive": "prim:context-guess",
+          "role": "support",
+          "binding": "Short texts with unknown words; learner guesses meaning from context and cognates, then checks"
+        },
+        {
+          "primitive": "prim:reading-select",
+          "role": "support",
+          "binding": "Learner chooses which of several texts answers a need (find a flat, a course, a restaurant)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-describe-a2",
+      "uses": [
+        {
+          "primitive": "prim:grow-text",
+          "role": "primary",
+          "binding": "Learner starts with three facts about a place, then adds location, comparison, atmosphere and opinion"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Photo of a place; learner describes it for someone who can't see it; listener checks key features"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Learner writes first, compares with a model description, and notes one technique to borrow"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-act-mediation-basic",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Three-way scene: tourist (English), learner, waiter (Spanish); learner relays questions and answers"
+        },
+        {
+          "primitive": "prim:cross-language-align",
+          "role": "support",
+          "binding": "Learner aligns a Spanish notice with their English relay and checks no key information was lost"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-soc-intercultural",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "Incidents (dinner time, personal space, punctuality) with several interpretations; learner chooses and justifies, then sees variation by country"
+        },
+        {
+          "primitive": "prim:variety-map",
+          "role": "support",
+          "binding": "Same custom across several countries; learner notes differences and avoids a single \"Spanish\" answer"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-services-money",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Bank, post office and police station scenes; learner completes each errand step by step, then a new errand without hints"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Reporting a lost wallet: answer questions about time, place and contents"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-media-tech",
+      "uses": [
+        {
+          "primitive": "prim:variety-map",
+          "role": "primary",
+          "binding": "Device names by country (móvil / celular, ordenador / computadora); learner adapts a message for a Mexican and a Spanish friend"
+        },
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "support",
+          "binding": "Learner collects phrases from tech help messages (no funciona, se ha roto, reinicia el móvil) into their phrase bank"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-lex-nature-geography",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Map of a country; learner describes where the mountains, coast and cities are"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Partners have different country maps; they describe geography to complete each other's map"
+        }
+      ]
+    },
+    {
+      "kc": "kt:es-cult-society-arts",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Short museum and concert listings; learner finds who, what, where"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Picture timeline of an artist's life; learner retells it in the preterite"
+        },
+        {
+          "primitive": "prim:culture-incident",
+          "role": "support",
+          "binding": "Learner meets references from several countries and decides which country each belongs to"
+        }
+      ]
+    }
+  ],
+  "gaps": []
+}

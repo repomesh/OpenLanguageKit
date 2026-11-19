@@ -66,6 +66,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -97,7 +98,7 @@
     var VERDICTS = ['same', 'shifted', 'different'];
     var VIC = { same: '＝', shifted: '≈', different: '≠' };
     function vName(v) {
-      if (CHILD()) return { same: L('一样 😀', 'The same 😀'), shifted: L('有点不一样 🤔', 'A bit different 🤔'), different: L('完全不一样 😲', 'Totally different 😲') }[v];
+      if (CHILD()) return { same: L('一样', 'The same'), shifted: L('有点不一样', 'A bit different'), different: L('完全不一样', 'Totally different') }[v];
       return { same: L('相同', 'Same'), shifted: L('偏移', 'Shifted'), different: L('完全不同', 'Completely different') }[v];
     }
     var DIMKEYS = Object.keys(pack.dims);
@@ -237,7 +238,7 @@
           oninput: function (e) { it.guess = e.target.value; }, onkeydown: function (e) { if (e.key === 'Enter') { e.preventDefault(); lockGuess(); } } });
         left.append(h('p', { class: 'kb-note', text: fromWhat }), inp, h('div', { class: 'tools', style: 'margin-top:8px' }, [h('button', { class: 'kb-btn primary', onclick: lockGuess }, L('锁定猜测，看例句', 'Lock my guess and see the examples'))]));
       } else {
-        left.append(h('div', { class: 'guess-locked', text: it.guess }), h('span', { class: 'lockmark', text: L('🔒 第一次猜测，不会被改写', '🔒 First guess, kept as written') }));
+        left.append(h('div', { class: 'guess-locked', text: it.guess }), h('span', { class: 'lockmark' }, [KTBlock.icon('lock'), L(' 第一次猜测，不会被改写', ' First guess, kept as written')]));
       }
       // middle: three levels + shift dimension
       var mid = h('div', { class: 'col mid' }, [h('h3', { text: L('标记', 'Mark') })]);
@@ -254,14 +255,14 @@
       if (it.locked && !(it.judged && it.judged.right)) mid.append(h('button', { class: 'kb-btn primary', disabled: !it.pick, onclick: judge }, it.judged ? L('改判', 'Change judgement') : L('确定（Enter）', 'Confirm (Enter)')));
       // right: real examples, closed until the guess is locked
       var right = h('div', { class: 'col' }, [h('h3', { text: L('真实例句', 'Real examples') })]);
-      if (!it.locked) right.append(h('div', { class: 'locked', text: L('🔒 先在左边写下猜测，例句才会打开。', '🔒 Write your guess on the left first; then the examples open.') }));
+      if (!it.locked) right.append(h('div', { class: 'locked' }, [KTBlock.icon('lock'), L(' 先在左边写下猜测，例句才会打开。', ' Write your guess on the left first; then the examples open.')]));
       else {
         x.ex.forEach(function (ex) {
           var g = gloss(ex);
           right.append(h('div', { class: 'ex' }, [h('div', { class: 't', lang: pack.lang }, highlight(ex.t, ex.cue, formIn(x), it.cueShown)),
             it.trans && g ? h('div', { class: 'tr', text: g }) : null]));
         });
-        right.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { speak(x.ex.map(function (e) { return e.t; }).join(pack.lang === 'en' ? ' ' : '')); } }, L('▶ 听例句', '▶ Hear the examples'))]));
+        right.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { speak(x.ex.map(function (e) { return e.t; }).join(/^(ja|zh)/.test(pack.lang) ? '' : ' ')); } }, L('▶ 听例句', '▶ Hear the examples'))]));
       }
       stage.append(h('div', { class: 'ff-card' }, [left, mid, right]));
       // hints
@@ -286,7 +287,7 @@
     }
     function head(x) {
       return h('div', { class: 'ff-head' }, [h('span', { class: 'ff-form', lang: pack.lang, text: x.form }), x.reading ? h('span', { class: 'ff-reading', lang: pack.lang, text: x.reading }) : null,
-        x.pair ? h('span', { class: 'ff-pair' }, [L('常见对译：', 'Usual pairing: '), h('b', { lang: 'zh', text: x.pair })]) : null]);
+        x.pair ? h('span', { class: 'ff-pair' }, [T(pack, 'pairLabel') || L('常见对译：', 'Usual pairing: '), h('b', { lang: pack.nativeLang || 'zh', text: x.pair })]) : null]);   // pairLabel: e.g. “looks like” when the pair is a look-alike word, not a translation
     }
 
     /* ---- ② use it: a sentence only the real meaning makes sense of ---- */

@@ -58,6 +58,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -155,7 +156,7 @@
         if (opts.marks && opts.showProb && !opts.replace && i === inc.react && !probOk(inc, i)) cls += ' reactln';
         var text = rewritten ? opts.replace.text : ln.text;
         var inner = [h('span', { class: 'who' }, [h('span', { lang: pack.lang, text: p.name }), rewritten ? L('（改写后）', ' (rewritten)') : null]), h('span', { class: 'tl', lang: pack.lang, text: text })];
-        var el = opts.pickable ? h('button', { class: cls, 'aria-pressed': R.pick === i ? 'true' : 'false', onclick: function () { R.pick = i; B.emit('highlight', { incident: inc.id, line: i }); render(); } }, inner)
+        var el = opts.pickable ? h('button', { class: cls, 'aria-pressed': R.pick === i ? 'true' : 'false', onclick: function () { R.pick = i; B.emit('highlight', { incident: inc.id, line: i }); if (child()) submitSpot(inc); else render(); } }, inner)
           : h('div', { class: cls }, inner);
         var wrap = h('div', { class: 'ln ' + ln.who }, [el]);
         if (opts.marks && opts.showProb && !opts.replace && inc.problem[0] === i && inc.react !== undefined) wrap.append(h('span', { class: 'link', text: L('↳ 对方的反应在第 ', '↳ the other person reacts in line ') + (inc.react + 1) + L(' 句', '') }));
@@ -198,15 +199,14 @@
       mainCol.append(h('p', { class: 'kb-prompt', text: child() ? L('读一读。从哪一句开始，有人不太舒服了？点那一句。', 'Read it. From which line does someone start to feel uncomfortable? Click that line.') : L('读这段事件。从哪一句开始不对劲？点那一句，再写一句你的解释。解释提交后锁定。', 'Read the incident. From which line does it start to go wrong? Click that line, then write one sentence explaining it. Your explanation is locked once you submit it.') }));
       mainCol.append(story(inc, { pickable: !R.locked, marks: R.locked, showProb: R.locked }));
       mainCol.append.apply(mainCol, hintText(inc));
+      if (child()) {   // child version: clicking the line is the answer; nothing to type, nothing to submit
+        if (!R.locked) mainCol.append(hintTools(inc, id));
+      } else {
       var ta = h('textarea', { disabled: R.locked, 'aria-label': L('我的解释', 'My explanation'), placeholder: L('我觉得问题是……', 'I think the problem is…'), oninput: function (e) { R.expl = e.target.value; btn.disabled = R.pick === null || !R.expl.trim(); } });
       ta.value = R.expl;
-      var btn = h('button', { class: 'kb-btn primary', disabled: R.locked || R.pick === null || !R.expl.trim(), onclick: function () {
-        R.locked = true;
-        B.emit('explain', { incident: inc.id, explanation: R.expl, line: R.pick });
-        B.attempt(id, { correct: probOk(inc, R.pick), response: { line: R.pick, explanation: R.expl } });
-        render();
-      } }, L('提交（锁定）', 'Submit (locks)'));
+      var btn = h('button', { class: 'kb-btn primary', disabled: R.locked || R.pick === null || !R.expl.trim(), onclick: function () { submitSpot(inc); } }, L('提交（锁定）', 'Submit (locks)'));
       mainCol.append(h('div', { class: 'kb-card' }, [h('b', { text: L('我的解释（第一次判断）', 'My explanation (first judgement)') }), ta, h('div', { class: 'tools' }, [btn, R.pick === null && !R.locked ? h('span', { class: 'kb-note', text: L('先点一句。', 'Click a line first.') }) : null]), R.locked ? null : hintTools(inc, id)]));
+      }
       if (R.locked) {
         var ok = probOk(inc, R.pick);
         mainCol.append(h('p', { class: 'kb-feedback' + (B.status(id) === 'wrong' ? ' bad' : ''), text: (ok ? L('对，问题从这一句开始。', 'Yes, the trouble starts with this line.') : L('问题点其实是蓝框的那一句。', 'The trouble actually starts with the line in the blue frame.')) + L('原因先不揭晓，去第 2 步判断。', ' The reason is not revealed yet; work it out in step 2.') }));
@@ -214,10 +214,22 @@
       }
     }
 
+    function submitSpot(inc) {
+      var R = rec(inc.id), id = 'p:' + inc.id;
+      if (R.locked || R.pick === null) return;
+      R.locked = true;
+      if (child()) B.attempt(id, { correct: probOk(inc, R.pick), response: { line: R.pick } });
+      else {
+        B.emit('explain', { incident: inc.id, explanation: R.expl, line: R.pick });
+        B.attempt(id, { correct: probOk(inc, R.pick), response: { line: R.pick, explanation: R.expl } });
+      }
+      render();
+    }
+
     /* ---- step 2 ---- */
     function renderWhy(inc) {
       var R = rec(inc.id), id = 'c:' + inc.id;
-      if (!R.locked) { mainCol.append(h('div', { class: 'kb-card' }, [h('p', { class: 'kb-prompt', text: L('先在第 1 步点出问题点，写下你的解释。', 'First find the moment and write your explanation in step 1.') }), h('button', { class: 'kb-btn primary', onclick: function () { st.mode = 'spot'; ui.setMode('spot'); render(); } }, L('去第 1 步', 'Go to step 1'))])); return; }
+      if (!R.locked) { mainCol.append(h('div', { class: 'kb-card' }, [h('p', { class: 'kb-prompt', text: child() ? L('先在第 1 步点出那一句。', 'First click the line in step 1.') : L('先在第 1 步点出问题点，写下你的解释。', 'First find the moment and write your explanation in step 1.') }), h('button', { class: 'kb-btn primary', onclick: function () { st.mode = 'spot'; ui.setMode('spot'); render(); } }, L('去第 1 步', 'Go to step 1'))])); return; }
       mainCol.append(relCard(inc, (st.hint[inc.id] || 0) >= 2));
       var innerAt = R.revealed ? { a: lastLineOf(inc, 'a'), b: lastLineOf(inc, 'b') } : null;
       mainCol.append(story(inc, { marks: true, showProb: true, inner: innerAt }));
@@ -242,7 +254,7 @@
         B.emit('reveal', { incident: inc.id, inner: true });
         render();
       } }, L('揭示两个人心里的想法', 'Reveal what both people were thinking')), !answered ? h('span', { class: 'kb-note', text: L('先选类别再揭示，才算独立判断。', 'Choose a kind before revealing for it to count as independent.') }) : null]));
-      if (R.revealed) {
+      if (R.revealed && !child()) {   // the child version has no typed first explanation to compare with
         var now = h('textarea', { 'aria-label': L('现在的解释', 'My explanation now'), oninput: function (e) { R.now = e.target.value; } }); now.value = R.now;
         mainCol.append(h('div', { class: 'two' }, [
           h('div', {}, [h('b', { text: L('第一次的解释（已锁定）', 'First explanation (locked)') }), R.expl]),

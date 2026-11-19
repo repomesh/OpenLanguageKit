@@ -1,7 +1,7 @@
 # OpenLanguageKit
 
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="OpenLanguageKit: what to teach, in what order, and how to practise it, for English, Japanese and Chinese. 950 knowledge points, 56 practice types, 96 ready pages, 14 course tracks.">
+  <img src="./assets/readme/hero.svg" width="100%" alt="OpenLanguageKit: what to teach, in what order, and how to practise it, for English, Japanese, Chinese, Spanish and French. 1,292 knowledge points, 56 practice types, 126 ready pages, 20 course tracks.">
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
   <a href="https://www.openlangkit.space/create/">Plan an app</a>
 </p>
 
-OpenLanguageKit is the part of a language-learning app that is hard to make up on the spot: **what to teach, in what order, and how each thing should be practised.** It covers English, Japanese and Chinese, and it is plain files (JSON, HTML, JavaScript) with no dependencies, so a person, a teacher or a coding AI can pick it up and build on it.
+OpenLanguageKit is the part of a language-learning app that is hard to make up on the spot: **what to teach, in what order, and how each thing should be practised.** It covers English, Japanese and Chinese in full, and Spanish and French up to A2. It is plain files (JSON, HTML, JavaScript) with no dependencies, so a person, a teacher or a coding AI can pick it up and build on it.
 
 ## Try a page
 
@@ -23,16 +23,18 @@ These are real pages from this repository. Click one to open it; nothing to inst
 <tr><td width="33%" align="center"><a href="https://www.openlangkit.space/blocks/listen-and-do.html?set=listen-and-do-ja&lang=en"><img src="./blocks/thumbs/ja-listen-and-do.png" width="100%" alt="Listen and do (Japanese): a practice page you can open"></a><br><sub>Listen and do (Japanese)</sub></td><td width="33%" align="center"><a href="https://www.openlangkit.space/blocks/ime-convert.html?set=ime-convert-zh&lang=en"><img src="./blocks/thumbs/zh-ime-convert.png" width="100%" alt="Pinyin input: pick the right character: a practice page you can open"></a><br><sub>Pinyin input: pick the right character</sub></td><td width="33%" align="center"><a href="https://www.openlangkit.space/blocks/sound-contrast.html?set=sound-contrast-en&lang=en"><img src="./blocks/thumbs/en-sound-contrast.png" width="100%" alt="English minimal pairs: a practice page you can open"></a><br><sub>English minimal pairs</sub></td></tr>
 </table>
 
-All 96 pages are in the [gallery](https://www.openlangkit.space/blocks/).
+All 126 pages are in the [gallery](https://www.openlangkit.space/blocks/).
 
 ## What you get
 
 | | What it is | How many |
 | --- | --- | --- |
-| **Knowledge points** | One teachable thing each (hiragana, the past tense, the 把 sentence), with an explanation, examples, common errors, what mastery looks like, and what must be learned first | 950: English 353, Japanese 386, Chinese 211 |
-| **Course tracks** | The same knowledge points selected and ordered for a kind of learner: a five-year-old starting English, an adult moving to Japan, a heritage child who speaks Chinese but cannot read it | 14 |
+| **Knowledge points** | One teachable thing each (hiragana, the past tense, the 把 sentence), with an explanation, examples, common errors, what mastery looks like, and what must be learned first | 1,292: English 353, Japanese 386, Chinese 211, Spanish 159, French 183 |
+| **Course tracks** | The same knowledge points selected and ordered for a kind of learner: a five-year-old starting English, an adult moving to Japan, a heritage child who speaks Chinese but cannot read it | 20 |
 | **Practice types** | Design contracts for an activity: what the learner does, how the page responds, how it is checked, and what the result does and does not prove | 56 |
-| **Practice pages** | Ready HTML pages built from those contracts, each tied to the knowledge points it practises | 96 pages from 30 engines |
+| **Practice pages** | Ready HTML pages built from those contracts, each tied to the knowledge points it practises | 126 pages from 32 engines |
+| **Teaching by age** | For under 12, 12 to university, and adults: how long a session is, whether rules are explained, how feedback is given, how pictures and text are used, and how each of the 56 practice types changes | 3 bands |
+| **Workflows and picture briefs** | Complete activities built from several practice types (picture-book reading in two modes), and a tool that writes the prompt and the acceptance checklist for a generated picture | 2 workflows, 8 picture roles |
 | **Planner** | Turns "who is learning" into a week-by-week plan | browser, Node, command line |
 
 ## How it fits together
@@ -121,9 +123,12 @@ To change this repository, read `CLAUDE.md` and run `sh check.sh` before and aft
 
 ## What to know before you rely on it
 
-- **The explanations are written in Chinese.** Knowledge-point explanations, example glosses and practice contracts are in Chinese; the examples themselves are in the language being taught. The practice pages and the docs have English versions. An English edition of the course content is in progress.
-- **The Japanese and Chinese content has not been reviewed by teachers yet.** The list is in `curriculum/REVIEW.md`, and each data pack has a `review` list for a native speaker.
+- **Most explanations are written in Chinese.** For English, Japanese and Chinese, knowledge-point explanations, example glosses and practice contracts are in Chinese; Spanish and French are explained in English; the examples themselves are in the language being taught. The practice pages and the docs have English versions. An English edition of the course content is in progress.
+- **Spanish and French stop at A2.** B1 and above are not built.
+- **The Japanese, Chinese, Spanish and French content has not been reviewed by teachers yet.** The lists are in `curriculum/REVIEW.md` and in `curriculum/es/REVIEW.md` and `curriculum/fr/REVIEW.md`, and each data pack has a `review` list for a native speaker.
 - **Many pages do part of their contract, not all of it.** What each one leaves out is written down in `blocks/GAPS.md` (Chinese).
+- **The age guidance is partly design judgement.** Each line says whether it rests on cited research or on design inference; none of it has been tested with learners here.
+- **Nothing here generates pictures.** The picture brief tool writes the instruction; you send it to an image model and check the result.
 - **The pages do not listen or grade speech.** Sound is browser text-to-speech for playback. Anything the learner says aloud is judged by the learner or a partner, and recorded as such.
 - **The planner selects and schedules; it does not measure.** Its timing numbers are stated assumptions and its placement questions are self-report.
 - Some English practice types point to pages in another repository, `edu-ai-builders/language-learning-asset-library`, by id.

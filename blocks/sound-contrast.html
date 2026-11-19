@@ -65,6 +65,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -93,6 +94,11 @@
     var axes = pack.axes;
     var axisById = {}; axes.forEach(function (a) { axisById[a.id] = a; });
     var focus = params.get('focus');
+    // A pack with no pair flagged `child` has no child version: variant=child falls back to the standard version
+    // (one visible line says so) and the header switch is removed below.
+    var hasChild = axes.some(function (a) { return a.pairs.some(function (p) { return p.child; }); });
+    var childAsked = B.variant === 'child' && !hasChild;
+    if (childAsked) { B.variant = 'adult'; document.documentElement.dataset.variant = 'adult'; }
     var st = {
       mode: modes.some(function (m) { return m.id === params.get('mode'); }) ? params.get('mode') : 'listen',
       axis: axisById[focus] ? focus : (B.variant === 'child' ? 'child' : axes[0].id),
@@ -110,7 +116,10 @@
     var bar = h('div', { class: 'kb-bar' });
     var stage = h('div', { class: 'kb-card sc-stage' });
     var side = h('aside', { class: 'sc-side' });
-    document.getElementById('app').append(ui.header, h('main', { class: 'kb-main' }, [bar, h('div', { class: 'sc-layout' }, [stage, side])]), ui.drawer);
+    if (!hasChild) { var sw = ui.header.querySelector('label.kb-variant'); if (sw) sw.remove(); }
+    document.getElementById('app').append(ui.header, h('main', { class: 'kb-main' }, [
+      childAsked ? h('p', { class: 'kb-note sc-nochild', role: 'status', text: L('这一组还没有儿童版，现在显示的是标准版。', 'This set has no child version yet; this is the standard version.') }) : null,
+      bar, h('div', { class: 'sc-layout' }, [stage, side])]), ui.drawer);
     B.emit('view', { mode: st.mode, set: pack.id });
 
     /* ---- speech ---- */
@@ -375,7 +384,7 @@
       }
       if (it.kind === 'ab') {
         stage.append(h('p', { class: 'kb-prompt', text: child() ? L('听一听，是哪一个？', 'Listen. Which one is it?') : L('听一个词，点它是哪一个。（F／J 选左右）', 'Listen to one word and click which one it is. (F / J for left / right)') }));
-        if (child()) stage.append(h('button', { class: 'kb-btn', onclick: function () { sayInstruction('听一听，是哪一个？', 'Listen. Which one is it?'); } }, L('🔊 说明', '🔊 Instructions')));
+        if (child()) stage.append(h('button', { class: 'kb-btn', onclick: function () { sayInstruction('听一听，是哪一个？', 'Listen. Which one is it?'); } }, [KTBlock.icon('speaker'), L(' 说明', ' Instructions')]));
         stage.append(playBtn(it));
         var sidesLR = [it.left, other(it.left)];
         stage.append(h('div', { class: 'sc-cards' }, sidesLR.map(function (sd, i) {

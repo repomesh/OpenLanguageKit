@@ -112,7 +112,7 @@ def check(lang, allow_missing_content=False):
             if t not in ITEM_TYPES:
                 errors.append(f'{kid}: itemType {t} not in SCHEMA vocabulary')
         for ex in k.get('examples', []):
-            gloss = 'en' if lang == 'zh' else 'zh'
+            gloss = g['path'].get('instructionLang') or ('en' if lang == 'zh' else 'zh')
             if not (isinstance(ex, dict) and ex.get(lang) and ex.get(gloss)):
                 errors.append(f'{kid}: example must have {lang} and {gloss}')
 

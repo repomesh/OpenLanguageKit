@@ -132,6 +132,30 @@ recognize-choice · form-fill · transform · error-correct · order-words · ma
 - 只到类别级，没有到 572 个语法点的逐项级。
 - 拿到标准附录 A 原文后，应把 `std:g-*` 类别单元拆成逐项单元，重新跑 `check.py`，看哪些语法点没有知识点。
 
+## 西班牙语与法语（2026-11-17 加入，A1–A2）
+
+这两种语言的结构和校验规则与前三种相同，有两点不同：
+
+- **讲解语言是英文。** `path.json` 里声明 `"instructionLang": "en"`：知识点的名称、说明、掌握标准、常见错误、单元目标和原语绑定都用英文写，例句是 `{es, en}` / `{fr, en}`。讲解语言和所学语言是两个独立的维度；`check.py` 按 `instructionLang` 检查例句的释义字段。前三种语言没有这个字段，讲解语言是中文（中文课程的例句释义是英文）。
+- **只做到 A2。** B1 及以上还没有建。
+
+**西班牙语** `es/`：485 个来源单元，159 个知识点，3 套课程方案。分母取自塞万提斯学院《Plan Curricular》“Niveles de referencia”的 A1、A2。官方网站当时在维护，正文读自 2011 年的网页存档；`sources.json` 的 `scope` 写明了每个清单读到哪一层。
+
+| 来源 | 单元数 | 核对 |
+| --- | ---: | --- |
+| 语法、发音、正字法、功能、语用策略、语篇体裁、一般意念：到 x.y 小节 | 387 | content_checked |
+| 具体意念（章 × 级别）、文化参照、社会文化知识、跨文化能力、学习方法：只到标题 | 94 | index_checked |
+| 补充类别 `sup:*`：听、口头产出、中介、同源词与假朋友 | 4 | unverified |
+
+**法语** `fr/`：309 个来源单元，183 个知识点，3 套课程方案。分母取自 Eaquals 与 CIEP《Inventaire linguistique des contenus clés aux niveaux du CECR》（2015），和英语所用的 Core Inventory 是同一套方法。
+
+| 来源 | 单元数 | 核对 |
+| --- | ---: | --- |
+| 附录 E（A1、A2 逐条）、附录 D 的“次要”行、附录 C 文本类型、附录 B 情景、附录 F 独有标题 | 291 | content_checked（附录 C、D 的级别是底纹，靠看页面图像读出，应抽查） |
+| 补充类别 `sup:*`：发音、正字法、书写、中介、地区变体、口语语体、课堂用语 | 18 | unverified |
+
+两种语言的例句和说明都是原创，尚未经过母语教师核对；清单在各自目录的 `REVIEW.md`。课程方案的 id 带语言前缀（`es-child`、`fr-teen` 等）。
+
 ## 边界
 
 - Core Inventory 的级别是"教学最相关的位置"，不是掌握保证，也不是考试要求（原文 "Teaching not testing"）。

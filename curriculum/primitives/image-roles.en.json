@@ -1,0 +1,253 @@
+{
+ "note": "How pictures are used for teaching: each role says what the picture must show, what it must not, whether it may come from an image model, where it goes on the page for each age band, and how to check it. Decorative pictures have no role and are not used. Text is never generated inside a picture: the page sets the text. blueprint/image-brief.js turns a role, an age band and a fact list into a prompt and an acceptance checklist. The Chinese file image-roles.json is the original; both files must have the same keys.",
+ "generatable": {
+  "yes": "May come from an image model, checked against the acceptance list.",
+  "yes-then-annotate": "May be generated; afterwards mark where each fact sits so the page can check answers against it.",
+  "yes-check-hard": "May be generated, but make the second picture by editing the first, then check hard.",
+  "yes-with-review": "May be generated; needs a person who knows the culture to review it.",
+  "prefer-drawn": "Draw it by code (SVG or 3D); do not generate.",
+  "no": "Do not generate; build it as HTML."
+ },
+ "styleByBand": {
+  "child": "flat, friendly illustration, large simple shapes, clear outlines, a few bright colours, plain background",
+  "youth": "clean contemporary illustration, natural proportions, not childish, limited palette",
+  "adult": "plain realistic illustration or diagram, neutral colours, no cartoon characters"
+ },
+ "roles": [
+  {
+   "id": "meaning-anchor",
+   "label": "Meaning anchor",
+   "purpose": "One picture shows the meaning of one word or one chunk.",
+   "generatable": "yes",
+   "mustShow": [
+    "One object or one action only, on a plain or near-empty background",
+    "A viewer can name the intended meaning without any text",
+    "The same drawing style across one set"
+   ],
+   "mustNot": [
+    "A second, equally prominent thing in the picture",
+    "An abstract symbol for a concrete word",
+    "A cultural symbol only locals read (unless it is what is being taught)"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:recall-before-reveal",
+    "prim:sound-spelling-blend",
+    "prim:classifier-match",
+    "prim:oral-to-print"
+   ],
+   "refs": [
+    "ped:dual-coding",
+    "ped:picture-superiority-vocabulary"
+   ]
+  },
+  {
+   "id": "scene-facts",
+   "label": "Scene with checkable facts",
+   "purpose": "A scene in which every object, number and position is on a fact list that the learner's sentences are checked against.",
+   "generatable": "yes-then-annotate",
+   "mustShow": [
+    "Every fact on the list can be pointed to in the picture",
+    "Numbers are exact and positions unambiguous (on, under, in, next to)",
+    "As little as possible beyond the list, and nothing that contradicts it"
+   ],
+   "mustNot": [
+    "Vague quantities (a crowd, a pile)",
+    "Objects overlapping until they cannot be told apart",
+    "Using a generated picture without checking it fact by fact"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:picture-describe",
+    "prim:listen-and-do",
+    "prim:scene-walkthrough",
+    "prim:info-gap"
+   ],
+   "refs": [
+    "ped:multimedia-learning",
+    "ped:seductive-details"
+   ]
+  },
+  {
+   "id": "sequence-frames",
+   "label": "Sequence frames",
+   "purpose": "Three to six frames telling one event, one change per frame, with the same characters and setting throughout.",
+   "generatable": "yes",
+   "mustShow": [
+    "Exactly one key change from each frame to the next",
+    "Characters look the same in every frame (shape, clothes, colours)",
+    "The order can be worked out without text"
+   ],
+   "mustNot": [
+    "Two events in one frame",
+    "A character changing appearance between frames",
+    "Plot carried by text or speech bubbles inside the picture"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:sequence-retell",
+    "prim:predict-next",
+    "prim:aspect-timeline"
+   ],
+   "refs": [
+    "ped:multimedia-learning"
+   ]
+  },
+  {
+   "id": "book-page",
+   "label": "Picture-book page",
+   "purpose": "One page of a picture book: the picture tells what happens on this page and leaves room for the text.",
+   "generatable": "yes",
+   "mustShow": [
+    "The picture shows what this page's text says, no more and no less",
+    "A clean area is left for the text (set by the page, not drawn into the picture)",
+    "Characters and style match the other pages of the book"
+   ],
+   "mustNot": [
+    "Showing the next page's outcome early",
+    "So much detail that it drowns the sentence to be read",
+    "Text generated inside the picture"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:reading-aid-fade",
+    "prim:oral-to-print",
+    "prim:predict-next",
+    "prim:context-guess",
+    "prim:sequence-retell"
+   ],
+   "refs": [
+    "ped:dialogic-reading",
+    "ped:learning-to-read-vs-reading-to-learn",
+    "ped:multimedia-learning"
+   ]
+  },
+  {
+   "id": "contrast-pair",
+   "label": "Contrast pair",
+   "purpose": "Two pictures identical except for the one point being learned, to show the difference in meaning a form makes.",
+   "generatable": "yes-check-hard",
+   "mustShow": [
+    "The two pictures differ in one place only, and that place is the difference being learned",
+    "The difference is visible at a glance",
+    "Same size, angle and style in both"
+   ],
+   "mustNot": [
+    "Generating the two separately so that they differ everywhere",
+    "A difference so fine it has to be hunted for"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:form-for-meaning",
+    "prim:choose-by-intent",
+    "prim:sound-contrast",
+    "prim:usage-boundary"
+   ],
+   "refs": [
+    "ped:noticing-hypothesis",
+    "ped:attention"
+   ]
+  },
+  {
+   "id": "spatial-diagram",
+   "label": "Spatial diagram",
+   "purpose": "Position, direction, route, viewpoint. Accuracy matters more than looks.",
+   "generatable": "prefer-drawn",
+   "mustShow": [
+    "Drawn by code (SVG or 3D) so positions and directions come from data",
+    "Where the speaker and the listener stand is marked",
+    "Use 3D, turnable, when the viewpoint has to change"
+   ],
+   "mustNot": [
+    "A generated picture for exact left/right/front/behind",
+    "A fixed viewpoint for words whose meaning changes with viewpoint"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:viewpoint-direction",
+    "prim:listen-and-do",
+    "prim:role-marking",
+    "prim:scale-place"
+   ],
+   "refs": [
+    "ped:multimedia-learning"
+   ]
+  },
+  {
+   "id": "real-document",
+   "label": "Real document",
+   "purpose": "Menus, timetables, notices, forms. The text on them is the learning content.",
+   "generatable": "no",
+   "mustShow": [
+    "Laid out in HTML with real text",
+    "Clearly fictional: no real shop names, addresses or phone numbers",
+    "Looks like the real thing, with a similar amount of information"
+   ],
+   "mustNot": [
+    "Generating a document with an image model (the text will be wrong)",
+    "Photographing and using a real business's material"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:real-document-scan",
+    "prim:listen-for-data",
+    "prim:template-write"
+   ],
+   "refs": []
+  },
+  {
+   "id": "culture-context",
+   "label": "Culture context",
+   "purpose": "A social situation: who, where, what relationship, for discussing what is appropriate to say.",
+   "generatable": "yes-with-review",
+   "mustShow": [
+    "Relationships and setting are readable (age, rank, formality)",
+    "Clothes and surroundings are everyday and current for the place",
+    "Reviewed by someone who knows the culture"
+   ],
+   "mustNot": [
+    "Festival costume and tourist-poster stereotypes",
+    "One picture standing for “people of this country”"
+   ],
+   "placement": {
+    "child": "Picture on top taking most of the screen, very short text directly under it; no text for pre-readers, only a sound button.",
+    "youth": "Picture beside or right next to the text it belongs to, no more than half the area; numbers on the picture may key to the text.",
+    "adult": "A picture only where words fall short, placed next to the sentence it serves and possibly small; it can be enlarged."
+   },
+   "primitives": [
+    "prim:culture-incident",
+    "prim:register-calibrate",
+    "prim:exchange-script"
+   ],
+   "refs": []
+  }
+ ]
+}

@@ -70,6 +70,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -122,17 +123,24 @@
     function child() { return B.variant === 'child'; }
     var hasChild = (pack.child || []).length > 0;
     var modes = [{ id: 'decode', label: L('字面→真意→线索', 'Literal → meaning → clue') }, { id: 'pair', label: L('同一句，两个语境', 'Same words, two contexts') }, { id: 'use', label: L('用对了吗', 'Used right?') }];
-    if (hasChild) modes.push({ id: 'pics', label: L('看图（儿童）', 'Pictures (children)') });
+    // child-only mode: its tab is shown only in the child version (syncChildTab), and mode=pics is ignored outside it
+    if (hasChild) modes.push({ id: 'pics', label: L('看图', 'Pictures') });
     var pm = params.get('mode');
     var st = {
-      mode: modes.some(function (m) { return m.id === pm; }) ? pm : (child() && hasChild ? 'pics' : 'decode'),
+      mode: modes.some(function (m) { return m.id === pm; }) && (pm !== 'pics' || child()) ? pm : (child() && hasChild ? 'pics' : 'decode'),
       focus: (pack.kcLabels || {})[params.get('focus')] ? params.get('focus') : 'all',
       showRd: false, queue: [], idx: 0, cur: null, streak: {}, msg: null
     };
     var tlang = pack.speech || pack.lang;
     var ui = KTBlock.chrome(B, { title: title, subtitle: T(pack, 'subtitle'), modes: modes, mode: st.mode,
       onMode: function (m) { st.mode = m; ui.setMode(m); B.emit('view', { mode: m }); enterMode(); },
-      onVariant: function () { if (child() && hasChild && st.mode === 'decode') { st.mode = 'pics'; ui.setMode('pics'); } enterMode(); } });
+      onVariant: function () {
+        if (child() && hasChild && st.mode === 'decode') { st.mode = 'pics'; ui.setMode('pics'); }
+        else if (!child() && st.mode === 'pics') { st.mode = 'decode'; ui.setMode('decode'); }
+        syncChildTab(); enterMode();
+      } });
+    function syncChildTab() { var tab = ui.header.querySelector('[data-mode="pics"]'); if (tab) tab.style.display = child() ? '' : 'none'; }
+    syncChildTab();
     var bar = h('div', { class: 'kb-bar' });
     var stage = h('div', { class: 'kb-card fd-stage', 'aria-live': 'polite' });
     var side = h('aside', { class: 'fd-side' });
@@ -176,7 +184,7 @@
     function next() { st.idx++; begin(); }
 
     /* ---------- shared bits ---------- */
-    function feedbackEl() { return st.msg ? h('div', { class: 'kb-feedback ' + (st.msg.tone || '') }, st.msg.t) : null; }
+    function feedbackEl() { return st.msg ? h('div', { class: 'kb-feedback ' + (st.msg.tone || '') }, st.msg.icon ? [KTBlock.icon(st.msg.icon), ' ' + st.msg.t] : st.msg.t) : null; }
     function statusCls(id) { var s = B.status(id); return s === 'independent' ? 'ind' : s === 'assisted' || s === 'revealed' ? 'ast' : s === 'wrong' ? 'bad' : s === 'self-yes' ? 'ind' : ''; }
     function segEl(text, rd, attrs, extra) {
       var kids = [h('span', { text: text })];
@@ -184,7 +192,7 @@
       if (extra) kids.push(extra);
       return attrs && attrs.onclick ? h('button', Object.assign({ class: 'seg' }, attrs), kids) : h('span', Object.assign({ class: 'seg' }, attrs || {}), kids);
     }
-    function speakBtn(text) { return h('button', { class: 'kb-btn', onclick: function () { say(text); B.emit('select', { item: st.cur && st.cur.it.id, action: 'listen' }); } }, L('🔊 听', '🔊 Listen')); }
+    function speakBtn(text) { return h('button', { class: 'kb-btn', onclick: function () { say(text); B.emit('select', { item: st.cur && st.cur.it.id, action: 'listen' }); } }, [KTBlock.icon('speaker'), L(' 听', ' Listen')]); }
 
     /* ---------- bar ---------- */
     function renderBar() {
@@ -446,7 +454,7 @@
       if (c.solved || c.picked.indexOf(o) >= 0) return;
       B.attempt('pics:' + c.it.id, { correct: !!o.ok, response: { pick: o.pic } });
       c.picked.push(o);
-      if (o.ok) { c.solved = true; st.msg = { t: '🙂 ' + T(c.it.note, 'zh') }; }
+      if (o.ok) { c.solved = true; st.msg = { t: T(c.it.note, 'zh'), icon: 'smile' }; }
       else st.msg = { t: L('再听一遍，想一想：真的会这样吗？', 'Listen again and think: could that really happen?'), tone: 'warn' };
       render();
     }

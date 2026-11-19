@@ -69,6 +69,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -279,7 +280,7 @@
         list = base.concat(nearest(w, Math.max(0, pics - base.length), base.map(function (x) { return x.id; })));
       }
       it.opts = KTBlock.shuffle(list).map(function (x) { return { id: x.id, pic: x.pic, gloss: x.gloss, show: gl(x) }; });
-      if (it.kind === 'chain') it.opts.push({ id: 'notword', pic: '🤔', gloss: '读得出来，但不是一个词', show: L('读得出来，但不是一个词', 'Readable, but not a word') });
+      if (it.kind === 'chain') it.opts.push({ id: 'notword', icon: 'question', gloss: '读得出来，但不是一个词', show: L('读得出来，但不是一个词', 'Readable, but not a word') });
     }
     function answerId(it) { return it.word.pseudo ? 'notword' : it.word.id; }
     function optButtons(it) {
@@ -289,7 +290,7 @@
         if (it.picked.indexOf(o.id) >= 0) cls += o.id === answerId(it) ? ' right' : ' wrongpick';
         else if (it.solved && o.id === answerId(it)) cls += ' right';
         return h('button', { class: cls, disabled: it.solved, 'aria-label': (i + 1) + L('：', ': ') + (showGloss ? o.show : o.show || o.pic), onclick: function () { pick(o.id); } },
-          [h('span', { class: 'pic', text: o.pic }), h('span', { class: 'gl', text: o.show }), h('span', { class: 'num', text: String(i + 1) })]);
+          [h('span', { class: 'pic' }, [o.icon ? KTBlock.icon(o.icon) : o.pic]), h('span', { class: 'gl', text: o.show }), h('span', { class: 'num', text: String(i + 1) })]);
       }));
     }
     function pick(id) {
@@ -451,7 +452,7 @@
       if (!it) {
         var done = st.queue.filter(function (q) { return st.record[q.id]; });
         var nInd = done.filter(function (q) { return st.record[q.id].cls === 'ind'; }).length;
-        stage.append(h('div', { class: 'done', text: st.queue.length ? '🎉' : '📭' }),
+        stage.append(h('div', { class: 'done' }, [KTBlock.icon(st.queue.length ? 'check' : 'inbox')]),
           h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了：' + nInd + ' 题第一次就独立做对。', 'Round finished: ' + nInd + (nInd === 1 ? ' item' : ' items') + ' correct independently on the first attempt.') : L('这个范围没有可练的题，换一个范围。', 'Nothing to practise in this scope; choose another one.') }),
           h('button', { class: 'kb-btn primary', onclick: newRound }, L('再来一轮', 'Another round')));
         return;
@@ -469,7 +470,7 @@
           stage.append(h('p', { class: 'kb-prompt', text: child() ? L('点一点，读一读，是哪个？', 'Tap and read. Which one is it?') : L('一格一格点着读，再自己连起来。这是哪个？', 'Click and read box by box, then blend them yourself. Which one is it?') }), boxRow(w, { onTap: tapBox, tricky: tricky, aria: L('音格', 'Sound boxes'), main: true }));
         }
         stage.append(h('p', { class: 'cap' }));
-        if (child()) stage.append(h('div', { class: 'track' }, [h('span', { class: 'snail', text: '🐌' })]));
+        if (child()) stage.append(h('div', { class: 'track' }, [h('span', { class: 'snail' }, [KTBlock.icon('snail')])]));
         stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: function () {
           if (!it.answered && !it.heardWhole) { it.heardWhole = true; B.hint(it.id, 3); }
           blendWord(w); B.emit('select', { item: it.id, blend: true, beforeAnswer: !it.answered });
@@ -502,8 +503,8 @@
         stage.append(h('p', { class: 'kb-prompt', text: L('按“' + pack.rule + '”一格一格拼，能读对这个词吗？', 'Blending box by box by the rule “' + T(pack, 'rule') + '”, would you read this word correctly?') }),
           h('div', { class: 'known' }, [h('span', { class: 'pic', text: w.pic }), h('span', { text: gl(w) })]),
           boxRow(w, { onTap: tapBox, tricky: tricky, aria: L('音格', 'Sound boxes'), main: true }), h('p', { class: 'cap' }));
-        var yes = h('button', { class: 'opt' + (it.answered && !it.judged ? (w.rule ? ' wrongpick' : ' right') : ''), disabled: it.answered, onclick: function () { judge(false); } }, [h('span', { class: 'pic', text: '✅' }), h('span', { class: 'gl', text: L('能，按规则拼就对', 'Yes, the rules give the right reading') }), h('span', { class: 'num', text: '1' })]);
-        var no = h('button', { class: 'opt' + (it.answered && it.judged ? (w.rule ? ' right' : ' wrongpick') : ''), disabled: it.answered, onclick: function () { judge(true); } }, [h('span', { class: 'pic', text: '⚠️' }), h('span', { class: 'gl', text: L('不能，要整体记', 'No, it has to be learned whole') }), h('span', { class: 'num', text: '2' })]);
+        var yes = h('button', { class: 'opt' + (it.answered && !it.judged ? (w.rule ? ' wrongpick' : ' right') : ''), disabled: it.answered, onclick: function () { judge(false); } }, [h('span', { class: 'pic' }, [KTBlock.icon('check')]), h('span', { class: 'gl', text: L('能，按规则拼就对', 'Yes, the rules give the right reading') }), h('span', { class: 'num', text: '1' })]);
+        var no = h('button', { class: 'opt' + (it.answered && it.judged ? (w.rule ? ' right' : ' wrongpick') : ''), disabled: it.answered, onclick: function () { judge(true); } }, [h('span', { class: 'pic' }, [KTBlock.icon('warn')]), h('span', { class: 'gl', text: L('不能，要整体记', 'No, it has to be learned whole') }), h('span', { class: 'num', text: '2' })]);
         stage.append(h('div', { class: 'opts' }, [yes, no]));
         if (it.answered && w.rule) stage.append(h('p', {}, [h('span', { class: 'flag', text: L('规则外', 'Irregular') }), ' ', w.text + (w.say && w.say !== w.text ? L('（' + w.say + '）', ' (' + w.say + ')') : '')]));
         if (it.answered) stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { speakWord(w); } }, L('▶ 再听真正的读音', '▶ Hear the real pronunciation again'))]));

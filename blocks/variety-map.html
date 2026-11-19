@@ -60,6 +60,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -227,7 +228,7 @@
             return h('button', { class: cl, 'aria-pressed': p === jj[0] ? 'true' : 'false', onclick: function () { judge(it, i, jj[0]); } }, jj[1]);
           }))]);
         if (p) {
-          box.append(h('div', { class: 'react', text: '💬 ' + T(e, 'react') }));
+          box.append(h('div', { class: 'react' }, [KTBlock.icon('chat'), ' ' + T(e, 'react')]));
           if (!ok) box.append(h('div', { class: 'kb-note', text: L('参考判断：', 'Reference judgement: ') + e.ans.map(function (a) { return JUDGE.filter(function (x) { return x[0] === a; })[0][1]; }).join(L(' 或 ', ' or ')) }));
         }
         stage.append(box);

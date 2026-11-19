@@ -71,6 +71,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -302,7 +303,7 @@
         var c = 'bx';
         if (opt.on && i < opt.on) c += ' on';
         if (opt.cls && opt.cls[i]) c += ' ' + opt.cls[i];
-        out.push(h('span', { class: c, 'aria-hidden': 'true', text: opt.text && opt.text[i] ? opt.text[i] : '' }));
+        out.push(h('span', { class: c, 'aria-hidden': 'true' }, [opt.text && opt.text[i] ? (opt.text[i] === 'scissors' ? KTBlock.icon('scissors') : opt.text[i]) : '']));
       }
       if (opt.tone) out.push(h('span', { class: 'bx tone' + (opt.toneCls ? ' ' + opt.toneCls : ''), 'aria-hidden': 'true', text: '〰' }));
       return h('div', { class: 'boxes' + (opt.extra ? ' ' + opt.extra : ''), role: 'img', 'aria-label': opt.label || (n + L(' 格', ' boxes')) }, out);
@@ -319,7 +320,7 @@
       stage.innerHTML = '';
       var it = st.item;
       if (!it) {
-        stage.append(h('div', { class: 'done', text: st.queue.length ? '👏' : '—' }), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('这里没有题。', 'Nothing to practise here.') }),
+        stage.append(h('div', { class: 'done' }, [st.queue.length ? KTBlock.icon('check') : '—']), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('这里没有题。', 'Nothing to practise here.') }),
           h('button', { class: 'kb-btn primary', onclick: newRound }, L('再来一轮', 'Another round')));
         return;
       }
@@ -332,7 +333,7 @@
             st.faded || it.answered ? null : h('button', { class: 'kb-btn', onclick: function () { if (!it.slow) { it.slow = true; B.hint(it.id, 2); } sayW(it.word, 0.5); renderStage(); } }, L('▶ 慢放（算提示）', '▶ Slow (counts as a hint)'))]));
         if (!it.answered) {
           stage.append(h('p', { class: 'row-lbl', text: L('你拍了 ' + it.taps + ' 下', 'You clapped ' + it.taps) }), boxes(Math.max(6, it.taps), { on: it.taps, label: L('已拍 ' + it.taps + ' 下', it.taps + ' claps') }),
-            h('button', { class: 'clap', 'aria-label': L('拍一下（空格）', 'Clap (Space)'), onclick: clap }, '👏'),
+            h('button', { class: 'clap', 'aria-label': L('拍一下（空格）', 'Clap (Space)'), onclick: clap }, [KTBlock.icon('clap')]),
             h('p', { class: 'sr-only sr-live', 'aria-live': 'polite' }),
             h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', disabled: !it.taps, onclick: unclap }, L('撤销一下', 'Undo one')), h('button', { class: 'kb-btn primary', disabled: !it.taps, onclick: submitClap }, L('拍好了（回车）', 'Done (Enter)'))]));
           if (it.demo) stage.append(h('p', { class: 'row-lbl', text: L('示范：', 'Model: ') + W[it.demo].pic + L(' 这样拍', ' is clapped like this') }), boxes(W[it.demo].n[st.scope], { extra: 'demo' }));
@@ -347,8 +348,8 @@
       } else if (it.kind === 'swap') {
         var sw = it.sw, fw = W[sw.from];
         var tcls = {}; if (sw.pos !== 'tone') tcls[sw.pos] = sw.op === 'remove' ? 'cut' : 'target';
-        var txt = {}; if (sw.op === 'remove') txt[sw.pos] = '✂';
-        var instr = sw.op === 'remove' ? L('去掉标着 ✂ 的那一格', 'Take out the box marked ✂') : sw.op === 'tone' ? L('用右边这个词的声调', 'Use the tone of the word on the right') : L('用右边这个词开头的音换掉黄框那一格', 'Replace the yellow box with the first sound of the word on the right');
+        var txt = {}; if (sw.op === 'remove') txt[sw.pos] = 'scissors';
+        var instr = sw.op === 'remove' ? L('去掉标着剪刀的那一格', 'Take out the box marked with scissors') : sw.op === 'tone' ? L('用右边这个词的声调', 'Use the tone of the word on the right') : L('用右边这个词开头的音换掉黄框那一格', 'Replace the yellow box with the first sound of the word on the right');
         stage.append(h('p', { class: 'kb-prompt', text: child() ? L('换一换，变成什么了？', 'Swap it. What does it become?') : instr + L('。变成了什么？', '. What does it become?') }));
         var swRow = [h('div', { class: 'card' }, [h('div', { class: 'sp-pic sm', role: 'img', 'aria-label': picLabel(sw.from), text: fw.pic }), boxes(sw.boxes, { cls: tcls, text: txt, tone: pack.lang === 'zh', toneCls: sw.pos === 'tone' ? 'target' : '', label: L('原来的词：', 'The word: ') + sw.boxes + L(' 格', ' boxes') }), play(sw.from)])];
         if (sw.token) swRow.push(h('span', { class: 'arrow', text: '←' }), h('div', { class: 'card' }, [h('div', { class: 'sp-pic sm', role: 'img', 'aria-label': picLabel(sw.token), text: W[sw.token].pic }),
@@ -383,9 +384,9 @@
           })));
         if (it.answered && it.kind === 'sort') stage.append(h('p', { class: 'kb-note', text: L('一样的部分标成同一种颜色：绿色 = 结尾，黄色 = 开头，蓝框 = 格数相同。', 'Shared parts share a colour: green = ending, yellow = beginning, blue frame = same number of boxes.') }));
         if (it.kind === 'sortyn') {
-          stage.append(h('div', { class: 'opts' }, [[true, '👍', L('是', 'Yes')], [false, '✋', L('不是', 'No')]].map(function (o, i) {
+          stage.append(h('div', { class: 'opts' }, [[true, 'thumbUp', L('是', 'Yes')], [false, 'thumbDown', L('不是', 'No')]].map(function (o, i) {
             var c = 'opt'; if (it.answered) { var truth = sp.truth.indexOf(it.cat) >= 0; if (o[0] === truth) c += ' right'; else if (o[0] === it.pickId) c += ' wrongpick'; }
-            return h('button', { class: c, disabled: it.answered, onclick: function () { answerYN(o[0]); } }, [h('span', { class: 'pic', text: o[1] }), h('span', { text: o[2] }), h('span', { class: 'num', text: String(i + 1) })]);
+            return h('button', { class: c, disabled: it.answered, onclick: function () { answerYN(o[0]); } }, [h('span', { class: 'pic' }, [KTBlock.icon(o[1])]), h('span', { text: o[2] }), h('span', { class: 'num', text: String(i + 1) })]);
           })));
         } else {
           var cats = pack.sortCats.concat([{ id: 'none', label: '都不一样', labelEn: 'None of these' }]);

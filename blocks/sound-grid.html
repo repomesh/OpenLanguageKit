@@ -53,6 +53,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -104,7 +105,9 @@
     pack.tables.forEach(function (t) { t.cells.forEach(function (c) { c._t = t.id; cellsById[c.id] = c; }); });
 
     var ui = KTBlock.chrome(B, { title: title, subtitle: T(pack, 'subtitle'), modes: modes, mode: st.mode,
-      onMode: function (m) { st.mode = m; st.q = null; ui.setMode(m); B.emit('view', { mode: m }); render(); }, onVariant: render });
+      onMode: function (m) { st.mode = m; st.q = null; ui.setMode(m); B.emit('view', { mode: m }); render(); } });
+    // No child switch here: on this block variant=child only enlarges the glyphs (it keeps working from the URL).
+    var sw = ui.header.querySelector('.kb-tools > label.kb-variant'); if (sw) sw.remove();
     var grid = h('div', { class: 'sg-scroll' });
     var side = h('aside', { class: 'sg-side' });
     var bar = h('div', { class: 'kb-bar' });

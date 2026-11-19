@@ -1,0 +1,188 @@
+{
+ "note": "Workflows: for one teaching scenario, several pedagogical primitives arranged into one complete activity. The primitive contracts (check, evidence, reverse half) do not change; a workflow only decides the order, the pace, and what the picture, the sound and the text are each for. One scenario can have more than one workflow depending on purpose: decide which it is first. The Chinese file workflows.json is the original; both files must have the same keys.",
+ "workflows": [
+  {
+   "id": "wf:picture-book-learn-to-read",
+   "scenario": "picture-book",
+   "label": "Picture book: learning to read",
+   "purpose": "The goal is to get the words off the page: match sound to print, recognise common words, read with less and less effort. The learner already understands most of the language when it is spoken; the difficulty is the print.",
+   "choose": "Use when the learner understands the story by ear but cannot read it alone, or only with effort. Typical: school-age children, heritage children who speak but do not read, and learners of any age meeting a new script (kana, characters, a new alphabet).",
+   "bands": [
+    "child",
+    "youth",
+    "adult"
+   ],
+   "material": {
+    "text": "One or two sentences a page, repeated sentence patterns, more than nine words in ten already known by ear; new print is concentrated on the sound–spelling pattern or characters being practised.",
+    "pictures": "The picture shows what the page says and is the clue for working out and checking a word; talk about the picture first, then read.",
+    "length": "6–10 pages; the same book is read three or four times, with a different task each time."
+   },
+   "pace": {
+    "child": "One book a session, 10–15 minutes; reread three or four times in a week. An adult sits alongside.",
+    "youth": "One book or two short ones a session, read alone; say plainly that this is decoding practice, not a baby book.",
+    "adult": "Swap in adult content (notices, short dialogues, notes) and keep the method; do it intensively for a short period."
+   },
+   "steps": [
+    {
+     "id": "picture-walk",
+     "label": "Picture walk",
+     "primitive": "prim:picture-describe",
+     "does": "No text shown; turn the pictures, say what is there and guess what will happen, so the story's words are met by ear first.",
+     "media": {
+      "picture": "book-page",
+      "sound": "tap a picture to hear the word",
+      "text": "hidden",
+      "pictureWhy": "No text is shown in this step, so the picture is the only source of meaning: every word the learner will later read has to be pointable and sayable from the picture first. The picture must therefore show everything this page's text names."
+     }
+    },
+    {
+     "id": "listen-point",
+     "label": "Listen and follow the print",
+     "primitive": "prim:oral-to-print",
+     "does": "Hear the page read with each word highlighted as it is said; the learner follows with a finger. Then, out of order: hear a word and find it on the page.",
+     "media": {
+      "picture": "book-page",
+      "sound": "the page read aloud, word by word on request",
+      "text": "shown, large",
+      "pictureWhy": "The text appears for the first time and the picture confirms what the heard sentence means. Picture and sentence must match one to one; nothing prominent that the sentence does not mention, or a wrong point cannot be told from a right one."
+     }
+    },
+    {
+     "id": "decode",
+     "label": "Read it yourself",
+     "primitive": "prim:sound-spelling-blend",
+     "does": "The few target words are taken apart and blended: read first, then listen. A word that will not come is not simply given; a split-up hint comes first.",
+     "media": {
+      "picture": "put away for now, so the word is not guessed from the picture",
+      "sound": "played only after the attempt",
+      "text": "shown",
+      "pictureWhy": "The picture is put away in this step: with it in view the learner guesses the word from the picture and the page cannot tell reading from guessing. It comes back after the answer, to confirm the meaning."
+     }
+    },
+    {
+     "id": "aid-fade",
+     "label": "Read again with the aids fading",
+     "primitive": "prim:reading-aid-fade",
+     "does": "Reread the book with reading aids (pinyin, furigana, phonetic marks) removed word by word as they are mastered; only words read correctly without an aid count as read independently.",
+     "media": {
+      "picture": "book-page",
+      "sound": "on request only, recorded as assisted",
+      "text": "shown, aids fading",
+      "pictureWhy": "The picture stays while the reading aid is withdrawn: it only helps recall what the page is about and must not let the learner answer without reading, so a target word should not be the one obvious thing in the picture."
+     }
+    },
+    {
+     "id": "reverse",
+     "label": "Can you read it somewhere new",
+     "primitive": "prim:carry-across",
+     "does": "The reverse half: the practised words appear in new sentences with no picture. If they cannot be read there, the learner was reciting the story or guessing from pictures.",
+     "media": {
+      "picture": "none",
+      "sound": "after the attempt",
+      "text": "shown",
+      "pictureWhy": "No picture. The same words appear in new sentences, to check that the learner reads the word and does not recognise the picture."
+     }
+    }
+   ],
+   "evidence": "Record for each word whether an aid was showing and whether it was heard first; keep “has memorised it” apart from “can read it”.",
+   "notThis": "Not comprehension practice: no inference questions here, and no new words the learner does not understand by ear.",
+   "refs": [
+    "ped:simple-view-of-reading",
+    "ped:learning-to-read-vs-reading-to-learn",
+    "ped:dialogic-reading"
+   ]
+  },
+  {
+   "id": "wf:picture-book-read-to-learn",
+   "scenario": "picture-book",
+   "label": "Picture book: reading to learn",
+   "purpose": "The goal is to understand, and to learn new language and content from the text: decoding is no longer the obstacle; the difficulty is new words, sentences and what is left unsaid.",
+   "choose": "Use when the learner can mostly get the words off the page but vocabulary and understanding lag. Typical: literate learners whose script is close to the new one (English speakers learning Spanish or French), and anyone past the decoding stage.",
+   "bands": [
+    "child",
+    "youth",
+    "adult"
+   ],
+   "material": {
+    "text": "Slightly below the learner's level, no more than one or two new words a page, each guessable from the picture or context; a complete plot or a question to be worked out.",
+    "pictures": "The picture is context: it adds what the text does not say, or differs a little from it, leaving room to infer.",
+    "length": "10–20 pages or more; a book is read once or twice, then a new one. Reading a lot matters more than reading closely."
+   },
+   "pace": {
+    "child": "Mainly ages 8–12; 15–20 minutes, read through without stopping and then look back; let the child choose the book.",
+    "youth": "They choose the material (comics, graphic novels, illustrated reports); set a weekly reading goal and keep their own record.",
+    "adult": "Swap in real illustrated texts (instructions, illustrated news, travel guides); read in order to get something done."
+   },
+   "steps": [
+    {
+     "id": "predict",
+     "label": "Predict",
+     "primitive": "prim:predict-next",
+     "does": "Look at the cover and first two pages and guess what will happen; before each page turn, guess the next page. A wrong guess costs nothing; what is recorded is whether it had a basis.",
+     "media": {
+      "picture": "book-page",
+      "sound": "off by default",
+      "text": "shown",
+      "pictureWhy": "The picture is there to prompt a prediction: it shows the clue and never the outcome. What happens on the next page must not be visible on this one."
+     }
+    },
+    {
+     "id": "read-through",
+     "label": "Read straight through",
+     "primitive": "prim:context-guess",
+     "does": "Read alone without looking words up; at a new word, guess a meaning from the picture and context, mark it and read on.",
+     "media": {
+      "picture": "book-page",
+      "sound": "optional read-aloud; using it counts as assisted",
+      "text": "shown, with no reading aids or aids on new characters only",
+      "pictureWhy": "While reading straight through the picture helps the learner keep up with the story. Some new words can be worked out from the picture on purpose; one or two cannot, so the learner learns to judge when to look a word up."
+     }
+    },
+    {
+     "id": "check-guesses",
+     "label": "Check the guessed words",
+     "primitive": "prim:context-guess",
+     "does": "Go back to the marked words: the meaning is given and the learner judges whether the guess was right and what clue it used. The reverse half: some words cannot be guessed from context, and the right answer is to say so and look them up.",
+     "media": {
+      "picture": "book-page",
+      "sound": "tap a word to hear it",
+      "text": "shown",
+      "pictureWhy": "The picture is one of three kinds of clue (picture, surrounding words, parts of the character). The clue has to be really there, so the learner can say “I got it from the picture”."
+     }
+    },
+    {
+     "id": "infer",
+     "label": "What the text does not say",
+     "primitive": "prim:reference-chain",
+     "does": "Questions the text does not answer directly and that need the picture and earlier pages (who, why, who “he” is); the answer has to point to the page it rests on.",
+     "media": {
+      "picture": "book-page",
+      "sound": "off",
+      "text": "shown",
+      "pictureWhy": "Inference questions ask about what the words do not say; the answer needs the picture and earlier pages. So the picture says a little more than the text, and that extra is exactly what the question asks about."
+     }
+    },
+    {
+     "id": "retell",
+     "label": "Retell in your own words",
+     "primitive": "prim:sequence-retell",
+     "does": "Text closed, pictures only: tell the story, using two or three of the words newly met in this book. Tell it to an adult or a peer, or record and listen back.",
+     "media": {
+      "picture": "sequence-frames",
+      "sound": "record and play back",
+      "text": "hidden",
+      "pictureWhy": "Pictures only, no text: they are the outline for the retell. Each must be recognisable as its part of the story and carry no words."
+     }
+    }
+   ],
+   "evidence": "Record how much was read, whether word guesses had a basis, and which plot points the retelling covered; the retelling is judged by the listener or the learner and recorded as self-report.",
+   "notThis": "Not decoding practice: no word-by-word pointing, no rereading the same book many times. Learners of a new script need the learning-to-read workflow first.",
+   "refs": [
+    "ped:extensive-reading",
+    "ped:learning-to-read-vs-reading-to-learn",
+    "ped:l2-reading-threshold",
+    "ped:multimedia-learning"
+   ]
+  }
+ ]
+}

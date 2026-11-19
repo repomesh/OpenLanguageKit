@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 2,
+  "language": "fr",
+  "instructionLang": "en",
+  "sections": [
+    {
+      "id": "A1",
+      "label": "A1",
+      "units": [
+        "a1-01",
+        "a1-02",
+        "a1-03",
+        "a1-04",
+        "a1-05",
+        "a1-06",
+        "a1-07",
+        "a1-08",
+        "a1-09",
+        "a1-10",
+        "a1-11",
+        "a1-12",
+        "a1-13",
+        "a1-14",
+        "a1-15"
+      ]
+    },
+    {
+      "id": "A2",
+      "label": "A2",
+      "units": [
+        "a2-01",
+        "a2-02",
+        "a2-03",
+        "a2-04",
+        "a2-05",
+        "a2-06",
+        "a2-07",
+        "a2-08",
+        "a2-09",
+        "a2-10",
+        "a2-11",
+        "a2-12",
+        "a2-13",
+        "a2-14",
+        "a2-15",
+        "a2-16"
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "a1-01",
+      "section": "A1",
+      "title": "Hello, letters and getting by in class",
+      "goal": "Greets, thanks, apologises, gets attention and asks for repetition with fixed chunks; spells their name; follows classroom instructions",
+      "rationale": "Grammar-free entry: real exchanges are possible from day one with memorised chunks, and the alphabet and tu/vous choice underpin everything that follows",
+      "kcs": [
+        "kt:fr-fn-greetings",
+        "kt:fr-soc-tu-vous",
+        "kt:fr-fn-thanks-apologies",
+        "kt:fr-fn-attention",
+        "kt:fr-str-repair",
+        "kt:fr-orth-alphabet",
+        "kt:fr-orth-spelling-aloud",
+        "kt:fr-fn-classroom"
+      ]
+    },
+    {
+      "id": "a1-02",
+      "section": "A1",
+      "title": "The sounds and spelling of French",
+      "goal": "Hears and produces the oral and nasal vowels and key consonants, reads accents, links sounds to common spellings and knows which final letters are silent",
+      "rationale": "French spelling is far from its pronunciation; an early, explicit sound–spelling pass prevents fossilised reading errors in every later unit",
+      "kcs": [
+        "kt:fr-phon-oral-vowels",
+        "kt:fr-phon-nasal-vowels",
+        "kt:fr-phon-consonants",
+        "kt:fr-orth-accents",
+        "kt:fr-orth-sound-spelling",
+        "kt:fr-orth-silent-letters",
+        "kt:fr-phon-linking",
+        "kt:fr-phon-prosody"
+      ]
+    },
+    {
+      "id": "a1-03",
+      "section": "A1",
+      "title": "Who I am: être, avoir and introductions",
+      "goal": "Introduces themselves and others (name, nationality, country) with être, avoir, subject and tonic pronouns and c'est",
+      "rationale": "The two most frequent verbs and the pronoun system are needed for almost every sentence; introductions give them an immediate use",
+      "kcs": [
+        "kt:fr-g-subject-pronouns",
+        "kt:fr-g-etre-present",
+        "kt:fr-g-avoir-present",
+        "kt:fr-fn-introduce",
+        "kt:fr-lex-countries",
+        "kt:fr-g-cest-presentatives",
+        "kt:fr-g-qui-est-ce",
+        "kt:fr-g-tonic-pronouns"
+      ]
+    },
+    {
+      "id": "a1-04",
+      "section": "A1",
+      "title": "Numbers, personal details and family",
+      "goal": "Gives and understands numbers, dates of birth, addresses and phone numbers; talks about their family; asks yes/no questions; fills in a form",
+      "rationale": "Personal information is the first real transaction (forms, registration); the 70–99 system needs dedicated practice",
+      "kcs": [
+        "kt:fr-lex-numbers-0-69",
+        "kt:fr-lex-numbers-70-plus",
+        "kt:fr-fn-personal-info",
+        "kt:fr-lex-family",
+        "kt:fr-g-yes-no-questions",
+        "kt:fr-act-forms"
+      ]
+    },
+    {
+      "id": "a1-05",
+      "section": "A1",
+      "title": "Things around me: gender, articles, il y a, negation",
+      "goal": "Names everyday objects with the right gender and article, says what there is and is not",
+      "rationale": "Gender and the article system are the backbone of the noun phrase; il y a and ne … pas allow first descriptions",
+      "kcs": [
+        "kt:fr-g-noun-gender",
+        "kt:fr-g-noun-plural",
+        "kt:fr-g-articles",
+        "kt:fr-lex-personal-objects",
+        "kt:fr-g-il-y-a",
+        "kt:fr-g-negation-ne-pas",
+        "kt:fr-g-pas-de"
+      ]
+    },
+    {
+      "id": "a1-06",
+      "section": "A1",
+      "title": "Describing people and things",
+      "goal": "Describes appearance, character, clothes and objects with agreeing adjectives, possessives and demonstratives",
+      "rationale": "Agreement and adjective position build on gender and articles; description is a core A1 function",
+      "kcs": [
+        "kt:fr-g-adjective-agreement",
+        "kt:fr-g-adjective-position",
+        "kt:fr-g-possessive-determiners",
+        "kt:fr-g-demonstrative-determiners",
+        "kt:fr-g-intensity-adverbs",
+        "kt:fr-fn-describe-people",
+        "kt:fr-lex-appearance",
+        "kt:fr-fn-describe-things",
+        "kt:fr-lex-clothes"
+      ]
+    },
+    {
+      "id": "a1-07",
+      "section": "A1",
+      "title": "Daily routine and time",
+      "goal": "Tells the time, gives dates and describes a daily routine with present-tense regular, irregular and reflexive verbs",
+      "rationale": "The present-tense paradigms are introduced through the routine, where they are used repeatedly and naturally",
+      "kcs": [
+        "kt:fr-g-present-er",
+        "kt:fr-g-present-irregular",
+        "kt:fr-g-reflexive-verbs",
+        "kt:fr-fn-telling-time",
+        "kt:fr-lex-dates",
+        "kt:fr-lex-daily-activities",
+        "kt:fr-fn-daily-routine",
+        "kt:fr-g-time-prepositions",
+        "kt:fr-g-time-adverbs"
+      ]
+    },
+    {
+      "id": "a1-08",
+      "section": "A1",
+      "title": "Asking questions; weather and news",
+      "goal": "Asks for information with question words and quel, talks about the weather and asks after people",
+      "rationale": "Information questions need the present tense; this unit turns learners from responders into askers",
+      "kcs": [
+        "kt:fr-g-question-words",
+        "kt:fr-g-quel",
+        "kt:fr-fn-ask-information",
+        "kt:fr-lex-weather",
+        "kt:fr-fn-news-of-someone"
+      ]
+    },
+    {
+      "id": "a1-09",
+      "section": "A1",
+      "title": "Likes, leisure and invitations",
+      "goal": "Talks about likes and leisure, invites, accepts and refuses, and congratulates with modal verbs and basic connectors",
+      "rationale": "Modals (pouvoir, vouloir, devoir) unlock invitations and refusals; connectors start linking sentences",
+      "kcs": [
+        "kt:fr-fn-likes",
+        "kt:fr-lex-leisure",
+        "kt:fr-g-modals",
+        "kt:fr-fn-invitations",
+        "kt:fr-fn-congratulate-wish",
+        "kt:fr-dis-connectors-basic"
+      ]
+    },
+    {
+      "id": "a1-10",
+      "section": "A1",
+      "title": "Food and shopping",
+      "goal": "Buys food and goods, asks prices and quantities, and orders in a café or restaurant politely",
+      "rationale": "The partitive and quantities are needed for the most common travel transaction; je voudrais is taught as a polite chunk",
+      "kcs": [
+        "kt:fr-g-partitive",
+        "kt:fr-g-quantity",
+        "kt:fr-lex-food",
+        "kt:fr-lex-shops-city",
+        "kt:fr-g-conditional-politeness",
+        "kt:fr-fn-shopping",
+        "kt:fr-fn-restaurant"
+      ]
+    },
+    {
+      "id": "a1-11",
+      "section": "A1",
+      "title": "Places, directions and transport",
+      "goal": "Locates places, asks for and follows directions, uses transport and describes their town",
+      "rationale": "Place prepositions and the imperative are needed together for directions",
+      "kcs": [
+        "kt:fr-g-place-prepositions",
+        "kt:fr-g-prep-countries",
+        "kt:fr-g-place-adverbs",
+        "kt:fr-g-imperative",
+        "kt:fr-fn-directions",
+        "kt:fr-lex-transport",
+        "kt:fr-fn-describe-places"
+      ]
+    },
+    {
+      "id": "a1-12",
+      "section": "A1",
+      "title": "Plans and the near future",
+      "goal": "Talks about plans and holidays with aller + infinitive, recent past with venir de, necessity and purpose",
+      "rationale": "The near future is formed with a known verb (aller) and gives a first time reference beyond the present",
+      "kcs": [
+        "kt:fr-g-futur-proche",
+        "kt:fr-g-venir-de",
+        "kt:fr-g-etre-en-train-de",
+        "kt:fr-fn-plans",
+        "kt:fr-lex-holidays",
+        "kt:fr-g-il-faut",
+        "kt:fr-g-pour-infinitive",
+        "kt:fr-g-cause"
+      ]
+    },
+    {
+      "id": "a1-13",
+      "section": "A1",
+      "title": "What I did: the passé composé",
+      "goal": "Says what they did yesterday or last weekend with the passé composé and time indicators; describes a past moment with c'était",
+      "rationale": "The first past tense comes after the present paradigms and the participle forms it reuses",
+      "kcs": [
+        "kt:fr-g-pc-avoir",
+        "kt:fr-g-pc-etre",
+        "kt:fr-g-time-indicators",
+        "kt:fr-g-cetait",
+        "kt:fr-fn-say-what-you-did"
+      ]
+    },
+    {
+      "id": "a1-14",
+      "section": "A1",
+      "title": "Home, work and appointments",
+      "goal": "Describes their home and job, makes appointments, and uses on and ça as in everyday speech",
+      "rationale": "Consolidates A1 grammar in two key life domains and introduces the very frequent on",
+      "kcs": [
+        "kt:fr-lex-home",
+        "kt:fr-lex-jobs",
+        "kt:fr-fn-appointments",
+        "kt:fr-g-ca",
+        "kt:fr-g-on"
+      ]
+    },
+    {
+      "id": "a1-15",
+      "section": "A1",
+      "title": "Reading and writing everyday texts",
+      "goal": "Reads personal messages, public notices and tourist information; understands announcements; writes short messages and gives a short prepared talk",
+      "rationale": "Integrates A1 into the text types and activities listed by the Inventaire, with reading/listening strategies and writing conventions",
+      "kcs": [
+        "kt:fr-soc-informal-letter",
+        "kt:fr-act-read-personal",
+        "kt:fr-act-write-messages",
+        "kt:fr-act-read-public",
+        "kt:fr-act-read-tourist",
+        "kt:fr-act-listen-announcements",
+        "kt:fr-act-listen-conversations",
+        "kt:fr-act-spoken-production",
+        "kt:fr-str-cognates",
+        "kt:fr-fn-ask-help",
+        "kt:fr-orth-punctuation"
+      ]
+    },
+    {
+      "id": "a2-01",
+      "section": "A2",
+      "title": "Telling a story in the past",
+      "goal": "Narrates a sequence of past events with être/avoir agreement and chronological connectors; talks about work experience",
+      "rationale": "Extends the A1 passé composé to connected narration, the central A2 function",
+      "kcs": [
+        "kt:fr-g-pc-agreement",
+        "kt:fr-dis-chronological",
+        "kt:fr-fn-narrate",
+        "kt:fr-fn-work-experience"
+      ]
+    },
+    {
+      "id": "a2-02",
+      "section": "A2",
+      "title": "Description in the past: the imparfait",
+      "goal": "Describes past situations and habits with the imparfait and combines it with the passé composé; tells a short biography",
+      "rationale": "The imparfait is only meaningful against the passé composé, so it follows narration directly",
+      "kcs": [
+        "kt:fr-g-imparfait-forms",
+        "kt:fr-g-imparfait-description",
+        "kt:fr-g-pc-vs-imparfait",
+        "kt:fr-fn-biography"
+      ]
+    },
+    {
+      "id": "a2-03",
+      "section": "A2",
+      "title": "Future, conditions and wishes",
+      "goal": "Talks about future events with the futur simple, real conditions with si + present, and wishes and intentions",
+      "rationale": "The futur simple builds on infinitives and the conditional chunks already known",
+      "kcs": [
+        "kt:fr-g-futur-simple",
+        "kt:fr-g-si-present",
+        "kt:fr-fn-wishes-intentions"
+      ]
+    },
+    {
+      "id": "a2-04",
+      "section": "A2",
+      "title": "Object pronouns, y and en",
+      "goal": "Replaces objects and places with le/la/les, lui/leur, y and en in the present and passé composé",
+      "rationale": "Pronoun placement is a major French difficulty; it needs the verb constructions from A1",
+      "kcs": [
+        "kt:fr-g-direct-object-pronouns",
+        "kt:fr-g-indirect-object-pronouns",
+        "kt:fr-g-pronoun-y",
+        "kt:fr-g-pronoun-en"
+      ]
+    },
+    {
+      "id": "a2-05",
+      "section": "A2",
+      "title": "Pronouns and relative clauses",
+      "goal": "Uses possessive, demonstrative and indefinite pronouns and links clauses with qui, que and où",
+      "rationale": "Relatives and pronouns let learners build longer descriptions and definitions",
+      "kcs": [
+        "kt:fr-g-possessive-pronouns",
+        "kt:fr-g-demonstrative-pronouns",
+        "kt:fr-g-indefinite-pronouns",
+        "kt:fr-g-relative-qui-que",
+        "kt:fr-g-relative-ou"
+      ]
+    },
+    {
+      "id": "a2-06",
+      "section": "A2",
+      "title": "Comparing and evaluating",
+      "goal": "Compares people, places and products; says what they liked and disliked; uses exclamations and tout",
+      "rationale": "Comparison and evaluation are needed before opinions and choices",
+      "kcs": [
+        "kt:fr-g-comparative",
+        "kt:fr-g-superlative",
+        "kt:fr-fn-compare",
+        "kt:fr-g-tout",
+        "kt:fr-g-exclamation",
+        "kt:fr-fn-evaluate"
+      ]
+    },
+    {
+      "id": "a2-07",
+      "section": "A2",
+      "title": "Opinions, agreement and reasons",
+      "goal": "Agrees and disagrees, gives and asks for opinions, justifies them with reasons and consequences, expresses reservations",
+      "rationale": "Builds on comparison and connectors to support simple argument",
+      "kcs": [
+        "kt:fr-fn-agree-disagree",
+        "kt:fr-fn-opinion",
+        "kt:fr-g-consequence",
+        "kt:fr-fn-reasons",
+        "kt:fr-fn-reservations",
+        "kt:fr-dis-connectors-a2"
+      ]
+    },
+    {
+      "id": "a2-08",
+      "section": "A2",
+      "title": "Going out and organising together",
+      "goal": "Makes and reacts to suggestions, organises a joint activity and offers help",
+      "rationale": "Social planning recycles modals, the conditional chunk and on in a cooperative task",
+      "kcs": [
+        "kt:fr-fn-suggestions",
+        "kt:fr-g-si-suggestion",
+        "kt:fr-fn-organise",
+        "kt:fr-fn-offer-services"
+      ]
+    },
+    {
+      "id": "a2-09",
+      "section": "A2",
+      "title": "Health, advice and obligation",
+      "goal": "Describes symptoms and physical states, gives advice and warnings, and expresses obligation and prohibition",
+      "rationale": "Health is a key A2 survival domain and the natural context for advice and obligation",
+      "kcs": [
+        "kt:fr-lex-health",
+        "kt:fr-fn-physical-state",
+        "kt:fr-fn-advice",
+        "kt:fr-fn-warn",
+        "kt:fr-fn-obligation",
+        "kt:fr-g-il-faut-subjunctive"
+      ]
+    },
+    {
+      "id": "a2-10",
+      "section": "A2",
+      "title": "The telephone and managing conversation",
+      "goal": "Makes phone calls, opens and closes conversations, interrupts politely, checks understanding, paraphrases and asks for details",
+      "rationale": "Interaction management is listed as key discourse content at A2; phone calls make it necessary without visual support",
+      "kcs": [
+        "kt:fr-fn-telephone",
+        "kt:fr-dis-open-close",
+        "kt:fr-dis-interrupt",
+        "kt:fr-dis-check-understanding",
+        "kt:fr-str-paraphrase",
+        "kt:fr-fn-explanation"
+      ]
+    },
+    {
+      "id": "a2-11",
+      "section": "A2",
+      "title": "Places, customs and feelings",
+      "goal": "Presents a country or town, its customs and environment, and expresses feelings",
+      "rationale": "Moves from describing one's surroundings to describing a culture and personal reactions",
+      "kcs": [
+        "kt:fr-fn-present-country",
+        "kt:fr-g-place-a2",
+        "kt:fr-lex-customs",
+        "kt:fr-lex-environment",
+        "kt:fr-fn-feelings"
+      ]
+    },
+    {
+      "id": "a2-12",
+      "section": "A2",
+      "title": "Services, problems and notices",
+      "goal": "Complains and asks for solutions, follows instructions and rules, handles money conventions, reads nominalised notices",
+      "rationale": "Service encounters with problems are a typical A2 need for travellers and residents",
+      "kcs": [
+        "kt:fr-fn-complain",
+        "kt:fr-fn-instructions-device",
+        "kt:fr-soc-money",
+        "kt:fr-g-nominalisation"
+      ]
+    },
+    {
+      "id": "a2-13",
+      "section": "A2",
+      "title": "Grammar consolidation: negation, prepositions, time",
+      "goal": "Uses ne … plus / rien / personne, verbs and adjectives with à/de, sans + infinitive, frequency adverbs and time expressions",
+      "rationale": "Gathers the remaining A2 grammar points that refine sentences already being produced",
+      "kcs": [
+        "kt:fr-g-negation-a2",
+        "kt:fr-g-prepositional-verbs",
+        "kt:fr-g-sans-infinitive",
+        "kt:fr-g-frequency-quantity-adverbs",
+        "kt:fr-g-time-a2"
+      ]
+    },
+    {
+      "id": "a2-14",
+      "section": "A2",
+      "title": "Study, presentations and media",
+      "goal": "Talks about education, gives a short presentation, reads the press and follows simple media",
+      "rationale": "Integrates A2 into the reception text types the Inventaire lists for the press and broadcast media",
+      "kcs": [
+        "kt:fr-lex-education",
+        "kt:fr-fn-present-topic",
+        "kt:fr-act-read-press",
+        "kt:fr-act-read-stories",
+        "kt:fr-act-listen-media"
+      ]
+    },
+    {
+      "id": "a2-15",
+      "section": "A2",
+      "title": "Writing and mediation",
+      "goal": "Writes formal emails, blog posts and messages to shops, and relays simple information between languages",
+      "rationale": "Written production and mediation need explicit tasks that the Inventaire does not itemise",
+      "kcs": [
+        "kt:fr-soc-formal-letter",
+        "kt:fr-act-write-a2",
+        "kt:fr-act-mediation"
+      ]
+    },
+    {
+      "id": "a2-16",
+      "section": "A2",
+      "title": "Strategies and varieties of French",
+      "goal": "Guesses words from context, scans texts, recognises regional varieties and spoken features",
+      "rationale": "Strategies and variety awareness prepare learners for unadapted input beyond the course",
+      "kcs": [
+        "kt:fr-str-guess-context",
+        "kt:fr-str-scan",
+        "kt:fr-soc-varieties",
+        "kt:fr-soc-spoken-register"
+      ]
+    }
+  ]
+}

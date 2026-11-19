@@ -1,0 +1,2751 @@
+{
+  "lang": "fr",
+  "map": [
+    {
+      "kc": "kt:fr-fn-greetings",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Turn-by-turn greeting at a bakery counter and with a friend; the clerk branches if no bonjour is given; checks greeting choice by time and relationship"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Same encounter with a neighbour, a teacher and a classmate; learner adjusts salut/bonjour and ça va/comment allez-vous"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-soc-tu-vous",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "Six relationship cards (boss, neighbour child, waiter, cousin, two customers, new classmate); learner picks tu/vous and sees what the other person would feel"
+        },
+        {
+          "primitive": "prim:culture-incident",
+          "role": "support",
+          "binding": "Short story of a learner who says tu to a pharmacist; learner explains the reaction and rewrites the request"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-thanks-apologies",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Three micro-scenes (holding a door, stepping on a foot, arriving late); learner picks thanks/apology and the partner's reply branches"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge eight lines: is pardon / excusez-moi / désolé(e) acceptable here? Classify by situation, then write one of each"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-attention",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Stop a passer-by, a waiter and a ticket clerk; branches when the opener is missing or too familiar"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "Walk through a station: at each point retrieve the opener plus the noun needed"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-str-repair",
+      "uses": [
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "primary",
+          "binding": "A partner speaks too fast or uses an unknown word at set points; the learner must stop them with the right phrase before continuing"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Learner says the repair phrase for each problem card before seeing it; first attempts kept"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-orth-alphabet",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Letter-name pairs e/i, g/j, u/ou-sound, b/v from the fr-alphabet sound-grid pack; checks the learner can hear and say each name distinctly"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "Hear spelled surnames and city names and type them into a form field; checks each letter"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-orth-spelling-aloud",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Hear a spelled name, email and postcode and type them into form slots; errors classified as letter, accent or symbol"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Partner holds the spelling of a contact's name and email; learner must ask Ça s'écrit comment ? and verify"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-classroom",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Hear classroom instructions and perform them on screen (tick, circle, drag); the action is the evidence"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Classroom situation card → say the learner phrase before reveal"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-phon-oral-vowels",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Minimal pairs tu/tout, rue/roue, le/les, dessus/dessous; checks discrimination first, then whether a listener can identify the learner's word"
+        },
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "support",
+          "binding": "Learner records a phrase with tu/tout, writes what they said, then compares with what a listener heard"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-phon-nasal-vowels",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Three-way sets vin/vent/vont, pain/pan/pont plus oral/nasal pairs beau/bon; checks hearing then intelligible production"
+        },
+        {
+          "primitive": "prim:sound-spelling-blend",
+          "role": "support",
+          "binding": "fr-blend pack: an, on, ain as one box; learner blends and then spells bon/bonne"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-phon-consonants",
+      "uses": [
+        {
+          "primitive": "prim:sound-contrast",
+          "role": "primary",
+          "binding": "Pairs with and without [ʁ] (gars/gare, pas/part) and [ʒ]/[ʃ] (jeu/cheveux onset); checks listener can recognise the target"
+        },
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "support",
+          "binding": "Record bonjour, merci, Paris; self-check the r and compare with a model"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-orth-accents",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentence pairs that differ only by a/à or ou/où; learner judges the meaning, forced to look at the accent"
+        },
+        {
+          "primitive": "prim:sound-spelling-blend",
+          "role": "support",
+          "binding": "fr-alphabet pack: é/è/e and ç cells; learner hears a word and selects the accented letter"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-orth-sound-spelling",
+      "uses": [
+        {
+          "primitive": "prim:sound-spelling-blend",
+          "role": "primary",
+          "binding": "fr-blend pack: blend chapeau, poisson, maison from grapheme boxes (ch, eau, ss, ai, on), then spell them back"
+        },
+        {
+          "primitive": "prim:oral-to-print",
+          "role": "support",
+          "binding": "Start from words the learner already says (bonjour, merci, chocolat) and link each grapheme to the sound"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-orth-silent-letters",
+      "uses": [
+        {
+          "primitive": "prim:sound-spelling-blend",
+          "role": "primary",
+          "binding": "fr-blend pack silent boxes (t:0, s:0): learner builds petit, grand, parlent and sees silent letters in dashed boxes"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Hear il parle / ils parlent: decide singular or plural only from what is audible (pronoun, liaison), then check with the written form"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-phon-linking",
+      "uses": [
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "primary",
+          "binding": "Learner writes a short dictated phrase, then aligns it with the text to see where liaison and elision hid the word boundaries"
+        },
+        {
+          "primitive": "prim:rhythm-shadow",
+          "role": "support",
+          "binding": "Mark liaisons and links in a model phrase, shadow it, compare pauses"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-phon-prosody",
+      "uses": [
+        {
+          "primitive": "prim:contour-match",
+          "role": "primary",
+          "binding": "Learner draws or selects rising vs falling contours for heard utterances, then speaks to match a given contour"
+        },
+        {
+          "primitive": "prim:rhythm-shadow",
+          "role": "support",
+          "binding": "Shadow two-group sentences, marking the stressed last syllable of each group"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-subject-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:reference-chain",
+          "role": "primary",
+          "binding": "Short text about people and objects; learner links each il/elle/ils to its noun, including grammatical-gender things"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Hear il est grand / elle est grande about a pictured object; decide which object is meant"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-etre-present",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Fill the être table, then apply it to new subjects in a short dialogue; each choice shows the person rule"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Produce the form for a pronoun card before the reveal; first attempt recorded"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-avoir-present",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Complete the avoir table, then use it in new age/hunger statements; the system shows the person rule"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge sentences: j'ai froid / *je suis froid / je suis froid(e) as a character trait; sort by be-vs-have category, then write one"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-introduce",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Meeting at a party: learner chooses openers and replies; the partner branches between tu and vous"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Each learner has a role card; must find name, city and origin of three people by asking"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-countries",
+      "uses": [
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "primary",
+          "binding": "Flag card → learner says country and both nationality forms before reveal"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Map of people with flags; learner says who is what nationality and what language they speak; checked against the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-cest-presentatives",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same person or object; learner chooses c'est un… or il est… depending on whether identifying or describing, and sees the alternative"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge eight sentences with c'est/il est and articles; classify the error, then write two correct ones"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-qui-est-ce",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Partner has labelled pictures; learner must ask Qu'est-ce que c'est ? / Qui est-ce ? to label their copy"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Picture of a room with people; learner asks and answers about items; checked against labels"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-tonic-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Reply cards: agree with a positive or a negative statement (moi aussi / moi non plus / pas moi / moi si)"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentences with avec lui / avec elle / chez eux; learner picks which pictured person is meant"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-numbers-0-69",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Hear ages, room and bus numbers in short announcements; write digits in slots; errors grouped by number range"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Digit card → say the number aloud before the audio reveal; first attempt kept"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-numbers-70-plus",
+      "uses": [
+        {
+          "primitive": "prim:number-system-map",
+          "role": "primary",
+          "binding": "Map spoken soixante-dix-huit to 60+18 and to 78, then to Belgian septante-huit; estimate, compute, then say"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "French phone numbers and prices dictated in pairs; learner fills slots and reviews errors by range (70s, 90s)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-personal-info",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Two halves of a registration card; learner must ask for missing age, address and phone and checks the answer"
+        },
+        {
+          "primitive": "prim:template-write",
+          "role": "support",
+          "binding": "Real enrolment form (nom, prénom, date de naissance, adresse, situation familiale); each field constrains what is written"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-family",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Family tree picture: learner says who is who; checked against the tree"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Point to a person on the tree; produce the word with article before reveal"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-yes-no-questions",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Drag word blocks into intonation, est-ce que and inversion frames; the system names the slot rule broken"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Same question in three registers (friend, shop, formal letter); learner chooses the form and sees the register change"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-forms",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Real hotel and course enrolment forms; each field constrains what may be written; date format checked"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Identity card, business card and diploma: learner finds the item needed for a task (date of birth, job, phone)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-noun-gender",
+      "uses": [
+        {
+          "primitive": "prim:classifier-match",
+          "role": "primary",
+          "binding": "Sort nouns into le/la boxes, first inducing the ending clues, then handling exceptions (le musée, la plage)"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Picture → say the noun with its article before reveal; gender errors tracked separately"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-noun-plural",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Induce -s / -x / -aux from examples, then apply to unseen nouns; each step shows which rule applied"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Heard phrases: decide one or several only from the article/liaison"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-articles",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same noun in \"new\" and \"known/general\" contexts; learner chooses un/le and sees how the meaning changes"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentence pairs J'aime le café / Je veux un café: learner judges general vs one item"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-personal-objects",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Leaving the house: step by step retrieve keys, wallet, phone, umbrella; then re-run with a different destination"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Picture of a desk; learner says what is there; checked against the objects in the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-il-y-a",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Street picture: learner says il y a / il n'y a pas de for listed items; checked against the picture"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Two versions of a room; learners find differences by asking Est-ce qu'il y a … ?"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-negation-ne-pas",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Place ne and pas/jamais around the verb in new sentences; the system names the slot rule when violated"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Spoken sentences with and without ne; learner decides positive or negative"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pas-de",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Judge negative sentences with un/de/le; classify by rule (after avoir/il y a, after aimer, after être); then write one of each"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Apply the article-to-de rule to new sentences step by step"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-adjective-agreement",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Induce -e/-s and -eux/-euse patterns, then apply to unseen adjectives; the system displays the rule used"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Hear il est grand / elle est grande about a picture; decide who is meant from the audible ending"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-adjective-position",
+      "uses": [
+        {
+          "primitive": "prim:attach-position",
+          "role": "primary",
+          "binding": "Move the adjective before/after the noun and see which positions are standard; restore the right one"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "Noun-phrase slots (det – pre-adj – noun – post-adj); the system names the violated slot"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-possessive-determiners",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences where only son/sa shows which noun is possessed; learner must look at the noun's gender"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Family photo with name tags; learner says whose is what; checked against tags"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-demonstrative-determiners",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Heard ce/cet/cette + noun: pick the object in the picture by gender"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Choosing clothes in a shop: learner points with ce/cette … -ci/-là; the assistant branches"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-intensity-adverbs",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Put pas très – un peu – assez – très – trop on a ladder, then choose a rung for each situation"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge très/trop/beaucoup in context; classify the error, then write two sentences"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-describe-people",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Group picture: learner describes one person; a checker verifies hair, glasses and clothes against the picture"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Guess who: learner asks yes/no questions about appearance to identify a hidden person"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-appearance",
+      "uses": [
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "primary",
+          "binding": "Portrait → learner names three features before reveal"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge phrases (les yeux marron/marrons, il a les cheveux/il est cheveux); sort errors, write a description"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-describe-things",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Lost-property pictures: learner describes one object; checker verifies colour, size, material"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Learner must find out which bag a partner lost by asking about features"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-clothes",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Picture of people dressed for different weather; learner says who wears what; checked against the picture"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "Clothes shop from entry to fitting room to till; retrieve words at each step, then re-run for shoes"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-present-er",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Induce the -er endings from parler, then apply them to unseen verbs (danser, voyager); each step shows the stem + ending rule"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Hear il parle / ils parlent / nous parlons; judge who acts from audible cues only"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-present-irregular",
+      "uses": [
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "primary",
+          "binding": "Verb + person card: produce the form before reveal; first attempts recorded per verb"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Group verbs by pattern (partir/sortir/dormir; prendre/apprendre/comprendre) and apply to unseen members"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-reflexive-verbs",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Slots subject – (ne) – reflexive pronoun – verb – (pas); learner drags blocks and the violated slot is named"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Order pictures of a morning routine, then retell with pronominal verbs and d'abord / ensuite"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-telling-time",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Station announcements and phone messages: write departure times into slots; errors classed by 12/24-hour style"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Opening-hours signs and a bus timetable: find the one time needed for a task"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-dates",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Hear dates in invitations and announcements; fill in a calendar; errors by day/month/ordinal"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Calendar page → say the date aloud before reveal"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-daily-activities",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Picture strip of a day; learner orders and retells with time markers"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "Walk through a school day from waking to bed retrieving each verb, then a weekend day"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-daily-routine",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Two half-filled weekly planners; learners ask to find a common free slot"
+        },
+        {
+          "primitive": "prim:carry-across",
+          "role": "support",
+          "binding": "Move the routine language from a model student to the learner's own week; check what must change"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-time-prepositions",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Judge time phrases (en mai / *à mai / au printemps / *en printemps); classify by unit of time; write a schedule"
+        },
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "support",
+          "binding": "Place events on a timeline and pick the preposition matching point, range or date"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-time-adverbs",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Drag hier, aujourd'hui, demain, bientôt onto a timeline around \"now\""
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Timeline position → say the adverb before reveal"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-question-words",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Build questions in three orders from blocks; the system names the slot rule broken"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Missing information on a festival poster; learner must ask quand, où, combien to complete it"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-quel",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Questions where only quel/quelle/quels shows which noun is asked about"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Partner has a profile; learner asks quel/quelle questions to fill nationality, age, address"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-ask-information",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Tourist office: learner needs opening times, price and location held by the partner"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Information desk with branching answers (closed, full, other floor)"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-weather",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Short forecasts: fill a grid of city × weather × temperature"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Weather map: learner describes three regions; checked against symbols"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-news-of-someone",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Meeting a neighbour: ask about family members; responses branch (ill, moved, new baby)"
+        },
+        {
+          "primitive": "prim:carry-across",
+          "role": "support",
+          "binding": "Transfer the phrases to news about the learner's own family"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-likes",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Place détester – ne pas aimer – aimer bien – aimer – adorer on a ladder, then pick a rung for each item"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Find a partner with the same three likes by asking Tu aimes … ?"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-leisure",
+      "uses": [
+        {
+          "primitive": "prim:classifier-match",
+          "role": "primary",
+          "binding": "Sort activities into faire de / jouer à / jouer de boxes, induce the rule, then handle exceptions"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Pictures of people doing activities; learner says who does what; checked against the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-modals",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Same picture, different intent (ability, permission, wish, obligation); learner picks the modal and sees how the meaning shifts"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Apply the four modal paradigms in new sentences; the system shows the stem changes"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-invitations",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Invitation dialogue with branches: accept, refuse with excuse, propose another day"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Invite a friend and a colleague; adjust tu/vous and the formality of refusals"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-congratulate-wish",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Judge which wish fits each occasion (bon courage / bonne chance / bon appétit); classify misuse; write a card"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Party: compliment the host, wish happy birthday, reply to a compliment"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-dis-connectors-basic",
+      "uses": [
+        {
+          "primitive": "prim:predict-next",
+          "role": "primary",
+          "binding": "Stop at et / mais / alors in a short text; learner predicts the direction of the next clause, then checks"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Join pairs of sentences with the connector that fits the intended meaning"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-partitive",
+      "uses": [
+        {
+          "primitive": "prim:classifier-match",
+          "role": "primary",
+          "binding": "Sort foods by how they are measured (du/de la mass vs un/une countable), induce the rule, then handle items that can be both (un café / du café)"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Same food in three intents (general taste, some, one portion); learner picks le / du / un and sees the meaning change"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-quantity",
+      "uses": [
+        {
+          "primitive": "prim:classifier-match",
+          "role": "primary",
+          "binding": "Match foods to containers/units (une bouteille de, une boîte de, un kilo de), induce the \"de + no article\" rule"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "Market dialogues: note item, quantity and unit in a grid; errors classed by unit type"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-food",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Cook a simple dish from shopping to serving, retrieving each food word and verb; then change the dish"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Order recipe pictures, then retell the steps with imperatives"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-shops-city",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Photos of shop fronts and street signs: find where to buy medicine, stamps, bread"
+        },
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "support",
+          "binding": "librairie, pharmacie, location: learner writes the guessed meaning from English first, then checks"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-conditional-politeness",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "Same request to a friend, a waiter and an official; learner adjusts je veux / je voudrais / pourriez-vous"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Choose request forms by intent (demand, polite request, wish) and see the effect on the listener"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-shopping",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Bakery and clothes-shop transactions with branches (item out of stock, card refused)"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Receipts, price labels and promo flyers: find the total, the reduction and the unit price"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-restaurant",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Restaurant from greeting to bill, with branches (no table at 8, dish unavailable)"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "A real-style bistro menu: find what the set menu includes and the vegetarian option"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-place-prepositions",
+      "uses": [
+        {
+          "primitive": "prim:role-marking",
+          "role": "primary",
+          "binding": "Scene picture: link objects to their location roles, then choose the preposition and contraction"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Room picture: learner places items with prepositions; checked against the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-prep-countries",
+      "uses": [
+        {
+          "primitive": "prim:classifier-match",
+          "role": "primary",
+          "binding": "Sort countries into en / au / aux boxes, induce the gender rule, then handle exceptions (le Mexique)"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Hear je vais au … / en … and decide whether the country is masculine or feminine"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-place-adverbs",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Hear ici / là-bas instructions and tap the near or far spot in a picture"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Lost visitor at a reception desk; staff points with ici / là-bas and the learner confirms"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-imperative",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Hear imperatives and drag the character along a map or perform classroom actions"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Derive the imperative from present forms of unseen verbs; the rule step (drop subject, drop -s) is shown"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-directions",
+      "uses": [
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "primary",
+          "binding": "Hear directions and drag a pin along a street map; the path itself is the evidence"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "One partner has the destination marked; the other must ask for and follow directions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-transport",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Departure board and train ticket: find platform, car number, departure time"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Ticket office: buy an aller-retour, branches for no seats and change of time"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-describe-places",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Photo of a town square; learner describes it; checker verifies what is there and where"
+        },
+        {
+          "primitive": "prim:grow-text",
+          "role": "support",
+          "binding": "Start from \"Ma ville est petite\" and expand step by step with il y a, adjectives and location"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-futur-proche",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Place events before/after \"now\"; pick futur proche for planned events on the right of the line"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Apply aller + infinitive to new verbs and subjects; the system shows the two-part rule"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-venir-de",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Mark an event just before \"now\" vs earlier; choose venir de or passé composé"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Pictures of results (empty plate, wet umbrella): learner says what has just happened; checked against scene"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-etre-en-train-de",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Mark actions as ongoing at \"now\" vs habitual; choose en train de only for the ongoing slot"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Busy park picture: say what five people are doing right now; checked against the scene"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-plans",
+      "uses": [
+        {
+          "primitive": "prim:carry-across",
+          "role": "primary",
+          "binding": "Use the plan language from a model text for the learner's own next weekend"
+        },
+        {
+          "primitive": "prim:grow-text",
+          "role": "support",
+          "binding": "Expand \"Samedi, je vais à la plage\" into a paragraph with who, how, and after"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-holidays",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Trip from booking to arrival at the campsite; retrieve words at each step, then redo for a hotel in a city"
+        },
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "support",
+          "binding": "location, visiter, rester: guess from English, then check the real usage"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-il-faut",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Ladder of obligation (il faut – il vaut mieux – tu peux – tu n'es pas obligé – il ne faut pas); choose a rung for each rule"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Campsite and museum rules signs: find what is forbidden and what is required"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pour-infinitive",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Join action + aim sentences with pour, or unpack a pour sentence into two"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Same action with reason or aim; learner picks parce que or pour and sees the change"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-cause",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Give a reason as a clause or a noun; learner picks parce que / à cause de and sees the structure required"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Join effect + cause sentences, then unpack a parce que sentence"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pc-avoir",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Put completed events to the left of \"now\" and form the passé composé for each"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Derive participles (-é, -i, -u) for unseen regular verbs; irregular ones are flagged as exceptions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pc-etre",
+      "uses": [
+        {
+          "primitive": "prim:classifier-match",
+          "role": "primary",
+          "binding": "Sort past-tense verbs into avoir / être boxes, induce the movement rule, then handle exceptions"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Order pictures of a trip (partir, arriver, rester, rentrer) and retell in the passé composé"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-time-indicators",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Draw each sentence on a timeline (point in past, span up to now, point in future) and choose il y a / depuis / dans"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentence pairs J'habite ici depuis 3 ans / J'ai habité ici pendant 3 ans: judge whether the person still lives there"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-cetait",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Comment on the present (c'est) or a past event (c'était); learner chooses and sees the time reference change"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Monday-morning chat about the weekend; partner asks C'était comment ? and branches"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-say-what-you-did",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Order weekend pictures and retell with d'abord, puis, après and c'était"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Write a weekend message, compare with a model, mark one gap, rewrite"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-home",
+      "uses": [
+        {
+          "primitive": "prim:picture-describe",
+          "role": "primary",
+          "binding": "Floor plan: learner describes where things are; checked against the plan"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "Show a visitor around the flat room by room, then show a different flat"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-jobs",
+      "uses": [
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "primary",
+          "binding": "Picture of a person at work → say the job with correct gender before reveal"
+        },
+        {
+          "primitive": "prim:classifier-match",
+          "role": "support",
+          "binding": "Sort job nouns by how the feminine is formed (-e, -euse, -ière, same form), induce patterns, handle exceptions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-appointments",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Booking with a receptionist; branches when proposed times are taken"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Two diaries; partners must find a common slot by proposing and refusing times"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-ca",
+      "uses": [
+        {
+          "primitive": "prim:reference-chain",
+          "role": "primary",
+          "binding": "Short dialogues: link each ça to what it refers to (a thing, a situation, a price)"
+        },
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "support",
+          "binding": "Collect ça-chunks heard in a dialogue (ça va, ça marche, ça dépend) into a phrase bank and use one"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-on",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences where only context shows whether on = we, people or someone; learner chooses the meaning"
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Rewrite nous forms with on, applying the 3rd-person singular rule"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-soc-informal-letter",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Postcard and email templates where each slot (opening, news, closing) constrains what goes there"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Same message to a friend, a grandparent and a teacher; adjust opening and closing"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-read-personal",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Invitation, postcard and SMS thread: find the information needed to reply (date, place, deadline)"
+        },
+        {
+          "primitive": "prim:reference-chain",
+          "role": "support",
+          "binding": "In a short email, link pronouns and on to the people they refer to"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-write-messages",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Note, list and SMS templates where each slot constrains what is written"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Write the note first, then compare with a model and fix one gap"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-read-public",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Real-style notices, posters and flat ads: find the one line needed for a task"
+        },
+        {
+          "primitive": "prim:context-guess",
+          "role": "support",
+          "binding": "Mark blocking words in an ad; decide to guess (from picture, number) or look up"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-read-tourist",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Leaflet, programme and catalogue page: find the line that answers a practical question"
+        },
+        {
+          "primitive": "prim:context-guess",
+          "role": "support",
+          "binding": "Unknown words in a brochure: decide whether they block the task; guess from layout and numbers"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-listen-announcements",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Announcements and voicemails: fill fixed slots (destination, time, platform, number); review errors by type"
+        },
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "support",
+          "binding": "Write what was heard of a voicemail, then align with the transcript to see what was lost"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-listen-conversations",
+      "uses": [
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "primary",
+          "binding": "Write what was heard, then align with the transcript; see where dropped ne and liaison hid words"
+        },
+        {
+          "primitive": "prim:predict-next",
+          "role": "support",
+          "binding": "Pause a dialogue at a connector or question; predict the reply, then hear it"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-spoken-production",
+      "uses": [
+        {
+          "primitive": "prim:record-self-transcribe",
+          "role": "primary",
+          "binding": "Record the monologue, transcribe it, mark one problem category, re-record one sentence"
+        },
+        {
+          "primitive": "prim:grow-text",
+          "role": "support",
+          "binding": "Grow a one-sentence introduction into a 6-sentence monologue step by step"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-str-cognates",
+      "uses": [
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "primary",
+          "binding": "Write the meaning guessed from English for each word, then check usage; tag same / shifted / different"
+        },
+        {
+          "primitive": "prim:context-guess",
+          "role": "support",
+          "binding": "In a short text, decide which cognates are safe to guess and which need checking"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-ask-help",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Lost in a station: ask for help; branches for help given, refused, or redirected"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Ask a friend, a stranger and a staff member; adjust tu/vous and conditional"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-orth-punctuation",
+      "uses": [
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "primary",
+          "binding": "Message with English typography: fix one convention at a time (spaces, capitals, numbers) and resubmit"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge capitalisation of français / Français, lundi / Lundi in sentences; then write a sentence of each kind"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pc-agreement",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Apply the agreement rule to unseen subjects and verbs; the system shows subject gender → ending step by step"
+        },
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "support",
+          "binding": "In own past-tense text, fix only auxiliary choice first, then only agreement"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-dis-chronological",
+      "uses": [
+        {
+          "primitive": "prim:discourse-map",
+          "role": "primary",
+          "binding": "Label each sentence of a recipe or story with its step function, then rewrite with connectors"
+        },
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "support",
+          "binding": "Order jumbled steps and retell them with d'abord, ensuite, enfin"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-narrate",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Order picture frames of an anecdote, then retell with sequencing words and both past tenses"
+        },
+        {
+          "primitive": "prim:grow-text",
+          "role": "support",
+          "binding": "Grow \"Hier, j'ai perdu mon téléphone\" into a paragraph with setting, events and comment"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-work-experience",
+      "uses": [
+        {
+          "primitive": "prim:carry-across",
+          "role": "primary",
+          "binding": "Move the language of a model job profile to the learner's own experience; mark what must change"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Recruiter has a job ad; candidate must ask about tasks and hours, then answer about experience"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-imparfait-forms",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Derive the stem from the nous form and apply endings to unseen verbs; each derivation step is shown"
+        },
+        {
+          "primitive": "prim:recall-before-reveal",
+          "role": "support",
+          "binding": "Verb + subject card: produce the form before reveal"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-imparfait-description",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Mark background states as long bars and habits as repeated ticks on a past timeline; choose the imparfait for them"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Old photo: describe the scene (weather, people, place) in the imparfait; checked against the picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pc-vs-imparfait",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Lay a story on a timeline: background bars vs event points; choose the tense for each verb"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Same verb as scene or as event (il pleuvait / il a plu); learner chooses and sees how the story changes"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-biography",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Biography card template (birth, studies, key events, legacy); each slot constrains the content"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Short encyclopedia-style biography: find birth date, profession and one achievement"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-futur-simple",
+      "uses": [
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "primary",
+          "binding": "Build futur forms from the infinitive for unseen regular verbs; irregular stems are flagged"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Plan, prediction or promise: learner chooses futur proche or futur simple and sees the nuance"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-si-present",
+      "uses": [
+        {
+          "primitive": "prim:clause-constraint",
+          "role": "primary",
+          "binding": "After choosing si + present, judge which main-clause forms are allowed (present, future, imperative) and which are not"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Join condition + consequence pairs into si-sentences, then unpack them"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-wishes-intentions",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Ladder from rêver de to avoir l'intention de; place statements by how firm the plan is"
+        },
+        {
+          "primitive": "prim:carry-across",
+          "role": "support",
+          "binding": "Transfer the structures from a model text to the learner's own ambitions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-direct-object-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Pronoun slot before the conjugated verb, before the infinitive, before the auxiliary; the system names the slot rule broken"
+        },
+        {
+          "primitive": "prim:reference-chain",
+          "role": "support",
+          "binding": "Dialogue: link each le/la/les to the noun it replaces"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-indirect-object-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:role-marking",
+          "role": "primary",
+          "binding": "Scene picture with giver, gift and receiver; link roles, then choose le/la/les or lui/leur"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge sentences with téléphoner, voir, aider, parler; classify by construction, then write one of each"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pronoun-y",
+      "uses": [
+        {
+          "primitive": "prim:slot-order",
+          "role": "primary",
+          "binding": "Place y in present, infinitive and passé composé sentences; the violated slot is named"
+        },
+        {
+          "primitive": "prim:reference-chain",
+          "role": "support",
+          "binding": "Travel dialogue: link each y to the place it replaces"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-pronoun-en",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "Replace \"the cheese\" (le) vs \"some cheese\" (en); learner picks the pronoun by the original determiner"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Market stall: answer the seller's questions with en + quantity; the seller branches"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-possessive-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Sentences where only le sien / la sienne shows which object is meant"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Lost property: learners find out whose items are whose with C'est le tien ? / C'est à toi ?"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-demonstrative-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Shopping for shoes: choose between items with celui-ci / celle-là; the assistant branches"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Pick the object in a picture from celui-ci / celle-là / ceux-là"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-indefinite-pronouns",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Judge sentences with quelque chose (de), plusieurs, tout le monde; classify the error and write one of each"
+        },
+        {
+          "primitive": "prim:picture-describe",
+          "role": "support",
+          "binding": "Crowd picture: describe with plusieurs, certains, quelqu'un; checked against the scene"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-relative-qui-que",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Join two sentences with qui or que, or unpack a relative clause into two sentences"
+        },
+        {
+          "primitive": "prim:role-marking",
+          "role": "support",
+          "binding": "Mark the subject and object in the relative clause, then choose qui or que"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-relative-ou",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Join place/time sentences with où and unpack them again"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge où vs que with visiter, aller, habiter; sort by verb construction"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-comparative",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Place moins … que / aussi … que / plus … que on a scale and choose for pairs of pictured items"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge plus bon / meilleur / mieux in eight sentences; classify by adjective vs adverb, then write two"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-superlative",
+      "uses": [
+        {
+          "primitive": "prim:attach-position",
+          "role": "primary",
+          "binding": "Move the adjective before or after the noun in superlatives and see where the second article is needed"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Hotel ranking or price table: find the cheapest, the best rated, the most central"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-compare",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Each partner has the details of one phone offer; they must compare by asking and decide"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Two product sheets: find the differences needed to choose"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-tout",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Pairs toute la semaine / toutes les semaines: judge \"all through\" vs \"every\""
+        },
+        {
+          "primitive": "prim:paradigm-apply",
+          "role": "support",
+          "binding": "Apply tout agreement to unseen nouns, showing gender/number at each step"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-exclamation",
+      "uses": [
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "primary",
+          "binding": "React to pictures with surprise, admiration or disgust; choose quel / comme / que structures"
+        },
+        {
+          "primitive": "prim:contour-match",
+          "role": "support",
+          "binding": "Match exclamation contours vs question contours, then produce an exclamation with the right melody"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-evaluate",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Ladder from nul to génial; place reviewers' comments, then choose a rung for own experience"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Write a mini-review, compare with a model, mark one gap (reason missing), rewrite"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-agree-disagree",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Discussion turns where the learner chooses agree / partly agree / disagree; the partner reacts accordingly"
+        },
+        {
+          "primitive": "prim:scale-place",
+          "role": "support",
+          "binding": "Ladder from pas du tout to tout à fait; place heard responses"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-opinion",
+      "uses": [
+        {
+          "primitive": "prim:grow-text",
+          "role": "primary",
+          "binding": "Expand \"Je trouve que …\" into a short paragraph with reason and example"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Group chat: ask Qu'est-ce que tu en penses ? and react to branching opinions"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-consequence",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Join cause + result sentences with donc or c'est pour ça que, then unpack"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Same two facts: present as cause (parce que) or result (donc); see the change"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-reasons",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Join cause and effect sentences with parce que / donc / c'est pour ça que, and unpack them"
+        },
+        {
+          "primitive": "prim:predict-next",
+          "role": "support",
+          "binding": "Stop at parce que / donc in a text and predict what follows"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-reservations",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "Object to a friend's plan and a manager's plan; adjust softening and formality"
+        },
+        {
+          "primitive": "prim:scale-place",
+          "role": "support",
+          "binding": "Ladder from je ne sais pas trop to je suis contre; place responses"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-dis-connectors-a2",
+      "uses": [
+        {
+          "primitive": "prim:discourse-map",
+          "role": "primary",
+          "binding": "Label sentences in a review as point, extra point, contrast; then add a paragraph with the same shape"
+        },
+        {
+          "primitive": "prim:predict-next",
+          "role": "support",
+          "binding": "Stop at en plus / mais; predict whether the next point adds or contrasts"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-suggestions",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Planning an outing with branching reactions (accepts, prefers another day, refuses)"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Partners have different free times and preferences; they must agree on an outing"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-si-suggestion",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Decide whether Si on allait … ? is a suggestion or a past habit from context"
+        },
+        {
+          "primitive": "prim:choose-by-intent",
+          "role": "support",
+          "binding": "Pick a suggestion form (On va … ? / Et si on allait … ? / On pourrait …) by tone and see the difference"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-organise",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Each member holds part of the task list; the group must assemble and share tasks"
+        },
+        {
+          "primitive": "prim:template-write",
+          "role": "support",
+          "binding": "Shared planning sheet (tâche / qui / quand); each column constrains the entry"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-offer-services",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "A neighbour in difficulty; learner offers help, the neighbour accepts or declines"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Offer help to a friend and to a customer; adjust tu/vous and formality"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-health",
+      "uses": [
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "primary",
+          "binding": "Visit to the doctor and then the pharmacy, retrieving words at each step; rerun for a different illness"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Prescription and medicine box: find dose, frequency and duration"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-physical-state",
+      "uses": [
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "primary",
+          "binding": "Judge avoir/être with faim, froid, fatigué, malade; classify by construction, then describe a state"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Friend looks unwell; learner asks and reacts, branches by symptom"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-advice",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Ladder of advice strength (tu pourrais – tu devrais – il vaut mieux – il faut); place statements then choose"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Friend with a problem asks for advice; branches by advice given"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-warn",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Safety signs and notices: find what is forbidden and what risk is warned about"
+        },
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "support",
+          "binding": "Hear warnings and tap the danger in a picture"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-obligation",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Place obligatoire – il faut – pas obligé – interdit on a scale; choose for each rule"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Workplace or school rules: find what is compulsory and what is forbidden"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-il-faut-subjunctive",
+      "uses": [
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "primary",
+          "binding": "Il faut partir vs il faut que je parte: decide who is obliged"
+        },
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "support",
+          "binding": "Collect il faut que + subjunctive chunks from dialogues into a phrase bank and reuse one"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-telephone",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Phone call with branches: the person is there / not there / wrong number; learner must leave a message"
+        },
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "support",
+          "binding": "Voicemail messages: extract name, number in pairs, reason and time"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-dis-open-close",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Meet a neighbour on the stairs: open, chat briefly, close with an excuse; branches by partner reaction"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Open and close with a friend vs a colleague; adjust formulas and tu/vous"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-dis-interrupt",
+      "uses": [
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "primary",
+          "binding": "Fast instructions in a recording; learner must interrupt at the right point with a polite formula"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Interrupt a friend vs a lecturer; choose formality"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-dis-check-understanding",
+      "uses": [
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "primary",
+          "binding": "Learner receives an appointment and must confirm the key details before closing"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Partner gives details with one ambiguity; learner must confirm or ask until both sheets match"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-str-paraphrase",
+      "uses": [
+        {
+          "primitive": "prim:info-gap",
+          "role": "primary",
+          "binding": "Describe pictured objects without naming them; partner must identify"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Paraphrase an object, compare with a model paraphrase, reuse its frame"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-explanation",
+      "uses": [
+        {
+          "primitive": "prim:repair-and-backchannel",
+          "role": "primary",
+          "binding": "Vague answers in a dialogue; learner must ask for precision until a usable detail appears"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Partner gives vague directions; learner asks for details to complete a map"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-present-country",
+      "uses": [
+        {
+          "primitive": "prim:grow-text",
+          "role": "primary",
+          "binding": "Expand \"Ma ville est …\" into a presentation: location → facts → things to do → people"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "Tourist leaflet: find location, population and attractions to reuse"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-place-a2",
+      "uses": [
+        {
+          "primitive": "prim:viewpoint-direction",
+          "role": "primary",
+          "binding": "Map and building cross-section: place objects by en haut / au bout de / à proximité de"
+        },
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "support",
+          "binding": "Hear locations and drag icons onto a map"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-customs",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "A visitor brings chrysanthemums to a dinner; learner explains why the hosts are surprised"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "A year of French festivals walked month by month, retrieving vocabulary"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-environment",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Municipal sorting leaflet: which bin for which item"
+        },
+        {
+          "primitive": "prim:scene-walkthrough",
+          "role": "support",
+          "binding": "Walk through a day (kitchen, transport, office) retrieving eco-actions at each step"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-feelings",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Place emotion words on an intensity scale (content – heureux – ravi) and choose for situations"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Friend shares good or bad news; learner reacts with the right feeling and empathy"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-complain",
+      "uses": [
+        {
+          "primitive": "prim:exchange-script",
+          "role": "primary",
+          "binding": "Hotel or shop complaint with branches: staff offers repair, exchange, refuses"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Complain to a friend vs to a shop; adjust softening"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-instructions-device",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Ticket machine screens and pool rules: find the step or rule needed"
+        },
+        {
+          "primitive": "prim:listen-and-do",
+          "role": "support",
+          "binding": "Hear step-by-step instructions and carry them out on a simulated device"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-soc-money",
+      "uses": [
+        {
+          "primitive": "prim:culture-incident",
+          "role": "primary",
+          "binding": "A visitor asks a new French colleague how much they earn; learner explains the reaction"
+        },
+        {
+          "primitive": "prim:exchange-script",
+          "role": "support",
+          "binding": "Paying at a restaurant: card or cash, splitting, tip; branches by partner"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-nominalisation",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Campsite or station notices: find the nominalised words and the action they name"
+        },
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "support",
+          "binding": "Unpack nouns into verb phrases (location → louer) and pack phrases into nouns"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-negation-a2",
+      "uses": [
+        {
+          "primitive": "prim:attach-position",
+          "role": "primary",
+          "binding": "Move rien / personne around the auxiliary and participle and see which positions are possible"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Sentence pairs: Je n'y vais pas / plus / jamais; judge the meaning difference"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-prepositional-verbs",
+      "uses": [
+        {
+          "primitive": "prim:chunk-harvest",
+          "role": "primary",
+          "binding": "Collect verb + preposition chunks from texts into a personal bank grouped by à / de"
+        },
+        {
+          "primitive": "prim:usage-boundary",
+          "role": "support",
+          "binding": "Judge à / de in sentences with new verbs; then write two sentences"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-sans-infinitive",
+      "uses": [
+        {
+          "primitive": "prim:combine-unpack",
+          "role": "primary",
+          "binding": "Join \"il part / il ne dit pas au revoir\" with sans + infinitive, then unpack"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "pour vs sans + infinitive pairs: judge purpose vs absence"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-frequency-quantity-adverbs",
+      "uses": [
+        {
+          "primitive": "prim:scale-place",
+          "role": "primary",
+          "binding": "Frequency ladder from jamais to toujours; place survey answers then answer for self"
+        },
+        {
+          "primitive": "prim:slot-order",
+          "role": "support",
+          "binding": "Build sentences placing the adverb after the verb or auxiliary"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-g-time-a2",
+      "uses": [
+        {
+          "primitive": "prim:aspect-timeline",
+          "role": "primary",
+          "binding": "Timeline: place pendant (closed bar), depuis (open bar to now), pour (future bar), il y a (point)"
+        },
+        {
+          "primitive": "prim:form-for-meaning",
+          "role": "support",
+          "binding": "Pairs pendant / pour / depuis: judge which situation each describes"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-lex-education",
+      "uses": [
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "primary",
+          "binding": "Collège, passer un examen, licence: compare with English look-alikes and pick the meaning"
+        },
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "support",
+          "binding": "A course enrolment page: find dates, level, price and diploma"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-fn-present-topic",
+      "uses": [
+        {
+          "primitive": "prim:discourse-map",
+          "role": "primary",
+          "binding": "Label parts of a model presentation (intro, points, conclusion); plan own on the same map"
+        },
+        {
+          "primitive": "prim:attempt-then-compare",
+          "role": "support",
+          "binding": "Record a presentation, compare with a model, revise one signpost"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-read-press",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "News page: find the article that answers a question using headlines and captions only"
+        },
+        {
+          "primitive": "prim:reading-select",
+          "role": "support",
+          "binding": "Choose short news items at the right level from a set, by topic and length"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-read-stories",
+      "uses": [
+        {
+          "primitive": "prim:sequence-retell",
+          "role": "primary",
+          "binding": "Picture frames from a story: order the events, then retell"
+        },
+        {
+          "primitive": "prim:reading-select",
+          "role": "support",
+          "binding": "Choose a graded reader by level and interest from blurbs"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-listen-media",
+      "uses": [
+        {
+          "primitive": "prim:listen-for-data",
+          "role": "primary",
+          "binding": "Short clips: extract scores, prices, dates into a table"
+        },
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "support",
+          "binding": "After listening, compare own notes with the transcript and mark misheard words"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-soc-formal-letter",
+      "uses": [
+        {
+          "primitive": "prim:template-write",
+          "role": "primary",
+          "binding": "Formal email frame (objet, ouverture, motif, demande, formule finale) with each slot constrained"
+        },
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "support",
+          "binding": "Rewrite an informal message to a friend as a formal email to an office"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-write-a2",
+      "uses": [
+        {
+          "primitive": "prim:grow-text",
+          "role": "primary",
+          "binding": "Grow a two-line travel note into a blog post: add impressions, then connectors"
+        },
+        {
+          "primitive": "prim:one-fix-revision",
+          "role": "support",
+          "binding": "Feedback on one aspect at a time (tense, connectors, agreement) before resubmitting"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-act-mediation",
+      "uses": [
+        {
+          "primitive": "prim:carry-across",
+          "role": "primary",
+          "binding": "Read a French notice and relay the key points to a friend in English (or the reverse)"
+        },
+        {
+          "primitive": "prim:info-gap",
+          "role": "support",
+          "binding": "Three-way task: learner relays information between two people who share no language"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-str-guess-context",
+      "uses": [
+        {
+          "primitive": "prim:context-guess",
+          "role": "primary",
+          "binding": "Blank or nonsense words in a text: guess meaning from context, then reveal"
+        },
+        {
+          "primitive": "prim:false-friend-check",
+          "role": "support",
+          "binding": "Check guesses based on English look-alikes against context"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-str-scan",
+      "uses": [
+        {
+          "primitive": "prim:real-document-scan",
+          "role": "primary",
+          "binding": "Timed search in programmes, menus and timetables for specific items"
+        },
+        {
+          "primitive": "prim:reading-select",
+          "role": "support",
+          "binding": "Choose which of several documents contains the needed answer before reading it"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-soc-varieties",
+      "uses": [
+        {
+          "primitive": "prim:variety-map",
+          "role": "primary",
+          "binding": "Map of francophone regions; place number and meal words, then choose for a given trip"
+        },
+        {
+          "primitive": "prim:number-system-map",
+          "role": "support",
+          "binding": "Compare soixante-dix / septante systems and convert between them"
+        }
+      ]
+    },
+    {
+      "kc": "kt:fr-soc-spoken-register",
+      "uses": [
+        {
+          "primitive": "prim:register-calibrate",
+          "role": "primary",
+          "binding": "The same message to a friend (spoken style) and a teacher (written style)"
+        },
+        {
+          "primitive": "prim:transcript-diff",
+          "role": "support",
+          "binding": "Listen to casual speech, compare with a transcript, mark dropped ne and reduced forms"
+        }
+      ]
+    }
+  ],
+  "gaps": []
+}

@@ -1,0 +1,253 @@
+{
+ "note": "图片在教学里的用法：每种用途写明图上必须有什么、不能有什么、能不能用图片模型生成、在各年龄段放在页面什么位置、怎么验收。纯装饰的图没有用途，不用。图片里一律不生成文字，文字由页面排版。blueprint/image-brief.js 把用途、年龄段和事实清单变成提示语和验收清单。英文版在 image-roles.en.json，两个文件的键必须一致。",
+ "generatable": {
+  "yes": "可以用图片模型生成，生成后按验收清单核对。",
+  "yes-then-annotate": "可以生成；生成后要标出每条事实在图上的位置，页面才能据此核对回答。",
+  "yes-check-hard": "可以生成，但第二张要在第一张的基础上改，并且严格核对。",
+  "yes-with-review": "可以生成；要由了解这个文化的人看过。",
+  "prefer-drawn": "用代码画（SVG 或 3D），不要生成。",
+  "no": "不要生成，用 HTML 做。"
+ },
+ "styleByBand": {
+  "child": "flat, friendly illustration, large simple shapes, clear outlines, a few bright colours, plain background",
+  "youth": "clean contemporary illustration, natural proportions, not childish, limited palette",
+  "adult": "plain realistic illustration or diagram, neutral colours, no cartoon characters"
+ },
+ "roles": [
+  {
+   "id": "meaning-anchor",
+   "label": "一图一义",
+   "purpose": "一张图只表示一个词或一个语块的意思。",
+   "generatable": "yes",
+   "mustShow": [
+    "只画这一个东西或这一个动作，背景空白或极简",
+    "看图的人不用文字就能说出要学的那个意思",
+    "同一组图的画法一致"
+   ],
+   "mustNot": [
+    "图里出现第二个同样显眼的东西",
+    "用抽象符号表示具体的词",
+    "只有本地人才看得懂的文化符号（除非它就是要教的）"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:recall-before-reveal",
+    "prim:sound-spelling-blend",
+    "prim:classifier-match",
+    "prim:oral-to-print"
+   ],
+   "refs": [
+    "ped:dual-coding",
+    "ped:picture-superiority-vocabulary"
+   ]
+  },
+  {
+   "id": "scene-facts",
+   "label": "可核对的场景",
+   "purpose": "一个场景，里面的每样东西、数量、位置都在事实清单上，学习者说的话要对着它核对。",
+   "generatable": "yes-then-annotate",
+   "mustShow": [
+    "事实清单上的每一条都能在图上指出来",
+    "数量准确，位置关系明确（上、下、里、旁边不含糊）",
+    "清单以外的东西尽量少，而且不和清单矛盾"
+   ],
+   "mustNot": [
+    "数量模糊（一群、一堆）",
+    "两样东西遮挡到分不清",
+    "生成之后不逐条核对就使用"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:picture-describe",
+    "prim:listen-and-do",
+    "prim:scene-walkthrough",
+    "prim:info-gap"
+   ],
+   "refs": [
+    "ped:multimedia-learning",
+    "ped:seductive-details"
+   ]
+  },
+  {
+   "id": "sequence-frames",
+   "label": "连环画面",
+   "purpose": "3–6 幅画讲一件事，每幅只发生一个变化，人物和场景前后一致。",
+   "generatable": "yes",
+   "mustShow": [
+    "每一幅和上一幅相比只有一处关键变化",
+    "人物的样子、衣服、颜色每幅都一样",
+    "不看文字也能排出先后"
+   ],
+   "mustNot": [
+    "一幅里塞进两个事件",
+    "人物在不同画面里变样",
+    "靠画面里的文字或对话气泡交代情节"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:sequence-retell",
+    "prim:predict-next",
+    "prim:aspect-timeline"
+   ],
+   "refs": [
+    "ped:multimedia-learning"
+   ]
+  },
+  {
+   "id": "book-page",
+   "label": "绘本页",
+   "purpose": "绘本的一页：画面讲这一页的事，并留出放文字的空白。",
+   "generatable": "yes",
+   "mustShow": [
+    "画的就是这一页文字说的事，不多不少",
+    "留出一块干净的区域放文字（由页面排版，不画进图里）",
+    "和全书其他页的人物、画风一致"
+   ],
+   "mustNot": [
+    "把下一页的结果提前画出来",
+    "画面细节多到盖过这一页要读的那句话",
+    "在图里生成文字"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:reading-aid-fade",
+    "prim:oral-to-print",
+    "prim:predict-next",
+    "prim:context-guess",
+    "prim:sequence-retell"
+   ],
+   "refs": [
+    "ped:dialogic-reading",
+    "ped:learning-to-read-vs-reading-to-learn",
+    "ped:multimedia-learning"
+   ]
+  },
+  {
+   "id": "contrast-pair",
+   "label": "对比图",
+   "purpose": "两张图除了要学的那一点以外完全一样，用来看出一个形式带来的意思差别。",
+   "generatable": "yes-check-hard",
+   "mustShow": [
+    "两张图只有一处不同，而且那一处就是要学的差别",
+    "不同之处一眼能看出来",
+    "两张图大小、角度、画风相同"
+   ],
+   "mustNot": [
+    "两张图分别生成，结果处处不同",
+    "差别太细，要找才看得到"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:form-for-meaning",
+    "prim:choose-by-intent",
+    "prim:sound-contrast",
+    "prim:usage-boundary"
+   ],
+   "refs": [
+    "ped:noticing-hypothesis",
+    "ped:attention"
+   ]
+  },
+  {
+   "id": "spatial-diagram",
+   "label": "空间和方向图",
+   "purpose": "位置、方向、路线、视角。准确比好看重要。",
+   "generatable": "prefer-drawn",
+   "mustShow": [
+    "用代码画（SVG 或 3D），位置和方向由数据决定",
+    "说话人和听话人的位置标清楚",
+    "需要换视角时用 3D，可以转动"
+   ],
+   "mustNot": [
+    "用生成的图片表示精确的左右前后",
+    "把视角固定死，却要教随视角变化的词"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:viewpoint-direction",
+    "prim:listen-and-do",
+    "prim:role-marking",
+    "prim:scale-place"
+   ],
+   "refs": [
+    "ped:multimedia-learning"
+   ]
+  },
+  {
+   "id": "real-document",
+   "label": "真实材料",
+   "purpose": "菜单、时刻表、告示、表格。上面的字就是学习内容。",
+   "generatable": "no",
+   "mustShow": [
+    "用 HTML 排版，文字是真的文字",
+    "明确是虚构的：没有真实的店名、地址、电话",
+    "版式像真的，信息量和真的接近"
+   ],
+   "mustNot": [
+    "用图片模型生成带字的材料（字会错）",
+    "把真实商家的材料拍下来用"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:real-document-scan",
+    "prim:listen-for-data",
+    "prim:template-write"
+   ],
+   "refs": []
+  },
+  {
+   "id": "culture-context",
+   "label": "文化情境图",
+   "purpose": "一个交际场面：谁、在哪、什么关系，用来讨论怎样说才得体。",
+   "generatable": "yes-with-review",
+   "mustShow": [
+    "人物关系和场合看得出来（年龄、上下级、正式程度）",
+    "穿着和环境是这个地方现在的日常样子",
+    "由了解这个文化的人看过"
+   ],
+   "mustNot": [
+    "节日服装、旅游海报式的刻板形象",
+    "用一张图代表“这个国家的人”"
+   ],
+   "placement": {
+    "child": "图在上、占画面大半，文字在图的正下方、很短；学龄前不放文字，只放声音按钮。",
+    "youth": "图和对应的文字并排或紧挨着，图不超过一半；可以在图上加编号，文字按编号对应。",
+    "adult": "图只在文字说不清的地方出现，放在相关句子旁边，可以较小；能点开放大。"
+   },
+   "primitives": [
+    "prim:culture-incident",
+    "prim:register-calibrate",
+    "prim:exchange-script"
+   ],
+   "refs": []
+  }
+ ]
+}

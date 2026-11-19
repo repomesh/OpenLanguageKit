@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Picture-book reading</title>
+<link rel="stylesheet" href="runtime/block.css">
+<style>
+  .pb-pic { position: relative; border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; background: var(--panel); line-height: 0; container-type: inline-size; }
+  .pb-sign { position: absolute; display: flex; align-items: center; justify-content: center; text-align: center; white-space: pre-line; line-height: 1.08; font-weight: 700; overflow: hidden; border: 0; background: transparent; padding: 0; font-family: inherit; }
+  button.pb-sign:hover, button.pb-sign:focus-visible { outline: 2px dashed var(--accent); outline-offset: 1px; }
+  .pb-signstrip { line-height: 1.4; padding: 6px 10px; font-size: .9rem; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .pb-ic { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; flex: none; }
+  .pb-ic svg { display: block; width: 100%; height: 100%; }
+  .pb-peer, .pb-rule { border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-size: .95rem; }
+  .pb-peer b, .pb-rule b { display: block; font-size: .8rem; color: var(--muted); font-weight: 600; }
+  .pb-rule p { margin: 0 0 4px; }
+  .pb-unit { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: .92rem; }
+  .pb-unit input { flex: 1 1 200px; border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; background: var(--bg); }
+  .pb-pic svg, .pb-pic img { display: block; width: 100%; height: auto; }
+  .pb-pic.small { border-width: 1.5px; border-radius: 8px; }
+  .pb-spot { position: absolute; border: 2px dashed transparent; border-radius: 10px; background: transparent; padding: 0; }
+  .pb-spot:hover, .pb-spot:focus-visible { border-color: var(--accent); background: rgba(61, 79, 224, .08); }
+  .pb-spot.heard { border-color: var(--accent); border-style: solid; }
+  .pb-page { display: grid; gap: 14px; align-items: start; }
+  [data-band="youth"] .pb-page { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  [data-band="adult"] .pb-page { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 12px; }
+  [data-band="child"] .pb-page { max-width: 760px; margin: 0 auto; }
+  @media (max-width: 720px) { [data-band] .pb-page { grid-template-columns: 1fr; } }
+  .pb-text { line-height: 2.1; margin: 0; word-break: keep-all; overflow-wrap: anywhere; }
+  .pb-text.learn { font-size: 1.45rem; }
+  [data-band="child"] .pb-text.learn { font-size: 2.1rem; line-height: 2.2; text-align: center; }
+  [data-band="adult"] .pb-text.learn { font-size: 1.3rem; }
+  .pb-text.read { font-size: 1.15rem; line-height: 2; }
+  [data-band="child"] .pb-text.read { font-size: 1.5rem; }
+  .pb-text.cjk { line-height: 2.4; }
+  .pb-text.read.cjk { line-height: 2; }
+  .pb-text.cjk button.pb-tok, .pb-text.cjk .pb-tok { padding: 0; border-radius: 3px; }
+  .pb-tok { border-radius: 6px; padding: 0 1px; transition: background .15s; }
+  button.pb-tok { border: 0; background: transparent; padding: 0 2px; font: inherit; line-height: inherit; color: inherit; }
+  button.pb-tok:hover { background: var(--accent-soft); }
+  .pb-tok.now { background: #ffe58a; color: #20222b; }
+  .pb-tok.hit { background: var(--accent-soft); box-shadow: inset 0 -3px 0 var(--accent); }
+  .pb-tok.miss { background: var(--bad-soft); }
+  .pb-tok.target .pb-core { box-shadow: inset 0 -2px 0 var(--line); }
+  .pb-tok.marked .pb-core { text-decoration: underline dotted var(--warn) 3px; text-underline-offset: 6px; }
+  .pb-tok.marked::after { content: '?'; font-size: .6em; vertical-align: super; color: var(--warn); font-weight: 700; }
+  .pb-tok.focus .pb-core { background: var(--warn-soft); box-shadow: inset 0 -3px 0 var(--warn); border-radius: 4px; }
+  ruby rt { font-size: .5em; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+  .rt-off rt { visibility: hidden; }
+  .pb-peek { border: 1px dashed var(--line); background: var(--bg); border-radius: 6px; font: inherit; color: inherit; padding: 0 2px; line-height: inherit; }
+  .pb-peek:hover { border-color: var(--accent); }
+  .pb-aidbtn { font-size: .55em; vertical-align: super; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 0 6px; margin-left: 2px; }
+  .pb-aidbtn.faint { opacity: .55; }
+  .pb-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+  .speak-btn { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 4px 12px; }
+  .pb-steps { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
+  .pb-steps button { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 5px 12px; }
+  .pb-steps button[aria-current="step"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .pb-steps button .n { font-weight: 700; margin-right: 4px; }
+  .pb-steps .done { border-color: #2e8b57; }
+  .pb-dots { display: flex; gap: 8px; justify-content: center; margin-bottom: 10px; }
+  .pb-dots span { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); }
+  .pb-dots span.on { background: var(--accent); }
+  .pb-head { margin-bottom: 12px; }
+  .pb-head h2 { margin: 0 0 4px; font-size: 1.15rem; }
+  .pb-why { margin: 4px 0 0; color: var(--muted); font-size: .92rem; }
+  .pb-why b { color: var(--ink); font-weight: 600; }
+  .pb-adult { border-left: 4px solid var(--warn); background: var(--warn-soft); border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-size: .95rem; }
+  .pb-adult b { display: block; font-size: .8rem; color: var(--warn); }
+  .pb-say { font-size: 1.25rem; padding: 10px 20px; }
+  .pb-opts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .pb-opts button { border: 2px solid var(--line); background: var(--panel); border-radius: 14px; padding: 10px 18px; font-size: 1.3rem; min-width: 84px; }
+  [data-band="child"] .pb-opts button { font-size: 1.6rem; min-width: 110px; padding: 14px 20px; }
+  .pb-opts button[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); background: var(--accent-soft); }
+  .pb-opts button.ok { border-color: #2e8b57; box-shadow: 0 0 0 2px #2e8b57; }
+  .pb-opts button.no { border-color: var(--bad); }
+  .pb-word { font-size: 3rem; text-align: center; margin: 8px 0; letter-spacing: .04em; }
+  [data-band="child"] .pb-word { font-size: 4rem; }
+  .pb-hint { text-align: center; font-size: 1.5rem; color: var(--warn); margin: 4px 0; }
+  .pb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pb-chips span, .pb-chips button { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; background: var(--panel); font-size: .95rem; }
+  .pb-chips .independent { border-color: #2e8b57; background: var(--accent-soft); }
+  .pb-chips .assisted { border-color: var(--warn); }
+  .pb-chips .wrong { border-color: var(--bad); }
+  .pb-chips button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); }
+  .pb-two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pb-two > div { border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
+  .pb-two h4, .pb-rec h4 { margin: 0 0 4px; font-size: .8rem; color: var(--muted); font-weight: 600; }
+  .pb-count { font-size: .95rem; }
+  .pb-count b { font-size: 1.2rem; }
+  .pb-thumbs { display: grid; grid-template-columns: repeat(var(--n, 8), minmax(0, 1fr)); gap: 6px; }
+  @media (max-width: 640px) { .pb-thumbs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .pb-thumbs button { all: unset; cursor: pointer; display: block; position: relative; border-radius: 8px; }
+  .pb-thumbs button:focus-visible { outline: 3px solid var(--focus); }
+  .pb-thumbs button[aria-pressed="true"] .pb-pic { box-shadow: 0 0 0 3px var(--accent); }
+  .pb-thumbs .num { position: absolute; left: 3px; top: 3px; font-size: .72rem; line-height: 1.3; background: var(--panel); border-radius: 6px; padding: 0 5px; }
+  .pb-bets { display: grid; gap: 8px; margin-top: 8px; }
+  .pb-bets button { text-align: left; border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 8px 12px; }
+  .pb-bets button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); }
+  .pb-edit { margin-top: 10px; border: 1px dashed var(--warn); border-radius: 10px; padding: 8px 10px; background: var(--warn-soft); }
+  .pb-edit input, .pb-text-in { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; background: var(--bg); }
+  textarea.pb-text-in { min-height: 110px; resize: vertical; }
+  .pb-layout { display: grid; gap: 16px; }
+  [data-band="youth"] .pb-layout { grid-template-columns: minmax(0, 1fr) 240px; }
+  @media (max-width: 860px) { [data-band="youth"] .pb-layout { grid-template-columns: 1fr; } }
+  .pb-rec { font-size: .9rem; }
+  .pb-rec ul { margin: 0; padding-left: 18px; }
+  .pb-rec li { margin: 2px 0; }
+  .pb-brief { margin-top: 18px; font-size: .88rem; }
+  .pb-brief summary { cursor: pointer; color: var(--muted); }
+  .pb-brief dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 8px 0; }
+  .pb-brief dt { color: var(--muted); }
+  .pb-brief dd { margin: 0; }
+  .pb-brief pre { white-space: pre-wrap; word-break: break-word; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: .8rem; }
+  .pb-choose { max-width: 820px; margin: 0 auto; display: grid; gap: 14px; }
+  .pb-q { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+  .pb-q p { margin: 0; flex: 1 1 260px; }
+  .pb-pill { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .pb-pill button { border: 0; background: transparent; padding: 5px 14px; }
+  .pb-pill button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+  .pb-modecards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .pb-modecards { grid-template-columns: 1fr; } }
+  .pb-modecards button { text-align: left; border: 2px solid var(--line); background: var(--panel); border-radius: 14px; padding: 12px 14px; }
+  .pb-modecards button.rec { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .pb-modecards b { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+  .pb-modecards small { display: block; color: var(--muted); }
+  .pb-band { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .pb-band button { border: 0; background: transparent; padding: 6px 12px; }
+  .pb-band button[aria-pressed="true"] { background: var(--accent-soft); font-weight: 600; }
+  .pb-title { font-size: 1.6rem; text-align: center; margin: 8px 0 0; }
+  @media (max-width: 480px) { html[lang="en"] .kb-modes button { padding: 6px 9px; } .pb-word { font-size: 2.4rem; } }
+</style>
+<script src="runtime/block.js"></script>
+<script src="registry.js"></script>
+<script src="age-design.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function () {
+  'use strict';
+  var h = KTBlock.h, shuffle = KTBlock.shuffle, L = KTBlock.L, tx = KTBlock.t, EN = KTBlock.lang === 'en';
+  var params = new URLSearchParams(location.search);
+  var setId = params.get('set') || 'picture-book-en';
+  var reg = (window.KT_REGISTRY && KT_REGISTRY.packs) || {};
+  var entry = reg[setId] || {};
+  var app = document.getElementById('app');
+  if (entry.block && entry.block !== 'picture-book') { app.textContent = L('数据包 ' + setId + ' 属于积木 ' + entry.block + '，不能在绘本阅读里打开。', 'Data pack ' + setId + ' belongs to the block ' + entry.block + ' and cannot be opened in picture-book reading.'); return; }
+  var file = entry.file || 'data/picture-book.js';      // fallback while the registry does not list the pack yet
+  var s = document.createElement('script');
+  s.src = file;
+  s.onload = function () { if (!window.KT_DATA || !KT_DATA[setId]) { app.textContent = L('未知的数据包：', 'Unknown data pack: ') + setId; return; } start(KT_DATA[setId]); };
+  s.onerror = function () { app.textContent = L('数据包加载失败：', 'Could not load the data pack: ') + file; };
+  document.head.appendChild(s);
+
+  var TYPE = {
+    tone: ['声调不一样。', 'The tone is different.'],
+    'same-part': ['这是带同一个部件的另一个字的读音；这里的部件不管读音。', 'That is the sound of another character with the same part; here the part does not give the sound.'],
+    'other-reading': ['这是同一个字的另一种读法，这里不这么读。', 'That is another reading of the same character; it is not read that way here.'],
+    'look-alike': ['那个和它长得像，但不是它。', 'That one looks like it, but it is a different word.'],
+    vowel: ['中间的元音不一样。', 'The vowel in the middle is different.'],
+    blend: ['少了或多了一个音。', 'A sound is missing or added.'],
+    meaning: ['这是按图或意思猜的，不是读出来的。', 'That is a guess from the picture or the meaning, not from reading it.'],
+    story: ['这是书里这个位置的另一个词——像是背出来的，不是读出来的。', 'That is a word from the book at this point: it looks remembered, not read.']
+  };
+  var SPOT = { boy: ['男孩', 'the boy'], boat: ['小船', 'the boat'], window: ['窗户', 'the window'], gate: ['门', 'the gate'], grandpa: ['爷爷', 'Grandpa'], water: ['水', 'the water'],
+    bridge: ['桥', 'the bridge'], frog: ['青蛙', 'the frog'], stone: ['石头', 'the stone'], duck: ['鸭子', 'the duck'], reeds: ['芦苇', 'the reeds'], branch: ['树枝', 'the branch'], pond: ['池塘', 'the pond'] };
+  var CLUES = [{ id: 'picture', zh: '图', en: 'The picture' }, { id: 'context', zh: '前后的话', en: 'The words around it' }, { id: 'parts', zh: '词里的字或部件', en: 'The parts of the word' }, { id: 'none', zh: '这一页看不出来——要查', en: 'Nothing here tells me exactly: look it up' }];
+  var BASIS = [{ id: 'picture', zh: '画上的线索', en: 'Something in the picture' }, { id: 'title', zh: '书名', en: 'The title' }, { id: 'earlier', zh: '前面读到的', en: 'What I read earlier' }, { id: 'none', zh: '没有特别的理由', en: 'No particular reason' }];
+
+  function start(raw) {
+    /* two books: the children's picture book (top level of the pack) for band=child, and the teen/adult story (pack.older) for youth and adult */
+    var bandParam = params.get('band');
+    var band = ['child', 'youth', 'adult'].indexOf(bandParam) >= 0 ? bandParam : (params.get('variant') === 'child' ? 'child' : 'adult');
+    function bookFor(b) { return b !== 'child' && raw.older ? Object.assign({}, raw, raw.older, { id: raw.id, lang: raw.lang, speech: raw.speech }) : raw; }
+    var pack = bookFor(band), scene = KT_SCENES[pack.scene];
+    var isCJK = pack.lang === 'zh' || pack.lang === 'ja';
+    var title = tx(pack, 'title');
+    var B = KTBlock.init({ id: 'picture-book', primitive: 'prim:reading-aid-fade', title: title, set: pack.id });
+    document.title = title + ' · Picture-book reading';
+    function renderAgeWhy() {   // shared panel: which design variables this age version changes, and why
+      var box = document.getElementById('age-why'); if (!box || !KTBlock.ageWhy) return;
+      var open = box.firstChild && box.firstChild.open; box.innerHTML = '';
+      var el = KTBlock.ageWhy('picture-book', band); if (el) { el.open = !!open; box.style.margin = '0 clamp(12px, 3vw, 28px)'; box.append(el); }
+    }
+    function setBand(b) {
+      band = b; setTimeout(renderAgeWhy, 0); B.variant = b === 'child' ? 'child' : 'adult';
+      document.documentElement.dataset.variant = B.variant; document.documentElement.dataset.band = b;
+      try { var u = new URL(location.href); u.searchParams.set('band', b); u.searchParams.delete('variant'); history.replaceState(null, '', u); } catch (e) { /* file:// in some browsers */ }
+    }
+    setBand(band);
+    function fill(s) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { var n = pack.names || {}; return n[k] != null ? tx(n, k) : m; }); }
+    function child() { return band === 'child'; }
+
+    /* ---------- the two workflows ---------- */
+    var MODES = [{ id: 'learn-to-read', label: L('学认字', 'Learning to read') }, { id: 'read-to-learn', label: L('借读书学语言', 'Reading to learn') }];
+    var aidName = tx(pack, 'aidLabel');
+    var STEPS = {
+      'learn-to-read': [
+        { id: 'walk', prim: 'prim:picture-describe', label: L('看图说', 'Picture walk'),
+          instr: L('先不读正文。一页一页看图，说说图上有什么、接下来会怎么样。点图上的东西，可以听它叫什么。', 'Leave the text for now. Go through the pictures page by page and say what is there and what might happen next. Tap something in a picture to hear its name.'),
+          purpose: L('先用耳朵把故事里的词听熟，读的时候就是在“认出”已经会说的词。', 'Meet the story\'s words by ear first, so that reading becomes recognising words you can already say.'),
+          trains: L('练口语理解，把词先备好；这一步不认字，也不打分。', 'Trains listening comprehension and gets the words ready; no reading yet, and nothing is scored.'),
+          peer: L('两人一组：一人只看图描述一页，另一人不看，猜是第几页。', 'In pairs: one describes a page from the picture only; the other, not looking, says which page it is.'),
+          adult: L('指着图问：“这是什么？”“接下来会怎么样？”孩子说了，就顺着他的话再说一句。', 'Point and ask: "What\'s this?" "What will happen next?" When the child answers, add a sentence to what they said.') },
+        { id: 'listen', prim: 'prim:oral-to-print', label: L('听着指字', 'Listen and follow'),
+          instr: L('听这一页：读到哪个词，哪个词就亮，用手指跟着点。然后按“找一个词”：听到哪个词，就点哪个词。', 'Listen to the page: each word lights up as it is read, and you follow with your finger. Then press "Find a word" and tap the word you hear.'),
+          purpose: L('把听得懂的声音和纸上的字一个一个对上。', 'Match the sounds you already understand to the words on the page, one by one.'),
+          trains: L('练声音和文字的对应；“找一个词”打乱了顺序，背下整句帮不上忙。', 'Trains sound-to-print matching; "find a word" is out of order, so a memorised sentence does not help.'),
+          peer: L('两人一组：轮流念这一页上的一个词，让对方在页上找出来。', 'In pairs: take turns saying a word from the page for the other to find.'),
+          adult: L('请孩子把手指放在正在读的词下面；找词时别替他指。', 'Ask the child to keep a finger under the word being read; in "find a word", don\'t point for them.') },
+        { id: 'decode', prim: 'prim:sound-spelling-blend', label: L('自己读', 'Read it yourself'),
+          instr: L('图收起来了。先自己读这个词，再挑出它的读音。读不出来就按“拆开看看”，先别看答案。', 'The picture is put away. Read the word yourself first, then pick how it sounds. If it won\'t come, press "Split it up" before anything else.'),
+          purpose: L('不靠图猜，真的把字读出来。', 'Read the word for real, without guessing from the picture.'),
+          trains: L('练解码：先作答，后放音；拆开的提示在答案之前，用过提示记为“提示后完成”。', 'Trains decoding: answer first, sound after; the split-up hint comes before the answer, and using it marks the word as helped.'),
+          peer: L('给同学出一题：挑一个目标词，说出你觉得它最容易被读成什么、为什么。', 'Set a classmate a question: pick a target word and say what it is most easily misread as, and why.'),
+          adult: L('等孩子先试；卡住时按“拆开看看”，别把词说出来。', 'Let the child try first; if stuck, press "Split it up". Don\'t say the word for them.') },
+        { id: 'fade', prim: 'prim:reading-aid-fade', label: L('再读，注音慢慢撤', 'Reread, aids fading'),
+          instr: L('再读一遍整本书。' + aidName + '一个词一个词地撤：没有' + aidName + '、也没偷看，两轮都读对，这个词的' + aidName + '就撤掉；读错了，它会回来。', 'Read the whole book again. The aid (' + aidName + ') comes off word by word: read a word right in two rounds with no aid and no peeking, and its aid goes. Read it wrong and the aid comes back.'),
+          purpose: L('分清“靠注音读对”和“自己读对”。', 'Tell apart "read it with the aid" and "read it on my own".'),
+          trains: L('注音逐步撤除：只有注音没显示、也没偷看时读对，才算独立；同一次练习里的两轮算两次（契约要求隔一天）。', 'Reading-aid fading: only a right answer with no aid showing and no peeking counts as independent; two rounds in one sitting count as two (the contract asks for a day apart).'),
+          peer: L('和同学比的是自己的“不用注音”清单长了多少，不比谁快。', 'Compare with a classmate how much your own "no aid needed" list has grown, not who is faster.'),
+          adult: L('不要替孩子读。孩子点开偷看没关系，页面会记下来。', 'Don\'t read for the child. Peeking is fine; the page notes it.') },
+        { id: 'reverse', prim: 'prim:carry-across', label: L('换个地方还认得吗', 'Somewhere new'),
+          instr: L('这些句子书里没有，也没有图。读出标出来的词，挑出它的读音。', 'These sentences are not in the book and have no picture. Read the marked word and pick how it sounds.'),
+          purpose: L('看看你是真的会读这个词，还是记住了故事。', 'Checks whether you can read the word, or had just remembered the story.'),
+          trains: L('反向那一半：在新句子里、没有图也读得出，才说明是读出来的，不只是背下了这本书。', 'The reverse half: reading the word in a new sentence with no picture shows it is read, not the book remembered.'),
+          peer: L('找一块你每天都会看到的招牌或一行屏幕文字，抄下来让同学读。', 'Find a sign or a line of screen text you see every day, copy it, and have a classmate read it.'),
+          adult: L('这些句子是新的。孩子在这里也读得出，才说明他会读这个词。', 'These sentences are new. If the child reads the word here too, they can read it, not just remember the book.') }
+      ],
+      'read-to-learn': [
+        { id: 'predict', prim: 'prim:predict-next', label: L('预测', 'Predict'),
+          instr: L('看封面和前两页，猜猜故事会怎么发展，再说你凭什么这么猜。猜错不扣分，页面只记你有没有根据。', 'Look at the cover and the first two pages, guess what will happen, and say what your guess is based on. Wrong guesses cost nothing; the page only notes whether you had a reason.'),
+          purpose: L('带着问题读，读的时候才会去找证据。', 'Reading with a question makes you look for evidence.'),
+          trains: L('预测下一步：只记有没有根据，不判对错。', 'Predicting the next step: records whether the guess had a basis, never right or wrong.'),
+          peer: L('先各自猜并选好根据，再交换：说服对方，或者被说服。', 'Each make a guess with a reason first, then swap: convince each other, or be convinced.'),
+          adult: L('问孩子：“你为什么这么想？”一起指出图上的线索。', 'Ask: "Why do you think so?" and point to the clues in the picture together.') },
+        { id: 'read', prim: 'prim:context-guess', label: L('一口气读完', 'Read straight through'),
+          instr: L('自己读，不查词。哪个词挡住你了，就点它，写下你猜的意思，接着读。有两次翻页前要先猜。', 'Read on your own without looking anything up. When a word stops you, tap it, write what you guess it means, and read on. Twice you will guess before turning the page.'),
+          purpose: L('读得下去、读得多，比每个词都弄懂更要紧。', 'Reading on, and reading a lot, matters more than knowing every word.'),
+          trains: L('语境猜词：边读边标、边猜，读完再核对；用了朗读的那一页记为有帮助。', 'Context guessing: mark and guess while reading, check afterwards; a page where read-aloud was used counts as helped.'),
+          peer: L('各读各的，不互相问词；读完再比一比各自标了哪些词。', 'Read on your own without asking each other; afterwards compare which words you each marked.'),
+          adult: L('让孩子读下去，现在先不解释词。', 'Let the child read on; don\'t explain words now.') },
+        { id: 'check', prim: 'prim:context-guess', label: L('核对猜的词', 'Check the guesses'),
+          instr: L('回到书里的新词。先说是什么让你知道它的意思，再看意思，对照你的猜测。有的词这一页根本看不出来，这时对的做法是去查。', 'Go back to the new words. First say what tells you the meaning, then see the meaning and compare it with your guess. Some words cannot be worked out from the page at all; then the right move is to look them up.'),
+          purpose: L('学会看线索，也学会知道什么时候该停下来去查。', 'Learn where the clues are, and when to stop guessing and look it up.'),
+          trains: L('“是什么告诉你的”记为第一次作答；“看不出来”只对一部分词是对的，全选它或从不选它都过不了。猜得对不对由你自评。', 'The clue choice is a first attempt; "cannot tell" is right only for some words, so always choosing it, or never, fails. Whether your guess was right is self-rated.'),
+          peer: L('挑一个“这一页看不出来”的词，查好后用一句话向同学解释，让他猜是哪个词。', 'Take a "cannot tell from the page" word, look it up, explain it to a classmate in one sentence and let them guess which word it is.'),
+          adult: L('问：“你是从哪儿看出来的？”看不出来的词，一起去查。', 'Ask: "Where did you see that?" For words that cannot be worked out, look them up together.') },
+        { id: 'infer', prim: 'prim:reference-chain', label: L('书上没写的', 'Not in the words'),
+          instr: L('回答这几个问题。文字里没有直接的答案，要看图和前面几页。答完还要点出答案靠的是哪一页。', 'Answer these questions. The text does not say it directly; you need the pictures and earlier pages. Then point to the page your answer rests on.'),
+          purpose: L('读懂没写出来的东西，并且说得出证据在哪儿。', 'Understand what is not written, and say where the evidence is.'),
+          trains: L('推断必须指出依据的页：答案对、页找不到，不算过。', 'An inference has to name its page: the right answer with the wrong page does not pass.'),
+          peer: L('同学说出答案时，你只问一句：“哪一页？”', 'When a classmate gives an answer, ask just one thing: "Which page?"'),
+          adult: L('问：“哪一页告诉你的？”请孩子指出来。', 'Ask: "Which page shows that?" and let the child point.') },
+        { id: 'retell', prim: 'prim:sequence-retell', label: L('用自己的话讲', 'Retell'),
+          instr: L('文字收起来了，只看图，把故事讲给别人听（或者写下来），用上两三个这本书里新遇到的词。讲完由你自己或听的人对照下面几条。', 'The text is put away. Looking only at the pictures, tell the story to someone (or write it), using two or three words that were new in this book. Afterwards you or your listener check the points below.'),
+          purpose: L('讲得出来，才说明故事和新词都留下来了。', 'Being able to tell it shows the story and the new words have stayed with you.'),
+          trains: L('复述由听的人或你自己判断，记为自评，不算答对；页面只核对打出来的文字里有没有选的新词。', 'The retelling is judged by the listener or by you and recorded as self-report; the page only checks typed text for the chosen new words.'),
+          peer: L('讲给同学听；听的人对照下面几条打勾，“谁来判断”选“听我讲的人”。', 'Tell it to a classmate; the listener ticks the points below, and under "Judged by" choose "My listener".'),
+          adult: L('听孩子讲完，再对照几条打勾；中途别纠正。', 'Listen to the whole retelling, then tick the points; don\'t correct in the middle.') }
+      ]
+    };
+    var modeParam = params.get('mode');
+    var st = { mode: STEPS[modeParam] ? modeParam : null, step: { 'learn-to-read': 0, 'read-to-learn': 0 }, visited: {}, chooser: { q1: null, q2: null } };
+    var stepParam = params.get('step');
+    if (st.mode && stepParam) { var si = STEPS[st.mode].findIndex(function (x) { return x.id === stepParam; }); if (si >= 0) st.step[st.mode] = si; }
+
+    var ui = KTBlock.chrome(B, { title: title, subtitle: tx(pack, 'subtitle'), modes: MODES, mode: st.mode, onMode: function (m) { goMode(m); } });
+    var oldVariant = ui.header.querySelector('.kb-variant'); if (oldVariant) oldVariant.remove();
+    var bandBox = h('div', { class: 'pb-band', role: 'group', 'aria-label': L('年龄段', 'Age band') });
+    ui.header.querySelector('.kb-tools').append(bandBox);
+    function renderBandBox() {
+      bandBox.innerHTML = '';
+      [['child', '儿童', 'Child'], ['youth', '青少年', 'Youth'], ['adult', '成人', 'Adult']].forEach(function (b) {
+        bandBox.append(h('button', { type: 'button', 'aria-pressed': band === b[0] ? 'true' : 'false', onclick: function () { setBand(b[0]); switchBook(); B.emit('view', { band: b[0], book: pack.scene }); renderBandBox(); render(); } }, L(b[1], b[2])));
+      });
+    }
+    renderBandBox();
+    var bar = h('div', { class: 'kb-bar' }), body = h('div', {}), briefBox = h('div', {});
+    var drawerWrap = h('div', {}, [ui.drawer]);
+    // #age-why: a stable slot directly under the header controls for the shared "why this age version" panel (KTBlock.ageWhy); this block leaves it empty
+    app.append(ui.header, h('div', { id: 'age-why' }), h('main', { class: 'kb-main' }, [bar, body, briefBox]), drawerWrap);
+    renderAgeWhy();
+    function switchBook() {
+      var next = bookFor(band);
+      if (next.scene === pack.scene) { pack = next; return; }
+      pack = next; scene = KT_SCENES[pack.scene]; title = tx(pack, 'title');
+      TOK = {}; ORDER = {}; LW = { page: 0, heard: {} }; LL = { page: 0, run: LL.run + 1, find: null, found: {} }; LD = { i: 0, s: {} }; LF = null; LR = { i: 0, s: {} };
+      RP = { stage: 0, pick: {}, basis: {}, locked: {} }; PRED = []; RR = { page: 0, marks: {}, edit: null, listened: {}, showAid: false }; RC = { i: 0, s: {} }; RI = { i: 0, s: {} };
+      RT = { words: [], text: '', checked: {}, judge: 'self', done: false }; briefPage = scene.pages[0].id;
+      var t1 = ui.header.querySelector('.kb-title h1'), t2 = ui.header.querySelector('.kb-title p');
+      if (t1) t1.textContent = title; if (t2) t2.textContent = tx(pack, 'subtitle');
+      document.title = title + ' · Picture-book reading';
+    }
+    B.emit('view', { mode: st.mode || 'chooser', band: band, set: pack.id });
+
+    var ICONS = {
+      speaker: '<svg viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z" fill="currentColor"/><path d="M11 5.5q1.6 2.5 0 5M12.8 3.8q3 4.2 0 8.4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>',
+      back: '<svg viewBox="0 0 16 16"><path d="M10.5 2.5 5 8l5.5 5.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      next: '<svg viewBox="0 0 16 16"><path d="M5.5 2.5 11 8l-5.5 5.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    };
+    function icon(n) { var sp = document.createElement('span'); sp.className = 'pb-ic'; sp.setAttribute('aria-hidden', 'true'); sp.innerHTML = ICONS[n]; return sp; }
+    function spotLabel(id) { var x = scene.spotLabels && scene.spotLabels[id]; return x ? tx(x, 't') : SPOT[id] ? L(SPOT[id][0], SPOT[id][1]) : id; }
+    function signLabel(id) { var x = scene.signLabels && scene.signLabels[id]; return x ? tx(x, 't') : id; }
+    function signText(pp, s) { return ((pp && pp.signs) || {})[s.id] || s.t || ''; }
+    function say(text) { return B.speak(text, pack.speech); }
+    function sayUI(text) { return B.speak(text, EN ? 'en-US' : 'zh-CN'); }
+    function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    function pIdx(pid) { return scene.pages.findIndex(function (p) { return p.id === pid; }); }
+
+    /* ---------- tokens: {base|ruby}, <target>, [[new word]] ---------- */
+    function segs(str) {
+      var out = [], re = /\{([^|}]+)\|([^}]+)\}/g, i = 0, m;
+      while ((m = re.exec(str))) { if (m.index > i) out.push({ b: str.slice(i, m.index) }); out.push({ b: m[1], r: m[2] }); i = re.lastIndex; }
+      if (i < str.length) out.push({ b: str.slice(i) });
+      return out;
+    }
+    function plain(str) { return str.replace(/\{([^|}]+)\|[^}]+\}/g, '$1').replace(/<|>|\[\[|\]\]/g, ''); }
+    function parse(raw, i) {
+      var m = /^(.*?)<(.+?)>(.*)$/.exec(raw), kind = null;
+      if (m) kind = 'target'; else { m = /^(.*?)\[\[(.+?)\]\](.*)$/.exec(raw); if (m) kind = 'new'; }
+      var t = { raw: raw, i: i, pre: m ? m[1] : '', core: m ? m[2] : raw, post: m ? m[3] : '', kind: kind };
+      t.base = plain(t.core); t.text = plain(raw);
+      t.clean = t.text.replace(/[.,!?;:“”"'‘’。，、！？：；「」（）()…—]/g, '').trim();
+      if (kind === 'target') t.target = pack.targets.find(function (x) { return x.w.toLowerCase() === t.base.toLowerCase(); });
+      if (kind === 'new') t.word = pack.words.find(function (x) { return x.w.toLowerCase() === t.base.toLowerCase(); });
+      return t;
+    }
+    var TOK = {};
+    function toks(list, key) { if (!TOK[key]) TOK[key] = list.map(parse); return TOK[key]; }
+    function learnToks(p) { return toks(pack.pages[p].learn, 'L' + p); }
+    function readToks(p) { return toks(pack.pages[p].read, 'R' + p); }
+    /* aid(t) → 'show' | 'hide' | 'peek' | 'off' for the core of a token; pre/post follow o.rest */
+    function rubyInto(el, str, mode) {
+      segs(str).forEach(function (sg) {
+        if (sg.r && mode !== 'none') {
+          var rb = h('ruby', { class: mode === 'hide' ? 'rt-off' : '' }, [sg.b, h('rt', { text: sg.r })]);
+          el.append(rb);
+        } else el.append(sg.b);
+      });
+    }
+    function tokEl(t, o) {
+      o = o || {};
+      var aid = o.aid ? o.aid(t) : 'show', rest = o.rest || 'show';
+      var tag = o.onTap ? 'button' : 'span';
+      var el = h(tag, { class: 'pb-tok' + (t.kind ? ' ' + t.kind : '') + (o.cls ? ' ' + o.cls(t) : ''), lang: pack.lang, type: tag === 'button' ? 'button' : null,
+        onclick: o.onTap ? function () { o.onTap(t, el); } : null });
+      rubyInto(el, t.pre, rest);
+      var core = h('span', { class: 'pb-core' });
+      rubyInto(core, t.core, aid === 'off' ? 'none' : aid === 'peek' ? 'hide' : aid);
+      el.append(core);
+      rubyInto(el, t.post, rest);
+      return el;
+    }
+    function textEl(list, kind, o) {
+      var p = h('p', { class: 'pb-text ' + kind + (isCJK ? ' cjk' : ''), lang: pack.lang });
+      var spaced = pack.lang === 'en' || (pack.lang === 'ja' && kind === 'learn');
+      list.forEach(function (t, i) { if (i && spaced) p.append(' '); p.append(o && o.make ? o.make(t) : tokEl(t, o)); });
+      return p;
+    }
+
+    /* ---------- pictures ---------- */
+    var briefPage = scene.pages[0].id;
+    function pic(pid, o) {
+      o = o || {};
+      var sp = pid === 'cover' ? scene.cover : scene.pages[pIdx(pid)];
+      var pp = pid === 'cover' ? (pack.cover || {}) : pack.pages[pIdx(pid)];
+      var signs = (sp.signs || []).filter(function (s) { return signText(pp, s); });
+      var printed = signs.map(function (s) { return signLabel(s.id) + L('：', ': ') + signText(pp, s).replace(/\n/g, ' '); }).join(L('；', '; '));
+      var d = h('div', { class: 'pb-pic' + (o.small ? ' small' : ''), role: o.spots ? 'group' : 'img', 'aria-label': tx(sp, 'alt') + (printed ? L('。画中的文字——', '. Text in the picture: ') + printed : '') });
+      if (pp && pp.image) d.append(h('img', { src: pp.image, alt: '' }));
+      else d.innerHTML = sp.svg;                      // authored in the data file, not learner input
+      // real-world print: the drawing has blank panels; the words come from the pack. On a replacement image they cannot be placed, so they go in a strip below.
+      if (signs.length && pp && pp.image) { if (!o.small) d.append(h('div', { class: 'pb-signstrip', lang: pack.lang }, signs.map(function (s) { return h('span', { text: signText(pp, s).replace(/\n/g, ' ') }); }))); }
+      else signs.forEach(function (s) {
+        var txt = signText(pp, s), own = !!((pp && pp.signs) || {})[s.id];
+        d.append(h(o.spots ? 'button' : 'span', { class: 'pb-sign', type: o.spots ? 'button' : null, lang: own ? pack.lang : null, 'aria-hidden': o.spots ? null : 'true',
+          'aria-label': o.spots ? L('听：', 'Listen: ') + signLabel(s.id) : null,
+          style: 'left:' + (s.x / 3.2) + '%;top:' + (s.y / 2.4) + '%;width:' + (s.w / 3.2) + '%;height:' + (s.h / 2.4) + '%;font-size:' + (s.size / 3.2) + 'cqw;color:' + s.ink,
+          onclick: o.spots ? function () { say(txt.replace(/\n/g, ' ')); B.emit('select', { item: 'sign:' + pid + ':' + s.id }); } : null }, txt));
+      });
+      if (o.spots && sp.spots && !(pp && pp.image)) sp.spots.forEach(function (s) {
+        var w = (pack.spots[s.id] || {}).w; if (!w) return;
+        var b = h('button', { class: 'pb-spot' + (o.heard && o.heard[pid + s.id] ? ' heard' : ''), type: 'button', 'aria-label': L('听：', 'Listen: ') + spotLabel(s.id),
+          style: 'left:' + (s.x / 3.2) + '%;top:' + (s.y / 2.4) + '%;width:' + (s.w / 3.2) + '%;height:' + (s.h / 2.4) + '%',
+          onclick: function () { say((pack.spots[s.id] || {}).say || w); if (o.heard) o.heard[pid + s.id] = true; b.classList.add('heard'); B.emit('select', { item: 'spot:' + pid + ':' + s.id }); } });
+        d.append(b);
+      });
+      if (!o.small) briefPage = pid;
+      return d;
+    }
+    function spotWords(pid) {   // when a pack page carries its own image, spots cannot be placed: offer the words as sound buttons
+      var sp = scene.pages[pIdx(pid)], pp = pack.pages[pIdx(pid)];
+      if (!(pp && pp.image)) return null;
+      return h('div', { class: 'pb-row' }, sp.spots.map(function (s) { return h('button', { class: 'speak-btn', type: 'button', onclick: function () { say(pack.spots[s.id].w); } }, [icon('speaker'), ' ' + spotLabel(s.id)]); }));
+    }
+    function pageView(picEl, right) { return h('div', { class: 'pb-page' }, [picEl, h('div', {}, right)]); }
+    function pager(cur, n, go, extra) {
+      return h('div', { class: 'pb-row' }, [
+        h('button', { class: 'kb-btn', type: 'button', disabled: cur === 0, onclick: function () { go(cur - 1); } }, [icon('back'), L(' 上一页', ' Back')]),
+        h('span', { class: 'kb-note', text: L('第 ' + (cur + 1) + ' / ' + n + ' 页', 'Page ' + (cur + 1) + ' of ' + n) }),
+        cur < n - 1 ? h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { go(cur + 1); } }, [L('下一页 ', 'Next '), icon('next')]) : null
+      ].concat(extra || []));
+    }
+    function fb(text, tone) { return h('div', { class: 'kb-feedback' + (tone ? ' ' + tone : ''), role: 'status' }, text); }
+    function nextStepBtn(label) {
+      var steps = STEPS[st.mode], i = st.step[st.mode];
+      if (i >= steps.length - 1) return null;
+      return h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { goStep(i + 1); } }, label || L('下一步：' + steps[i + 1].label, 'Next step: ' + steps[i + 1].label));
+    }
+
+    /* ---------- reading options (decode, fade check, reverse) ---------- */
+    var ORDER = {};
+    function options(tg, key, state, onDone) {
+      // state: {pick, done, ok, hinted, revealed}
+      var audio = tg.audioOnly || child();
+      var order = ORDER[key] || (ORDER[key] = shuffle(tg.options));
+      var box = h('div', { class: 'pb-opts', role: 'group', 'aria-label': L('读音选项', 'How it sounds') });
+      order.forEach(function (op, k) {
+        var cls = state.done ? (op.ok ? 'ok' : (state.pick === k ? 'no' : '')) : '';
+        box.append(h('button', { type: 'button', class: cls, lang: audio ? null : pack.lang, 'aria-pressed': state.pick === k ? 'true' : 'false', disabled: state.done,
+          'aria-label': audio ? L('读音 ' + (k + 1) + '：点一下听', 'Sound ' + (k + 1) + ': press to hear') : null,
+          onclick: function () { state.pick = k; if (audio) say(op.say); B.emit('select', { item: key, option: k }); onDone(false); } },
+          audio ? [icon('speaker'), ' ' + (k + 1)] : op.t));
+      });
+      return { el: box, order: order, audio: audio };
+    }
+    function judgeMsg(op, ok, assisted, tg) {
+      if (ok) return [child() ? L('对！听一听。', 'Yes! Have a listen.') :
+        band === 'youth' ? L('读对了。', 'Right.') + (assisted ? L('（看过提示，记为提示后完成）', ' (you used help, so it counts as helped)') : L('（独立读对）', ' (read on your own)')) :
+        L('正确。', 'Correct. ') + (assisted ? L('记为提示后完成。', 'Recorded as helped.') : L('记为独立完成。', 'Recorded as independent.'))];
+      var why = op && TYPE[op.type] ? L(TYPE[op.type][0], TYPE[op.type][1]) : '';
+      var right = tg.r || tg.w;
+      if (child()) return [L('听一听，它是这样读的：', 'Listen, this is how it sounds: '), tw(right)];
+      return [L('不对。', 'Not this one. ') + why + (why && EN ? ' ' : '') + L('正确的读音：', 'The right one: '), tw(right), (band === 'adult' ? L('。第一次作答已保留，之后再选算重试。', '. The first attempt is kept; later tries count as retries.') : L('。听一遍，再看看拆开的样子。', '. Listen once, then look at it split up.'))];
+    }
+    function tw(text) { return h('span', { lang: pack.lang, text: text }); }
+    /* interface text that quotes the target language (rules, clue explanations): mark the quoted runs with lang so they are read and shown correctly */
+    function mixed(str) {
+      str = String(str);
+      var re = EN ? (isCJK ? /[\u3040-\u30ff\u3400-\u9fff々〜ー]+/g : null) : (pack.lang === 'en' ? /[A-Za-z][A-Za-z'’\-]*(?:[ ,.!?…]+[A-Za-z][A-Za-z'’\-]*)*/g : pack.lang === 'ja' ? /[\u3040-\u30ffー]+/g : null);
+      if (!re) return [str];
+      var out = [], i = 0, m;
+      while ((m = re.exec(str))) { if (m.index > i) out.push(str.slice(i, m.index)); out.push(tw(m[0])); i = re.lastIndex; }
+      if (i < str.length) out.push(str.slice(i));
+      return out;
+    }
+
+    /* ================= LEARN 1: picture walk ================= */
+    var LW = { page: 0, heard: {} };
+    function renderWalk() {
+      var pid = scene.pages[LW.page].id, sp = scene.pages[LW.page];
+      B.emit('view', { item: 'walk:' + pid });
+      var right = [];
+      if (!child()) right.push(h('div', { class: 'kb-card' }, [h('p', { class: 'kb-prompt', text: tx(sp, 'ask') }), h('p', { class: 'kb-note', text: L('先说，再点图上的东西听一听它的名字。正文后面再读，这一步不打分。', 'Say it first, then tap things in the picture to hear their names. The text comes later; nothing is scored here.') })]));
+      else right.push(h('div', { class: 'pb-adult' }, [h('b', { text: L('大人可以问', 'The adult can ask') }), tx(sp, 'ask')]));
+      right.push(spotWords(pid));
+      right.push(pager(LW.page, scene.pages.length, function (k) { LW.page = k; render(); }, LW.page === scene.pages.length - 1 ? [nextStepBtn()] : []));
+      body.append(pageView(pic(pid, { spots: true, heard: LW.heard }), right));
+    }
+
+    /* ================= LEARN 2: listen and follow, then find a word ================= */
+    var LL = { page: 0, run: 0, find: null, found: {} };
+    function renderListen() {
+      var p = LL.page, pid = scene.pages[p].id, list = learnToks(p), runId = ++LL.run;
+      var finding = LL.find && LL.find.page === p ? LL.find : null;
+      var txt = textEl(list, 'learn', { rest: 'show', aid: function () { return 'show'; },
+        cls: function (t) { return finding && finding.hit === t.i ? 'hit' : finding && finding.miss === t.i ? 'miss' : ''; },
+        onTap: function (t) {
+          if (!finding || finding.done) { say(t.clean); B.emit('select', { item: 'word:' + pid + ':' + t.i, heard: true }); return; }
+          var target = list.findIndex(function (x) { return matchFind(x, finding.f); });
+          var ok = t.i === target;
+          B.attempt('find:' + pid + ':' + finding.f.w, { correct: ok, response: t.clean });
+          if (ok) { finding.hit = t.i; finding.done = true; LL.found[pid + finding.f.w] = true; } else { finding.miss = t.i; say(finding.f.say || finding.f.w); }
+          render();
+        } });
+      var btns = h('div', { class: 'pb-row' }, [
+        h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { readAlong(txt, list, runId); } }, [icon('speaker'), L(' 读这一页', ' Read this page')]),
+        h('button', { class: 'kb-btn', type: 'button', onclick: function () {
+          var left = pack.pages[p].find.filter(function (f) { return !LL.found[pid + f.w]; });
+          if (!left.length) { LL.find = { page: p, f: pack.pages[p].find[0], done: true, all: true }; render(); return; }
+          var f = left[Math.floor(Math.random() * left.length)];
+          LL.find = { page: p, f: f }; say(f.say || f.w); B.emit('view', { item: 'find:' + pid + ':' + f.w }); render();
+        } }, L('找一个词', 'Find a word')),
+        finding && !finding.done ? h('button', { class: 'speak-btn', type: 'button', onclick: function () { say(finding.f.say || finding.f.w); } }, [icon('speaker'), L(' 再听一次', ' Hear it again')]) : null
+      ]);
+      var msg = null;
+      if (finding) {
+        if (finding.all) msg = fb(L('这一页的词都找到了。', 'All the words on this page are found.'));
+        else if (finding.done) msg = fb(child() ? L('找到了！', 'Found it!') : L('找到了。', 'Found it.') + (B.status('find:' + pid + ':' + finding.f.w) === 'wrong' ? L('（第一次点错了，已记下）', ' (the first tap was wrong; that is recorded)') : ''));
+        else msg = fb(finding.miss != null ? (child() ? L('再听听，找一找。', 'Listen again and look.') : L('不是这个词。再听一次，再找。', 'Not that word. Listen again and look.')) : L('听，然后点出这个词。', 'Listen, then tap the word.'), finding.miss != null ? 'warn' : '');
+      }
+      body.append(pageView(pic(pid), [h('div', { class: 'kb-card' }, [txt, btns, msg,
+        pager(p, scene.pages.length, function (k) { LL.page = k; LL.find = null; render(); }, p === scene.pages.length - 1 ? [nextStepBtn()] : [])])]));
+    }
+    function matchFind(t, f) { var w = f.w.toLowerCase(), c = t.clean.toLowerCase(); return c === w || (isCJK && c.indexOf(w) === 0); }
+    function readAlong(el, list, runId) {
+      B.emit('view', { item: 'read-along' });
+      var spans = el.querySelectorAll('.pb-tok');
+      list.reduce(function (pr, t, i) {
+        return pr.then(function () {
+          if (runId !== LL.run) return;
+          spans.forEach(function (s) { s.classList.remove('now'); }); spans[i].classList.add('now');
+          var r = say(t.clean);
+          return r ? Promise.race([r, sleep(2500)]) : sleep(550);
+        });
+      }, Promise.resolve()).then(function () { if (runId === LL.run) spans.forEach(function (s) { s.classList.remove('now'); }); });
+    }
+
+    /* ================= LEARN 3: decode the target words ================= */
+    var LD = { i: 0, s: {} };
+    function dState(id) { return LD.s[id] || (LD.s[id] = { pick: null, done: false, hinted: false, revealed: false }); }
+    function renderDecode() {
+      var tg = pack.targets[LD.i], S = dState(tg.id), key = 'decode:' + tg.id;
+      var top = child() ? h('div', { class: 'pb-dots', 'aria-label': L('第 ' + (LD.i + 1) + ' 个，共 ' + pack.targets.length + ' 个', 'Word ' + (LD.i + 1) + ' of ' + pack.targets.length) }, pack.targets.map(function (_, k) { return h('span', { class: k <= LD.i ? 'on' : '' }); })) :
+        h('div', { class: 'pb-chips' }, pack.targets.map(function (x, k) { return h('button', { type: 'button', lang: pack.lang, class: band === 'youth' ? (B.status('decode:' + x.id) || '') : '', 'aria-pressed': k === LD.i ? 'true' : 'false', onclick: function () { LD.i = k; render(); } }, x.w); }));
+      var opt = options(tg, key, S, function () { render(); });
+      var card = h('div', { class: 'kb-card', style: 'max-width:640px;margin:0 auto' }, [top,
+        h('p', { class: 'pb-word', lang: pack.lang, text: tg.w }),
+        ruleBox(tg, false),
+        S.hinted ? h('p', { class: 'pb-hint', lang: pack.lang, text: tg.hint.show }) : null,
+        S.hinted && !child() ? h('p', { class: 'kb-note', style: 'text-align:center' }, mixed(tx(tg.hint, 'note'))) : null,
+        S.revealed && !S.done ? h('p', { class: 'pb-hint', lang: pack.lang, text: tg.r || tg.w }) : null,
+        h('p', { class: 'kb-note', text: opt.audio ? L('点每个按钮听一听，选出这个词的读音，再按“就是它”。', 'Press each button to hear it, choose the one that is this word, then press "That\'s it".') : L('先在心里或小声读一遍，再选。', 'Read it to yourself first, then choose.') }),
+        opt.el,
+        h('div', { class: 'pb-row' }, [
+          S.done ? null : h('button', { class: 'kb-btn primary', type: 'button', disabled: S.pick === null, onclick: function () {
+            var op = opt.order[S.pick];
+            B.attempt(key, { correct: !!op.ok, response: op.t || op.say });
+            S.done = true; S.ok = !!op.ok; S.msg = judgeMsg(op, op.ok, S.hinted || S.revealed, tg);
+            say(tg.say); render();
+          } }, L('就是它', 'That\'s it')),
+          S.done || S.hinted ? null : h('button', { class: 'kb-btn', type: 'button', onclick: function () { S.hinted = true; B.hint(key, 1); render(); } }, L('拆开看看', 'Split it up')),
+          !S.done && S.hinted && !S.revealed ? h('button', { class: 'kb-btn', type: 'button', onclick: function () { S.revealed = true; B.reveal(key); say(tg.say); render(); } }, L('还是读不出：听答案', 'Still stuck: hear the answer')) : null,
+          S.done ? h('button', { class: 'speak-btn', type: 'button', onclick: function () { say(tg.say); } }, [icon('speaker'), L(' 再听', ' Listen again')]) : null,
+          S.done && !S.ok ? h('button', { class: 'kb-btn', type: 'button', onclick: function () { S.done = false; S.pick = null; ORDER[key] = null; render(); } }, L('再试一次（算重试）', 'Try again (counts as a retry)')) : null
+        ]),
+        S.done ? fb(S.msg, S.ok ? '' : 'warn') : null,
+        S.done ? ruleBox(tg, true) : null,
+        S.done ? h('div', { class: 'pb-row' }, [LD.i < pack.targets.length - 1 ? h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { LD.i += 1; render(); } }, L('下一个词', 'Next word')) : nextStepBtn()]) : null
+      ]);
+      body.append(card);
+    }
+
+    /* ================= LEARN 4: reread with the aids fading ================= */
+    var LF = null;
+    function initFade() {
+      LF = { round: 1, page: 0, peek: {}, checked: {}, cs: {}, state: {}, indep: {}, withAid: {}, noAid: {} };
+      pack.targets.forEach(function (tg) { LF.state[tg.id] = B.status('decode:' + tg.id) === 'independent' ? 'peek' : 'show'; LF.indep[tg.id] = []; });
+      LF.start = onCount();
+    }
+    function onCount() { return pack.targets.filter(function (tg) { return LF.state[tg.id] !== 'off'; }).length; }
+    function renderFade() {
+      if (!LF) initFade();
+      var p = LF.page, pid = scene.pages[p].id, list = learnToks(p), R = LF.round;
+      var isListen = pack.aid === 'listen';
+      var txt = textEl(list, 'learn', { rest: 'show', make: function (t) {
+        if (t.kind !== 'target' || !t.target) return tokEl(t, { rest: 'show', aid: function () { return 'show'; } });
+        var id = t.target.id, stt = LF.state[id], seen = LF.peek[id + ':' + R];
+        if (isListen) {
+          var el = tokEl(t, { rest: 'show', aid: function () { return 'show'; } });
+          if (stt !== 'off') el.append(h('button', { class: 'pb-aidbtn' + (stt === 'peek' ? ' faint' : ''), type: 'button', 'aria-label': L('听这个词（记为看过注音）', 'Hear this word (recorded as using the aid)'),
+            onclick: function () { say(t.target.say); if (!seen) { LF.peek[id + ':' + R] = true; B.hint('fade:' + id + ':r' + R, 1); } } }, [icon('speaker')]));
+          return el;
+        }
+        var mode = stt === 'show' || seen ? 'show' : stt === 'peek' ? 'peek' : 'off';
+        if (mode === 'peek') return tokEl(t, { rest: 'show', aid: function () { return 'peek'; }, cls: function () { return 'pb-peek'; },
+          onTap: function () { LF.peek[id + ':' + R] = true; B.hint('fade:' + id + ':r' + R, 1); render(); } });
+        return tokEl(t, { rest: 'show', aid: function () { return mode; } });
+      } });
+      // spot check: targets on this page not yet checked in this round, aid covered before answering
+      var pending = list.filter(function (t) { return t.kind === 'target' && t.target; }).map(function (t) { return t.target; })
+        .filter(function (tg, k, arr) { return arr.indexOf(tg) === k && !LF.checked[tg.id + ':' + R]; });
+      var check = null;
+      if (pending.length) {
+        var tg = pending[0], key = 'fade:' + tg.id + ':r' + R, S = LF.cs[key] || (LF.cs[key] = { pick: null, done: false });
+        var opt = options(tg, key, S, function () { render(); });
+        check = h('div', { class: 'kb-card', style: 'margin-top:12px' }, [
+          h('p', { class: 'kb-prompt', text: child() ? L('这个词怎么读？', 'How does this word sound?') : L('抽查（注音先盖住）：这个词怎么读？', 'Spot check (aid covered): how does this word sound?') }),
+          h('p', { class: 'pb-word', lang: pack.lang, style: 'font-size:2.4rem', text: tg.w }), opt.el,
+          h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', disabled: S.pick === null, onclick: function () {
+            var op = opt.order[S.pick], ok = !!op.ok, before = LF.state[tg.id], seen = LF.peek[tg.id + ':' + R], aided = before === 'show' || seen;
+            if (before === 'show' && !seen) B.hint(key, 1);          // the aid was showing while reading: not independent
+            B.attempt(key, { correct: ok, response: op.t || op.say, aidShown: before === 'show', peeked: !!seen });
+            if (ok && !aided) { LF.indep[tg.id].push(R); LF.noAid[tg.id] = true; LF.state[tg.id] = LF.indep[tg.id].length >= 2 ? 'off' : 'peek'; }
+            else if (ok) { LF.withAid[tg.id] = true; LF.state[tg.id] = 'peek'; }
+            else LF.state[tg.id] = 'show';
+            LF.checked[tg.id + ':' + R] = true;
+            LF.last = { w: tg.w, ok: ok, aided: aided, state: LF.state[tg.id], msg: judgeMsg(op, ok, aided, tg) };
+            say(tg.say); render();
+          } }, L('就是它', 'That\'s it'))])
+        ]);
+      }
+      var last = LF.last ? fb(LF.last.msg.concat(child() ? [] : [L('', ' ') + L('「', 'The aid for "'), tw(LF.last.w), LF.last.state === 'off' ? L('」的注音撤掉了。', '" is gone now.') : LF.last.state === 'show' ? L('」的注音先放回来。', '" comes back for now.') : L('」的注音下一轮默认藏起来，要看就点。', '" is hidden next round; tap to peek.')]), LF.last.ok ? '' : 'warn') : null;
+      var counter = h('p', { class: 'pb-count' }, child() ?
+        [L('不用帮忙的词：', 'Words that need no help now: '), h('b', { lang: pack.lang, text: pack.targets.filter(function (x) { return LF.state[x.id] === 'off'; }).map(function (x) { return x.w; }).join(isCJK ? '、' : ', ') || '—' })] :
+        [L('第 ' + R + ' 轮。还带' + aidName + '的目标词：', 'Round ' + R + '. Target words still with ' + aidName + ': '), h('b', { text: L('开始 ' + LF.start + ' 个，现在 ' + onCount() + ' 个', LF.start + ' at the start, ' + onCount() + ' now') })]);
+      var lists = child() ? null : h('div', { class: 'pb-two', style: 'margin-top:10px' }, [
+        h('div', {}, [h('h4', { text: L('靠注音读对', 'Read with the aid') }), h('span', { lang: pack.lang, text: Object.keys(LF.withAid).filter(function (id) { return !LF.noAid[id]; }).map(function (id) { return pack.targets.find(function (x) { return x.id === id; }).w; }).join(isCJK ? '、' : ', ') || '—' })]),
+        h('div', {}, [h('h4', { text: L('没有注音读对', 'Read without the aid') }), h('span', { lang: pack.lang, text: Object.keys(LF.noAid).map(function (id) { return pack.targets.find(function (x) { return x.id === id; }).w + ' ×' + LF.indep[id].length; }).join(isCJK ? '、' : ', ') || '—' })])]);
+      var endRound = p === scene.pages.length - 1 && !pending.length ? h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { LF.round += 1; LF.page = 0; LF.last = null; B.emit('view', { item: 'fade-round', round: LF.round }); render(); } }, L('从头再读一遍（第 ' + (R + 1) + ' 轮）', 'Read it again from the start (round ' + (R + 1) + ')')) : null;
+      var note = isListen ? L('注音在这里是词旁边的小喇叭按钮：按了就算看过注音。', 'Here the aid is the small speaker button next to a word: pressing it counts as using the aid.') : L('虚线框里的词' + aidName + '藏起来了，读不出来可以点开偷看（会记下来）。', 'In dashed boxes the ' + aidName + ' is hidden; tap to peek if you need it (it is recorded).');
+      body.append(pageView(pic(pid), [h('div', { class: 'kb-card' }, [counter, txt, child() ? null : h('p', { class: 'kb-note', text: note }), last, check,
+        pager(p, scene.pages.length, function (k) { LF.page = k; LF.last = null; render(); }, [endRound, R > 1 && p === scene.pages.length - 1 ? nextStepBtn() : null]), lists])]));
+    }
+
+    /* ================= LEARN 5: the reverse half: the same words somewhere new ================= */
+    var LR = { i: 0, s: {} };
+    function renderReverse() {
+      var item = pack.reverse[LR.i], tg = pack.targets.find(function (x) { return x.id === item.target; }), key = 'reverse:' + tg.id;
+      var S = LR.s[key] || (LR.s[key] = { pick: null, done: false, heard: false });
+      var list = toks(item.tokens, 'V' + LR.i);
+      var sent = textEl(list, 'learn', { rest: 'show', aid: function () { return 'off'; }, cls: function (t) { return t.kind === 'target' ? 'focus' : ''; } });
+      var opt = options(tg, key, S, function () { render(); });
+      var inBook = B.status('decode:' + tg.id);
+      body.append(h('div', { class: 'kb-card', style: 'max-width:720px;margin:0 auto' }, [
+        h('p', { class: 'kb-note', text: L('第 ' + (LR.i + 1) + ' / ' + pack.reverse.length + ' 句 · 没有图', 'Sentence ' + (LR.i + 1) + ' of ' + pack.reverse.length + ' · no picture') }),
+        sent, h('p', { class: 'kb-prompt', text: L('标出来的词怎么读？', 'How does the marked word sound?') }),
+        band === 'adult' && tg.rule ? h('details', { class: 'pb-brief', style: 'margin:4px 0 8px' }, [h('summary', { text: L('需要时看规律（不算提示）', 'The pattern, if you want it (not counted as a hint)') }), h('p', {}, mixed(tx(tg, 'rule')))]) : null,
+        opt.el,
+        h('div', { class: 'pb-row' }, [
+          S.done ? null : h('button', { class: 'kb-btn primary', type: 'button', disabled: S.pick === null, onclick: function () {
+            var op = opt.order[S.pick]; B.attempt(key, { correct: !!op.ok, response: op.t || op.say });
+            S.done = true; S.ok = !!op.ok; S.msg = judgeMsg(op, op.ok, S.heard, tg);
+            if (!child() && !op.ok && (inBook === 'independent' || inBook === 'assisted')) S.msg = S.msg.concat(L('', ' ') + L('在书里你读对了这个词，换了句子却没认出来：书里可能是记住的。', 'You read this word right in the book but not here: in the book it may have been remembered.'));
+            say(list.map(function (t) { return t.clean; }).join(isCJK ? '' : ' ')); render();
+          } }, L('就是它', 'That\'s it')),
+          S.done || S.heard ? null : h('button', { class: 'kb-btn', type: 'button', onclick: function () { S.heard = true; B.hint(key, 1); say(list.map(function (t) { return t.clean; }).join(isCJK ? '' : ' ')); render(); } }, L('先听整句（记为有帮助）', 'Hear the sentence first (counts as help)'))
+        ]),
+        S.done ? fb(S.msg, S.ok ? '' : 'warn') : null,
+        S.done ? h('div', { class: 'pb-row' }, [!S.ok ? h('button', { class: 'kb-btn', type: 'button', onclick: function () { S.done = false; S.pick = null; ORDER[key] = null; render(); } }, L('再试一次（算重试）', 'Try again (counts as a retry)')) : null, LR.i < pack.reverse.length - 1 ? h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { LR.i += 1; render(); } }, L('下一句', 'Next sentence')) : null]) : null,
+        S.done && LR.i === pack.reverse.length - 1 ? reverseSummary() : null
+      ]));
+    }
+    function reverseSummary() {
+      if (child()) return fb(L('读完了。哪些词在新句子里也认出来了，大人可以在“给大人看的记录”里看到。', 'All done. The adult can see in "Record for the adult" which words were read in the new sentences too.'));
+      var both = [], bookOnly = [];
+      pack.targets.forEach(function (tg) {
+        var a = B.status('decode:' + tg.id), b = B.status('reverse:' + tg.id);
+        if (a === 'independent' && b === 'independent') both.push(tg.w); else if ((a === 'independent' || a === 'assisted') && b === 'wrong') bookOnly.push(tg.w);
+      });
+      return h('div', { class: 'pb-two', style: 'margin-top:10px' }, [
+        h('div', {}, [h('h4', { text: L('书里和新句子里都独立读对', 'Read alone in the book and in new sentences') }), h('span', { lang: pack.lang, text: both.join(isCJK ? '、' : ', ') || '—' })]),
+        h('div', {}, [h('h4', { text: L('只在书里读对', 'Only read right in the book') }), h('span', { lang: pack.lang, text: bookOnly.join(isCJK ? '、' : ', ') || '—' })])]);
+    }
+
+    /* ================= READ 1: predict (cover, pages 1–2, before page 3) ================= */
+    var RP = { stage: 0, pick: {}, basis: {}, locked: {} };
+    var PRED = [];        // {at, choice, basis, hasBasis}
+    function predictCard(pr, onLocked) {
+      var at = pr.at, P = RP;
+      var choices = tx(pr, 'choices').map(fill);
+      if (P.locked[at]) {
+        var rec = P.locked[at];
+        return h('div', { class: 'kb-card' }, [h('p', { class: 'kb-prompt', text: fill(tx(pr, 'q')) }),
+          h('div', { class: 'pb-two' }, [h('div', {}, [h('h4', { text: L('你猜的', 'Your guess') }), choices[rec.choice]]), h('div', {}, [h('h4', { text: L('你的根据', 'Your reason') }), L(BASIS[rec.basis].zh, BASIS[rec.basis].en)])]),
+          pr.book ? h('div', { class: 'pb-two', style: 'margin-top:8px' }, [h('div', { style: 'grid-column:1/3' }, [h('h4', { text: L('书里接下来', 'What the book does next') }), fill(tx(pr, 'book'))])]) : null,
+          fb(BASIS[rec.basis].id === 'none' ? L('记下了：这一次没有说出根据。下一次试着指出图上或前面读到的线索。', 'Noted: no reason this time. Next time, try pointing to a clue in the picture or in what you read.') : L('记下了：有根据的猜测。猜得和书一样不一样，都不算对错。', 'Noted: a guess with a reason. Whether it matches the book is not marked right or wrong.'))]);
+      }
+      return h('div', { class: 'kb-card' }, [
+        h('p', { class: 'kb-prompt', text: fill(tx(pr, 'q')) }),
+        h('div', { class: 'pb-bets' }, choices.map(function (c, k) { return h('button', { type: 'button', 'aria-pressed': P.pick[at] === k ? 'true' : 'false', onclick: function () { P.pick[at] = k; render(); } }, c); })),
+        h('p', { class: 'kb-note', style: 'margin-top:10px', text: L('你凭什么这么猜？', 'What is your guess based on?') }),
+        h('div', { class: 'pb-chips' }, BASIS.filter(function (b) { return at === 'cover' ? b.id !== 'earlier' : b.id !== 'title'; }).map(function (b) {
+          var k = BASIS.indexOf(b);
+          return h('button', { type: 'button', 'aria-pressed': P.basis[at] === k ? 'true' : 'false', onclick: function () { P.basis[at] = k; render(); } }, L(b.zh, b.en));
+        })),
+        h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', disabled: P.pick[at] == null || P.basis[at] == null, onclick: function () {
+          var rec = { at: at, choice: P.pick[at], basis: P.basis[at], hasBasis: BASIS[P.basis[at]].id !== 'none' };
+          P.locked[at] = rec; PRED.push(rec);
+          B.emit('submit', { item: 'predict:' + at, choice: choices[rec.choice], basis: BASIS[rec.basis].id, hasBasis: rec.hasBasis, scored: false });
+          if (onLocked) onLocked(); render();
+        } }, L('猜定了', 'Lock in my guess'))])
+      ]);
+    }
+    function renderPredict() {
+      var stage = RP.stage;       // 0 cover, 1 page 1, 2 page 2 + guess before page 3
+      if (stage === 0) {
+        body.append(pageView(h('div', {}, [pic('cover'), h('p', { class: 'pb-title', lang: pack.lang, text: pack.bookTitle })]), [predictCard(scene.predict[0]),
+          RP.locked.cover ? h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { RP.stage = 1; render(); } }, L('翻开第 1 页', 'Open page 1'))]) : null]));
+        return;
+      }
+      var p = stage - 1, pid = scene.pages[p].id;
+      var right = [h('div', { class: 'kb-card' }, [textEl(readToks(p), 'read', { rest: 'none', aid: function () { return 'none'; } })])];
+      if (stage === 1) right.push(h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { RP.stage = 2; render(); } }, L('第 2 页', 'Page 2'))]));
+      else {
+        right.push(h('div', { style: 'margin-top:12px' }, [predictCard(scene.predict[1])]));
+        if (RP.locked.p3) right.push(h('div', { class: 'pb-row' }, [nextStepBtn(L('开始一口气读完', 'Start reading straight through'))]));
+      }
+      body.append(pageView(pic(pid), right));
+    }
+
+    /* ================= READ 2: read straight through, mark and guess ================= */
+    var RR = { page: 0, marks: {}, edit: null, listened: {}, showAid: false };
+    function renderRead() {
+      var p = RR.page, pid = scene.pages[p].id, list = readToks(p);
+      var junction = scene.predict.find(function (x) { return x.at === (scene.pages[p + 1] || {}).id; });
+      var txt = textEl(list, 'read', { rest: 'none', aid: function (t) { return t.kind === 'new' && RR.showAid ? 'show' : 'none'; },
+        cls: function (t) { return RR.marks[pid + ':' + t.i] ? 'marked' : (RR.edit === t.i ? 'focus' : ''); },
+        onTap: function (t) { RR.edit = t.i; B.emit('select', { item: 'token:' + pid + ':' + t.i }); render(); } });
+      var edit = null;
+      if (RR.edit != null) {
+        var t = list[RR.edit], mk = RR.marks[pid + ':' + t.i];
+        var inp = h('input', { type: 'text', 'aria-label': L('你猜的意思', 'Your guess at the meaning'), placeholder: L('你猜它是什么意思？', 'What do you guess it means?'), value: mk ? mk.guess : '' });
+        edit = h('div', { class: 'pb-edit' }, [
+          h('p', { style: 'margin:0 0 6px' }, [L('挡路的词：', 'The word that stops you: '), h('b', { lang: pack.lang, text: t.clean })]), inp,
+          h('div', { class: 'pb-row' }, [
+            h('button', { class: 'kb-btn primary', type: 'button', onclick: function () {
+              var g = inp.value.trim();
+              RR.marks[pid + ':' + t.i] = { page: pid, i: t.i, text: t.clean, guess: g, word: t.word ? t.word.id : null, listened: !!RR.listened[pid] };
+              B.emit('highlight', { item: 'mark:' + pid + ':' + t.i, word: t.clean, guess: g, assisted: !!RR.listened[pid] }); RR.edit = null; render();
+            } }, L('标上，接着读', 'Mark it and read on')),
+            mk ? h('button', { class: 'kb-btn', type: 'button', onclick: function () { delete RR.marks[pid + ':' + t.i]; B.emit('revise', { item: 'mark:' + pid + ':' + t.i, removed: true }); RR.edit = null; render(); } }, L('取消标记', 'Unmark')) : null,
+            h('button', { class: 'kb-btn', type: 'button', onclick: function () { RR.edit = null; render(); } }, L('算了', 'Never mind'))])]);
+      }
+      var right = [h('div', { class: 'kb-card' }, [txt,
+        h('p', { class: 'kb-note', text: L('点任何一个挡住你的词，写下猜测。现在不查词。', 'Tap any word that stops you and write a guess. No looking up now.') }), edit,
+        h('div', { class: 'pb-row' }, [
+          h('button', { class: 'speak-btn', type: 'button', onclick: function () { if (!RR.listened[pid]) { RR.listened[pid] = true; B.emit('request_hint', { item: 'read:' + pid, readAloud: true }); } say(list.map(function (x) { return x.clean; }).join(isCJK ? '' : ' ')); } }, [icon('speaker'), L(' 听这一页（记为有帮助）', ' Hear this page (counts as help)')]),
+          isCJK ? h('label', { class: 'kb-variant' }, [h('input', { type: 'checkbox', checked: RR.showAid, onchange: function (e) { RR.showAid = e.target.checked; B.emit('highlight', { item: 'new-word-aid', on: RR.showAid }); render(); } }), L(' 新词上显示' + aidName, ' Show ' + aidName + ' on new words')]) : null])])];
+      if (junction && !RP.locked[junction.at]) {
+        right.push(h('div', { style: 'margin-top:12px' }, [predictCard(junction)]));
+        right.push(h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn', type: 'button', disabled: p === 0, onclick: function () { RR.page = p - 1; RR.edit = null; render(); } }, [icon('back'), L(' 上一页', ' Back')]), h('span', { class: 'kb-note', text: L('先猜，再翻页。', 'Guess first, then turn the page.') })]));
+      } else {
+        if (junction && RP.locked[junction.at]) right.push(h('div', { style: 'margin-top:12px' }, [predictCard(junction)]));
+        right.push(pager(p, scene.pages.length, function (k) { RR.page = k; RR.edit = null; render(); }, p === scene.pages.length - 1 ? [nextStepBtn(L('读完了：去核对猜的词', 'Finished: check the guesses'))] : []));
+      }
+      body.append(pageView(pic(pid), right));
+    }
+
+    /* ================= READ 3: check the guessed words ================= */
+    var RC = { i: 0, s: {} };
+    function renderCheck() {
+      var w = pack.words[RC.i], key = 'clue:' + w.id, S = RC.s[w.id] || (RC.s[w.id] = { pick: null, done: false, judged: null });
+      var p = pIdx(w.page), list = readToks(p);
+      var mark = Object.keys(RR.marks).map(function (k) { return RR.marks[k]; }).find(function (m) { return m.word === w.id; });
+      var sent = textEl(list, 'read', { rest: 'none', aid: function (t) { return t.word === w && RR.showAid ? 'show' : 'none'; }, cls: function (t) { return t.word === w ? 'focus' : ''; } });
+      var clues = CLUES.filter(function (c) { return c.id !== 'parts' || pack.lang !== 'en'; });
+      var card = h('div', { class: 'kb-card' }, [
+        child() ? h('div', { class: 'pb-dots' }, pack.words.map(function (_, k) { return h('span', { class: k <= RC.i ? 'on' : '' }); })) :
+          h('div', { class: 'pb-chips', style: 'margin-bottom:8px' }, pack.words.map(function (x, k) { return h('button', { type: 'button', lang: pack.lang, class: band === 'youth' ? (B.status('clue:' + x.id) || '') : '', 'aria-pressed': k === RC.i ? 'true' : 'false', onclick: function () { RC.i = k; render(); } }, x.w); })),
+        h('p', { class: 'kb-note', text: L('第 ' + (p + 1) + ' 页', 'Page ' + (p + 1)) }), sent,
+        h('p', {}, mark ? [L('你读的时候标了它，猜：', 'You marked it while reading and guessed: '), h('b', { text: mark.guess || L('（没写）', '(nothing written)') })] : L('你读的时候没有标它。', 'You did not mark it while reading.')),
+        band === 'adult' && RC.i === 0 && !S.done ? h('div', { class: 'pb-rule' }, [h('b', { text: L('先说清楚线索的种类', 'The kinds of clue, up front') }), h('p', { text: pack.lang === 'en' ?
+          L('线索有两种：图，和前后的话。还有一种词，这一页根本给不出意思，正确做法是去查。成人读者常常每个词都想查——这里练的是分清哪些可以不查。', 'There are two kinds of clue: the picture, and the words around it. Some words the page cannot explain at all; there the right move is to look them up. Adult readers tend to look up every word; this trains telling which ones you can leave.') :
+          L('线索有三种：图、前后的话、词里的字或部件。还有一种词，这一页根本给不出意思，正确做法是去查。成人读者常常每个词都想查——这里练的是分清哪些可以不查。', 'There are three kinds of clue: the picture, the words around it, and the characters or parts inside the word. Some words the page cannot explain at all; there the right move is to look them up. Adult readers tend to look up every word; this trains telling which ones you can leave.') })]) : null,
+        h('p', { class: 'kb-prompt' }, [L('是什么告诉你「', 'What tells you what "'), tw(w.w), L('」的意思？', '" means?')]),
+        h('div', { class: 'pb-bets' }, clues.map(function (c) {
+          var cls = S.done ? (w.clue.indexOf(c.id) >= 0 ? 'ok' : '') : '';
+          return h('button', { type: 'button', class: cls, disabled: S.done, style: S.done && w.clue.indexOf(c.id) >= 0 ? 'border-color:#2e8b57' : null, 'aria-pressed': S.pick === c.id ? 'true' : 'false', onclick: function () { S.pick = c.id; render(); } }, L(c.zh, c.en));
+        })),
+        S.done ? null : h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', disabled: !S.pick, onclick: function () {
+          var ok = w.clue.indexOf(S.pick) >= 0;
+          if (mark && mark.listened) B.hint(key, 1);
+          B.attempt(key, { correct: ok, response: S.pick, guessable: w.clue.indexOf('none') < 0 });
+          S.done = true; S.ok = ok; B.emit('reveal', { item: 'meaning:' + w.id }); render();
+        } }, L('看意思', 'Show the meaning'))])
+      ]);
+      if (S.done) {
+        var guessable = w.clue.indexOf('none') < 0;
+        var lead = S.ok ? (guessable ? L('对，线索就在这儿。', 'Yes, the clue is there.') : L('对：这个词这一页看不出来，该去查。', 'Right: this page cannot tell you this word; look it up.')) :
+          (S.pick === 'none' ? L('其实这一页有线索，可以猜：', 'Actually the page does give a clue here: ') : !guessable ? L('这一页其实看不出来。靠猜容易猜错，这种词要查：', 'This page does not really tell you. Guessing here goes wrong easily; this kind of word needs looking up: ') : L('线索在别的地方：', 'The clue is somewhere else: '));
+        card.append(fb([lead.replace(/\s+$/, '') + L('', ' ')].concat(mixed(tx(w, 'why'))), S.ok ? '' : 'warn'),
+          h('div', { class: 'pb-two', style: 'margin-top:8px' }, [h('div', {}, [h('h4', { text: L('你的猜测', 'Your guess') }), mark && mark.guess ? mark.guess : '—']),
+            h('div', {}, [h('h4', { text: L('意思', 'Meaning') }), h('span', { lang: pack.lang, text: w.w + (w.r ? ' (' + w.r + ')' : '') }), ' — ', tx(w, 'gloss')])]),
+          h('div', { class: 'pb-row' }, [h('button', { class: 'speak-btn', type: 'button', onclick: function () { say(w.w); } }, [icon('speaker'), L(' 听这个词', ' Hear the word')])]));
+        if (mark && mark.guess && !S.judged) card.append(h('p', { class: 'kb-note', text: L('对照一下你的猜测（自评，不算答对）：', 'Compare with your guess (self-rated, not counted as correct):') }),
+          h('div', { class: 'pb-row' }, (child() ? [['一样', 'right', 'The same'], ['差不多', 'close', 'Nearly'], ['不一样', 'off', 'Different']] : [['猜对了', 'right', 'My guess was right'], ['接近', 'close', 'Close'], ['猜错了', 'off', 'Wrong']]).map(function (o) {
+            return h('button', { class: 'kb-btn', type: 'button', onclick: function () { S.judged = o[1]; B.attempt('guess:' + w.id, { selfReport: true, correct: o[1] === 'right', response: o[1] }); render(); } }, L(o[0], o[2]));
+          })));
+        else if (S.judged) card.append(h('p', { class: 'kb-note', text: L('自评已记下。', 'Self-rating recorded.') }));
+        card.append(h('div', { class: 'pb-row' }, [RC.i < pack.words.length - 1 ? h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { RC.i += 1; render(); } }, L('下一个词', 'Next word')) : nextStepBtn()]));
+        if (RC.i === pack.words.length - 1 && !child()) card.append(checkSummary());
+      }
+      body.append(pageView(pic(w.page), [card]));
+    }
+    function checkSummary() {
+      var timid = 0, bold = 0, gN = 0, nN = 0;
+      pack.words.forEach(function (w) {
+        var it = B.items().find(function (x) { return x.id === 'clue:' + w.id; }); if (!it || !it.first) return;
+        var g = w.clue.indexOf('none') < 0;
+        if (g) { gN++; if (it.first.response === 'none') timid++; } else { nN++; if (it.first.response !== 'none') bold++; }
+      });
+      return fb(L('能猜的词里，你有 ' + timid + ' / ' + gN + ' 个说“看不出来”；看不出来的词里，你有 ' + bold + ' / ' + nN + ' 个当成能猜。两边都少，才说明你会分。', 'Of the guessable words, you said "cannot tell" for ' + timid + ' of ' + gN + '; of the words that cannot be worked out, you treated ' + bold + ' of ' + nN + ' as guessable. Both should be low.'), timid || bold ? 'warn' : '');
+    }
+
+    /* ================= READ 4: inference, pointing to the page ================= */
+    var RI = { i: 0, s: {} };
+    function renderInfer() {
+      var q = scene.infer[RI.i], key = 'infer:' + q.id, S = RI.s[q.id] || (RI.s[q.id] = { opt: null, page: null, done: false });
+      var card = h('div', { class: 'kb-card' }, [
+        h('p', { class: 'kb-note', text: L('第 ' + (RI.i + 1) + ' / ' + scene.infer.length + ' 题', 'Question ' + (RI.i + 1) + ' of ' + scene.infer.length) }),
+        h('p', { class: 'kb-prompt', text: fill(tx(q, 'q')) }),
+        h('div', { class: 'pb-bets' }, (S.order || (S.order = shuffle(q.options.map(function (_, k) { return k; })))).map(function (k) { var o = q.options[k]; return h('button', { type: 'button', disabled: S.done, 'aria-pressed': S.opt === k ? 'true' : 'false', onclick: function () { S.opt = k; render(); } }, fill(tx(o, 't'))); })),
+        h('p', { class: 'kb-prompt', style: 'margin-top:12px', text: L('你的答案靠的是哪一页？', 'Which page does your answer rest on?') }),
+        h('div', { class: 'pb-thumbs', style: '--n:' + scene.pages.length }, scene.pages.map(function (pg, k) {
+          return h('button', { type: 'button', disabled: S.done, 'aria-pressed': S.page === pg.id ? 'true' : 'false', 'aria-label': L('第 ' + (k + 1) + ' 页', 'Page ' + (k + 1)), onclick: function () { S.page = pg.id; render(); } }, [pic(pg.id, { small: true }), h('span', { class: 'num', text: String(k + 1) })]);
+        })),
+        S.done ? null : h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', disabled: S.opt === null || !S.page, onclick: function () {
+          var okA = !!q.options[S.opt].ok, okP = q.pages.indexOf(S.page) >= 0;
+          B.attempt(key, { correct: okA && okP, response: { answer: tx(q.options[S.opt], 't'), page: S.page }, answerRight: okA, pageRight: okP });
+          S.done = true; S.okA = okA; S.okP = okP; render();
+        } }, L('核对', 'Check'))])
+      ]);
+      if (S.done) {
+        var msg = S.okA && S.okP ? L('对，证据就在那一页。', 'Yes, the evidence is on that page. ') : S.okA ? L('答案对了，但第 ' + (pIdx(S.page) + 1) + ' 页看不出这一点。', 'The answer is right, but page ' + (pIdx(S.page) + 1) + ' does not show it. ') : L('不是这样。', 'Not quite. ');
+        card.append(fb([msg].concat(mixed(fill(tx(q, 'why')))), S.okA && S.okP ? '' : 'warn'),
+          h('div', { class: 'pb-row' }, [RI.i < scene.infer.length - 1 ? h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { RI.i += 1; render(); } }, L('下一题', 'Next question')) : nextStepBtn()]));
+      }
+      body.append(card);
+      briefPage = S.page || q.pages[0];
+    }
+
+    /* ================= READ 5: retell from the pictures only ================= */
+    var RT = { words: [], text: '', checked: {}, judge: 'self', done: false };
+    function renderRetell() {
+      var lines = tx(scene, 'retell').map(fill);
+      var found = null;
+      if (RT.text.trim()) { var low = RT.text.toLowerCase(); found = RT.words.filter(function (id) { var w = pack.words.find(function (x) { return x.id === id; }); return low.indexOf(w.w.toLowerCase()) >= 0; }); }
+      var card = h('div', { class: 'kb-card' }, [
+        h('div', { class: 'pb-thumbs', style: '--n:' + scene.pages.length }, scene.pages.map(function (pg, k) { return h('div', { style: 'position:relative' }, [pic(pg.id, { small: true }), h('span', { class: 'num', text: String(k + 1), style: 'position:absolute;left:3px;top:3px;font-size:.72rem;background:var(--panel);border-radius:6px;padding:0 5px' })]); })),
+        h('p', { class: 'kb-prompt', style: 'margin-top:12px', text: L('选两三个新词，讲的时候用上：', 'Pick two or three new words to use as you tell it:') }),
+        h('div', { class: 'pb-chips' }, pack.words.map(function (w) {
+          var on = RT.words.indexOf(w.id) >= 0;
+          return h('button', { type: 'button', lang: pack.lang, disabled: RT.done, 'aria-pressed': on ? 'true' : 'false', onclick: function () { if (on) RT.words.splice(RT.words.indexOf(w.id), 1); else if (RT.words.length < 3) RT.words.push(w.id); render(); } }, w.w);
+        })),
+        h('p', { class: 'kb-note', style: 'margin-top:10px', text: L('讲给别人听，或者自己录下来听一遍。也可以写在这里（可以不写）：', 'Tell it to someone, or record yourself and listen back. You can also write it here (optional):') }),
+        (function () { var ta = h('textarea', { class: 'pb-text-in', lang: pack.lang, disabled: RT.done, 'aria-label': L('你的复述', 'Your retelling') }); ta.value = RT.text; ta.addEventListener('change', function () { RT.text = ta.value; render(); }); return ta; })(),
+        found ? h('p', { class: 'kb-note' }, [L('文字里找到的新词：', 'New words found in your text: '), found.length ? tw(found.map(function (id) { return pack.words.find(function (x) { return x.id === id; }).w; }).join(isCJK ? '、' : ', ')) : L('还没有', 'none yet')]) : null,
+        h('p', { class: 'kb-prompt', style: 'margin-top:12px', text: L('讲完以后对照这几条：', 'After telling it, check these points:') }),
+        h('div', {}, lines.map(function (t, k) { return h('label', { style: 'display:block;margin:6px 0' }, [h('input', { type: 'checkbox', checked: !!RT.checked[k], disabled: RT.done, onchange: function (e) { RT.checked[k] = e.target.checked; } }), ' ' + t]); })),
+        h('div', { class: 'pb-row' }, [h('span', { class: 'kb-note', text: L('谁来判断：', 'Judged by: ') }), h('div', { class: 'pb-pill', role: 'group' }, [['self', '我自己', 'Me'], ['partner', '听我讲的人', 'My listener']].map(function (o) {
+          return h('button', { type: 'button', disabled: RT.done, 'aria-pressed': RT.judge === o[0] ? 'true' : 'false', onclick: function () { RT.judge = o[0]; render(); } }, L(o[1], o[2]));
+        }))]),
+        h('p', { class: 'kb-note', text: L('页面听不到你讲，不给录音打分。这里记的是自评，和答对分开算。', 'The page cannot hear you and does not score recordings. This is recorded as self-report, separate from correct answers.') }),
+        RT.done ? fb(L('记下了（' + (RT.judge === 'self' ? '自评' : '听的人评') + '）。', 'Recorded (' + (RT.judge === 'self' ? 'self-rated' : 'rated by the listener') + ').')) :
+          h('div', { class: 'pb-row' }, [h('button', { class: 'kb-btn primary', type: 'button', disabled: RT.words.length < 2, onclick: function () {
+            var yes = lines.filter(function (_, k) { return RT.checked[k]; });
+            B.attempt('retell:' + pack.scene, { selfReport: true, correct: yes.length === lines.length, response: { checked: yes, judge: RT.judge, words: RT.words, typed: !!RT.text.trim(), wordsFoundInText: found } });
+            RT.done = true; render();
+          } }, L('记下', 'Record it')), RT.words.length < 2 ? h('span', { class: 'kb-note', text: L('先选至少两个新词。', 'Pick at least two new words first.') }) : null])
+      ]);
+      body.append(card);
+    }
+
+    /* ---------- the chooser ---------- */
+    function renderChooser() {
+      var c = st.chooser, rec = c.q2 === 'yes' ? 'read-to-learn' : c.q1 === 'yes' && c.q2 === 'no' ? 'learn-to-read' : c.q1 === 'no' && c.q2 === 'no' ? 'learn-to-read' : null;
+      function q(key, zh, en) {
+        return h('div', { class: 'pb-q' }, [h('p', { text: L(zh, en) }), h('div', { class: 'pb-pill', role: 'group' }, [['yes', '能', 'Yes'], ['no', '还不能', 'Not yet']].map(function (o) {
+          return h('button', { type: 'button', 'aria-pressed': c[key] === o[0] ? 'true' : 'false', onclick: function () { c[key] = o[0]; B.emit('select', { item: 'chooser:' + key, response: o[0] }); render(); } }, L(o[1], o[2]));
+        }))]);
+      }
+      var advice = !rec ? null : c.q1 === 'no' && c.q2 === 'no' ? fb(L('两样都还不行：先用耳朵。大人把故事读给他听、一起看图说话（就是“学认字”的第一步），等听得懂了再读。', 'Neither yet: start with the ears. An adult reads the story aloud and you talk about the pictures together (the first step of "Learning to read"); read once the story is understood by ear.'), 'warn') :
+        c.q1 === 'no' ? fb(L('能读出来但听不懂：用“借读书学语言”，并且多听这本书的朗读。', 'Can read the words out but not follow by ear: use "Reading to learn", and also listen to the book read aloud.'), 'warn') :
+        fb(rec === 'learn-to-read' ? L('听得懂、还读不出来：用“学认字”。', 'Understands by ear but cannot read it yet: use "Learning to read".') : L('能读出来：用“借读书学语言”。', 'Can read the words out: use "Reading to learn".'));
+      body.append(h('div', { class: 'pb-choose' }, [
+        h('div', { class: 'kb-card' }, [h('h2', { style: 'margin:0 0 6px;font-size:1.15rem', text: L('同一本书，两种不同的教法。先选一种。', 'One book, two different kinds of teaching. Choose one first.') }),
+          h('p', { class: 'kb-note', style: 'margin:0 0 10px', text: L('回答两个问题（说的是要读书的人）：', 'Answer two questions about the reader:') }),
+          q('q1', '把这个故事读给他听，他能听懂吗？', 'Can they follow the story when it is read aloud?'),
+          h('div', { style: 'height:8px' }),
+          q('q2', '书上的词，他能自己读出来吗？', 'Can they read the words out themselves?'), advice]),
+        h('div', { class: 'pb-modecards' }, [
+          h('button', { type: 'button', class: rec === 'learn-to-read' ? 'rec' : '', onclick: function () { goMode('learn-to-read'); } }, [h('b', { text: L('学认字', 'Learning to read') }),
+            L('听得懂、读不出：图上先说，听着指字，自己读几个词，注音慢慢撤，最后到新句子里认。', 'Understands by ear, cannot read it yet: talk about the pictures, follow the words as they are read, read a few words yourself, fade the aids, then read them in new sentences.'),
+            h('small', { text: L('常见：学龄儿童、会说不会读的华裔孩子、刚学新文字（假名、汉字、新字母）的任何年龄。', 'Typical: school-age children, heritage children who speak but do not read, and anyone meeting a new script.') })]),
+          h('button', { type: 'button', class: rec === 'read-to-learn' ? 'rec' : '', onclick: function () { goMode('read-to-learn'); } }, [h('b', { text: L('借读书学语言', 'Reading to learn') }),
+            L('读得出、词和理解跟不上：先预测，一口气读完并标出生词，再核对猜测、推断书上没写的、看图复述。', 'Can read the words, but vocabulary and understanding lag: predict, read straight through marking new words, then check guesses, infer what is not written, and retell from the pictures.'),
+            h('small', { text: L('常见：文字和母语接近的识字学习者，以及过了解码阶段的人。', 'Typical: literate learners whose script is close to their own, and anyone past decoding.') })])
+        ])
+      ]));
+    }
+
+    /* ---------- adult unit: a self-set goal and a time box (5 / 10 / 15 minutes); nothing is blocked when time is up ---------- */
+    var UNIT = {}, unitTimer = null;
+    var GOALS = {
+      'learn-to-read': [['signs', '读得出回家路上的招牌和时刻表', 'Read the signs and timetables on my way home'], ['patterns', '弄清这几条拼写／字形规律', 'Get these spelling or character patterns clear']],
+      'read-to-learn': [['gist', '一口气读完，说得出发生了什么', 'Read it straight through and say what happened'], ['triage', '分清哪些词能猜、哪些要查', 'Tell which words to guess and which to look up']]
+    };
+    function unitBar() {
+      var U = UNIT[st.mode] || (UNIT[st.mode] = { goal: null, own: '', mins: 10, start: null, editing: true });
+      if (U.editing) {
+        var own = h('input', { type: 'text', 'aria-label': L('我自己的目标', 'My own goal'), placeholder: L('或者写下你自己的目标', 'or write your own goal'), value: U.own });
+        return h('div', { class: 'kb-card', style: 'margin-bottom:10px' }, [
+          h('p', { class: 'kb-prompt', style: 'margin-top:0', text: L('这一小段想做到什么？', 'What do you want to get done in this short unit?') }),
+          h('div', { class: 'pb-chips' }, GOALS[st.mode].map(function (g) { return h('button', { type: 'button', 'aria-pressed': U.goal === g[0] ? 'true' : 'false', onclick: function () { U.goal = g[0]; U.own = own.value; render(); } }, L(g[1], g[2])); })),
+          h('div', { class: 'pb-unit', style: 'margin-top:8px' }, [own]),
+          h('div', { class: 'pb-unit', style: 'margin-top:8px' }, [h('span', { class: 'kb-note', text: L('给自己多少时间：', 'Time box: ') }), h('div', { class: 'pb-pill', role: 'group', 'aria-label': L('时间', 'Time') }, [5, 10, 15].map(function (m) {
+            return h('button', { type: 'button', 'aria-pressed': U.mins === m ? 'true' : 'false', onclick: function () { U.mins = m; U.own = own.value; render(); } }, L(m + ' 分钟', m + ' min'));
+          })),
+            h('button', { class: 'kb-btn primary', type: 'button', onclick: function () {
+              U.own = own.value.trim(); if (!U.goal && !U.own) { U.goal = GOALS[st.mode][0][0]; }
+              U.editing = false; if (!U.start) U.start = Date.now();
+              B.emit('select', { item: 'unit-goal:' + st.mode, goal: U.own || U.goal, minutes: U.mins }); render();
+            } }, L('开始', 'Start'))])]);
+      }
+      var used = Math.floor((Date.now() - U.start) / 60000);
+      var timeEl = h('span', { class: 'kb-note' });
+      function tick() { used = Math.floor((Date.now() - U.start) / 60000); timeEl.textContent = L('用了 ' + used + ' / ' + U.mins + ' 分钟', used + ' of ' + U.mins + ' min used') + (used >= U.mins ? L('——时间到了：可以停在这里看记录，也可以接着做。', ' — time is up: stop here and look at your record, or carry on.') : ''); }
+      tick(); if (unitTimer) clearInterval(unitTimer); unitTimer = setInterval(function () { if (document.body.contains(timeEl)) tick(); else clearInterval(unitTimer); }, 20000);
+      return h('div', { class: 'pb-unit', style: 'margin-bottom:8px' }, [h('span', {}, [h('b', { text: L('目标：', 'Goal: ') }), goalText(U)]), timeEl,
+        h('button', { class: 'kb-btn', type: 'button', onclick: function () { U.editing = true; render(); } }, L('改目标', 'Change goal'))]);
+    }
+    function goalText(U) { if (U.own) return U.own; var g = GOALS[st.mode].find(function (x) { return x[0] === U.goal; }); return g ? L(g[1], g[2]) : '—'; }
+    /* the pattern behind a target word: adults get it up front with a first-language comparison; teenagers see it after they have tried */
+    function ruleBox(tg, after) {
+      if (!tg.rule || child()) return null;
+      if (band === 'adult' && !after) return h('div', { class: 'pb-rule' }, [h('b', { text: L('规律（先告诉你，不算提示）', 'The pattern (told up front; not counted as a hint)') }), h('p', {}, mixed(tx(tg, 'rule'))),
+        tg.l1 ? h('b', { text: L('和你的母语比', 'Compared with your first language') }) : null, tg.l1 ? h('p', {}, mixed(tx(tg, 'l1'))) : null]);
+      if (band === 'youth' && after) return h('div', { class: 'pb-rule' }, [h('b', { text: L('你刚才用到的规律', 'The pattern you just used') }), h('p', {}, mixed(tx(tg, 'rule')))]);
+      return null;
+    }
+
+    /* ---------- record, brief, frame ---------- */
+    function record() {
+      var s = function (id) { return B.status(id); };
+      var items = [];
+      if (st.mode === 'learn-to-read') {
+        var dec = pack.targets.filter(function (x) { return s('decode:' + x.id) === 'independent'; }).length;
+        var rev = pack.targets.filter(function (x) { return s('reverse:' + x.id) === 'independent'; }).length;
+        var finds = B.items().filter(function (x) { return /^find:/.test(x.id) && x.first; });
+        items.push(L('找词：第一次就点对 ', 'Find a word: right first time ') + finds.filter(function (x) { return x.first.correct; }).length + ' / ' + finds.length);
+        items.push(L('自己读：独立读对 ', 'Read it yourself: right on your own ') + dec + ' / ' + pack.targets.length);
+        if (LF) items.push(L('没有注音读对：', 'Read without the aid: ') + (Object.keys(LF.noAid).length) + ' / ' + pack.targets.length + L('；注音已撤 ', '; aid gone for ') + pack.targets.filter(function (x) { return LF.state[x.id] === 'off'; }).length);
+        items.push(L('新句子里独立读对 ', 'Right on your own in new sentences ') + rev + ' / ' + pack.targets.length);
+      } else {
+        items.push(L('预测 ', 'Predictions ') + PRED.length + L('，其中有根据的 ', ', with a reason ') + PRED.filter(function (p) { return p.hasBasis; }).length);
+        items.push(L('读到第 ', 'Read up to page ') + (RR.page + 1) + L(' 页，标了 ', ', marked ') + Object.keys(RR.marks).length + L(' 个词', ' words'));
+        var clues = pack.words.filter(function (w) { return s('clue:' + w.id); });
+        items.push(L('线索判断第一次就对 ', 'Clue right first time ') + clues.filter(function (w) { var x = s('clue:' + w.id); return x === 'independent' || x === 'assisted'; }).length + ' / ' + clues.length);
+        items.push(L('推断（答案和页都对）', 'Inferences (answer and page right) ') + scene.infer.filter(function (q) { return s('infer:' + q.id) === 'independent'; }).length + ' / ' + scene.infer.length);
+        items.push(L('复述：', 'Retelling: ') + (RT.done ? L('已自评', 'self-rated') : L('还没做', 'not yet')));
+      }
+      if (st.mode === 'learn-to-read' && band === 'youth') {
+        var mine = pack.targets.filter(function (x) { return s('decode:' + x.id) === 'independent' || (LF && LF.state[x.id] === 'off'); }).map(function (x) { return x.w; });
+        items.push(L('现在不用帮忙就能读的：', 'Now read with no help: ') + (mine.join(isCJK ? '、' : ', ') || '—'));
+      }
+      if (band === 'adult') {
+        if (st.mode === 'learn-to-read') items = [
+          L('能自己读出的目标词：', 'Target words you can read on your own: ') + pack.targets.filter(function (x) { return s('decode:' + x.id) === 'independent'; }).length + ' / ' + pack.targets.length + L('（每个词一次第一次作答）', ' (one first attempt per word)'),
+          L('在没有图的真实文字里也读对的：', 'Also right in real print with no picture: ') + pack.targets.filter(function (x) { return s('reverse:' + x.id) === 'independent'; }).length + ' / ' + pack.targets.length,
+          L('已经撤掉注音的：', 'Aid already removed: ') + (LF ? pack.targets.filter(function (x) { return LF.state[x.id] === 'off'; }).length : 0) + ' / ' + pack.targets.length + L('（各要两次无注音读对，本次练习内）', ' (two aid-free right answers each, within this session)')];
+        var U = UNIT[st.mode];
+        if (U && !U.editing) items.push(L('目标：', 'Goal: ') + goalText(U) + L('；用时 ', '; time used ') + Math.floor((Date.now() - U.start) / 60000) + ' / ' + U.mins + L(' 分钟', ' min'));
+      }
+      return h('div', { class: 'pb-rec' }, [h('h4', { text: band === 'adult' ? L('这一段做到了什么', 'What this unit got done') : L('我的记录', 'My record') }), h('ul', {}, items.map(function (t) { return h('li', { text: t }); })),
+        h('p', { class: 'kb-note', text: L('这些是这次练习里的第一次作答；不是考试成绩，也说明不了“掌握”。', 'These are first attempts in this session; they are not an exam score and do not show mastery.') })]);
+    }
+    var ROLES = null, rolesTried = false;
+    function renderBrief() {
+      briefBox.innerHTML = '';
+      if (!st.mode) return;
+      var sp = briefPage === 'cover' ? scene.cover : scene.pages[pIdx(briefPage)], pp = briefPage === 'cover' ? null : pack.pages[pIdx(briefPage)];
+      var ib = sp.imageBrief;
+      var cmd = 'node blueprint/image-brief.js --role book-page --band ' + band + ' --setting "' + ib.setting + '" --characters "' + ib.characters.join('; ') + '" --facts "' + ib.facts.join('; ') + '"' + (ib.frame !== 'cover' ? ' --frame ' + ib.frame : '') + ' --change "' + ib.change + '" --aspect 4:3';
+      var promptBox = h('div', {});
+      function showPrompt() {
+        if (!ROLES || !window.KTImageBrief) return;
+        try {
+          var fr = ib.frame.split('/');
+          var out = KTImageBrief({ roles: ROLES }).brief({ role: 'book-page', band: band, setting: ib.setting, characters: ib.characters, facts: ib.facts, frame: fr.length === 2 ? { index: +fr[0], total: +fr[1], change: ib.change } : null, aspect: '4:3' });
+          promptBox.innerHTML = '';
+          promptBox.append(h('p', { style: 'margin:8px 0 2px', text: L('生成的提示词（英文，给图像模型）：', 'Generated prompt (English, for an image model):') }), h('pre', { text: out.prompt }),
+            h('p', { style: 'margin:8px 0 2px', text: L('收图前逐条核对：', 'Check every line before accepting a picture:') }), h('ul', {}, out.acceptance.map(function (a) { return h('li', { text: a }); })));
+        } catch (e) { /* role list unavailable */ }
+      }
+      var det = h('details', { class: 'pb-brief' }, [h('summary', { text: L('图片说明（给老师和开发者）：' + (briefPage === 'cover' ? '封面' : '第 ' + (pIdx(briefPage) + 1) + ' 页'), 'Picture brief (for teachers and builders): ' + (briefPage === 'cover' ? 'cover' : 'page ' + (pIdx(briefPage) + 1))) }),
+        h('p', { class: 'kb-note', text: L('想换成生成的插图时用：这些是 blueprint/image-brief.js 的输入（角色 book-page），用英文写，图里不放任何文字。数据包里给这一页加 "image": "图片地址"，页面就会用那张图代替手绘图。这个页面不调用任何图像服务。', 'For anyone who wants generated illustrations instead: these are the inputs for blueprint/image-brief.js (role book-page), written in English, with no text inside the picture. Add "image": "<url>" to this page in the data pack and the page shows that picture instead of the drawing. This page calls no image service.') }),
+        h('dl', {}, [h('dt', { text: L('场景', 'Setting') }), h('dd', { text: ib.setting }), h('dt', { text: L('人物', 'Characters') }), h('dd', { text: ib.characters.join('; ') }),
+          h('dt', { text: L('必须画出', 'Facts') }), h('dd', {}, [h('ul', { style: 'margin:0;padding-left:18px' }, ib.facts.map(function (f) { return h('li', { text: f }); }))]),
+          h('dt', { text: L('第几幅', 'Frame') }), h('dd', { text: ib.frame }), h('dt', { text: L('这一页的变化', 'Change') }), h('dd', { text: ib.change }),
+          h('dt', { text: L('现在用的图', 'Picture in use') }), h('dd', { text: pp && pp.image ? pp.image : L('手绘 SVG', 'hand-drawn SVG') })]),
+        h('pre', { text: cmd }), promptBox]);
+      det.addEventListener('toggle', function () {
+        if (!det.open) return;
+        B.emit('view', { item: 'picture-brief:' + briefPage });
+        if (ROLES) { showPrompt(); return; }
+        if (rolesTried || !window.fetch || location.protocol === 'file:') return;
+        rolesTried = true;          // optional: only when the block is served from the repo, so a lone copy of the block stays quiet
+        fetch('../curriculum/primitives/image-roles.en.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
+          ROLES = j;
+          if (window.KTImageBrief) { showPrompt(); return; }
+          var sc = document.createElement('script'); sc.src = '../blueprint/image-brief.js'; sc.onload = showPrompt; document.head.appendChild(sc);
+        }).catch(function () { /* not served next to the repo: the inputs and the command above are enough */ });
+      });
+      briefBox.append(det);
+    }
+    function goMode(m) {
+      st.mode = m; ui.setMode(m); B.emit('view', { mode: m });
+      try { var u = new URL(location.href); u.searchParams.set('mode', m); u.searchParams.delete('step'); history.replaceState(null, '', u); } catch (e) { /* ignore */ }
+      render();
+    }
+    function goStep(i) { st.step[st.mode] = i; B.emit('view', { mode: st.mode, step: STEPS[st.mode][i].id }); render(); window.scrollTo(0, 0); }
+    function render() {
+      LL.run += 1;
+      bar.innerHTML = ''; body.innerHTML = '';
+      var ev = drawerWrap.querySelector('summary'); if (ev) ev.textContent = child() ? L('给大人看的记录', 'Record for the adult') : L('学习证据', 'Learning evidence');
+      bar.append(h('span', { class: 'kb-note', text: L('声音来自浏览器的语音合成，只放音，不录音、不打分。', 'Sound comes from the browser\'s speech synthesis. It only plays; it does not record or score.') }));
+      if (!st.mode) { renderChooser(); renderBrief(); return; }
+      var steps = STEPS[st.mode], i = st.step[st.mode], S = steps[i];
+      st.visited[st.mode + i] = true;
+      // step navigation: the child follows the order the adult holds; youth and adults choose
+      if (child()) {
+        body.append(h('div', { class: 'pb-dots', 'aria-label': L('第 ' + (i + 1) + ' 步，共 ' + steps.length + ' 步', 'Step ' + (i + 1) + ' of ' + steps.length) }, steps.map(function (_, k) { return h('span', { class: k <= i ? 'on' : '' }); })));
+      } else {
+        body.append(h('nav', { class: 'pb-steps', 'aria-label': L('步骤', 'Steps') }, steps.map(function (x, k) {
+          return h('button', { type: 'button', class: st.visited[st.mode + k] && k !== i ? 'done' : '', 'aria-current': k === i ? 'step' : null, onclick: function () { goStep(k); } }, [h('span', { class: 'n', text: String(k + 1) }), x.label]);
+        }).concat(band === 'youth' ? [h('span', { class: 'kb-note', text: L('顺序你来定；建议按 1 到 5。', 'You choose the order; 1 to 5 is suggested.') })] : [])));
+      }
+      var head = h('div', { class: 'pb-head' });
+      if (child()) {
+        head.append(h('div', { class: 'pb-row', style: 'justify-content:center;margin:0' }, [
+          i > 0 ? h('button', { class: 'kb-btn', type: 'button', 'aria-label': L('上一步', 'Previous step'), onclick: function () { goStep(i - 1); } }, [icon('back')]) : null,
+          h('button', { class: 'kb-btn primary pb-say', type: 'button', 'aria-label': L('听：要做什么', 'Hear what to do'), onclick: function () { sayUI(S.instr); B.emit('view', { item: 'instruction:' + S.id }); } }, [icon('speaker'), ' ' + S.label]),
+          i < steps.length - 1 ? h('button', { class: 'kb-btn', type: 'button', 'aria-label': L('下一步', 'Next step'), onclick: function () { goStep(i + 1); } }, [icon('next')]) : null]),
+          h('div', { class: 'pb-adult' }, [h('b', { text: L('陪着的大人', 'For the adult alongside') }), S.adult, h('div', { class: 'kb-note', style: 'margin-top:4px', text: L('（孩子听到的说明：', '(What the child hears: ') + S.instr + L('）', ')') })]));
+      } else {
+        if (band === 'adult') head.append(unitBar());
+        head.append(h('h2', { text: (i + 1) + '. ' + S.label }), h('p', { style: 'margin:0', text: S.instr }));
+        if (st.mode === 'learn-to-read' && i === 0 && pack.learnNote) head.append(h('p', { class: 'pb-why' }, [h('b', { text: L('这一套给谁：', 'Who this set is for: ') }), tx(pack, 'learnNote')]));
+        if (band === 'youth') head.append(h('p', { class: 'pb-why' }, [h('b', { text: L('为什么做这一步：', 'Why this step: ') }), S.purpose]), h('div', { class: 'pb-peer' }, [h('b', { text: L('和同学一起', 'With a classmate') }), S.peer]));
+        else head.append(h('p', { class: 'pb-why' }, [h('b', { text: L('这一步练什么、为什么放在这儿：', 'What this step trains, and why it is here: ') }), S.trains]));
+      }
+      body.append(head);
+      var main = h('div', {}), keep = body;
+      body = main;
+      ({ walk: renderWalk, listen: renderListen, decode: renderDecode, fade: renderFade, reverse: renderReverse, predict: renderPredict, read: renderRead, check: renderCheck, infer: renderInfer, retell: renderRetell })[S.id]();
+      body = keep;
+      if (band === 'youth') body.append(h('div', { class: 'pb-layout' }, [main, h('aside', { class: 'kb-card' }, [record()])]));
+      else { body.append(main); if (band === 'adult') body.append(h('details', { class: 'kb-card', style: 'margin-top:12px' }, [h('summary', { text: L('我的记录', 'My record') }), record()])); }
+      renderBrief();
+    }
+    render();
+    window.__pbReady = true;
+  }
+})();
+</script>
+</body>
+</html>

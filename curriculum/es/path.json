@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 2,
+  "language": "es",
+  "instructionLang": "en",
+  "sections": [
+    {
+      "id": "A1",
+      "label": "A1",
+      "units": [
+        "a1-01",
+        "a1-02",
+        "a1-03",
+        "a1-04",
+        "a1-05",
+        "a1-06",
+        "a1-07",
+        "a1-08",
+        "a1-09",
+        "a1-10",
+        "a1-11",
+        "a1-12",
+        "a1-13",
+        "a1-14"
+      ]
+    },
+    {
+      "id": "A2",
+      "label": "A2",
+      "units": [
+        "a2-01",
+        "a2-02",
+        "a2-03",
+        "a2-04",
+        "a2-05",
+        "a2-06",
+        "a2-07",
+        "a2-08",
+        "a2-09",
+        "a2-10",
+        "a2-11",
+        "a2-12",
+        "a2-13",
+        "a2-14",
+        "a2-15",
+        "a2-16"
+      ]
+    }
+  ],
+  "units": [
+    {
+      "id": "a1-01",
+      "section": "A1",
+      "title": "Letters, sounds and first greetings",
+      "goal": "Can spell their own name aloud, greet and say goodbye at the right time of day, thank, apologise, and ask someone to repeat or slow down",
+      "rationale": "Entry point: real exchanges that need no grammar. The five vowels and letter names are the base for reading every later word aloud.",
+      "kcs": [
+        "kt:es-orth-alphabet",
+        "kt:es-phon-vowels",
+        "kt:es-orth-spell-aloud",
+        "kt:es-fn-greetings",
+        "kt:es-fn-thanks-apologies",
+        "kt:es-str-repair-basic",
+        "kt:es-str-nonverbal"
+      ]
+    },
+    {
+      "id": "a1-02",
+      "section": "A1",
+      "title": "Who I am: name, origin and how to address people",
+      "goal": "Can say and ask name, nationality and where someone is from, introduce someone, and choose tú or usted",
+      "rationale": "Identity is the most frequent first conversation; ser and subject pronouns are the first sentence skeleton. Reading words aloud from spelling comes now so every later word can be read.",
+      "kcs": [
+        "kt:es-orth-sound-spelling",
+        "kt:es-subject-pronouns-prodrop",
+        "kt:es-ser-present",
+        "kt:es-lex-countries-nationalities",
+        "kt:es-fn-introductions",
+        "kt:es-soc-tu-usted",
+        "kt:es-soc-greeting-customs",
+        "kt:es-soc-variety-awareness",
+        "kt:es-cult-countries-capitals",
+        "kt:es-phon-intonation",
+        "kt:es-orth-inverted-marks"
+      ]
+    },
+    {
+      "id": "a1-03",
+      "section": "A1",
+      "title": "Numbers, age and contact details",
+      "goal": "Can ask and give age, phone number, address and email, and fill these into a form after hearing them",
+      "rationale": "Personal data exchanges need numbers, tener and question words; together they unlock the first information-gap tasks.",
+      "kcs": [
+        "kt:es-numbers-0-100",
+        "kt:es-tener-present",
+        "kt:es-interrogatives-basic",
+        "kt:es-fn-personal-details",
+        "kt:es-soc-names-surnames",
+        "kt:es-phon-consonants"
+      ]
+    },
+    {
+      "id": "a1-04",
+      "section": "A1",
+      "title": "Things and people around me",
+      "goal": "Can name and describe classroom objects and everyday things with the right article, gender and agreement, and point to them with este/ese/aquel",
+      "rationale": "Gender and agreement touch every noun phrase from now on, so they come right after the first sentences; classroom language lets the course run in Spanish.",
+      "kcs": [
+        "kt:es-noun-gender",
+        "kt:es-noun-plural",
+        "kt:es-articles",
+        "kt:es-adjective-agreement",
+        "kt:es-demonstratives",
+        "kt:es-lex-classroom",
+        "kt:es-lex-colours-objects",
+        "kt:es-lex-cognates-false-friends",
+        "kt:es-str-learning-procedures"
+      ]
+    },
+    {
+      "id": "a1-05",
+      "section": "A1",
+      "title": "Family and possessions",
+      "goal": "Can talk about their family, say whose things are and describe people's appearance and character simply",
+      "rationale": "Possessives and de build on articles and agreement; family is the next most frequent topic after identity.",
+      "kcs": [
+        "kt:es-possessives-unstressed",
+        "kt:es-de-possession",
+        "kt:es-lex-family",
+        "kt:es-describe-people",
+        "kt:es-coordination-y-o-pero"
+      ]
+    },
+    {
+      "id": "a1-06",
+      "section": "A1",
+      "title": "My day: regular verbs, time and dates",
+      "goal": "Can describe their weekday routine with times, say what day and date it is, ask yes/no questions and say what they are doing later today",
+      "rationale": "The regular present is the workhorse tense; it comes once nouns and pronouns are in place. Clock time and dates attach naturally to routines.",
+      "kcs": [
+        "kt:es-present-regular",
+        "kt:es-negation-word-order",
+        "kt:es-yes-no-questions",
+        "kt:es-reflexive-verbs",
+        "kt:es-telling-time",
+        "kt:es-days-months-dates",
+        "kt:es-present-for-future",
+        "kt:es-lex-daily-routine"
+      ]
+    },
+    {
+      "id": "a1-07",
+      "section": "A1",
+      "title": "Where things are: places, home and weather",
+      "goal": "Can say what there is in a place, where things and places are, describe their home and town, and talk about the weather",
+      "rationale": "hay and estar are the two ways of locating things; contrasting them early prevents a persistent error. Home, town and weather give the material.",
+      "kcs": [
+        "kt:es-hay-existence",
+        "kt:es-estar-location",
+        "kt:es-hay-vs-estar",
+        "kt:es-place-expressions",
+        "kt:es-lex-home-town",
+        "kt:es-weather-seasons"
+      ]
+    },
+    {
+      "id": "a1-08",
+      "section": "A1",
+      "title": "Likes, free time and agreeing",
+      "goal": "Can say what they like and don't like, how much, react with también/tampoco, and say which of two options they prefer",
+      "rationale": "gustar reverses the English subject/object pattern and is the most persistent A1 error, so it gets its own unit with plenty of free-time vocabulary to practise on.",
+      "kcs": [
+        "kt:es-gustar",
+        "kt:es-tambien-tampoco",
+        "kt:es-muy-mucho",
+        "kt:es-lex-free-time",
+        "kt:es-fn-preferences"
+      ]
+    },
+    {
+      "id": "a1-09",
+      "section": "A1",
+      "title": "Eating out and saying yes or no",
+      "goal": "Can order food and drinks, say what they want, accept or decline offers politely, and know when Spanish speakers eat",
+      "rationale": "Ordering is the first high-stakes transaction; quiero and polite yes/no answers build directly on gustar and articles.",
+      "kcs": [
+        "kt:es-querer-want",
+        "kt:es-fn-accept-refuse",
+        "kt:es-fn-ordering-food",
+        "kt:es-lex-food-drink",
+        "kt:es-soc-meals-timing"
+      ]
+    },
+    {
+      "id": "a1-10",
+      "section": "A1",
+      "title": "Shopping and prices",
+      "goal": "Can ask for products, sizes and prices, understand prices and large numbers, and complete a simple purchase",
+      "rationale": "Shopping recycles numbers, colours and demonstratives in a transaction with a clear outcome.",
+      "kcs": [
+        "kt:es-fn-shopping-prices",
+        "kt:es-numbers-large",
+        "kt:es-act-transactional"
+      ]
+    },
+    {
+      "id": "a1-11",
+      "section": "A1",
+      "title": "Getting around town",
+      "goal": "Can say where they are going and how, ask for and follow simple directions, and talk about transport and travel",
+      "rationale": "ir and movement verbs plus ordinals and place expressions make directions possible; travel is a core need for adult learners.",
+      "kcs": [
+        "kt:es-ir-venir",
+        "kt:es-prep-a-en-de",
+        "kt:es-ordinals",
+        "kt:es-fn-directions-basic",
+        "kt:es-lex-transport-travel"
+      ]
+    },
+    {
+      "id": "a1-12",
+      "section": "A1",
+      "title": "What I know, can do and think",
+      "goal": "Can say what they know and can do, give a simple opinion with creo que, evaluate things as good or bad, say something is possible, and show they are listening",
+      "rationale": "Opinions and evaluations need only ser + adjective and creo que + clause, which are now available; saber/conocer is a classic split for English speakers.",
+      "kcs": [
+        "kt:es-saber-conocer",
+        "kt:es-fn-opinion-creo-que",
+        "kt:es-fn-evaluating",
+        "kt:es-fn-possibility",
+        "kt:es-str-backchannel"
+      ]
+    },
+    {
+      "id": "a1-13",
+      "section": "A1",
+      "title": "Reasons, purposes and which one",
+      "goal": "Can explain why they do things and what for, identify people and things with que-clauses, and use infinitives after verbs",
+      "rationale": "Porque, para + infinitive and que-relatives turn single sentences into the first linked explanations needed for short texts.",
+      "kcs": [
+        "kt:es-porque-por-que",
+        "kt:es-para-infinitive",
+        "kt:es-relative-que",
+        "kt:es-infinitive-uses"
+      ]
+    },
+    {
+      "id": "a1-14",
+      "section": "A1",
+      "title": "Reading and writing short texts",
+      "goal": "Can read signs, timetables, menus and simple forms, write short messages and postcards, and write a short description of a person, object or place with correct spelling and punctuation",
+      "rationale": "Closes A1 by turning the grammar and vocabulary into text: written accent rules and punctuation now have enough words to practise on.",
+      "kcs": [
+        "kt:es-phon-stress-syllables",
+        "kt:es-phon-rhythm-linking",
+        "kt:es-orth-written-accents",
+        "kt:es-orth-capitals-punctuation",
+        "kt:es-act-reading-signs-forms",
+        "kt:es-act-short-messages",
+        "kt:es-act-describe-a1",
+        "kt:es-act-listening-a1",
+        "kt:es-act-spoken-production-a1"
+      ]
+    },
+    {
+      "id": "a2-01",
+      "section": "A2",
+      "title": "Everyday verbs: stem changes and irregular yo forms",
+      "goal": "Can talk about habits and how often they do things using the most frequent irregular present-tense verbs, and talk about work and studies",
+      "rationale": "A2 opens by completing the present tense: the most frequent verbs (querer, poder, tener, hacer, salir) are irregular, and A1 used them only as chunks.",
+      "kcs": [
+        "kt:es-present-stem-change",
+        "kt:es-present-irregular-yo",
+        "kt:es-frequency-habits",
+        "kt:es-lex-work-study"
+      ]
+    },
+    {
+      "id": "a2-02",
+      "section": "A2",
+      "title": "How I feel: estar, states and the body",
+      "goal": "Can say how they and others feel, describe physical sensations and pain, choose ser or estar with adjectives, and explain a health problem simply",
+      "rationale": "estar + adjective completes the ser/estar picture begun at A1; feelings and body vocabulary give immediate personal use.",
+      "kcs": [
+        "kt:es-estar-states",
+        "kt:es-ser-vs-estar",
+        "kt:es-fn-feelings",
+        "kt:es-tener-sensations-doler",
+        "kt:es-lex-body-health"
+      ]
+    },
+    {
+      "id": "a2-03",
+      "section": "A2",
+      "title": "Plans, wishes and invitations",
+      "goal": "Can talk about future plans and intentions, say what they would like to do, and make, accept and turn down invitations and suggestions",
+      "rationale": "ir a + infinitive needs only ir (A1) and the infinitive; invitations combine it with the softened refusals that A2 functions require.",
+      "kcs": [
+        "kt:es-ir-a-infinitive",
+        "kt:es-future-simple-recognition",
+        "kt:es-fn-invitations",
+        "kt:es-fn-wishes-me-gustaria"
+      ]
+    },
+    {
+      "id": "a2-04",
+      "section": "A2",
+      "title": "Obligation, permission and favours",
+      "goal": "Can say what is necessary or not, ask for and give permission, ask favours and help, and give simple advice and warnings",
+      "rationale": "tener que and hay que build on tener and infinitives; poder (now that stem changes are known) carries permission, ability and polite requests.",
+      "kcs": [
+        "kt:es-tener-que-hay-que",
+        "kt:es-poder-permission-ability",
+        "kt:es-fn-requests-favours",
+        "kt:es-fn-advice-warnings"
+      ]
+    },
+    {
+      "id": "a2-05",
+      "section": "A2",
+      "title": "Instructions and directions",
+      "goal": "Can give and follow instructions and step-by-step directions, attract someone's attention appropriately, and use llevar/traer correctly",
+      "rationale": "Affirmative imperatives need the stem-changing and irregular presents from a2-01; directions and recipes are their natural context.",
+      "kcs": [
+        "kt:es-imperative-affirmative",
+        "kt:es-fn-directions-a2",
+        "kt:es-fn-attention-getters",
+        "kt:es-deixis-llevar-traer"
+      ]
+    },
+    {
+      "id": "a2-06",
+      "section": "A2",
+      "title": "Him, her, it, them: object pronouns",
+      "goal": "Can avoid repeating nouns by using direct and indirect object pronouns in the right position, and talk about what interests or delights them",
+      "rationale": "Object pronouns are needed for natural replies (¿Tienes el billete? – Sí, lo tengo) and for gustar-type verbs beyond gustar; they come after imperatives and periphrases so that attachment can be practised in both positions.",
+      "kcs": [
+        "kt:es-direct-object-pronouns",
+        "kt:es-personal-a",
+        "kt:es-indirect-object-pronouns",
+        "kt:es-clitic-position",
+        "kt:es-encantar-interesar",
+        "kt:es-prepositional-pronouns"
+      ]
+    },
+    {
+      "id": "a2-07",
+      "section": "A2",
+      "title": "What I have done: experiences and the recent past",
+      "goal": "Can talk about experiences in their life and what they have done today or this week, and say what has or hasn't happened yet",
+      "rationale": "The present perfect is the first past tense: regular participles plus haber, and it connects to the present (hoy, esta semana) — the most frequent past in Peninsular speech for today's events.",
+      "kcs": [
+        "kt:es-preterito-perfecto",
+        "kt:es-ya-todavia-no",
+        "kt:es-aspect-periphrases"
+      ]
+    },
+    {
+      "id": "a2-08",
+      "section": "A2",
+      "title": "What happened: the preterite",
+      "goal": "Can say what they did at a specific time in the past, including weekends, trips and biographies, using frequent regular and irregular verbs",
+      "rationale": "The preterite follows the perfect: learners already have a past for experiences and today; now they add completed events at a finished time, which the contrast KC makes explicit.",
+      "kcs": [
+        "kt:es-preterite-regular",
+        "kt:es-preterite-irregular",
+        "kt:es-past-time-markers",
+        "kt:es-perfecto-vs-indefinido",
+        "kt:es-orth-spelling-a2"
+      ]
+    },
+    {
+      "id": "a2-09",
+      "section": "A2",
+      "title": "How things were: the imperfect and simple narratives",
+      "goal": "Can describe how things used to be and the background to past events, and tell a simple story or anecdote in order",
+      "rationale": "The imperfect is added after the preterite so that narrative can combine background (imperfect) and events (preterite); connectors make the story readable.",
+      "kcs": [
+        "kt:es-imperfect",
+        "kt:es-sequencing-connectors",
+        "kt:es-act-narrative"
+      ]
+    },
+    {
+      "id": "a2-10",
+      "section": "A2",
+      "title": "Describing and comparing things",
+      "goal": "Can describe objects, places and people in more detail, compare them, react with exclamations, and say whose something is with stressed possessives",
+      "rationale": "Shopping, housing and travel at A2 all require choosing between options; comparison and richer description reuse ser/estar and agreement from earlier units.",
+      "kcs": [
+        "kt:es-describe-objects-a2",
+        "kt:es-comparatives",
+        "kt:es-exclamatives-que",
+        "kt:es-adverbs-mente",
+        "kt:es-possessives-stressed"
+      ]
+    },
+    {
+      "id": "a2-11",
+      "section": "A2",
+      "title": "How much, nobody and nothing: quantity, negation and articles",
+      "goal": "Can talk about quantities and existence with indefinite words (alguien, nada, todos, demasiado), make negative statements with double negation, and use or omit articles naturally",
+      "rationale": "These closed-class words cause many A2 errors; grouping them lets learners compare positive and negative pairs (algo/nada, alguien/nadie) and article presence/absence in one place.",
+      "kcs": [
+        "kt:es-quantifiers-indefinites",
+        "kt:es-double-negation",
+        "kt:es-article-uses-a2",
+        "kt:es-noun-gender-exceptions"
+      ]
+    },
+    {
+      "id": "a2-12",
+      "section": "A2",
+      "title": "What is happening now and when things happen",
+      "goal": "Can describe actions in progress, link events in time with cuando / antes de / después de, say how long something has been going on, and ask a wider range of questions",
+      "rationale": "estar + gerund and time clauses complete the time toolkit after past tenses; the extended question words support the interaction activities that follow.",
+      "kcs": [
+        "kt:es-estar-gerund",
+        "kt:es-time-clauses",
+        "kt:es-duration-desde-hace",
+        "kt:es-interrogatives-a2"
+      ]
+    },
+    {
+      "id": "a2-13",
+      "section": "A2",
+      "title": "Opinions, conditions and reasons",
+      "goal": "Can agree and disagree, say how sure they are, give reasons and consequences, state simple real conditions with si, and say what they remember or have forgotten",
+      "rationale": "Discussion functions at A2 require linking ideas (si, por eso, porque) and graded certainty; por and para are introduced here as cause vs purpose.",
+      "kcs": [
+        "kt:es-si-conditional",
+        "kt:es-por-eso-entonces",
+        "kt:es-por-para-basic",
+        "kt:es-fn-agree-disagree",
+        "kt:es-fn-certainty",
+        "kt:es-acordarse"
+      ]
+    },
+    {
+      "id": "a2-14",
+      "section": "A2",
+      "title": "On the phone and in conversation",
+      "goal": "Can make and take simple phone calls, keep a conversation going by referring back without repeating, and follow everyday conversations and announcements",
+      "rationale": "Phone calls remove visual support and need the pronouns and attention-getters of earlier units; conversation management ties A2 grammar into longer exchanges.",
+      "kcs": [
+        "kt:es-fn-telephone",
+        "kt:es-disc-reference-ellipsis",
+        "kt:es-act-spoken-interaction-a2",
+        "kt:es-act-listening-a2"
+      ]
+    },
+    {
+      "id": "a2-15",
+      "section": "A2",
+      "title": "Social life, celebrations and texts",
+      "goal": "Can welcome people, congratulate and wish well, write short letters, emails and descriptions, read short everyday texts, relay simple information for someone who doesn't speak Spanish, and reflect on cultural differences",
+      "rationale": "Writing and reading activities at A2 integrate the grammar of the level; social rituals and intercultural reflection close the level before topic vocabulary.",
+      "kcs": [
+        "kt:es-fn-celebrations-wishes",
+        "kt:es-act-letters-emails",
+        "kt:es-act-reading-a2",
+        "kt:es-act-describe-a2",
+        "kt:es-act-mediation-basic",
+        "kt:es-soc-intercultural"
+      ]
+    },
+    {
+      "id": "a2-16",
+      "section": "A2",
+      "title": "The wider world: services, media, nature and culture",
+      "goal": "Can handle vocabulary for money and public services, media and technology, nature and geography, and name a few cultural references from the Spanish-speaking world",
+      "rationale": "These topic areas close A2 because they rely on the grammar of the level (past tenses for history and news, comparison for geography) and broaden learners' world beyond the personal domain.",
+      "kcs": [
+        "kt:es-lex-services-money",
+        "kt:es-lex-media-tech",
+        "kt:es-lex-nature-geography",
+        "kt:es-cult-society-arts"
+      ]
+    }
+  ]
+}

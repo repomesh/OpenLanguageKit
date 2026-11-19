@@ -81,5 +81,8 @@ for source_list in source_lists:
 by_id = {node["id"]: node for node in graph["nodes"]}
 assert by_id["ped:transfer"]["subtype"] == "outcome_construct"
 assert by_id["ped:explicit-implicit-knowledge"]["subtype"] == "knowledge_construct_distinction"
+for node_id in ("ped:young-learner-characteristics", "ped:adult-l2-constraints"):
+    assert by_id[node_id]["kind"] == "mechanism", node_id
+    assert by_id[node_id]["subtype"] == "learner_population_description", node_id
 assert graph["review"]["systematicReview"] is False
 print(f"PASS: {len(ids)} nodes, {len(edge_keys)} internal edges, {len(source_urls)} sources, {len(candidate_ids)} pending candidates, 0 actual cross-graph edges")

@@ -11,17 +11,17 @@ BG, INK, MUTED, LINE, EDGE = "#faf7f1", "#20222b", "#62657a", "#e7e2d7", "#ddd5c
 ACCENT, VIOLET = "#3d4fe0", "#8a4fe0"
 PEACH, SKY, LAV, SAGE = "#f8dfcb", "#d8e8f7", "#e7e1f8", "#dce9d6"
 
-NUM = {"kcs": "950", "prims": "56", "pages": "96", "tracks": "14"}
+NUM = {"kcs": "1,292", "prims": "56", "pages": "126", "tracks": "20"}
 
 T = {
  "en": {
-  "eyebrow": "OPEN KNOWLEDGE LAYER  ·  ENGLISH  ·  日本語  ·  中文",
+  "eyebrow": "OPEN KNOWLEDGE LAYER  ·  EN  ·  日本語  ·  中文  ·  ES  ·  FR",
   "desc": ["What to teach, in what order, and how to", "practise it. Ready for your app, your lesson,", "or your coding AI."],
   "stats": [("kcs", "knowledge points"), ("prims", "practice types"), ("pages", "ready pages"), ("tracks", "course tracks")],
   "cards": [("KNOWLEDGE POINT", "ひらがな  Hiragana", "A1 · first unit · no prerequisites"),
             ("PRACTICE TYPE", "Sound–spelling blend", "hear it, build it, write it"),
             ("READY PAGE", "Hiragana chart", "blocks/sound-grid.html")],
-  "hero_title": "OpenLanguageKit", "hero_desc": "OpenLanguageKit: an open knowledge layer for English, Japanese and Chinese courses. One real chain is shown: a knowledge point, the practice type bound to it, and the ready page that runs it.",
+  "hero_title": "OpenLanguageKit", "hero_desc": "OpenLanguageKit: an open knowledge layer for English, Japanese, Chinese, Spanish and French courses. One real chain is shown: a knowledge point, the practice type bound to it, and the ready page that runs it.",
   "flow_title": "How OpenLanguageKit turns a learner into a plan",
   "flow_desc": "Four steps: you describe the learner; the planner picks knowledge points in order; each one gets a practice type; where a page is ready it is attached. The output is blueprint.json and PLAN.md.",
   "steps": [("1 · YOU SAY", "Who is learning", None, ["language, age, goal,", "minutes a day"]),
@@ -33,13 +33,13 @@ T = {
   "out_label": "YOU GET",
  },
  "zh": {
-  "eyebrow": "开放的知识层  ·  ENGLISH  ·  日本語  ·  中文",
+  "eyebrow": "开放的知识层  ·  EN  ·  日本語  ·  中文  ·  ES  ·  FR",
   "desc": ["教什么、按什么顺序教、怎么练。", "可以直接用在你的 app、你的课，", "或者交给写代码的 AI。"],
   "stats": [("kcs", "个知识点"), ("prims", "种练习方式"), ("pages", "个现成页面"), ("tracks", "套课程方案")],
   "cards": [("知识点", "ひらがな  平假名", "A1 · 第一单元 · 没有先修"),
             ("练习方式", "音形拼合", "听音、拼出来、写下来"),
             ("现成页面", "平假名五十音表", "blocks/sound-grid.html")],
-  "hero_title": "OpenLanguageKit", "hero_desc": "OpenLanguageKit：英语、日语、中文课程的开放知识层。图中是一条真实的链：一个知识点、绑定的练习方式、可以直接运行的页面。",
+  "hero_title": "OpenLanguageKit", "hero_desc": "OpenLanguageKit：英语、日语、中文、西班牙语、法语课程的开放知识层。图中是一条真实的链：一个知识点、绑定的练习方式、可以直接运行的页面。",
   "flow_title": "OpenLanguageKit 怎样把学习者变成一份计划",
   "flow_desc": "四步：你描述学习者；规划器按顺序选出知识点；每个知识点配一种练习方式；有现成页面的就挂上。输出 blueprint.json 和 PLAN.md。",
   "steps": [("1 · 你来说", "谁在学", None, ["语言、年龄、目标、", "每天几分钟"]),

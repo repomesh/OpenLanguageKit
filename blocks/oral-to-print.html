@@ -67,6 +67,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -147,7 +148,7 @@
       stage.append(h('div', { class: 'picker', role: 'group', 'aria-label': L('图片', 'Pictures') }, allCards().map(function (c) {
         return h('button', { class: 'pk', 'aria-pressed': String(st.card === c.id), 'aria-label': sentence(c), onclick: function () { st.card = c.id; st.point = 0; st.msg = null; B.emit('select', { card: c.id }); render(); } },
           [c.pic, st.said.indexOf(c.id) >= 0 ? h('span', { class: 'tick', text: '✓' }) : null]);
-      }).concat([h('button', { class: 'pk', 'aria-pressed': String(st.card === '+new'), 'aria-label': L('大人帮忙写一句', 'An adult writes a sentence'), onclick: function () { st.card = '+new'; st.msg = null; render(); } }, '✏️')])));
+      }).concat([h('button', { class: 'pk', 'aria-pressed': String(st.card === '+new'), 'aria-label': L('大人帮忙写一句', 'An adult writes a sentence'), onclick: function () { st.card = '+new'; st.msg = null; render(); } }, [KTBlock.icon('pencil')])])));
       if (st.card === '+new') { renderNew(); return; }
       var c = cardById(st.card);
       if (!c) { stage.append(h('p', { class: 'kb-note', text: L('先点一张图。', 'Tap a picture first.') })); return; }
@@ -163,8 +164,8 @@
         }))
       ]));
       stage.append(h('div', { class: 'tools' }, [
-        h('button', { class: 'kb-btn', onclick: function () { playAlong(c); } }, L('🔊 一个一个听', '🔊 Word by word')),
-        h('button', { class: 'kb-btn', onclick: function () { say(sentence(c)); B.emit('select', { card: c.id, action: 'listen-sentence' }); } }, L('🔊 整句听', '🔊 Whole sentence'))
+        h('button', { class: 'kb-btn', onclick: function () { playAlong(c); } }, [KTBlock.icon('speaker'), L(' 一个一个听', ' Word by word')]),
+        h('button', { class: 'kb-btn', onclick: function () { say(sentence(c)); B.emit('select', { card: c.id, action: 'listen-sentence' }); } }, [KTBlock.icon('speaker'), L(' 整句听', ' Whole sentence')])
       ]));
       var doneAll = st.point >= tapIdx.length;
       stage.append(h('p', { class: 'kb-note', text: doneAll ? L('点读完了。跟着点读只是把声音和字连起来，还不算会认。', 'Done pointing. Pointing along links sound to print; it does not count as reading yet.') : L('用手指点着读：从第一个开始，按顺序一个一个点。', 'Point and read: tap the words in order, starting with the first.') }));
@@ -254,7 +255,7 @@
     function renderFind() {
       var c = st.cur, it = c.it, u = it.u, from = cardById(pack.units[u].card);
       if (st.findAll) stage.append(h('p', { class: 'kb-note', text: L('识字墙上还没有句子，先练全部。先在“说出来”里说过这些话会更好。', 'The word wall is empty, so all items are shown. It works better after saying these sentences in "Say it".') }));
-      stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: function () { say(it.cue); B.emit('select', { item: 'find:' + it.id, action: 'listen-cue' }); } }, L('🔊 再听一遍', '🔊 Listen again'))]));
+      stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: function () { say(it.cue); B.emit('select', { item: 'find:' + it.id, action: 'listen-cue' }); } }, [KTBlock.icon('speaker'), L(' 再听一遍', ' Listen again')])]));
       stage.append(h('details', { class: 'adult' }, [h('summary', { text: L('给大人看（没有声音时读给孩子听）', 'For the adult (read this aloud if there is no sound)') }), h('p', { text: '“' + it.cue + '”' })]));
       if (!c.found) {
         stage.append(h('p', { class: 'kb-prompt', text: L('哪一张里有你说过的这个' + unitName + '？', 'Which card has the ' + unitName + ' you just heard?') }));
@@ -326,7 +327,7 @@
       stage.append(h('p', { class: 'kb-prompt', text: L('读给家人、同伴或老师听。没有图，也没有拼音。', 'Read this to someone at home, a friend or a teacher. No picture, no pinyin.') }));
       stage.append(h('div', { class: 'sentence', text: it.s }));
       if (!c.done) {
-        stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { c.heard = true; B.hint(id, 'listen-first'); say(it.s); render(); } }, c.heard ? L('🔊 再听（已算提示）', '🔊 Listen again (counted as help)') : L('🔊 先听一遍（算提示）', '🔊 Listen first (counts as help)'))]));
+        stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { c.heard = true; B.hint(id, 'listen-first'); say(it.s); render(); } }, [KTBlock.icon('speaker'), c.heard ? L(' 再听（已算提示）', ' Listen again (counted as help)') : L(' 先听一遍（算提示）', ' Listen first (counts as help)')])]));
         stage.append(h('div', { class: 'listen' }, [
           h('strong', { text: L('给听的人：', 'For the listener:') }),
           h('div', { class: 'tools' }, [h('label', {}, [L('谁在听 ', 'Who is listening '), h('select', { onchange: function (e) { c.who = e.target.value; } }, [['parent', L('家长', 'Parent')], ['peer', L('同伴', 'Friend')], ['teacher', L('老师', 'Teacher')], ['self', L('自己（读完自己判断）', 'Myself (judge it afterwards)')]].map(function (o) { return h('option', { value: o[0], text: o[1], selected: c.who === o[0] }); }))])]),
@@ -354,7 +355,7 @@
       var c = st.cur, it = c.it;
       stage.append(h('p', { class: 'kb-prompt', text: L('听一听，再选：写出来是哪一个？', 'Listen, then choose: how is it written?') }));
       stage.append(h('div', { class: 'sentence', text: it.s }));
-      stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { say(it.say); B.emit('select', { item: 'trap:' + it.id, action: 'listen' }); } }, L('🔊 听', '🔊 Listen'))]));
+      stage.append(h('div', { class: 'tools' }, [h('button', { class: 'kb-btn', onclick: function () { say(it.say); B.emit('select', { item: 'trap:' + it.id, action: 'listen' }); } }, [KTBlock.icon('speaker'), L(' 听', ' Listen')])]));
       stage.append(h('div', { class: 'opts' }, c.opts.map(function (o) {
         var cls = 'opt big';
         if (c.solved && o === it.ok) cls += ' right'; else if (c.picked.indexOf(o) >= 0) cls += ' wrongpick';
@@ -374,7 +375,7 @@
     /* ---------- wall ---------- */
     function renderWall() {
       side.innerHTML = '';
-      side.append(h('h2', { text: (child() ? '🌳 ' : '') + L('我的识字墙', 'My word wall') }));
+      side.append(h('h2', {}, [child() ? KTBlock.icon('tree') : null, (child() ? ' ' : '') + L('我的识字墙', 'My word wall')]));
       var cards = allCards().filter(function (c) { return st.said.indexOf(c.id) >= 0; });
       if (!cards.length) side.append(h('p', { class: 'kb-note', text: L('在“说出来”里把一句话放到墙上，这里就会长出' + unitName + '。', 'Put a sentence on the wall in "Say it" and its words will grow here.') }));
       cards.forEach(function (c) {
@@ -383,7 +384,7 @@
           return h('button', { class: 'tile' + (n >= 2 ? ' known' : ''), title: w.combos.join(' / '), 'aria-label': u + L('，新组合里认出 ' + n + ' 次', ', recognised in ' + n + ' new combinations'), onclick: function () { say((pack.units[u] || {}).say || u); } }, [
             h('span', { class: 'g', text: u }),
             n >= 3 ? null : h('span', { class: 'p', text: c.pic }),
-            h('span', { class: 'lv', text: new Array(n + 1).join('🍃') }),
+            h('span', { class: 'lv', 'aria-hidden': 'true' }, w.combos.map(function () { return KTBlock.icon('leaf'); })),
             h('span', { class: 'cb', text: n >= 2 ? L('认得', 'known') : w.combos.join(' · ') })
           ]);
         }))]));
@@ -401,7 +402,7 @@
       stage.innerHTML = '';
       renderBar();
       if (st.mode === 'say') renderSay();
-      else if (!st.cur) stage.append(h('div', { class: 'done', text: '🎉' }), h('p', { class: 'kb-prompt', text: L('这一组做完了。', 'This set is done.') }), h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: enterMode }, L('再来一组', 'Another round'))]));
+      else if (!st.cur) stage.append(h('div', { class: 'done' }, [KTBlock.icon('check')]), h('p', { class: 'kb-prompt', text: L('这一组做完了。', 'This set is done.') }), h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: enterMode }, L('再来一组', 'Another round'))]));
       else if (st.mode === 'find') renderFind();
       else if (st.mode === 'read') renderRead();
       else renderTrap();

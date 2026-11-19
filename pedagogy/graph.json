@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "title": "语言学习 pedagogy 与 learning sciences",
   "language": "shared",
-  "verifiedOn": "2026-11-07",
+  "verifiedOn": "2026-11-17",
   "scope": "有来源和边界的选择性初版。不是系统综述、效应量合成或难度推荐算法。",
   "kindDefinitions": {
     "theory": "组织多个主张的解释框架。",
@@ -22,7 +22,8 @@
     "empirical_effect_bounded": "所引实验支持的比较结果，未在本轮重新合成全部证据。",
     "construct_with_bounded_empirical_evidence": "构念附有限经验示例，非单一机制。",
     "theory_with_bounded_experimental_evidence": "框架有指定实验支持，不代表唯一解释。",
-    "construct_measurement_bounded": "有指定构念测量研究，具体任务不是纯指标。"
+    "construct_measurement_bounded": "有指定构念测量研究，具体任务不是纯指标。",
+    "practitioner_literature_description": "教师教育或实践文献中的概括描述，附少量相关研究；不是对照实验结论。"
   },
   "basisDefinitions": {
     "theoretical_claim": "来源中的理论命题或作者解释。",
@@ -723,6 +724,932 @@
         "metalinguistic explanation",
         "显性教学"
       ]
+    },
+    {
+      "id": "ped:age-rate-vs-attainment",
+      "label": "起始年龄：早期速度与最终水平",
+      "kind": "effect",
+      "description": "Krashen、Long 与 Scarcella 1979 年汇总已有研究，提出三条概括：在时间与接触量相当时，成人在句法与形态的早期阶段进步快于儿童；年龄较大的儿童快于年龄较小的儿童；童年开始自然接触二语的人，最终水平通常高于成年才开始的人。",
+      "evidenceStatus": "empirical_effect_bounded",
+      "sources": [
+        {
+          "title": "Krashen, Long & Scarcella (1979). Age, Rate and Eventual Attainment in Second Language Acquisition",
+          "url": "https://eric.ed.gov/?id=EJ214430",
+          "year": 1979,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "TESOL Quarterly 13(4), pp.573–582; ERIC EJ214430",
+          "accessNote": "读取 ERIC 摘要；OpenAlex 收录的作者摘要列出相同三条概括。未读全文及其所汇总的原研究。"
+        },
+        {
+          "title": "Muñoz & Singleton (2011). A Critical Review of Age-Related Research on L2 Ultimate Attainment",
+          "url": "https://eric.ed.gov/?id=EJ908971",
+          "year": 2011,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Language Teaching 44(1), pp.1–35; ERIC EJ908971"
+        }
+      ],
+      "limitations": [
+        "这是自然环境（移民、长期沉浸）研究的概括，不能直接搬到每周几小时的课堂外语学习。",
+        "‘最终水平’多以接近母语者为标尺；Muñoz 与 Singleton 2011 批评这一标尺及只看起始年龄的研究设计。",
+        "该结果是群体趋势，不预测个体，也不说明原因是生理关键期还是输入量、身份与教育等因素。",
+        "本轮只读到摘要，未核对所汇总原研究的样本与测量。"
+      ],
+      "language": "shared",
+      "evidenceScope": "1979 年综述所汇总的自然环境二语习得研究（以英语为二语的移民等）；2011 年批判性综述。不覆盖课堂外语教学、中文或日语学习者的专门数据。",
+      "aliases": [
+        "age of onset",
+        "rate vs ultimate attainment",
+        "older is faster, younger is better",
+        "起始年龄",
+        "关键期"
+      ]
+    },
+    {
+      "id": "ped:age-instructed-settings",
+      "label": "课堂外语环境中的起始年龄",
+      "kind": "effect",
+      "description": "Muñoz 指出自然环境的年龄研究被仓促推广到正式课堂。巴塞罗那年龄因素项目（BAF）及其后续研究在课堂英语外语环境中比较不同起始年龄；Muñoz 2011 报告，长期来看、在输入量相近时，起始年龄不是语言结果的预测因素，而输入量与质量始终有作用。",
+      "evidenceStatus": "empirical_effect_bounded",
+      "sources": [
+        {
+          "title": "Muñoz (2008). Symmetries and Asymmetries of Age Effects in Naturalistic and Instructed L2 Learning",
+          "url": "https://eric.ed.gov/?id=EJ820241",
+          "year": 2008,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Applied Linguistics 29(4), pp.578–596; ERIC EJ820241"
+        },
+        {
+          "title": "Muñoz (2011). Input and Long-Term Effects of Starting Age in Foreign Language Learning",
+          "url": "https://eric.ed.gov/?id=EJ936551",
+          "year": 2011,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "IRAL 49(2); ERIC EJ936551"
+        },
+        {
+          "title": "Muñoz (Ed.) (2006). Age and the Rate of Foreign Language Learning",
+          "url": "https://doi.org/10.21832/9781853598937",
+          "year": 2006,
+          "role": "primary_observational_study",
+          "access": "bibliographic_record_and_table_of_contents",
+          "locator": "Multilingual Matters, Second Language Acquisition 19; ch.1 'The Effects of Age on Foreign Language Learning: the BAF Project'",
+          "accessNote": "只读到书目记录与章节目录（Semantic Scholar 收录）。出版社页面拒绝自动访问。未读各章结果。"
+        },
+        {
+          "title": "Cameron (2003). Challenges for ELT from the Expansion in Teaching Children",
+          "url": "https://eric.ed.gov/?id=EJ664625",
+          "year": 2003,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "ELT Journal 57(2), pp.105–112; ERIC EJ664625"
+        }
+      ],
+      "limitations": [
+        "证据主要来自西班牙加泰罗尼亚地区的英语外语课堂，学时有限；在高输入的沉浸或双语项目中结论可能不同。",
+        "‘早开始没有自动优势’不等于‘早开始有害’；它说明低输入课堂里时间投入与教学质量更关键。",
+        "本轮未读 BAF 专著各章结果，只读到目录；具体‘年长者在同等学时内进步更快’的数据未逐章核对。",
+        "Cameron 2003 的论点是政策与师资判断，不是对照实验。"
+      ],
+      "language": "shared",
+      "evidenceScope": "Muñoz 2008、2011 的摘要（西班牙课堂英语外语，长期追踪与输入问卷）；BAF 专著的书目与目录；Cameron 2003 对儿童英语教学扩张的论述摘要。",
+      "aliases": [
+        "BAF project",
+        "Barcelona Age Factor",
+        "early start",
+        "starting age in foreign language classrooms",
+        "外语课堂起始年龄"
+      ]
+    },
+    {
+      "id": "ped:age-implicit-explicit",
+      "label": "年龄与隐性、显性学习机制",
+      "kind": "hypothesis",
+      "description": "DeKeyser 2000 检验 Bley-Vroman 的根本差异假说：儿童主要依靠隐性的领域特定机制学语言，成人则较多依靠反思结构与问题解决能力。其研究中，极少数成年移民达到童年来者的语法判断水平，且这些人言语分析能力高；该能力对童年来者不是显著预测因素。",
+      "evidenceStatus": "hypothesis_with_bounded_process_evidence",
+      "sources": [
+        {
+          "title": "DeKeyser (2000). The Robustness of Critical Period Effects in Second Language Acquisition",
+          "url": "https://doi.org/10.1017/S0272263100004022",
+          "year": 2000,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Studies in Second Language Acquisition 22(4), pp.499–533",
+          "accessNote": "读取出版社经 Crossref 提供的摘要。研究设计实为相关研究（57 名匈牙利语母语移民），不是干预实验。"
+        },
+        {
+          "title": "Abrahamsson & Hyltenstam (2008). The Robustness of Aptitude Effects in Near-Native Second Language Acquisition",
+          "url": "https://eric.ed.gov/?id=EJ818248",
+          "year": 2008,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "Studies in Second Language Acquisition 30(4); ERIC EJ818248"
+        },
+        {
+          "title": "Muñoz & Singleton (2011). A Critical Review of Age-Related Research on L2 Ultimate Attainment",
+          "url": "https://eric.ed.gov/?id=EJ908971",
+          "year": 2011,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Language Teaching 44(1), pp.1–35; ERIC EJ908971"
+        }
+      ],
+      "limitations": [
+        "DeKeyser 的数据是 57 名匈牙利语母语的在美移民与一项语法判断测验，属于相关研究，不是教学干预。",
+        "该假说说明‘成人较依赖分析能力’，不能推出‘儿童不需要任何显性提示’或‘成人只能靠讲规则’。",
+        "Abrahamsson 与 Hyltenstam 2008 支持高语言学能对成人接近母语水平的重要性，但关键期的解释与以母语者为标尺的做法仍有争议（Muñoz 与 Singleton 2011）。",
+        "这里的隐性、显性是学习机制，不等于 ped:explicit-implicit-knowledge 中的知识构念，也不等于教学方式。"
+      ],
+      "language": "shared",
+      "evidenceScope": "自然环境移民的最终水平研究（匈牙利语—英语、瑞典语二语近母语者），测量以语法判断与学能测验为主。",
+      "aliases": [
+        "Fundamental Difference Hypothesis",
+        "DeKeyser 2000",
+        "language aptitude",
+        "implicit learning in children",
+        "成人分析能力"
+      ]
+    },
+    {
+      "id": "ped:young-learner-characteristics",
+      "label": "儿童外语学习者的特点（约 5–12 岁）",
+      "kind": "mechanism",
+      "description": "儿童外语教学文献对儿童学习者的概括：通常更热情、更想让老师满意；也更快失去兴趣，较难在困难任务上自我维持动机；较难用语言谈论语言，较少能使用元语言；说新语言时常较少尴尬。Cameron 同时提醒这些是会掩盖个体差异的概括。",
+      "evidenceStatus": "practitioner_literature_description",
+      "sources": [
+        {
+          "title": "Cameron (2001). Teaching Languages to Young Learners, ch.1 'Children learning a foreign language'",
+          "url": "https://www.cambridge.org/core/books/abs/teaching-languages-to-young-learners/children-learning-a-foreign-language/BEBE8938F374AB21F200C70F545827BB",
+          "year": 2001,
+          "role": "original_theory",
+          "access": "publisher_chapter_extract",
+          "locator": "Cambridge University Press, ch.1, pp.1–20",
+          "accessNote": "读取 Cambridge Core 公开的第一章节选摘要，未读整章。"
+        },
+        {
+          "title": "Pinter (2007). Some Benefits of Peer-Peer Interaction: 10-Year-Old Children Practising with a Communication Task",
+          "url": "https://eric.ed.gov/?id=EJ803469",
+          "year": 2007,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "Language Teaching Research 11(2), pp.189–207; ERIC EJ803469"
+        },
+        {
+          "title": "Mavilidi, Okely, Chandler, Cliff & Paas (2015). Effects of Integrated Physical Exercises and Gestures on Preschool Children's Foreign Language Vocabulary Learning",
+          "url": "https://eric.ed.gov/?id=EJ1071971",
+          "year": 2015,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 27(3), pp.413–426; ERIC EJ1071971"
+        }
+      ],
+      "limitations": [
+        "这是教师教育文献的概括，不是对照实验结果；本轮只读到 Cameron 第一章的公开节选。",
+        "常见的‘注意力时长 = 年龄 × N 分钟’之类规则本轮没有找到可核实来源，不能作为研究结论使用。",
+        "‘整体记忆语块’‘需要具体与身体活动’是常见描述，本轮未在所读来源中核实到原文，只有 Mavilidi 等 2015 一项学前儿童动作学词实验可作为相关证据。",
+        "Pinter 2007 是匈牙利 10 岁儿童的小样本课堂观察，只说明低水平儿童也能从同伴任务互动中获益。"
+      ],
+      "language": "shared",
+      "evidenceScope": "Cameron 2001 第一章节选；Pinter 2007 摘要（匈牙利英语外语课堂 10 岁儿童同伴任务）；Mavilidi 等 2015 摘要（15 个托育中心的 111 名学前儿童学 14 个意大利语词）。",
+      "aliases": [
+        "young learners",
+        "TEYL",
+        "children as language learners",
+        "儿童学习者",
+        "少儿英语"
+      ],
+      "subtype": "learner_population_description"
+    },
+    {
+      "id": "ped:total-physical-response",
+      "label": "全身反应法（TPR）",
+      "kind": "practice",
+      "description": "Asher 提出的教学法：学习者先通过听目标语指令并用身体动作执行来理解语言，之后再开口说。Asher 1966 的综述报告了用日语、俄语对成人与儿童做的五项小型研究，结论是在保持测验中做出动作与听力理解的明显促进有关。",
+      "evidenceStatus": "empirical_practice_bounded",
+      "sources": [
+        {
+          "title": "Asher (1969). The Total Physical Response Approach to Second Language Learning",
+          "url": "https://eric.ed.gov/?id=EJ001127",
+          "year": 1969,
+          "role": "original_theory",
+          "access": "official_index_bibliographic_record",
+          "locator": "The Modern Language Journal 53(1), pp.3–17; ERIC EJ001127",
+          "accessNote": "ERIC 只有书目记录，无摘要；Wiley 页面拒绝自动访问。未读正文。"
+        },
+        {
+          "title": "Asher (1966). The Learning Strategy of the Total Physical Response: A Review",
+          "url": "https://eric.ed.gov/?id=ED028664",
+          "year": 1966,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal; ERIC ED028664"
+        },
+        {
+          "title": "Wolfe & Jones (1982). Integrating Total Physical Response Strategy in a Level I Spanish Class",
+          "url": "https://eric.ed.gov/?id=EJ268424",
+          "year": 1982,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Foreign Language Annals; ERIC EJ268424"
+        }
+      ],
+      "limitations": [
+        "早期证据主要来自 Asher 本人的小型研究，结果集中在听力理解与指令句。",
+        "Wolfe 与 Jones 1982 的高中西班牙语对照只报告单元测验与满意度，不足以推出对口语产出、阅读或抽象语言的效果。",
+        "指令句和可做出动作的词最适合；抽象内容、语篇与读写需要别的方法。",
+        "本轮未读 Asher 1969 正文，只核实其书目记录。"
+      ],
+      "language": "shared",
+      "evidenceScope": "Asher 1966 综述摘要（日语、俄语，成人与儿童）；Asher 1969 书目；Wolfe 与 Jones 1982 美国高中一年级西班牙语课堂研究摘要。",
+      "aliases": [
+        "TPR",
+        "Total Physical Response",
+        "Asher",
+        "听指令做动作",
+        "全身反应"
+      ]
+    },
+    {
+      "id": "ped:adolescent-motivation-autonomy",
+      "label": "青少年与青年学习者的动机、自我与自主",
+      "kind": "theory",
+      "description": "Dörnyei 的二语动机自我系统把动机分为理想二语自我、应然二语自我与学习经历三部分。Kormos 与 Csizér 2008 对匈牙利中学生、大学生和成人学习者的问卷研究中，语言学习态度与理想二语自我是动机的主要因素，而动机行为模型在三个群体之间不同：中学生受英语文化产品兴趣影响，国际姿态只在两个年长群体中起预测作用。Noels 等 2000 把自我决定理论的内在、外在动机类型用于二语学习并验证量表。",
+      "evidenceStatus": "theory_with_bounded_experimental_evidence",
+      "sources": [
+        {
+          "title": "Dörnyei (2009). The L2 Motivational Self System",
+          "url": "https://doi.org/10.21832/9781847691293-003",
+          "year": 2009,
+          "role": "original_theory",
+          "access": "bibliographic_record",
+          "locator": "In Dörnyei & Ushioda (Eds.), Motivation, Language Identity and the L2 Self, Multilingual Matters, pp.9–42",
+          "accessNote": "只核实书目记录（Crossref）。出版社页面拒绝自动访问。构念内容依据 Kormos & Csizér 2008 摘要。"
+        },
+        {
+          "title": "Kormos & Csizér (2008). Age-Related Differences in the Motivation of Learning English as a Foreign Language: Attitudes, Selves, and Motivated Learning Behavior",
+          "url": "https://doi.org/10.1111/j.1467-9922.2008.00443.x",
+          "year": 2008,
+          "role": "primary_observational_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 58(2), pp.327–355"
+        },
+        {
+          "title": "Noels, Pelletier, Clément & Vallerand (2000). Why Are You Learning a Second Language? Motivational Orientations and Self-Determination Theory",
+          "url": "https://doi.org/10.1111/0023-8333.00111",
+          "year": 2000,
+          "role": "primary_construct_measurement_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 50(1), pp.57–85"
+        }
+      ],
+      "limitations": [
+        "证据为问卷与相关分析，不是干预实验；不能推出某个界面设计能提升动机。",
+        "Kormos 与 Csizér 的样本是匈牙利英语外语学习者；Noels 等的样本是加拿大学法语的英语母语大学生。",
+        "本轮未读 Dörnyei 2009 原章节，构念描述依据后续研究摘要与通行描述。",
+        "‘自主’在此指自我决定理论的动机类型，不等于让学习者完全自选内容。"
+      ],
+      "language": "shared",
+      "evidenceScope": "匈牙利中学、大学与成人英语外语学习者问卷（n=623）；加拿大大学生法语学习动机量表研究。",
+      "aliases": [
+        "L2 Motivational Self System",
+        "ideal L2 self",
+        "self-determination theory",
+        "Dörnyei",
+        "青少年动机",
+        "理想二语自我"
+      ]
+    },
+    {
+      "id": "ped:andragogy",
+      "label": "成人教育学（andragogy）的假设",
+      "kind": "theory",
+      "description": "Knowles 主张成人在若干关键方面与儿童、青少年作为学习者不同，因此需要不同的教学方法。通行的表述包括：成人自我导向、以经验为资源、学习准备度与社会角色相关、以问题为中心、更多受内在动机驱动。",
+      "evidenceStatus": "theoretical_framework",
+      "sources": [
+        {
+          "title": "Knowles (1970). The Modern Practice of Adult Education: Andragogy versus Pedagogy",
+          "url": "https://eric.ed.gov/?id=ED043812",
+          "year": 1970,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "Association Press; ERIC ED043812",
+          "accessNote": "读取 ERIC 对 1970 年版的摘要。1980 年修订版未核对。"
+        },
+        {
+          "title": "Merriam (2001). Andragogy and Self-Directed Learning: Pillars of Adult Learning Theory",
+          "url": "https://eric.ed.gov/?id=EJ625870",
+          "year": 2001,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "New Directions for Adult and Continuing Education 89, pp.3–14; ERIC EJ625870"
+        },
+        {
+          "title": "Hartree (1984). Malcolm Knowles' Theory of Andragogy: A Critique",
+          "url": "https://eric.ed.gov/?id=EJ302286",
+          "year": 1984,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "International Journal of Lifelong Education 3(3), pp.203–210; ERIC EJ302286"
+        }
+      ],
+      "limitations": [
+        "Hartree 1984 认为 andragogy 更像一种哲学立场，而不是统一的成人学习理论。",
+        "Merriam 2001 指出 andragogy 与自我导向学习被批评只关注个体而忽视社会历史情境。",
+        "五条假设的通行列举本轮未在原书正文核对；这些假设本身缺少针对语言学习的对照实验支持。",
+        "不能据此推出‘成人不需要结构化指导’或‘儿童不能自我导向’。"
+      ],
+      "language": "shared",
+      "evidenceScope": "Knowles 1970 年版的 ERIC 摘要与两篇批评性文献摘要；不含语言学习实证。",
+      "aliases": [
+        "andragogy",
+        "Knowles",
+        "adult learning theory",
+        "self-directed learning",
+        "成人学习理论"
+      ]
+    },
+    {
+      "id": "ped:adult-l2-constraints",
+      "label": "成人二语学习者的已记录条件",
+      "kind": "mechanism",
+      "description": "本节点汇总本轮可核实的成人学习者条件：外语课堂焦虑是一个与一般焦虑不同的构念，会影响语言学习（Horwitz 等 1986）；成人在动机上与中学生不同，国际姿态等目标取向起预测作用（Kormos 与 Csizér 2008）；成人更依赖言语分析能力（DeKeyser 2000）；一语阅读理解是二语阅读理解的高证据相关变量之一（Jeon 与 Yamashita 2014），可作为已有读写能力资源。",
+      "evidenceStatus": "practitioner_literature_description",
+      "sources": [
+        {
+          "title": "Horwitz, Horwitz & Cope (1986). Foreign Language Classroom Anxiety",
+          "url": "https://eric.ed.gov/?id=EJ337666",
+          "year": 1986,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal 70(2), pp.125–132; ERIC EJ337666"
+        },
+        {
+          "title": "Kormos & Csizér (2008). Age-Related Differences in the Motivation of Learning English as a Foreign Language: Attitudes, Selves, and Motivated Learning Behavior",
+          "url": "https://doi.org/10.1111/j.1467-9922.2008.00443.x",
+          "year": 2008,
+          "role": "primary_observational_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 58(2), pp.327–355"
+        },
+        {
+          "title": "DeKeyser (2000). The Robustness of Critical Period Effects in Second Language Acquisition",
+          "url": "https://doi.org/10.1017/S0272263100004022",
+          "year": 2000,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Studies in Second Language Acquisition 22(4), pp.499–533",
+          "accessNote": "读取出版社经 Crossref 提供的摘要。研究设计实为相关研究（57 名匈牙利语母语移民），不是干预实验。"
+        },
+        {
+          "title": "Jeon & Yamashita (2014). L2 Reading Comprehension and Its Correlates: A Meta-Analysis",
+          "url": "https://doi.org/10.1111/lang.12034",
+          "year": 2014,
+          "role": "primary_construct_measurement_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 64(1), pp.160–212",
+          "accessNote": "读取摘要。该研究是相关系数的元分析，不是干预研究。"
+        }
+      ],
+      "limitations": [
+        "这是多来源的汇总节点，各条件的证据类型不同（构念论述、问卷相关、元分析相关），不能合成一条因果链。",
+        "‘成人学习时间有限’‘以目标驱动’是常见描述，本轮未找到可核实的语言学习研究来源，只作为设计假设。",
+        "Horwitz 等 1986 的焦虑研究以外语课堂学生为对象，不是只针对成人；本轮只读到 ERIC 摘要。",
+        "一语读写能力作为资源的证据主要来自阅读理解相关研究，低读写水平成人的情况需另行研究。"
+      ],
+      "language": "shared",
+      "evidenceScope": "外语课堂焦虑构念论文摘要；匈牙利成人与学生的动机问卷；移民最终水平研究；二语阅读相关因素元分析。",
+      "aliases": [
+        "adult learners",
+        "foreign language anxiety",
+        "FLCAS",
+        "成人学习者",
+        "外语焦虑"
+      ],
+      "subtype": "learner_population_description"
+    },
+    {
+      "id": "ped:simple-view-of-reading",
+      "label": "阅读简单观（解码 × 语言理解）",
+      "kind": "theory",
+      "description": "Gough 与 Tunmer 1986 提出简单阅读模型：阅读等于解码与理解的乘积。由此推出三类阅读困难：不能解码、不能理解，或两者都有。",
+      "evidenceStatus": "theoretical_framework",
+      "sources": [
+        {
+          "title": "Gough & Tunmer (1986). Decoding, Reading, and Reading Disability",
+          "url": "https://doi.org/10.1177/074193258600700104",
+          "year": 1986,
+          "role": "original_theory",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Remedial and Special Education 7(1), pp.6–10"
+        },
+        {
+          "title": "Jeon & Yamashita (2014). L2 Reading Comprehension and Its Correlates: A Meta-Analysis",
+          "url": "https://doi.org/10.1111/lang.12034",
+          "year": 2014,
+          "role": "primary_construct_measurement_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 64(1), pp.160–212",
+          "accessNote": "读取摘要。该研究是相关系数的元分析，不是干预研究。"
+        }
+      ],
+      "limitations": [
+        "原文针对一语阅读与阅读障碍分类，不是二语教学研究。",
+        "‘乘积’是理论表述，不提供可直接计算的个体诊断公式。",
+        "二语阅读的元分析显示，二语语法、词汇知识与解码都与二语阅读理解高度相关，且受年龄与一二语距离调节（Jeon 与 Yamashita 2014），二语情况比两个成分更复杂。",
+        "汉字、假名等书写系统的‘解码’含义与拼音文字不同，跨文字使用时须重新界定。"
+      ],
+      "language": "shared",
+      "evidenceScope": "1986 年一语阅读理论论文摘要；二语阅读相关因素元分析摘要。",
+      "aliases": [
+        "Simple View of Reading",
+        "SVR",
+        "Gough and Tunmer",
+        "decoding",
+        "阅读简单观"
+      ]
+    },
+    {
+      "id": "ped:learning-to-read-vs-reading-to-learn",
+      "label": "阅读发展阶段：学会阅读与通过阅读学习",
+      "kind": "theory",
+      "description": "Chall 提出阅读发展分阶段：前阅读、解码、巩固与流利、为学习而读、多视角、成熟阶段。常被简化为‘三年级前学会阅读，之后通过阅读学习’。Chall 与 Jacobs 2003 报告低收入家庭儿童约在四年级起阅读成绩下滑。",
+      "evidenceStatus": "theoretical_framework",
+      "sources": [
+        {
+          "title": "Chall (1976). The Great Debate: Ten Years Later, with a Modest Proposal for Reading Stages",
+          "url": "https://eric.ed.gov/?id=ED155617",
+          "year": 1976,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "Conference paper; ERIC ED155617",
+          "accessNote": "读取 ERIC 摘要。Chall 1983 年专著 Stages of Reading Development 本轮未核对。"
+        },
+        {
+          "title": "Chall & Jacobs (2003). Poor Children's Fourth-Grade Slump",
+          "url": "https://eric.ed.gov/?id=EJ672463",
+          "year": 2003,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "American Educator; ERIC EJ672463"
+        },
+        {
+          "title": "Duke (2003). Reading To Learn from the Very Beginning: Information Books in Early Childhood",
+          "url": "https://eric.ed.gov/?id=EJ671957",
+          "year": 2003,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Young Children; ERIC EJ671957"
+        }
+      ],
+      "limitations": [
+        "阶段是理论模型，以美国一语儿童为对象，不是二语阅读的发展序列。",
+        "Duke 2003 主张从幼儿期就使用信息类图书‘为学习而读’，反对把两者截然分在不同年级。",
+        "‘四年级滑坡’的原因（流利度、词汇、文本类型变化）在所读摘要中只是可能解释。",
+        "本轮未核对 Chall 1983 专著，阶段列表来自 1976 年会议论文的 ERIC 摘要。"
+      ],
+      "language": "shared",
+      "evidenceScope": "美国一语阅读：阶段理论论文摘要、低收入儿童纵向测验摘要、幼儿信息类图书使用的实践文章。",
+      "aliases": [
+        "Chall",
+        "stages of reading development",
+        "fourth-grade slump",
+        "learning to read",
+        "reading to learn",
+        "阅读发展阶段"
+      ]
+    },
+    {
+      "id": "ped:dialogic-reading",
+      "label": "对话式绘本共读",
+      "kind": "practice",
+      "description": "Whitehurst 等 1988 设计的家庭绘本共读干预：成人在共读时提问、鼓励儿童多说并对其表达给出反馈，通行描述为让儿童从听者变为讲述者（此句来自通行描述，ERIC 摘要只说优化家长读绘本的方式）。一个月的干预后，实验组儿童的表达性语言、平均话语长度高于对照组。",
+      "evidenceStatus": "empirical_practice_bounded",
+      "sources": [
+        {
+          "title": "Whitehurst et al. (1988). Accelerating Language Development through Picture Book Reading",
+          "url": "https://eric.ed.gov/?id=EJ375345",
+          "year": 1988,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Developmental Psychology 24(4), pp.552–559; ERIC EJ375345"
+        },
+        {
+          "title": "Mol, Bus, de Jong & Smeets (2008). Added Value of Dialogic Parent-Child Book Readings: A Meta-Analysis",
+          "url": "https://eric.ed.gov/?id=EJ787378",
+          "year": 2008,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Early Education and Development 19(1), pp.7–26; ERIC EJ787378"
+        },
+        {
+          "title": "Fitton, McIlraith & Wood (2018). Shared Book Reading Interventions with English Learners: A Meta-Analysis",
+          "url": "https://eric.ed.gov/?id=EJ1191547",
+          "year": 2018,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Review of Educational Research 88(5), pp.712–751; ERIC EJ1191547"
+        },
+        {
+          "title": "Barone, Chambuleyron, Vonnak & Assirelli (2019). Home-Based Shared Book Reading Interventions and Children's Language Skills: A Meta-Analysis of Randomised Controlled Trials",
+          "url": "https://eric.ed.gov/?id=EJ1272342",
+          "year": 2019,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Educational Research and Evaluation 25(5–6), pp.270–298; ERIC EJ1272342"
+        }
+      ],
+      "limitations": [
+        "主要证据是一语学前儿童（约 2–5 岁）与家长或教师的共读。",
+        "Mol 等 2008 的元分析显示表达性词汇效应中等，但儿童 4–5 岁或有语言读写风险时效应明显变小。",
+        "Barone 等 2019 发现许多家庭共读干预无效，对话式共读较一致有效，但只测短期结果、效果有消退迹象，且多在英语国家。",
+        "Fitton 等 2018 显示对在美国学英语的儿童有正向效果，但这是二语环境中的儿童；外语课堂的少量输入情境尚缺直接证据。"
+      ],
+      "language": "shared",
+      "evidenceScope": "原始家庭干预实验；对话式共读与词汇的元分析（16 项研究）；美国英语学习者共读元分析（54 项研究）；家庭共读随机对照试验元分析（30 项干预）。",
+      "aliases": [
+        "dialogic reading",
+        "shared book reading",
+        "picture book reading",
+        "Whitehurst",
+        "绘本共读",
+        "亲子共读"
+      ]
+    },
+    {
+      "id": "ped:extensive-reading",
+      "label": "泛读与分级读物",
+      "kind": "practice",
+      "description": "通行描述中，泛读指学习者大量阅读容易、自选、感兴趣的材料，重在理解大意，常用分级读物。Day 2002 提出十条泛读原则，涉及泛读的性质及成功所需条件与方法（本轮只读 ERIC 摘要，未逐条核对）；Nakanishi 2015 的元分析（34 项研究）报告组间对比中等效应（d = 0.46），前后测对比效应更大（d = 0.71）。",
+      "evidenceStatus": "empirical_practice_bounded",
+      "sources": [
+        {
+          "title": "Day (2002). Top Ten Principles for Teaching Extensive Reading",
+          "url": "https://eric.ed.gov/?id=EJ661199",
+          "year": 2002,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "Reading in a Foreign Language (2002); ERIC EJ661199",
+          "accessNote": "ERIC 记录只列 Richard Day 为作者，常见引用为 Day & Bamford 2002；本轮未打开原文核对作者与卷期。"
+        },
+        {
+          "title": "Nakanishi (2015). A Meta-Analysis of Extensive Reading Research",
+          "url": "https://eric.ed.gov/?id=EJ1052150",
+          "year": 2015,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "TESOL Quarterly 49(1), pp.6–37; ERIC EJ1052150"
+        },
+        {
+          "title": "Jeon & Day (2015). The Effectiveness of Core ER Principles",
+          "url": "https://eric.ed.gov/?id=EJ1078389",
+          "year": 2015,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Reading in a Foreign Language (2015 discussion forum); ERIC EJ1078389"
+        }
+      ],
+      "limitations": [
+        "元分析主要测阅读能力；对词汇、口语或写作的效果需要另看研究。",
+        "前后测设计没有对照组，其较大效应不能当作因果效应。",
+        "研究多为英语作为外语或二语，中文、日语的分级读物研究本轮未核对。",
+        "‘容易’的标准（如已知词比例）本轮未核实具体数值，不能写成研究结论。"
+      ],
+      "language": "shared",
+      "evidenceScope": "泛读原则论文与讨论摘要；英语二语与外语泛读元分析摘要（3,942 名参与者）。",
+      "aliases": [
+        "extensive reading",
+        "graded readers",
+        "ER",
+        "Day and Bamford",
+        "泛读",
+        "分级读物"
+      ]
+    },
+    {
+      "id": "ped:l2-reading-threshold",
+      "label": "二语阅读的语言门槛与一语迁移",
+      "kind": "hypothesis",
+      "description": "这一问题问的是：二语阅读困难主要是语言问题还是阅读问题。Clarke 1980 的‘短路’假说认为二语能力不足会妨碍好的一语阅读者使用其阅读策略；Cummins 1979 的发展相互依存假说认为二语能力部分取决于开始大量接触二语时一语已发展的能力，并提出门槛假说。Bernhardt 与 Kamil 1995 用成人数据认为两种假说都不能单独完整解释二语阅读。",
+      "evidenceStatus": "debated_hypothesis",
+      "sources": [
+        {
+          "title": "Clarke (1980). The Short Circuit Hypothesis of ESL Reading — or When Language Competence Interferes with Reading Performance",
+          "url": "https://eric.ed.gov/?id=EJ251161",
+          "year": 1980,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal 64(2), pp.203–209; ERIC EJ251161"
+        },
+        {
+          "title": "Cummins (1979). Linguistic Interdependence and the Educational Development of Bilingual Children",
+          "url": "https://doi.org/10.3102/00346543049002222",
+          "year": 1979,
+          "role": "original_theory",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Review of Educational Research 49(2), pp.222–251"
+        },
+        {
+          "title": "Bernhardt & Kamil (1995). Interpreting Relationships between L1 and L2 Reading: Consolidating the Linguistic Threshold and the Linguistic Interdependence Hypotheses",
+          "url": "https://eric.ed.gov/?id=EJ499456",
+          "year": 1995,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "Applied Linguistics 16(1), pp.15–34; ERIC EJ499456"
+        },
+        {
+          "title": "Jeon & Yamashita (2014). L2 Reading Comprehension and Its Correlates: A Meta-Analysis",
+          "url": "https://doi.org/10.1111/lang.12034",
+          "year": 2014,
+          "role": "primary_construct_measurement_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 64(1), pp.160–212",
+          "accessNote": "读取摘要。该研究是相关系数的元分析，不是干预研究。"
+        }
+      ],
+      "limitations": [
+        "门槛的具体位置没有公认数值，可能随文本、任务与语言组合变化。",
+        "Cummins 的论证针对双语教育中的儿童学业发展，与成人外语阅读不同。",
+        "Bernhardt 与 Kamil 的数据为 186 名英语母语成人读英语和西班牙语。",
+        "Jeon 与 Yamashita 2014 显示一语阅读理解和二语语言知识都与二语阅读相关，但都是相关数据。"
+      ],
+      "language": "shared",
+      "evidenceScope": "成人英语二语阅读研究、双语儿童教育理论论文、英西成人对比研究摘要与二语阅读相关因素元分析。",
+      "aliases": [
+        "linguistic threshold hypothesis",
+        "short circuit hypothesis",
+        "linguistic interdependence",
+        "Clarke",
+        "Cummins",
+        "语言门槛"
+      ]
+    },
+    {
+      "id": "ped:multimedia-learning",
+      "label": "多媒体学习认知理论",
+      "kind": "theory",
+      "description": "Mayer 的理论有三条假设：人有分别处理图像与言语材料的通道；每个通道一次能处理的量有限；有意义的学习需要主动选择、组织并整合图文表征。从认知超载出发，Mayer 与 Moreno 2003 为五类超载情形提出减负建议。Mayer 2009 将 12 条设计原则分为减少无关加工、管理必要加工与促进生成加工三组，并为每条写出边界条件。通行描述中的原则包括多媒体、一致性（去除无关材料）、提示、空间邻近、冗余与通道原则。",
+      "evidenceStatus": "theory_with_bounded_experimental_evidence",
+      "sources": [
+        {
+          "title": "Mayer & Moreno (2003). Nine Ways to Reduce Cognitive Load in Multimedia Learning",
+          "url": "https://doi.org/10.1207/S15326985EP3801_6",
+          "year": 2003,
+          "role": "original_model_and_evidence_review",
+          "access": "scholarly_index_abstract",
+          "locator": "Educational Psychologist 38(1), pp.43–52",
+          "accessNote": "读取 OpenAlex 收录的摘要；出版社页面未打开。"
+        },
+        {
+          "title": "Mayer (2009). Multimedia Learning (2nd ed.)",
+          "url": "https://doi.org/10.1017/CBO9780511811678",
+          "year": 2009,
+          "role": "original_theory",
+          "access": "publisher_description_via_crossref_metadata",
+          "locator": "Cambridge University Press",
+          "accessNote": "只读到出版社书籍简介：12 条原则分三组，并为每条写出边界条件。未读正文。"
+        },
+        {
+          "title": "Harp & Mayer (1998). How Seductive Details Do Their Damage: A Theory of Cognitive Interest in Science Learning",
+          "url": "https://eric.ed.gov/?id=EJ576496",
+          "year": 1998,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Journal of Educational Psychology 90(3), pp.414–434; ERIC EJ576496",
+          "accessNote": "另读 OpenAlex 收录的完整摘要（四个实验及插入位置结果）。"
+        }
+      ],
+      "limitations": [
+        "Mayer 实验多以大学生学习科学或技术解释为材料（如 Harp 与 Mayer 1998 的本科生科学说明文）；用于儿童或语言学习时需另行验证。",
+        "Mayer 2009 为每条原则写出边界条件，不能当作普适规则；本轮未读具体边界条件。",
+        "本轮只读到摘要和书籍简介，原则清单的完整定义来自通行描述。",
+        "图文双通道假设与 Paivio 的双重编码理论相关但不相同。"
+      ],
+      "language": "shared",
+      "evidenceScope": "教育心理学综述摘要与专著简介；实验证据主要为成人学习者与科学说明材料。",
+      "aliases": [
+        "Cognitive Theory of Multimedia Learning",
+        "CTML",
+        "Mayer",
+        "coherence principle",
+        "modality principle",
+        "redundancy principle",
+        "多媒体学习"
+      ]
+    },
+    {
+      "id": "ped:dual-coding",
+      "label": "双重编码理论",
+      "kind": "theory",
+      "description": "Paivio 的双重编码理论用相互联结的言语表征与非言语（表象）表征网络解释人的行为与经验。Clark 与 Paivio 1991 将其作为教育心理学的一般框架。Paivio 与 Lambert 1981 用该框架研究双语记忆，比较双语编码与言语—非言语双重编码的效果。",
+      "evidenceStatus": "theoretical_framework",
+      "sources": [
+        {
+          "title": "Clark & Paivio (1991). Dual Coding Theory and Education",
+          "url": "https://doi.org/10.1007/BF01320076",
+          "year": 1991,
+          "role": "original_theory",
+          "access": "bibliographic_record_and_abstract_opening",
+          "locator": "Educational Psychology Review 3(3), pp.149–210",
+          "accessNote": "核实书目记录（Crossref 页码 149–210）；只见摘要首句（搜索摘录）。作者主页 PDF 为扫描件，本轮未能读取。"
+        },
+        {
+          "title": "Paivio & Lambert (1981). Dual Coding and Bilingual Memory",
+          "url": "https://eric.ed.gov/?id=EJ252345",
+          "year": 1981,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Journal of Verbal Learning and Verbal Behavior; ERIC EJ252345"
+        }
+      ],
+      "limitations": [
+        "本轮只核实 Clark 与 Paivio 1991 的书目与摘要首句，未读正文；不对其教育推论作细节引用。",
+        "‘加一张图就能记得更牢’不是该理论的直接推论；图与词是否建立有意义的指称联系才是关键，且具体与抽象词效果不同。",
+        "该理论与‘视觉型、听觉型学习风格’无关，不支持按学习风格分配材料。",
+        "Paivio 与 Lambert 1981 是记忆实验，不是语言教学干预。"
+      ],
+      "language": "shared",
+      "evidenceScope": "认知心理学理论综述的书目记录；双语记忆实验摘要。",
+      "aliases": [
+        "dual coding theory",
+        "DCT",
+        "Paivio",
+        "imagery",
+        "双重编码"
+      ]
+    },
+    {
+      "id": "ped:picture-superiority-vocabulary",
+      "label": "图片注释与二语词汇学习",
+      "kind": "effect",
+      "description": "Plass 等 1998 中，学德语的英语母语大学生阅读电脑呈现的德语故事时，同时选看文字翻译与图片或视频注释的学生，词义记忆好于只看一种或不看。Andrä 等 2020 中，8 岁德国儿童学英语词时，图片或手势辅助都优于无辅助，效果维持到 6 个月。但 Acha 2009 中，三、四年级儿童只看文字翻译的词义回忆好于同时看图文或只看图。",
+      "evidenceStatus": "empirical_effect_bounded",
+      "sources": [
+        {
+          "title": "Plass, Chun, Mayer & Leutner (1998). Supporting Visual and Verbal Learning Preferences in a Second-Language Multimedia Learning Environment",
+          "url": "https://eric.ed.gov/?id=EJ571168",
+          "year": 1998,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Journal of Educational Psychology 90(1), pp.25–36; ERIC EJ571168",
+          "accessNote": "另读 OpenAlex 收录的完整摘要。"
+        },
+        {
+          "title": "Andrä, Mathias, Schwager, Macedonia & von Kriegstein (2020). Learning Foreign Language Vocabulary with Gestures and Pictures Enhances Vocabulary Memory for Several Months Post-Learning in Eight-Year-Old School Children",
+          "url": "https://eric.ed.gov/?id=EJ1263245",
+          "year": 2020,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 32(3), pp.815–850; ERIC EJ1263245"
+        },
+        {
+          "title": "Acha (2009). The Effectiveness of Multimedia Programmes in Children's Vocabulary Learning",
+          "url": "https://doi.org/10.1111/j.1467-8535.2007.00800.x",
+          "year": 2009,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "British Journal of Educational Technology 40(1), pp.23–31"
+        },
+        {
+          "title": "Boers (2022). Glossing and Vocabulary Learning",
+          "url": "https://eric.ed.gov/?id=EJ1319722",
+          "year": 2022,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Language Teaching 55(1), pp.1–23; ERIC EJ1319722"
+        }
+      ],
+      "limitations": [
+        "图片不总是有帮助：Acha 2009 认为儿童同时处理图文时受工作记忆限制。",
+        "Plass 等的结果与学习者自选注释有关，不能推出‘强制给每个词配图’。",
+        "Boers 2022 的注释研究综述指出研究设计差异大、报告不透明，许多问题只有暂定答案。",
+        "研究多为可画出的具体词；抽象词、语法与语用的配图效果本轮没有核实证据。"
+      ],
+      "language": "shared",
+      "evidenceScope": "英语母语大学生学德语（多媒体注释）；德国 8 岁儿童学英语（听觉词＋图片或手势）；三、四年级儿童读英语故事（多媒体注释，135 人）；注释研究综述摘要。",
+      "aliases": [
+        "picture glosses",
+        "visual annotation",
+        "pictures and vocabulary",
+        "multimedia glossing",
+        "图片注释",
+        "配图学词"
+      ]
+    },
+    {
+      "id": "ped:seductive-details",
+      "label": "诱惑性细节效应（有趣但无关的内容）",
+      "kind": "effect",
+      "description": "诱惑性细节指有趣但与学习目标无关的内容。Harp 与 Mayer 1998 的四个实验中，读带诱惑性细节说明文的本科生回忆的要点和迁移答案都更少；突出要点、给出学习目标或加提示都没能消除这一效应，而把细节放到文章开头会加重、放到末尾会减轻。Rey 2012 的元分析（39 个实验效应，含文字与插图）发现保持测验为小到中等效应、迁移测验为中等效应。",
+      "evidenceStatus": "empirical_effect_bounded",
+      "sources": [
+        {
+          "title": "Harp & Mayer (1998). How Seductive Details Do Their Damage: A Theory of Cognitive Interest in Science Learning",
+          "url": "https://eric.ed.gov/?id=EJ576496",
+          "year": 1998,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Journal of Educational Psychology 90(3), pp.414–434; ERIC EJ576496",
+          "accessNote": "另读 OpenAlex 收录的完整摘要（四个实验及插入位置结果）。"
+        },
+        {
+          "title": "Rey (2012). A Review of Research and a Meta-Analysis of the Seductive Detail Effect",
+          "url": "https://eric.ed.gov/?id=EJ986386",
+          "year": 2012,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Educational Research Review 7(3), pp.216–237; ERIC EJ986386"
+        },
+        {
+          "title": "Sundararajan & Adesope (2020). Keep It Coherent: A Meta-Analysis of the Seductive Details Effect",
+          "url": "https://eric.ed.gov/?id=EJ1263249",
+          "year": 2020,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 32(3), pp.707–734; ERIC EJ1263249"
+        }
+      ],
+      "limitations": [
+        "主要证据来自大学生学习科学说明材料，儿童与语言学习的直接证据本轮未核实。",
+        "四种解释（工作记忆超载、注意分散、图式干扰、连贯性中断）各有支持也各有反证（Rey 2012）。",
+        "Sundararajan 与 Adesope 2020 发现效应大小受图片类型、呈现形式、语言、学科与节奏等调节。",
+        "装饰性插图是否有害取决于是否与目标相关；本节点不支持‘一律不要图’。"
+      ],
+      "language": "shared",
+      "evidenceScope": "本科生科学说明文实验；两项元分析摘要。",
+      "aliases": [
+        "seductive details",
+        "decorative images",
+        "coherence principle",
+        "诱惑性细节",
+        "装饰性插图"
+      ]
+    },
+    {
+      "id": "ped:embodied-gesture-learning",
+      "label": "手势、动作与二语词汇记忆",
+      "kind": "effect",
+      "description": "Tellier 2008 中，20 名平均 5 岁半的法国儿童学 8 个英语词，跟着做手势的组在主动产出词汇上显著好于看图片的组。Macedonia 与 Knösche 2011 中，成人用人造语料学习抽象句子时，配象征手势编码的词记得更好，在新句子中使用更多。Mavilidi 等 2015 中，学前儿童用与词义相关的全身动作学意大利语词效果最好。Macedonia 2014 的短综述称手势对二语词语记忆的效果稳健，但也说明部分研究没有发现效果。",
+      "evidenceStatus": "empirical_effect_bounded",
+      "sources": [
+        {
+          "title": "Tellier (2008). The effect of gestures on second language memorisation by young children",
+          "url": "https://doi.org/10.1075/gest.8.2.06tel",
+          "year": 2008,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Gesture 8(2), pp.219–235"
+        },
+        {
+          "title": "Macedonia & Knösche (2011). Body in Mind: How Gestures Empower Foreign Language Learning",
+          "url": "https://doi.org/10.1111/j.1751-228X.2011.01129.x",
+          "year": 2011,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Mind, Brain, and Education 5(4), pp.196–211"
+        },
+        {
+          "title": "Mavilidi, Okely, Chandler, Cliff & Paas (2015). Effects of Integrated Physical Exercises and Gestures on Preschool Children's Foreign Language Vocabulary Learning",
+          "url": "https://eric.ed.gov/?id=EJ1071971",
+          "year": 2015,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 27(3), pp.413–426; ERIC EJ1071971"
+        },
+        {
+          "title": "Andrä, Mathias, Schwager, Macedonia & von Kriegstein (2020). Learning Foreign Language Vocabulary with Gestures and Pictures Enhances Vocabulary Memory for Several Months Post-Learning in Eight-Year-Old School Children",
+          "url": "https://eric.ed.gov/?id=EJ1263245",
+          "year": 2020,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 32(3), pp.815–850; ERIC EJ1263245"
+        },
+        {
+          "title": "Macedonia (2014). Bringing back the body into the mind: gestures enhance word learning in foreign language",
+          "url": "https://www.frontiersin.org/articles/10.3389/fpsyg.2014.01467/full",
+          "year": 2014,
+          "role": "critical_argument",
+          "access": "full_text_relevant_sections",
+          "locator": "Frontiers in Psychology 5, article 1467 (mini review)"
+        }
+      ],
+      "limitations": [
+        "样本小、词表短（8–32 个词），多为实验室或短期教学，测的是词语记忆，不是交际能力。",
+        "Andrä 等 2020 中，8 岁儿童用手势与用图片的效果相近，未出现成人研究预期的手势优势。",
+        "Macedonia 与 Knösche 2011 使用人造语料与成人被试。",
+        "效果依赖手势与词义相关且由学习者自己做出；无关动作不能期待同样效果。"
+      ],
+      "language": "shared",
+      "evidenceScope": "法国 5 岁儿童、学前儿童、德国 8 岁儿童与成人（人造语料）的实验摘要；一篇短综述全文。",
+      "aliases": [
+        "gesture",
+        "enactment",
+        "embodied cognition",
+        "iconic gestures",
+        "手势学词",
+        "具身学习"
+      ]
     }
   ],
   "edges": [
@@ -1162,6 +2089,511 @@
           "role": "primary_experiment",
           "access": "publisher_abstract",
           "locator": "Studies in Second Language Acquisition 19, pp.195–221"
+        }
+      ]
+    },
+    {
+      "source": "ped:age-instructed-settings",
+      "target": "ped:age-rate-vs-attainment",
+      "relation": "limits_generalization",
+      "note": "Muñoz 认为自然环境的最终水平结论被仓促推广到课堂外语学习；输入量与质量改变年龄效应的表现。",
+      "basis": "theoretical_claim",
+      "sources": [
+        {
+          "title": "Muñoz (2008). Symmetries and Asymmetries of Age Effects in Naturalistic and Instructed L2 Learning",
+          "url": "https://eric.ed.gov/?id=EJ820241",
+          "year": 2008,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Applied Linguistics 29(4), pp.578–596; ERIC EJ820241"
+        },
+        {
+          "title": "Muñoz (2011). Input and Long-Term Effects of Starting Age in Foreign Language Learning",
+          "url": "https://eric.ed.gov/?id=EJ936551",
+          "year": 2011,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "IRAL 49(2); ERIC EJ936551"
+        }
+      ]
+    },
+    {
+      "source": "ped:age-implicit-explicit",
+      "target": "ped:age-rate-vs-attainment",
+      "relation": "proposes_process_link",
+      "note": "DeKeyser 把年龄效应限定为隐性学习机制的变化，作为最终水平差异的一种解释；这只是候选解释之一。",
+      "basis": "theoretical_claim",
+      "sources": [
+        {
+          "title": "DeKeyser (2000). The Robustness of Critical Period Effects in Second Language Acquisition",
+          "url": "https://doi.org/10.1017/S0272263100004022",
+          "year": 2000,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Studies in Second Language Acquisition 22(4), pp.499–533",
+          "accessNote": "读取出版社经 Crossref 提供的摘要。研究设计实为相关研究（57 名匈牙利语母语移民），不是干预实验。"
+        },
+        {
+          "title": "Muñoz & Singleton (2011). A Critical Review of Age-Related Research on L2 Ultimate Attainment",
+          "url": "https://eric.ed.gov/?id=EJ908971",
+          "year": 2011,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "Language Teaching 44(1), pp.1–35; ERIC EJ908971"
+        }
+      ]
+    },
+    {
+      "source": "ped:age-implicit-explicit",
+      "target": "ped:explicit-implicit-knowledge",
+      "relation": "distinct_from",
+      "note": "前者讨论学习机制与学能随年龄的变化，后者是知识可意识访问性的构念；同用‘隐性/显性’，层次不同。",
+      "basis": "conceptual_distinction",
+      "sources": [
+        {
+          "title": "DeKeyser (2000). The Robustness of Critical Period Effects in Second Language Acquisition",
+          "url": "https://doi.org/10.1017/S0272263100004022",
+          "year": 2000,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Studies in Second Language Acquisition 22(4), pp.499–533",
+          "accessNote": "读取出版社经 Crossref 提供的摘要。研究设计实为相关研究（57 名匈牙利语母语移民），不是干预实验。"
+        },
+        {
+          "title": "Ellis (2005). Measuring Implicit and Explicit Knowledge of a Second Language: A Psychometric Study",
+          "url": "https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/measuring-implicit-and-explicit-knowledge-of-a-second-language-a-psychometric-study/0708428E45AEA716C06E47ED37785D4E",
+          "year": 2005,
+          "role": "primary_construct_measurement_study",
+          "access": "publisher_abstract",
+          "locator": "Studies in Second Language Acquisition 27, pp.141–172"
+        }
+      ]
+    },
+    {
+      "source": "ped:age-implicit-explicit",
+      "target": "ped:explicit-instruction",
+      "relation": "informs_design",
+      "note": "本项目据此为年长学习者提供可选的规则说明，为儿童减少元语言讲解；来源不证明这种分配有效。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "DeKeyser (2000). The Robustness of Critical Period Effects in Second Language Acquisition",
+          "url": "https://doi.org/10.1017/S0272263100004022",
+          "year": 2000,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Studies in Second Language Acquisition 22(4), pp.499–533",
+          "accessNote": "读取出版社经 Crossref 提供的摘要。研究设计实为相关研究（57 名匈牙利语母语移民），不是干预实验。"
+        },
+        {
+          "title": "Cameron (2001). Teaching Languages to Young Learners, ch.1 'Children learning a foreign language'",
+          "url": "https://www.cambridge.org/core/books/abs/teaching-languages-to-young-learners/children-learning-a-foreign-language/BEBE8938F374AB21F200C70F545827BB",
+          "year": 2001,
+          "role": "original_theory",
+          "access": "publisher_chapter_extract",
+          "locator": "Cambridge University Press, ch.1, pp.1–20",
+          "accessNote": "读取 Cambridge Core 公开的第一章节选摘要，未读整章。"
+        }
+      ]
+    },
+    {
+      "source": "ped:young-learner-characteristics",
+      "target": "ped:total-physical-response",
+      "relation": "informs_design",
+      "note": "儿童较少使用元语言、较快失去兴趣，本项目据此在儿童课程中采用听指令做动作的活动；不是来源验证的结论。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "Cameron (2001). Teaching Languages to Young Learners, ch.1 'Children learning a foreign language'",
+          "url": "https://www.cambridge.org/core/books/abs/teaching-languages-to-young-learners/children-learning-a-foreign-language/BEBE8938F374AB21F200C70F545827BB",
+          "year": 2001,
+          "role": "original_theory",
+          "access": "publisher_chapter_extract",
+          "locator": "Cambridge University Press, ch.1, pp.1–20",
+          "accessNote": "读取 Cambridge Core 公开的第一章节选摘要，未读整章。"
+        },
+        {
+          "title": "Asher (1966). The Learning Strategy of the Total Physical Response: A Review",
+          "url": "https://eric.ed.gov/?id=ED028664",
+          "year": 1966,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal; ERIC ED028664"
+        }
+      ]
+    },
+    {
+      "source": "ped:total-physical-response",
+      "target": "ped:comprehensible-input",
+      "relation": "may_include",
+      "note": "TPR 先让学习者通过动作理解指令，可视为一种让输入可理解的安排；本边不声称 Asher 依据输入假说。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "Asher (1966). The Learning Strategy of the Total Physical Response: A Review",
+          "url": "https://eric.ed.gov/?id=ED028664",
+          "year": 1966,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal; ERIC ED028664"
+        },
+        {
+          "title": "Krashen (1982). Principles and Practice in Second Language Acquisition",
+          "url": "https://sdkrashen.com/content/books/principles_and_practice.pdf",
+          "year": 1982,
+          "role": "original_theory",
+          "access": "full_text_relevant_sections",
+          "locator": "Chapter II, printed pp.20–23; Chapter III, pp.68–70"
+        }
+      ]
+    },
+    {
+      "source": "ped:total-physical-response",
+      "target": "ped:embodied-gesture-learning",
+      "relation": "distinct_from",
+      "note": "TPR 是听指令后执行动作的整套教学法；手势研究是学习者为单个词做与词义相关的手势。两类证据不能互相替代。",
+      "basis": "conceptual_distinction",
+      "sources": [
+        {
+          "title": "Asher (1966). The Learning Strategy of the Total Physical Response: A Review",
+          "url": "https://eric.ed.gov/?id=ED028664",
+          "year": 1966,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal; ERIC ED028664"
+        },
+        {
+          "title": "Tellier (2008). The effect of gestures on second language memorisation by young children",
+          "url": "https://doi.org/10.1075/gest.8.2.06tel",
+          "year": 2008,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Gesture 8(2), pp.219–235"
+        }
+      ]
+    },
+    {
+      "source": "ped:andragogy",
+      "target": "ped:adult-l2-constraints",
+      "relation": "distinct_from",
+      "note": "andragogy 是关于成人的教育哲学假设；成人条件节点只收已记录的研究结果。不能用前者替代后者的证据。",
+      "basis": "conceptual_distinction",
+      "sources": [
+        {
+          "title": "Hartree (1984). Malcolm Knowles' Theory of Andragogy: A Critique",
+          "url": "https://eric.ed.gov/?id=EJ302286",
+          "year": 1984,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "International Journal of Lifelong Education 3(3), pp.203–210; ERIC EJ302286"
+        },
+        {
+          "title": "Horwitz, Horwitz & Cope (1986). Foreign Language Classroom Anxiety",
+          "url": "https://eric.ed.gov/?id=EJ337666",
+          "year": 1986,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal 70(2), pp.125–132; ERIC EJ337666"
+        }
+      ]
+    },
+    {
+      "source": "ped:adolescent-motivation-autonomy",
+      "target": "ped:andragogy",
+      "relation": "distinct_from",
+      "note": "二语动机研究以问卷测量动机构念，且发现不同年龄群体的动机模型不同；andragogy 对成人内在动机的假设未经此类测量。",
+      "basis": "conceptual_distinction",
+      "sources": [
+        {
+          "title": "Kormos & Csizér (2008). Age-Related Differences in the Motivation of Learning English as a Foreign Language: Attitudes, Selves, and Motivated Learning Behavior",
+          "url": "https://doi.org/10.1111/j.1467-9922.2008.00443.x",
+          "year": 2008,
+          "role": "primary_observational_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 58(2), pp.327–355"
+        },
+        {
+          "title": "Merriam (2001). Andragogy and Self-Directed Learning: Pillars of Adult Learning Theory",
+          "url": "https://eric.ed.gov/?id=EJ625870",
+          "year": 2001,
+          "role": "critical_argument",
+          "access": "official_index_abstract",
+          "locator": "New Directions for Adult and Continuing Education 89, pp.3–14; ERIC EJ625870"
+        }
+      ]
+    },
+    {
+      "source": "ped:learning-to-read-vs-reading-to-learn",
+      "target": "ped:simple-view-of-reading",
+      "relation": "distinct_from",
+      "note": "阶段理论描述发展顺序，阅读简单观描述某一时刻阅读理解的成分；两者回答不同问题。",
+      "basis": "conceptual_distinction",
+      "sources": [
+        {
+          "title": "Chall (1976). The Great Debate: Ten Years Later, with a Modest Proposal for Reading Stages",
+          "url": "https://eric.ed.gov/?id=ED155617",
+          "year": 1976,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "Conference paper; ERIC ED155617",
+          "accessNote": "读取 ERIC 摘要。Chall 1983 年专著 Stages of Reading Development 本轮未核对。"
+        },
+        {
+          "title": "Gough & Tunmer (1986). Decoding, Reading, and Reading Disability",
+          "url": "https://doi.org/10.1177/074193258600700104",
+          "year": 1986,
+          "role": "original_theory",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Remedial and Special Education 7(1), pp.6–10"
+        }
+      ]
+    },
+    {
+      "source": "ped:l2-reading-threshold",
+      "target": "ped:simple-view-of-reading",
+      "relation": "qualifies_interpretation",
+      "note": "二语阅读中，二语语言知识与一语阅读能力都有作用，不能直接套用一语的‘解码 × 理解’两成分。",
+      "basis": "empirical_finding",
+      "sources": [
+        {
+          "title": "Bernhardt & Kamil (1995). Interpreting Relationships between L1 and L2 Reading: Consolidating the Linguistic Threshold and the Linguistic Interdependence Hypotheses",
+          "url": "https://eric.ed.gov/?id=EJ499456",
+          "year": 1995,
+          "role": "primary_observational_study",
+          "access": "official_index_abstract",
+          "locator": "Applied Linguistics 16(1), pp.15–34; ERIC EJ499456"
+        },
+        {
+          "title": "Jeon & Yamashita (2014). L2 Reading Comprehension and Its Correlates: A Meta-Analysis",
+          "url": "https://doi.org/10.1111/lang.12034",
+          "year": 2014,
+          "role": "primary_construct_measurement_study",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Language Learning 64(1), pp.160–212",
+          "accessNote": "读取摘要。该研究是相关系数的元分析，不是干预研究。"
+        }
+      ]
+    },
+    {
+      "source": "ped:l2-reading-threshold",
+      "target": "ped:transfer",
+      "relation": "distinct_from",
+      "note": "一语阅读能力向二语阅读的跨语言迁移，与 ped:transfer 中学习结果用于新材料或新情境的结果构念不同。",
+      "basis": "conceptual_distinction",
+      "sources": [
+        {
+          "title": "Cummins (1979). Linguistic Interdependence and the Educational Development of Bilingual Children",
+          "url": "https://doi.org/10.3102/00346543049002222",
+          "year": 1979,
+          "role": "original_theory",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "Review of Educational Research 49(2), pp.222–251"
+        },
+        {
+          "title": "Clarke (1980). The Short Circuit Hypothesis of ESL Reading — or When Language Competence Interferes with Reading Performance",
+          "url": "https://eric.ed.gov/?id=EJ251161",
+          "year": 1980,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal 64(2), pp.203–209; ERIC EJ251161"
+        }
+      ]
+    },
+    {
+      "source": "ped:l2-reading-threshold",
+      "target": "ped:extensive-reading",
+      "relation": "informs_design",
+      "note": "本项目据此让泛读材料先低于学习者语言水平，以免二语能力不足‘短路’阅读策略；具体难度比例未经核实。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "Clarke (1980). The Short Circuit Hypothesis of ESL Reading — or When Language Competence Interferes with Reading Performance",
+          "url": "https://eric.ed.gov/?id=EJ251161",
+          "year": 1980,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "The Modern Language Journal 64(2), pp.203–209; ERIC EJ251161"
+        },
+        {
+          "title": "Day (2002). Top Ten Principles for Teaching Extensive Reading",
+          "url": "https://eric.ed.gov/?id=EJ661199",
+          "year": 2002,
+          "role": "original_theory",
+          "access": "official_index_abstract",
+          "locator": "Reading in a Foreign Language (2002); ERIC EJ661199",
+          "accessNote": "ERIC 记录只列 Richard Day 为作者，常见引用为 Day & Bamford 2002；本轮未打开原文核对作者与卷期。"
+        }
+      ]
+    },
+    {
+      "source": "ped:comprehensible-input",
+      "target": "ped:extensive-reading",
+      "relation": "informs_design",
+      "note": "大量容易的阅读是提供可理解输入的一种做法；泛读元分析提供有限效果证据，不验证输入假说本身。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "Krashen (1982). Principles and Practice in Second Language Acquisition",
+          "url": "https://sdkrashen.com/content/books/principles_and_practice.pdf",
+          "year": 1982,
+          "role": "original_theory",
+          "access": "full_text_relevant_sections",
+          "locator": "Chapter II, printed pp.20–23; Chapter III, pp.68–70"
+        },
+        {
+          "title": "Nakanishi (2015). A Meta-Analysis of Extensive Reading Research",
+          "url": "https://eric.ed.gov/?id=EJ1052150",
+          "year": 2015,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "TESOL Quarterly 49(1), pp.6–37; ERIC EJ1052150"
+        }
+      ]
+    },
+    {
+      "source": "ped:dialogic-reading",
+      "target": "ped:scaffolding",
+      "relation": "may_include",
+      "note": "对话式共读中成人按儿童回答提问与反馈，可视为一种支架；本边是编辑者的对应，不是两篇来源的共同结论。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "Whitehurst et al. (1988). Accelerating Language Development through Picture Book Reading",
+          "url": "https://eric.ed.gov/?id=EJ375345",
+          "year": 1988,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Developmental Psychology 24(4), pp.552–559; ERIC EJ375345"
+        },
+        {
+          "title": "Wood, Bruner & Ross (1976). The role of tutoring in problem solving",
+          "url": "https://doi.org/10.1111/j.1469-7610.1976.tb00381.x",
+          "year": 1976,
+          "role": "primary_observational_study",
+          "access": "bibliographic_record_and_original_text_excerpt",
+          "locator": "Journal of Child Psychology and Psychiatry 17, pp.89–100"
+        }
+      ]
+    },
+    {
+      "source": "ped:dual-coding",
+      "target": "ped:multimedia-learning",
+      "relation": "proposes_process_link",
+      "note": "Mayer 理论的双通道假设与双重编码理论都区分言语与图像表征；二者的通道定义与预测不完全相同。",
+      "basis": "theoretical_claim",
+      "sources": [
+        {
+          "title": "Mayer & Moreno (2003). Nine Ways to Reduce Cognitive Load in Multimedia Learning",
+          "url": "https://doi.org/10.1207/S15326985EP3801_6",
+          "year": 2003,
+          "role": "original_model_and_evidence_review",
+          "access": "scholarly_index_abstract",
+          "locator": "Educational Psychologist 38(1), pp.43–52",
+          "accessNote": "读取 OpenAlex 收录的摘要；出版社页面未打开。"
+        },
+        {
+          "title": "Clark & Paivio (1991). Dual Coding Theory and Education",
+          "url": "https://doi.org/10.1007/BF01320076",
+          "year": 1991,
+          "role": "original_theory",
+          "access": "bibliographic_record_and_abstract_opening",
+          "locator": "Educational Psychology Review 3(3), pp.149–210",
+          "accessNote": "核实书目记录（Crossref 页码 149–210）；只见摘要首句（搜索摘录）。作者主页 PDF 为扫描件，本轮未能读取。"
+        }
+      ]
+    },
+    {
+      "source": "ped:multimedia-learning",
+      "target": "ped:picture-superiority-vocabulary",
+      "relation": "proposes_process_link",
+      "note": "Plass 等把图文注释的记忆优势解释为学习者选择、组织并整合图文表征。",
+      "basis": "theoretical_claim",
+      "sources": [
+        {
+          "title": "Plass, Chun, Mayer & Leutner (1998). Supporting Visual and Verbal Learning Preferences in a Second-Language Multimedia Learning Environment",
+          "url": "https://eric.ed.gov/?id=EJ571168",
+          "year": 1998,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Journal of Educational Psychology 90(1), pp.25–36; ERIC EJ571168",
+          "accessNote": "另读 OpenAlex 收录的完整摘要。"
+        }
+      ]
+    },
+    {
+      "source": "ped:picture-superiority-vocabulary",
+      "target": "ped:multimedia-learning",
+      "relation": "qualifies_interpretation",
+      "note": "Acha 2009 中儿童同时看图文的词义回忆反而较差，提示多媒体原则用于儿童时受工作记忆限制。",
+      "basis": "empirical_finding",
+      "sources": [
+        {
+          "title": "Acha (2009). The Effectiveness of Multimedia Programmes in Children's Vocabulary Learning",
+          "url": "https://doi.org/10.1111/j.1467-8535.2007.00800.x",
+          "year": 2009,
+          "role": "primary_experiment",
+          "access": "publisher_abstract_via_crossref_metadata",
+          "locator": "British Journal of Educational Technology 40(1), pp.23–31"
+        }
+      ]
+    },
+    {
+      "source": "ped:seductive-details",
+      "target": "ped:multimedia-learning",
+      "relation": "qualifies_interpretation",
+      "note": "诱惑性细节的有害效应支持去除无关材料，但其机制解释仍有争议，且效应大小受多种设计因素调节。",
+      "basis": "empirical_finding",
+      "sources": [
+        {
+          "title": "Harp & Mayer (1998). How Seductive Details Do Their Damage: A Theory of Cognitive Interest in Science Learning",
+          "url": "https://eric.ed.gov/?id=EJ576496",
+          "year": 1998,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Journal of Educational Psychology 90(3), pp.414–434; ERIC EJ576496",
+          "accessNote": "另读 OpenAlex 收录的完整摘要（四个实验及插入位置结果）。"
+        },
+        {
+          "title": "Rey (2012). A Review of Research and a Meta-Analysis of the Seductive Detail Effect",
+          "url": "https://eric.ed.gov/?id=EJ986386",
+          "year": 2012,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Educational Research Review 7(3), pp.216–237; ERIC EJ986386"
+        },
+        {
+          "title": "Sundararajan & Adesope (2020). Keep It Coherent: A Meta-Analysis of the Seductive Details Effect",
+          "url": "https://eric.ed.gov/?id=EJ1263249",
+          "year": 2020,
+          "role": "original_model_and_evidence_review",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 32(3), pp.707–734; ERIC EJ1263249"
+        }
+      ]
+    },
+    {
+      "source": "ped:dual-coding",
+      "target": "ped:picture-superiority-vocabulary",
+      "relation": "informs_design",
+      "note": "本项目据此让图片与词义建立明确对应，而不是作装饰；双重编码理论本身不保证配图提高词汇学习。",
+      "basis": "design_inference",
+      "sources": [
+        {
+          "title": "Clark & Paivio (1991). Dual Coding Theory and Education",
+          "url": "https://doi.org/10.1007/BF01320076",
+          "year": 1991,
+          "role": "original_theory",
+          "access": "bibliographic_record_and_abstract_opening",
+          "locator": "Educational Psychology Review 3(3), pp.149–210",
+          "accessNote": "核实书目记录（Crossref 页码 149–210）；只见摘要首句（搜索摘录）。作者主页 PDF 为扫描件，本轮未能读取。"
+        },
+        {
+          "title": "Andrä, Mathias, Schwager, Macedonia & von Kriegstein (2020). Learning Foreign Language Vocabulary with Gestures and Pictures Enhances Vocabulary Memory for Several Months Post-Learning in Eight-Year-Old School Children",
+          "url": "https://eric.ed.gov/?id=EJ1263245",
+          "year": 2020,
+          "role": "primary_experiment",
+          "access": "official_index_abstract",
+          "locator": "Educational Psychology Review 32(3), pp.815–850; ERIC EJ1263245"
         }
       ]
     }

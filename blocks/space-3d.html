@@ -1,0 +1,1288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Space and viewpoint (3D)</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="runtime/block.css">
+<style>
+  :root { --tone1: #f6e7c8; --tone2: #dcebf7; --tone3: #e4f2df; --tone4: #f3e0ea; --you: #3d4fe0; --ghost: #c0392b; }
+  :root[data-theme="dark"] { --tone1: #3b331f; --tone2: #1f3140; --tone3: #24382a; --tone4: #3a2633; --you: #93a0ff; --ghost: #ff8a7a; }
+  .kb-head .kb-variant { display: none; }
+  .s3-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .s3-layout { grid-template-columns: minmax(0, 1fr); } }
+  .s3-layout > * { min-width: 0; }
+  .s3-side { display: grid; gap: 12px; }
+  .s3-stage { display: grid; gap: 10px; }
+  .s3-bands { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .s3-bands button { border: 0; background: var(--panel); padding: 5px 12px; }
+  .s3-bands button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+  .s3-view { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); overflow: hidden; outline: none; }
+  .s3-view:focus-visible { box-shadow: 0 0 0 3px var(--focus); }
+  .s3-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 6px 8px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  .s3-tools button { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 4px 10px; font-size: .88rem; min-width: 34px; }
+  .s3-tools button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .s3-tools .be { font-size: 1.05rem; padding: 7px 16px; border-color: var(--accent); }
+  .s3-tools .sep { flex: 1; }
+  .s3-canvas { position: relative; height: 380px; touch-action: none; cursor: grab; }
+  [data-band="adult"] .s3-canvas { height: 320px; }
+  [data-band="child"] .s3-canvas { height: 440px; }
+  @media (max-width: 520px) { .s3-canvas, [data-band="adult"] .s3-canvas { height: 290px; } [data-band="child"] .s3-canvas { height: 340px; } }
+  .s3-canvas canvas { display: block; width: 100%; height: 100%; }
+  .s3-ov { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .s3-ov .lab { position: absolute; transform: translate(-50%, -100%); white-space: nowrap; font-size: .78rem; padding: 1px 6px; border-radius: 6px;
+    background: color-mix(in srgb, var(--panel) 85%, transparent); color: var(--ink); border: 1px solid var(--line); }
+  [data-variant="child"] .s3-ov .lab { font-size: .95rem; }
+  .s3-ov .lab.fig { font-weight: 600; }
+  .s3-ov button.lab { pointer-events: auto; cursor: pointer; border-color: var(--accent); }
+  .s3-ov .eye { position: absolute; transform: translate(-50%, -100%); font-size: .82rem; padding: 2px 8px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); white-space: nowrap; }
+  .s3-ov .eye.ghost { background: transparent; color: var(--ghost); border: 2px dashed var(--ghost); }
+  .s3-ov .spot { position: absolute; transform: translate(-50%, -50%); pointer-events: auto; width: 36px; height: 36px; border-radius: 50%;
+    border: 2px dashed var(--accent); background: color-mix(in srgb, var(--panel) 80%, transparent); font-weight: 700; color: var(--accent); }
+  [data-variant="child"] .s3-ov .spot { width: 48px; height: 48px; font-size: 1.2rem; }
+  .s3-ov .spot.ok { border-style: solid; border-color: var(--t2); color: var(--t2); }
+  .s3-ov .spot.bad { border-style: solid; border-color: var(--bad); color: var(--bad); }
+  .s3-2d { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; padding: 8px; touch-action: pan-y; }
+  @media (max-width: 700px) { .s3-2d { grid-template-columns: minmax(0, 1fr); } }
+  .s3-2d figure { margin: 0; display: grid; gap: 4px; }
+  .s3-2d figcaption { font-size: .8rem; color: var(--muted); }
+  .s3-2d svg { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+  .m-floor { fill: var(--panel); } .m-grid { stroke: var(--line); stroke-width: .02; }
+  .m-t { fill: var(--ink); font-family: var(--font); font-size: .34px; paint-order: stroke; stroke: var(--panel); stroke-width: .08px; stroke-linejoin: round; }
+  [data-variant="child"] .m-t { font-size: .42px; }
+  .m-area-t { fill: var(--muted); font-family: var(--font); font-size: .3px; }
+  .m-tone1 { fill: var(--tone1); } .m-tone2 { fill: var(--tone2); } .m-tone3 { fill: var(--tone3); } .m-tone4 { fill: var(--tone4); }
+  .m-path { stroke: var(--accent); stroke-width: .07; fill: none; stroke-dasharray: .2 .14; }
+  .m-zone { fill: color-mix(in srgb, var(--accent) 10%, transparent); stroke: var(--accent); stroke-width: .04; stroke-dasharray: .14 .1; }
+  .m-zone.l { fill: color-mix(in srgb, var(--t3) 12%, transparent); stroke: var(--t3); }
+  .m-ghost { fill: none; stroke: var(--ghost); stroke-width: .06; stroke-dasharray: .16 .1; }
+  .m-hl { fill: none; stroke: var(--t3); stroke-width: .07; }
+  .m-spot circle { fill: var(--panel); stroke: var(--accent); stroke-width: .05; stroke-dasharray: .12 .08; }
+  .m-spot text { fill: var(--accent); font-family: var(--font); font-size: .36px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+  .m-spot.ok circle { stroke: var(--t2); stroke-dasharray: none; } .m-spot.ok text { fill: var(--t2); }
+  .m-spot.bad circle { stroke: var(--bad); stroke-dasharray: none; } .m-spot.bad text { fill: var(--bad); }
+  .m-spot { cursor: pointer; } .m-spot:focus { outline: none; } .m-spot:focus-visible circle { stroke-width: .1; }
+  [data-fig] { cursor: pointer; }
+  .m-cam { fill: color-mix(in srgb, var(--accent) 16%, transparent); stroke: var(--accent); stroke-width: .03; }
+  .e-sky { fill: color-mix(in srgb, var(--accent) 7%, var(--panel)); } .e-ground { fill: color-mix(in srgb, var(--t2) 10%, var(--panel)); }
+  .e-t { fill: var(--ink); font-family: var(--font); font-size: 11px; text-anchor: middle; paint-order: stroke; stroke: var(--panel); stroke-width: 3px; }
+  .e-note { fill: var(--muted); font-family: var(--font); font-size: 11px; }
+  .s3-sit { margin: 0; font-size: 1rem; }
+  .s3-q { font-size: 1.45rem; margin: 0; line-height: 1.8; }
+  [data-variant="child"] .s3-q { font-size: 1.8rem; }
+  .s3-q .gap { display: inline-block; min-width: 2.6em; border-bottom: 3px solid var(--accent); text-align: center; color: var(--accent); }
+  .s3-q .gap.ok { color: var(--ink); background: var(--accent-soft); border-radius: 6px 6px 0 0; }
+  .s3-r { color: var(--muted); font-size: .9rem; margin: 0; }
+  .s3-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .s3-opt { display: inline-flex; align-items: center; gap: 2px; }
+  .s3-opt .f { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 6px 16px; font-size: 1.1rem; }
+  [data-variant="child"] .s3-opt .f { font-size: 1.6rem; padding: 10px 26px; }
+  .s3-opt .f.right { background: var(--accent-soft); border-color: var(--accent); }
+  .s3-opt .f.wrong { background: var(--bad-soft); border-color: var(--bad); }
+  .s3-opt .say { border: 0; background: transparent; font-size: 1rem; padding: 4px; }
+  .s3-opts.col { flex-direction: column; align-items: stretch; }
+  .s3-opts.col .s3-opt .f { text-align: left; width: 100%; font-size: 1.05rem; border-radius: 12px; }
+  .s3-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .s3-read { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .92rem; }
+  .s3-read .chip { border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; background: var(--panel); }
+  .s3-read .chip.cur { border-color: var(--accent); background: var(--accent-soft); }
+  .s3-read .chip b { font-size: 1.05rem; }
+  .s3-adult { border-left: 4px solid var(--t3); }
+  .s3-rule { border-left: 4px solid var(--accent); }
+  .s3-rule h2, .s3-side h2 { font-size: .95rem; margin: 0 0 6px; }
+  .s3-side p { margin: 4px 0; font-size: .9rem; }
+  .s3-prog { font-size: .85rem; margin: 0; padding-left: 18px; }
+  .s3-ic { width: 1.1em; height: 1.1em; vertical-align: -0.18em; flex: none; }
+  .s3-rec > summary { cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--muted); }
+  .s3-rec[open] > summary { margin-bottom: 6px; }
+  .s3-text { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--panel); font-size: 1.05rem; }
+  .s3-made { font-size: .88rem; margin: 4px 0 0; padding-left: 18px; }
+  .flag { display: inline-block; font-size: .78rem; padding: 1px 8px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
+  .s3-done { font-size: 2.2rem; text-align: center; margin: 0; }
+</style>
+<script src="runtime/block.js"></script>
+<script src="registry.js"></script>
+<script src="age-design.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function () {
+  'use strict';
+  var h = KTBlock.h, L = KTBlock.L, T = KTBlock.t, EN = KTBlock.lang === 'en';
+  var params = new URLSearchParams(location.search);
+  var setId = params.get('set') || 'space-3d-en';
+  var reg = (window.KT_REGISTRY && KT_REGISTRY.packs) || {};
+  var entry = reg[setId] || {};
+  var app = document.getElementById('app');
+  if (entry.block && entry.block !== 'space-3d') { app.textContent = L('数据包 ' + setId + ' 属于积木 ' + entry.block + '，不能在这里打开。', 'Data pack ' + setId + ' belongs to the block ' + entry.block + ' and cannot be opened here.'); return; }
+  var file = entry.file || 'data/space-3d.js';   // fallback while the registry does not list the pack yet
+  var ds = document.createElement('script');
+  ds.src = file;
+  ds.onload = function () { if (KT_DATA[setId] && window.KT_SCENES && KT_SCENES[KT_DATA[setId].scenes]) start(KT_DATA[setId], KT_SCENES[KT_DATA[setId].scenes]); else app.textContent = L('未知的数据包：', 'Unknown data pack: ') + setId; };
+  ds.onerror = function () { app.textContent = L('数据包加载失败：', 'Could not load the data pack: ') + file; };
+  document.head.appendChild(ds);
+
+  var THREE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  var NEAR = 1.3;
+  /* Sizes in metres. fig = has eyes (can be a viewpoint); r = footprint radius; eye = eye height. */
+  var KIND = {
+    person: { fig: true, h: 1.7, r: 0.32, eye: 1.6 }, you: { fig: true, h: 1.7, r: 0.32, eye: 1.6 },
+    bear: { fig: true, h: 1.45, r: 0.45, eye: 1.2 }, rabbit: { fig: true, h: 1.45, r: 0.36, eye: 0.95 }, cat: { fig: true, h: 0.5, r: 0.3, eye: 0.4 },
+    apple: { h: 0.34, r: 0.18 }, ball: { h: 0.4, r: 0.2 }, cake: { h: 0.32, r: 0.3 }, cup: { h: 0.26, r: 0.13 }, phone: { h: 0.06, r: 0.15 },
+    laptop: { h: 0.24, r: 0.24 }, file: { h: 0.05, r: 0.2 }, umbrella: { h: 0.9, r: 0.12 }, tree: { h: 2.6, r: 0.6 },
+    poster: { h: 1.6, w: 1.2, panel: true, base: 0.5 }, window: { h: 1.4, w: 1.5, panel: true, base: 0.7 }, door: { h: 2.0, w: 1.0, panel: true, base: 0 },
+    screen: { h: 1.3, w: 2.0, panel: true, base: 0.6 }, tower: { h: 4.6, w: 1.4, d: 1.4 }, car: { h: 1.2, w: 1.1, len: 2.2, eye: 1.2 },
+    hotel: { h: 2.6 }, table: { h: 0.75 }
+  };
+  var TONE = { 1: '#f6e7c8', 2: '#dcebf7', 3: '#e4f2df', 4: '#f3e0ea' };
+
+  /* ---------- geometry (shared by both renderers and by the checks) ---------- */
+  function faceVec(deg) { var a = (deg || 0) * Math.PI / 180; return { x: Math.sin(a), z: -Math.cos(a) }; }
+  function leftOf(f) { return { x: f.z, z: -f.x }; }
+  function sub(a, b) { return { x: a.x - b.x, z: a.z - b.z }; }
+  function dot(a, b) { return a.x * b.x + a.z * b.z; }
+  function len(a) { return Math.sqrt(a.x * a.x + a.z * a.z); }
+  function norm(a) { var l = len(a) || 1; return { x: a.x / l, z: a.z / l }; }
+  function neg(a) { return { x: -a.x, z: -a.z }; }
+  function dist(a, b) { return len(sub(a, b)); }
+  var CARD = [{ id: 'N', x: 0, z: -1 }, { id: 'E', x: 1, z: 0 }, { id: 'S', x: 0, z: 1 }, { id: 'W', x: -1, z: 0 }];
+  /** Axes of a frame of reference around ref: fr = the direction that counts as “front”, lf = “left”. */
+  function axes(frame, ref, viewer) {
+    if (frame === 'intrinsic') { var fr = faceVec(ref.face); return { fr: fr, lf: leftOf(fr) }; }
+    var f = norm(sub(ref, viewer));          // the viewer looks at ref
+    return { fr: neg(f), lf: leftOf(f) };   // front of ref = toward the viewer; left = the viewer's left
+  }
+  function dirWord(v, ax) { var a = dot(v, ax.fr), b = dot(v, ax.lf); return Math.abs(a) >= Math.abs(b) ? (a > 0 ? 'front' : 'back') : (b > 0 ? 'left' : 'right'); }
+  function wantVec(word, ax) { return word === 'front' ? ax.fr : word === 'back' ? neg(ax.fr) : word === 'left' ? ax.lf : neg(ax.lf); }
+  function bestCard(v) { var best = null, bd = -9; CARD.forEach(function (c) { var d = dot(c, v); if (d > bd) { bd = d; best = c.id; } }); return best; }
+  function extent(t, c) {
+    if (t.kind === 'car') { var along = Math.abs(dot(faceVec(t.face), c)); return along > 0.5 ? KIND.car.len / 2 : KIND.car.w / 2; }
+    if (t.w) { var f = faceVec(t.face || 0), across = Math.abs(dot(leftOf(f), c)); return across > 0.5 ? t.w / 2 : (t.d || t.w) / 2; }
+    return (KIND[t.kind] && KIND[t.kind].r) || 0.3;
+  }
+  /** Which zone a thing is in when `sp` speaks to `li` (demonstratives). */
+  function zoneOf(thing, sp, li) {
+    if (dist(thing, sp) <= NEAR) return 'speaker';
+    if (li && dist(thing, li) <= NEAR) return 'listener';
+    return 'far';
+  }
+
+  function start(pack, SC) {
+    var B = KTBlock.init({ id: 'space-3d', primitive: 'prim:viewpoint-direction', title: T(pack, 'title') });
+    var band = params.get('band');
+    if (['child', 'youth', 'adult'].indexOf(band) < 0) band = params.get('variant') === 'child' ? 'child' : 'adult';
+    function applyBand() { B.variant = band === 'child' ? 'child' : 'adult'; document.documentElement.dataset.variant = B.variant; document.documentElement.dataset.band = band; }
+    applyBand();
+    var child = function () { return band === 'child'; };
+    var title = T(pack, 'title');
+    document.title = title + ' · 3D';
+    var MODES = [{ id: 'here', label: L('这儿／那儿', 'Here / there') }, { id: 'come', label: L('来／去', 'Come / go') }, { id: 'frame', label: L('前后左右', 'Front, back, left, right') }];
+    var st = {
+      mode: MODES.some(function (m) { return m.id === params.get('mode'); }) ? params.get('mode') : 'here',
+      step: params.get('step') === 'make' ? 'make' : 'practice',
+      queue: [], idx: 0, item: null, phase: null, tries: [], meFirst: null, hint: 0, sameRun: [], tried: {}, answered: false,
+      make: null
+    };
+    var ui = KTBlock.chrome(B, { title: title, subtitle: T(pack, 'subtitle'), modes: MODES, mode: st.mode,
+      onMode: function (m) { st.mode = m; ui.setMode(m); st.step = 'practice'; B.emit('view', { mode: m }); enterMode(); } });
+    var bar = h('div', { class: 'kb-bar' });
+    var stage = h('div', { class: 'kb-card s3-stage' });
+    var side = h('aside', { class: 's3-side' });
+    var ageBox = h('div', { id: 'age-why' });
+    app.append(ui.header, h('main', { class: 'kb-main' }, [bar, ageBox, h('div', { class: 's3-layout' }, [stage, side])]), ui.drawer);
+    B.emit('view', { mode: st.mode, set: pack.id, band: band });
+
+    /* ---------- names ---------- */
+    function fill(s) { return String(s || '').replace(/\{(\w+)\}/g, function (m, k) { return (pack.names && pack.names[k]) || m; }); }
+    function thingOf(id) { return M.things.filter(function (t) { return t.id === id; })[0]; }
+    function nameOf(id) {
+      var t = thingOf(id);
+      if (t && t.kind === 'you') return T(SC.figLabels.you, 'zh');
+      if (t && t.kind === 'cat') return T(SC.figLabels.cat, 'zh');
+      if (t && t.label) return fill(T(t.label, 'zh'));
+      if (pack.names[id]) return pack.names[id];
+      var a = (M.areas || []).filter(function (x) { return x.id === id; })[0];
+      return a ? fill(T(a.label, 'zh')) : id;
+    }
+    function isFig(t) { return t && KIND[t.kind] && KIND[t.kind].fig; }
+
+    /* ---------- the scene model: one object, drawn by either renderer ---------- */
+    var M = { things: [], areas: [], pos: {}, path: null, cam: { mode: 'orbit', yaw: 0, pitch: 38, dist: 8.6 }, eyeMark: null, ghostEye: null,
+      zones: null, ghost: null, hl: [], spots: null, pickFigs: false, big: false, hideFig: null };
+    function loadScene(id) {
+      var s = SC.scenes[id];
+      M.sceneId = id; M.title = fill(T(s.title, 'zh')); M.big = !!s.big || child();
+      M.things = s.things.map(function (t) { return Object.assign({}, t); });
+      M.areas = (s.areas || []).map(function (a) { return Object.assign({}, a); });
+      M.slots = s.slots || {};
+      M.pos = {};
+      M.things.forEach(function (t) { M.pos[t.id] = { x: t.x, z: t.z, face: t.face }; });
+      M.path = s.path ? { thing: s.path.thing, from: { x: thingOf(s.path.thing).x, z: thingOf(s.path.thing).z }, to: { x: s.path.to[0], z: s.path.to[1] } } : null;
+      M.eyeMark = null; M.ghostEye = null; M.zones = null; M.ghost = null; M.hl = []; M.spots = null; M.pickFigs = false; M.hideFig = null;
+      if (M.cam.mode === 'eye' && !thingOf(M.cam.fig)) M.cam = { mode: 'orbit', yaw: 0, pitch: 38, dist: 8.6 };
+      R.setScene(M);
+    }
+    function P(id) { return M.pos[id]; }
+    function elevation(t, p) {
+      var k = KIND[t.kind];
+      if (!k || k.fig || k.panel || ['tree', 'tower', 'car', 'hotel', 'table', 'umbrella'].indexOf(t.kind) >= 0) return 0;
+      var on = M.things.filter(function (u) { return u.kind === 'table' && Math.abs(p.x - u.x) <= u.w / 2 && Math.abs(p.z - u.z) <= u.d / 2; })[0];
+      return on ? KIND.table.h : 0;
+    }
+    function figScale(t) { return (t.small ? 0.75 : 1) * (M.big && !isFig(t) ? 1.5 : 1); }
+    function camView() {
+      if (M.cam.mode === 'eye') {
+        var t = thingOf(M.cam.fig), p = P(M.cam.fig);
+        if (t && p) { var ff = faceVec(p.face), back = t.kind === 'car' ? 0.2 : 0.5; return { x: p.x - ff.x * back, z: p.z - ff.z * back, f: ff, h: (KIND[t.kind].eye || 1.5) * (t.small ? 0.75 : 1) + 0.15, self: t.id, name: nameOf(t.id) }; }
+      }
+      var a = M.cam.yaw * Math.PI / 180, R0 = 6.2;
+      var pos = { x: Math.sin(a) * R0, z: Math.cos(a) * R0 };
+      return { x: pos.x, z: pos.z, f: norm(neg(pos)), h: 1.7, self: null, name: null };
+    }
+
+    /* ---------- 2D renderer: top-down map + eye view (also the fallback when 3D is unavailable) ---------- */
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    /* Interface icons are inline SVG (no emoji). Without a label the icon is decorative: the text or aria-label beside it carries the meaning. */
+    var ICONS = {
+      eye: '<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+      speaker: '<path d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/>'
+    };
+    function iconHtml(name, label) {
+      return '<svg class="s3-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" ' +
+        (label ? 'role="img" aria-label="' + esc(label) + '"' : 'aria-hidden="true"') + '>' + ICONS[name] + '</svg>';
+    }
+    function icon(name, label) { var t = document.createElement('template'); t.innerHTML = iconHtml(name, label); return t.content.firstChild; }
+    function Renderer2D(root) {
+      var wrap = h('div', { class: 's3-2d' });
+      var mapFig = h('figure'), eyeFig = h('figure');
+      wrap.append(mapFig, eyeFig);
+      root.append(wrap);
+      function figTop(t, p, s) {
+        var k = KIND[t.kind], col = t.kind === 'you' ? 'var(--you)' : t.color || (t.kind === 'bear' ? '#8b5a2b' : t.kind === 'rabbit' ? '#ece7dd' : t.kind === 'cat' ? '#e39b3d' : '#7a7f85');
+        var r = k.r * s, out = '<g transform="translate(' + p.x + ' ' + p.z + ') rotate(' + (p.face || 0) + ')">';
+        out += '<path d="M0 ' + (-r - 0.42) + ' L' + (-0.16) + ' ' + (-r - 0.12) + ' L0.16 ' + (-r - 0.12) + ' Z" fill="' + col + '" opacity=".75"/>';
+        if (t.kind === 'bear') out += '<circle cx="-.3" cy=".12" r=".14" fill="' + col + '"/><circle cx=".3" cy=".12" r=".14" fill="' + col + '"/>';
+        if (t.kind === 'rabbit') out += '<ellipse cx="-.12" cy=".38" rx=".08" ry=".26" fill="' + col + '" stroke="#999" stroke-width=".02"/><ellipse cx=".12" cy=".38" rx=".08" ry=".26" fill="' + col + '" stroke="#999" stroke-width=".02"/>';
+        out += '<circle r="' + r + '" fill="' + col + '" stroke="var(--ink)" stroke-width=".03"/>';
+        out += '<circle cx="-.1" cy="' + (-r * 0.55) + '" r=".045" fill="#222"/><circle cx=".1" cy="' + (-r * 0.55) + '" r=".045" fill="#222"/>';
+        return out + '</g>';
+      }
+      function thingTop(t, p) {
+        var s = figScale(t), k = KIND[t.kind] || {}, f = p.face || 0, o = '';
+        if (k.fig) return figTop(t, p, s);
+        if (t.kind === 'car') return '<g transform="translate(' + p.x + ' ' + p.z + ') rotate(' + f + ')"><rect x="-.55" y="-1.1" width="1.1" height="2.2" rx=".25" fill="' + (t.color || '#c94c4c') + '" stroke="var(--ink)" stroke-width=".03"/>' +
+          '<rect x="-.42" y="-.45" width=".84" height=".75" rx=".1" fill="#cfe3f3" opacity=".9"/><circle cx="-.32" cy="-1" r=".1" fill="#ffe066" stroke="#333" stroke-width=".02"/><circle cx=".32" cy="-1" r=".1" fill="#ffe066" stroke="#333" stroke-width=".02"/>' +
+          '<rect x="-.4" y="1.0" width=".2" height=".08" fill="#d22"/><rect x=".2" y="1.0" width=".2" height=".08" fill="#d22"/></g>';
+        if (t.kind === 'tree') return '<circle cx="' + p.x + '" cy="' + p.z + '" r="' + 0.6 * s + '" fill="#4f9d58" stroke="#2f6b37" stroke-width=".04"/><circle cx="' + p.x + '" cy="' + p.z + '" r=".1" fill="#7a5230"/>';
+        if (t.kind === 'hotel' || t.kind === 'tower') {
+          var w = t.w || k.w, d = t.d || k.d;
+          o = '<g transform="translate(' + p.x + ' ' + p.z + ') rotate(' + f + ')"><rect x="' + (-w / 2) + '" y="' + (-d / 2) + '" width="' + w + '" height="' + d + '" fill="#d9cbb3" stroke="var(--ink)" stroke-width=".04"/>';
+          if (t.kind === 'hotel') o += '<rect x="-.45" y="' + (-d / 2 - 0.12) + '" width=".9" height=".24" fill="#5b3a29"/><path d="M-.7 ' + (-d / 2 - 0.5) + ' h1.4" stroke="#b33" stroke-width=".08"/>';
+          return o + '</g>';
+        }
+        if (t.kind === 'table') return '<rect x="' + (p.x - t.w / 2) + '" y="' + (p.z - t.d / 2) + '" width="' + t.w + '" height="' + t.d + '" rx=".08" fill="#c8a27a" opacity=".85" stroke="#8a6a48" stroke-width=".03"/>';
+        if (k.panel) {
+          var col = t.kind === 'window' ? '#9fd0ef' : t.kind === 'door' ? '#8a5a3c' : t.kind === 'screen' ? '#334' : '#e7a74a';
+          return '<g transform="translate(' + p.x + ' ' + p.z + ') rotate(' + f + ')"><rect x="' + (-k.w / 2) + '" y="-.07" width="' + k.w + '" height=".14" fill="' + col + '" stroke="var(--ink)" stroke-width=".02"/><path d="M0 -.32 L-.12 -.12 L.12 -.12 Z" fill="' + col + '"/></g>';
+        }
+        var r = (k.r || 0.2) * s, c = { apple: '#d63b30', ball: '#3b6fd8', cake: '#f4d6e0', cup: '#e0453a', phone: '#2b2b33', laptop: '#8892a0', file: '#f4f1e6', umbrella: '#2e8b57' }[t.kind] || '#999';
+        if (t.kind === 'file' || t.kind === 'phone' || t.kind === 'laptop') return '<rect x="' + (p.x - r) + '" y="' + (p.z - r * 0.75) + '" width="' + 2 * r + '" height="' + 1.5 * r + '" rx=".03" fill="' + c + '" stroke="var(--ink)" stroke-width=".02"/>';
+        return '<circle cx="' + p.x + '" cy="' + p.z + '" r="' + r + '" fill="' + c + '" stroke="var(--ink)" stroke-width=".03"/>';
+      }
+      function eyeGlyph(p, ghost) {
+        var c = ghost ? 'var(--ghost)' : 'var(--you)', d = ghost ? ' stroke-dasharray=".08 .06"' : '';
+        return '<g transform="translate(' + (p.x + 0.45) + ' ' + (p.z - 0.55) + ')"><ellipse rx=".3" ry=".18" fill="var(--panel)" stroke="' + c + '" stroke-width=".05"' + d + '/><circle r=".09" fill="' + c + '"/></g>';
+      }
+      function map() {
+        var o = '<svg viewBox="-5.4 -4.5 10.8 9" role="img" aria-label="' + esc(L('俯视图：', 'Map seen from above: ') + M.title) + '">';
+        o += '<rect class="m-floor" x="-5.4" y="-4.5" width="10.8" height="9"/>';
+        for (var g = -5; g <= 5; g++) o += '<line class="m-grid" x1="' + g + '" y1="-4.5" x2="' + g + '" y2="4.5"/>';
+        for (var j = -4; j <= 4; j++) o += '<line class="m-grid" x1="-5.4" y1="' + j + '" x2="5.4" y2="' + j + '"/>';
+        M.areas.forEach(function (a) { o += '<rect class="m-tone' + a.tone + '" x="' + (a.x - a.w / 2) + '" y="' + (a.z - a.d / 2) + '" width="' + a.w + '" height="' + a.d + '" opacity=".8"/><text class="m-area-t" x="' + (a.x - a.w / 2 + 0.12) + '" y="' + (a.z - a.d / 2 + 0.38) + '">' + esc(nameOf(a.id)) + '</text>'; });
+        if (M.zones) M.zones.forEach(function (z) { var p = P(z.id); if (p) o += '<circle class="m-zone' + (z.cls ? ' ' + z.cls : '') + '" cx="' + p.x + '" cy="' + p.z + '" r="' + NEAR + '"/>'; });
+        if (M.ghost) o += '<circle class="m-ghost" cx="' + M.ghost.x + '" cy="' + M.ghost.z + '" r="' + (M.ghost.r || NEAR) + '"/>';
+        if (M.path) {
+          var a0 = M.path.from, b0 = M.path.to, v = norm(sub(b0, a0));
+          o += '<path class="m-path" d="M' + a0.x + ' ' + a0.z + ' L' + (b0.x - v.x * 0.2) + ' ' + (b0.z - v.z * 0.2) + '"/>';
+          o += '<path d="M' + b0.x + ' ' + b0.z + ' l' + (-v.x * 0.45 + v.z * 0.25) + ' ' + (-v.z * 0.45 - v.x * 0.25) + ' l' + (-v.z * 0.5) + ' ' + (v.x * 0.5) + ' Z" fill="var(--accent)"/>';
+        }
+        M.hl.forEach(function (id) { var p = P(id); if (p) o += '<circle class="m-hl" cx="' + p.x + '" cy="' + p.z + '" r=".55"/>'; });
+        M.things.forEach(function (t) {
+          var p = P(t.id);
+          var drawn = thingTop(t, p);
+          if (isFig(t) && M.pickFigs) drawn = '<g data-fig="' + t.id + '" tabindex="0" role="button" aria-label="' + esc(nameOf(t.id)) + '">' + drawn + '</g>';
+          o += drawn;
+          var ly = p.z + ((KIND[t.kind] && KIND[t.kind].r) || 0.3) * figScale(t) + 0.42;
+          if (t.kind === 'car') ly = p.z + 1.4;
+          if (!isFig(t) && !(KIND[t.kind] || {}).panel && ['tree', 'car', 'hotel', 'tower', 'table'].indexOf(t.kind) < 0) ly = p.z - ((KIND[t.kind] && KIND[t.kind].r) || 0.2) * figScale(t) - 0.14;
+          if (t.kind === 'hotel') ly = p.z + (t.d / 2) + 0.42;
+          o += '<text class="m-t" x="' + p.x + '" y="' + ly + '" text-anchor="middle">' + esc(nameOf(t.id)) + '</text>';
+        });
+        if (M.spots) M.spots.forEach(function (s) { o += '<g class="m-spot' + (s.cls ? ' ' + s.cls : '') + '" data-spot="' + s.id + '" tabindex="0" role="button" aria-label="' + esc(L('位置 ', 'Spot ') + s.n) + '"><circle cx="' + s.x + '" cy="' + s.z + '" r=".34"/><text x="' + s.x + '" y="' + s.z + '">' + s.n + '</text></g>'; });
+        if (M.eyeMark && P(M.eyeMark)) o += eyeGlyph(P(M.eyeMark), false);
+        if (M.ghostEye) o += eyeGlyph(M.ghostEye, true);
+        var cv = camView();
+        if (!cv.self) {
+          var cx = cv.x * 0.7, cz = cv.z * 0.7, l = leftOf(cv.f);
+          o += '<path class="m-cam" d="M' + cx + ' ' + cz + ' L' + (cx + cv.f.x * 1.1 + l.x * 0.6) + ' ' + (cz + cv.f.z * 1.1 + l.z * 0.6) + ' L' + (cx + cv.f.x * 1.1 - l.x * 0.6) + ' ' + (cz + cv.f.z * 1.1 - l.z * 0.6) + ' Z"/>';
+        }
+        return o + '</svg>';
+      }
+      /* The eye view: a simple perspective drawing from a figure's eyes (or from the camera position on the map). */
+      function eye() {
+        var v = camView(), W = 400, H = 260, HZ = 64, F = 165, r = { x: -v.f.z, z: v.f.x };   // wide angle, horizon high: like looking slightly down
+        var o = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(v.name ? L('从' + v.name + '的眼睛看', 'Through ' + v.name + '’s eyes') : L('从镜头的位置看', 'From the camera position')) + '">';
+        o += '<rect class="e-sky" x="0" y="0" width="' + W + '" height="' + HZ + '"/><rect class="e-ground" x="0" y="' + HZ + '" width="' + W + '" height="' + (H - HZ) + '"/>';
+        function proj(x, z, y) { var dx = x - v.x, dz = z - v.z, d = Math.max(0.25, dx * v.f.x + dz * v.f.z), s = dx * r.x + dz * r.z; return { x: W / 2 + s / d * F, y: HZ + (v.h - (y || 0)) / d * F, d: d }; }
+        M.areas.forEach(function (a) {
+          var cs = [[a.x - a.w / 2, a.z - a.d / 2], [a.x + a.w / 2, a.z - a.d / 2], [a.x + a.w / 2, a.z + a.d / 2], [a.x - a.w / 2, a.z + a.d / 2]].map(function (c) { var q = proj(c[0], c[1]); return q.x.toFixed(1) + ',' + Math.min(H + 400, q.y).toFixed(1); });
+          o += '<polygon class="m-tone' + a.tone + '" points="' + cs.join(' ') + '" opacity=".75"/>';
+        });
+        var list = M.things.filter(function (t) { return t.id !== v.self; }).map(function (t) {
+          var p = P(t.id), dx = p.x - v.x, dz = p.z - v.z;
+          return { t: t, p: p, d: dx * v.f.x + dz * v.f.z, s: dx * r.x + dz * r.z };
+        });
+        var behind = list.filter(function (q) { return q.d <= 0.4; }), ahead = list.filter(function (q) { return q.d > 0.4; }).sort(function (a, b) { return b.d - a.d; });
+        ahead.forEach(function (q) {
+          var k = F / q.d, sx = W / 2 + q.s * k, base = elevation(q.t, q.p), gy = HZ + (v.h - base) * k;
+          o += drawEye(q.t, q.p, sx, gy, k, v);
+          var lab = nameOf(q.t.id);
+          if (sx > -40 && sx < W + 40) o += '<text class="e-t" x="' + Math.max(30, Math.min(W - 30, sx)).toFixed(1) + '" y="' + Math.min(H - 6, gy + 14).toFixed(1) + '">' + esc(lab) + '</text>';
+        });
+        if (M.spots) M.spots.forEach(function (s) { var q = proj(s.x, s.z); if (q.d > 0.4 && q.x > 0 && q.x < W) o += '<g class="m-spot' + (s.cls ? ' ' + s.cls : '') + '"><circle cx="' + q.x.toFixed(1) + '" cy="' + q.y.toFixed(1) + '" r="10"/><text x="' + q.x.toFixed(1) + '" y="' + q.y.toFixed(1) + '" style="font-size:12px">' + s.n + '</text></g>'; });
+        if (behind.length) o += '<text class="e-note" x="8" y="' + (H - 8) + '">' + esc(L('身后：', 'Behind: ') + behind.map(function (q) { return nameOf(q.t.id); }).join(L('、', ', '))) + '</text>';
+        return o + '</svg>';
+      }
+      function facing(t, p, v) {
+        if (p.face === undefined) return 'none';
+        var fo = faceVec(p.face), u = norm(sub(v, p)), c = dot(fo, u);
+        if (c > 0.5) return 'front';
+        if (c < -0.5) return 'back';
+        return dot(fo, { x: -v.f.z, z: v.f.x }) > 0 ? 'right' : 'left';
+      }
+      function drawEye(t, p, sx, gy, k, v) {
+        var side = facing(t, p, v), s = figScale(t), o = '', col;
+        function rect(x, y, w, hh, fillc, extra) { return '<rect x="' + (x).toFixed(1) + '" y="' + (y).toFixed(1) + '" width="' + Math.max(0.5, w).toFixed(1) + '" height="' + Math.max(0.5, hh).toFixed(1) + '" fill="' + fillc + '" ' + (extra || '') + '/>'; }
+        function circ(x, y, rr, fillc, extra) { return '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + Math.max(0.5, rr).toFixed(1) + '" fill="' + fillc + '" ' + (extra || '') + '/>'; }
+        var ink = 'stroke="var(--ink)" stroke-width="1"';
+        function face(cx, cy, rr, sd) {
+          if (sd === 'front') return circ(cx - rr * 0.35, cy - rr * 0.1, rr * 0.12, '#222') + circ(cx + rr * 0.35, cy - rr * 0.1, rr * 0.12, '#222') + '<path d="M' + (cx - rr * 0.3) + ' ' + (cy + rr * 0.35) + ' q' + (rr * 0.3) + ' ' + (rr * 0.25) + ' ' + (rr * 0.6) + ' 0" stroke="#222" fill="none" stroke-width="1.2"/>';
+          if (sd === 'left' || sd === 'right') { var dd = sd === 'right' ? 1 : -1; return circ(cx + dd * rr * 0.45, cy - rr * 0.1, rr * 0.12, '#222') + '<path d="M' + (cx + dd * rr * 0.9) + ' ' + (cy - rr * 0.05) + ' l' + (dd * rr * 0.3) + ' ' + (rr * 0.15) + ' l' + (-dd * rr * 0.3) + ' ' + (rr * 0.15) + '" fill="#d9a07a" stroke="#222" stroke-width=".8"/>'; }
+          return '';
+        }
+        var kk = KIND[t.kind] || {};
+        if (t.kind === 'person' || t.kind === 'you') {
+          var sc = t.small ? 0.75 : 1; col = t.kind === 'you' ? 'var(--you)' : (t.color || '#7a7f85');
+          var bw = 0.5 * k * sc, bh = 1.15 * k * sc, hr = 0.21 * k * sc, hy = gy - (1.15 + 0.25) * k * sc;
+          o += rect(sx - bw / 2, gy - bh, bw, bh, col, 'rx="' + (bw * 0.3).toFixed(1) + '" ' + ink);
+          o += circ(sx, hy, hr, side === 'back' ? '#4a3527' : '#f2cfa6', ink) + face(sx, hy, hr, side);
+          if (side === 'front' || side === 'none') o += '';
+          return o;
+        }
+        if (t.kind === 'bear' || t.kind === 'rabbit' || t.kind === 'cat') {
+          col = t.kind === 'bear' ? '#8b5a2b' : t.kind === 'rabbit' ? '#ece7dd' : '#e39b3d';
+          var sc2 = t.kind === 'cat' ? 0.35 : t.kind === 'rabbit' ? 0.75 : 1;
+          var by = gy - 0.5 * k * sc2, hy2 = gy - 1.15 * k * sc2, hr2 = 0.3 * k * sc2;
+          o += '<ellipse cx="' + sx.toFixed(1) + '" cy="' + by.toFixed(1) + '" rx="' + (0.45 * k * sc2).toFixed(1) + '" ry="' + (0.52 * k * sc2).toFixed(1) + '" fill="' + col + '" ' + ink + '/>';
+          if (t.kind === 'rabbit') o += '<ellipse cx="' + (sx - hr2 * 0.4).toFixed(1) + '" cy="' + (hy2 - hr2 * 1.6).toFixed(1) + '" rx="' + (hr2 * 0.25).toFixed(1) + '" ry="' + (hr2 * 0.9).toFixed(1) + '" fill="' + col + '" ' + ink + '/><ellipse cx="' + (sx + hr2 * 0.4).toFixed(1) + '" cy="' + (hy2 - hr2 * 1.6).toFixed(1) + '" rx="' + (hr2 * 0.25).toFixed(1) + '" ry="' + (hr2 * 0.9).toFixed(1) + '" fill="' + col + '" ' + ink + '/>';
+          else o += circ(sx - hr2 * 0.8, hy2 - hr2 * 0.8, hr2 * 0.35, col, ink) + circ(sx + hr2 * 0.8, hy2 - hr2 * 0.8, hr2 * 0.35, col, ink);
+          o += circ(sx, hy2, hr2, col, ink) + face(sx, hy2, hr2, side);
+          return o;
+        }
+        if (t.kind === 'car') {
+          col = t.color || '#c94c4c';
+          var sideView = side === 'left' || side === 'right', cw = (sideView ? KIND.car.len : KIND.car.w) * k, ch = 0.55 * k, top = gy - 0.2 * k - ch;
+          o += rect(sx - cw / 2, top, cw, ch, col, 'rx="' + (0.1 * k).toFixed(1) + '" ' + ink);
+          var cabW = sideView ? cw * 0.5 : cw * 0.8, cabX = sideView ? sx - cabW / 2 + (side === 'right' ? -1 : 1) * cw * 0.1 : sx - cabW / 2;
+          o += rect(cabX, top - 0.4 * k, cabW, 0.42 * k, '#cfe3f3', 'rx="' + (0.08 * k).toFixed(1) + '" ' + ink);
+          if (sideView) {
+            o += circ(sx - cw * 0.3, gy - 0.18 * k, 0.18 * k, '#222') + circ(sx + cw * 0.3, gy - 0.18 * k, 0.18 * k, '#222');
+            var fx = side === 'right' ? sx + cw / 2 - 0.08 * k : sx - cw / 2, bx = side === 'right' ? sx - cw / 2 : sx + cw / 2 - 0.08 * k;
+            o += rect(fx, top + 0.1 * k, 0.08 * k, 0.15 * k, '#ffe066', ink) + rect(bx, top + 0.1 * k, 0.08 * k, 0.15 * k, '#d22');
+          } else if (side === 'front') {
+            o += circ(sx - cw * 0.32, top + ch * 0.45, 0.1 * k, '#ffe066', ink) + circ(sx + cw * 0.32, top + ch * 0.45, 0.1 * k, '#ffe066', ink) + rect(sx - cw * 0.15, top + ch * 0.35, cw * 0.3, ch * 0.25, '#333');
+          } else {
+            o += rect(sx - cw * 0.42, top + ch * 0.35, cw * 0.18, ch * 0.2, '#d22') + rect(sx + cw * 0.24, top + ch * 0.35, cw * 0.18, ch * 0.2, '#d22');
+          }
+          return o;
+        }
+        if (t.kind === 'tree') return rect(sx - 0.12 * k * s, gy - 1.2 * k * s, 0.24 * k * s, 1.2 * k * s, '#7a5230') + circ(sx, gy - 1.75 * k * s, 0.75 * k * s, '#4f9d58', 'stroke="#2f6b37" stroke-width="1"');
+        if (t.kind === 'hotel' || t.kind === 'tower') {
+          var bw2 = ((side === 'left' || side === 'right') ? (t.d || kk.d || 2) : (t.w || kk.w || 2)) * k, bh2 = kk.h * k;
+          o += rect(sx - bw2 / 2, gy - bh2, bw2, bh2, '#d9cbb3', ink);
+          for (var wy = 0; wy < 3; wy++) for (var wx = -1; wx <= 1; wx++) o += rect(sx + wx * bw2 * 0.28 - bw2 * 0.07, gy - bh2 + (0.15 + wy * 0.25) * bh2, bw2 * 0.14, bh2 * 0.12, '#9fb8cc');
+          if (t.kind === 'hotel' && side === 'front') o += rect(sx - 0.45 * k, gy - 1.1 * k, 0.9 * k, 1.1 * k, '#5b3a29') + rect(sx - 0.8 * k, gy - 1.35 * k, 1.6 * k, 0.18 * k, '#b33');
+          return o;
+        }
+        if (t.kind === 'table') return rect(sx - (t.w / 2) * k, gy - 0.78 * k, t.w * k, 0.08 * k, '#c8a27a', ink) + rect(sx - (t.w / 2 - 0.1) * k, gy - 0.72 * k, 0.06 * k, 0.72 * k, '#8a6a48') + rect(sx + (t.w / 2 - 0.16) * k, gy - 0.72 * k, 0.06 * k, 0.72 * k, '#8a6a48');
+        if (kk.panel) {
+          var edge = side === 'left' || side === 'right', pw = (edge ? 0.12 : kk.w) * k, ph = kk.h * k, py = gy - (kk.base + kk.h) * k;
+          col = t.kind === 'window' ? '#9fd0ef' : t.kind === 'door' ? '#8a5a3c' : t.kind === 'screen' ? (side === 'front' ? '#334' : '#888') : (side === 'front' ? '#e7a74a' : '#bbb');
+          o += rect(sx - pw / 2, py, pw, ph, col, ink);
+          if (t.kind === 'door' && side === 'front') o += circ(sx + pw * 0.35, py + ph * 0.55, 0.05 * k, '#f2c46d');
+          if (t.kind === 'window' && !edge) o += '<path d="M' + sx.toFixed(1) + ' ' + py.toFixed(1) + ' v' + ph.toFixed(1) + ' M' + (sx - pw / 2).toFixed(1) + ' ' + (py + ph / 2).toFixed(1) + ' h' + pw.toFixed(1) + '" stroke="var(--panel)" stroke-width="2"/>';
+          return o;
+        }
+        var rr2 = (kk.r || 0.2) * k * s, cc = { apple: '#d63b30', ball: '#3b6fd8', cake: '#f4d6e0', cup: '#e0453a', phone: '#2b2b33', laptop: '#8892a0', file: '#f4f1e6', umbrella: '#2e8b57' }[t.kind] || '#999';
+        if (t.kind === 'umbrella') return rect(sx - 0.06 * k, gy - 0.9 * k, 0.12 * k, 0.9 * k, cc, ink);
+        if (t.kind === 'file' || t.kind === 'phone' || t.kind === 'laptop') return rect(sx - rr2, gy - rr2 * 0.5, rr2 * 2, rr2 * 0.5, cc, ink);
+        if (t.kind === 'cake' || t.kind === 'cup') return rect(sx - rr2, gy - (kk.h * k * s), rr2 * 2, kk.h * k * s, cc, 'rx="2" ' + ink);
+        return circ(sx, gy - rr2, rr2, cc, ink);
+      }
+      return {
+        kind: '2d',
+        setScene: function () {},
+        update: function () {
+          var v = camView();
+          mapFig.innerHTML = map() + '<figcaption>' + esc(L('俯视图', 'From above')) + ' · ' + esc(M.title) + '</figcaption>';
+          eyeFig.innerHTML = eye() + '<figcaption>' + (v.name ? iconHtml('eye') + ' ' : '') + esc(v.name ? (thingOf(v.self).kind === 'you' ? L('从你的眼睛看', 'Through your eyes') : L('从' + v.name + '的眼睛看', 'Through ' + v.name + '’s eyes')) : L('从地图上的扇形处看（用 ⟲ ⟳ 绕着走）', 'From the wedge on the map (walk around with ⟲ ⟳)')) + '</figcaption>';
+        },
+        destroy: function () { wrap.remove(); }
+      };
+    }
+
+    /* ---------- 3D renderer (Three.js r128 from cdnjs); labels are HTML overlays ---------- */
+    function Renderer3D(root) {
+      var THREE = window.THREE;
+      var holder = h('div', { class: 's3-canvas' }), ov = h('div', { class: 's3-ov' });
+      root.append(holder);
+      var renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+      holder.append(renderer.domElement, ov);
+      var scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(50, 1, 0.05, 100);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8070, 0.85));
+      var sun = new THREE.DirectionalLight(0xffffff, 0.6); sun.position.set(4, 9, 6); scene.add(sun);
+      var floor = new THREE.Mesh(new THREE.PlaneGeometry(11, 9), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1 }));
+      floor.rotation.x = -Math.PI / 2; scene.add(floor);
+      var grid = new THREE.GridHelper(11, 11, 0x999999, 0x999999); grid.material.opacity = 0.35; grid.material.transparent = true; grid.position.y = 0.003; scene.add(grid);
+      var gThings = new THREE.Group(), gFx = new THREE.Group(), gAreas = new THREE.Group();
+      scene.add(gAreas, gThings, gFx);
+      var meshes = {}, labels = {}, fxKey = '', dirty = true, alive = true;
+      function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#ffffff'; }
+      function theme() {
+        scene.background = new THREE.Color(css('--bg'));
+        floor.material.color = new THREE.Color(css('--panel'));
+        var tones = { 1: css('--tone1'), 2: css('--tone2'), 3: css('--tone3'), 4: css('--tone4') };
+        gAreas.children.forEach(function (m) { m.material.color = new THREE.Color(tones[m.userData.tone] || TONE[m.userData.tone]); });
+        dirty = true;
+      }
+      var mo = new MutationObserver(theme); mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      function mat(c) { return new THREE.MeshStandardMaterial({ color: c, roughness: 0.85, metalness: 0, flatShading: true }); }
+      function add(g, geo, c, x, y, z) { var m = new THREE.Mesh(geo, mat(c)); m.position.set(x, y, z); g.add(m); return m; }
+      function arrow(g, c, r) {   // flat triangle on the floor in front: which way it faces
+        var s = new THREE.Shape(); s.moveTo(0, r + 0.42); s.lineTo(-0.16, r + 0.12); s.lineTo(0.16, r + 0.12); s.lineTo(0, r + 0.42);
+        var m = new THREE.Mesh(new THREE.ShapeGeometry(s), new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide }));
+        m.rotation.x = -Math.PI / 2; m.position.y = 0.02; g.add(m);
+      }
+      /* Every model faces -z (north) at rotation 0. */
+      function model(t) {
+        var g = new THREE.Group(), k = KIND[t.kind] || {}, s = figScale(t), c;
+        if (t.kind === 'person' || t.kind === 'you') {
+          c = t.kind === 'you' ? css('--you') : (t.color || '#7a7f85');
+          add(g, new THREE.CylinderGeometry(0.2, 0.28, 1.1, 10), c, 0, 0.55, 0);
+          add(g, new THREE.SphereGeometry(0.21, 14, 10), '#f2cfa6', 0, 1.36, 0);
+          add(g, new THREE.SphereGeometry(0.22, 14, 10, 0, Math.PI * 2, 0, Math.PI / 2.2), '#4a3527', 0, 1.4, 0.03);
+          var nose = add(g, new THREE.ConeGeometry(0.05, 0.14, 6), '#d9a07a', 0, 1.33, -0.24); nose.rotation.x = -Math.PI / 2;
+          add(g, new THREE.SphereGeometry(0.035, 6, 6), '#222', -0.08, 1.41, -0.18); add(g, new THREE.SphereGeometry(0.035, 6, 6), '#222', 0.08, 1.41, -0.18);
+          arrow(g, c, 0.3);
+          if (t.small) g.scale.setScalar(0.75);
+          return g;
+        }
+        if (t.kind === 'bear' || t.kind === 'rabbit' || t.kind === 'cat') {
+          c = t.kind === 'bear' ? '#8b5a2b' : t.kind === 'rabbit' ? '#ece7dd' : '#e39b3d';
+          var sc = t.kind === 'cat' ? 0.38 : t.kind === 'rabbit' ? 0.8 : 1;
+          var body = add(g, new THREE.SphereGeometry(0.45, 14, 10), c, 0, 0.55, 0); body.scale.set(1, 1.2, 1);
+          add(g, new THREE.SphereGeometry(0.3, 14, 10), c, 0, 1.15, 0);
+          if (t.kind === 'rabbit') { add(g, new THREE.BoxGeometry(0.1, 0.5, 0.06), c, -0.11, 1.6, 0.02); add(g, new THREE.BoxGeometry(0.1, 0.5, 0.06), c, 0.11, 1.6, 0.02); }
+          else { add(g, new THREE.SphereGeometry(0.1, 8, 6), c, -0.22, 1.38, 0); add(g, new THREE.SphereGeometry(0.1, 8, 6), c, 0.22, 1.38, 0); }
+          add(g, new THREE.SphereGeometry(0.11, 8, 6), t.kind === 'rabbit' ? '#f2a0b0' : '#d8b48a', 0, 1.1, -0.27);
+          add(g, new THREE.SphereGeometry(0.04, 6, 6), '#222', -0.1, 1.22, -0.25); add(g, new THREE.SphereGeometry(0.04, 6, 6), '#222', 0.1, 1.22, -0.25);
+          arrow(g, c === '#ece7dd' ? '#b0a89a' : c, 0.45);
+          g.scale.setScalar(sc);
+          return g;
+        }
+        if (t.kind === 'car') {
+          c = t.color || '#c94c4c';
+          add(g, new THREE.BoxGeometry(1.1, 0.5, 2.2), c, 0, 0.45, 0);
+          add(g, new THREE.BoxGeometry(0.92, 0.42, 1.1), '#cfe3f3', 0, 0.9, 0.2);
+          add(g, new THREE.BoxGeometry(0.22, 0.12, 0.05), '#ffe066', -0.36, 0.5, -1.11); add(g, new THREE.BoxGeometry(0.22, 0.12, 0.05), '#ffe066', 0.36, 0.5, -1.11);
+          add(g, new THREE.BoxGeometry(0.22, 0.1, 0.05), '#dd2222', -0.36, 0.5, 1.11); add(g, new THREE.BoxGeometry(0.22, 0.1, 0.05), '#dd2222', 0.36, 0.5, 1.11);
+          [[-0.56, -0.7], [0.56, -0.7], [-0.56, 0.7], [0.56, 0.7]].forEach(function (w) { var m = add(g, new THREE.CylinderGeometry(0.2, 0.2, 0.12, 12), '#222', w[0], 0.2, w[1]); m.rotation.z = Math.PI / 2; });
+          return g;
+        }
+        if (t.kind === 'tree') { add(g, new THREE.CylinderGeometry(0.12 * s, 0.16 * s, 1.2 * s, 8), '#7a5230', 0, 0.6 * s, 0); add(g, new THREE.IcosahedronGeometry(0.75 * s, 0), '#4f9d58', 0, 1.75 * s, 0); return g; }
+        if (t.kind === 'hotel' || t.kind === 'tower') {
+          var w = t.w || k.w, d = t.d || k.d;
+          add(g, new THREE.BoxGeometry(w, k.h, d), '#d9cbb3', 0, k.h / 2, 0);
+          if (t.kind === 'hotel') { add(g, new THREE.BoxGeometry(0.9, 1.1, 0.06), '#5b3a29', 0, 0.55, -d / 2 - 0.03); add(g, new THREE.BoxGeometry(1.6, 0.08, 0.6), '#b33333', 0, 1.3, -d / 2 - 0.3); }
+          return g;
+        }
+        if (t.kind === 'table') { add(g, new THREE.BoxGeometry(t.w, 0.06, t.d), '#c8a27a', 0, KIND.table.h, 0); [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(function (q) { add(g, new THREE.BoxGeometry(0.06, KIND.table.h, 0.06), '#8a6a48', q[0] * (t.w / 2 - 0.08), KIND.table.h / 2, q[1] * (t.d / 2 - 0.08)); }); return g; }
+        if (k.panel) {
+          c = t.kind === 'window' ? '#9fd0ef' : t.kind === 'door' ? '#8a5a3c' : t.kind === 'screen' ? '#333344' : '#e7a74a';
+          add(g, new THREE.BoxGeometry(k.w, k.h, 0.08), t.kind === 'poster' || t.kind === 'screen' ? '#bbbbbb' : c, 0, k.base + k.h / 2, 0);
+          if (t.kind === 'poster' || t.kind === 'screen') add(g, new THREE.BoxGeometry(k.w * 0.94, k.h * 0.94, 0.02), c, 0, k.base + k.h / 2, -0.05);
+          if (t.kind === 'door') add(g, new THREE.SphereGeometry(0.05, 8, 6), '#f2c46d', k.w * 0.35, 1.0, -0.06);
+          if (k.base > 0.2) add(g, new THREE.BoxGeometry(0.08, k.base, 0.08), '#888888', 0, k.base / 2, 0.05);
+          return g;
+        }
+        var cc = { apple: '#d63b30', ball: '#3b6fd8', cake: '#f4d6e0', cup: '#e0453a', phone: '#2b2b33', laptop: '#8892a0', file: '#f4f1e6', umbrella: '#2e8b57' }[t.kind] || '#999999';
+        var r = (k.r || 0.2) * s;
+        if (t.kind === 'umbrella') { add(g, new THREE.CylinderGeometry(0.03, 0.03, 0.9, 6), '#333', 0, 0.45, 0); add(g, new THREE.ConeGeometry(0.12, 0.6, 8), cc, 0, 0.55, 0); return g; }
+        if (t.kind === 'file' || t.kind === 'phone') { add(g, new THREE.BoxGeometry(2 * r, k.h + 0.02, 1.5 * r), cc, 0, (k.h + 0.02) / 2, 0); return g; }
+        if (t.kind === 'laptop') { add(g, new THREE.BoxGeometry(2 * r, 0.03, 1.5 * r), cc, 0, 0.015, 0); var sc3 = add(g, new THREE.BoxGeometry(2 * r, 1.3 * r, 0.03), '#333344', 0, 0.65 * r, 0.75 * r); sc3.rotation.x = -0.2; return g; }
+        if (t.kind === 'cake' || t.kind === 'cup') { add(g, new THREE.CylinderGeometry(r, r, k.h * s, 14), cc, 0, k.h * s / 2, 0); if (t.kind === 'cake') add(g, new THREE.SphereGeometry(0.06 * s, 6, 6), '#d22', 0, k.h * s + 0.04, 0); return g; }
+        add(g, new THREE.SphereGeometry(r, 16, 12), cc, 0, r, 0);
+        if (t.kind === 'apple') add(g, new THREE.CylinderGeometry(0.012, 0.012, 0.1, 4), '#5b3a1a', 0, 2 * r + 0.04, 0);
+        return g;
+      }
+      function topOf(t) { var k = KIND[t.kind] || {}; var hh = (k.h || 0.5) * (k.fig ? (t.kind === 'rabbit' ? 0.8 * 1.25 : t.kind === 'cat' ? 0.38 * 1.5 : 1) * (t.small ? 0.75 : 1) : figScale(t)); if (k.panel) hh = k.base + k.h; return hh + 0.25; }
+      function setScene() {
+        while (gThings.children.length) gThings.remove(gThings.children[0]);
+        while (gAreas.children.length) gAreas.remove(gAreas.children[0]);
+        meshes = {}; labels = {}; ov.innerHTML = ''; fxKey = ''; ovKey = '';
+        M.areas.forEach(function (a) {
+          var m = new THREE.Mesh(new THREE.PlaneGeometry(a.w, a.d), new THREE.MeshBasicMaterial({ color: TONE[a.tone], transparent: true, opacity: 0.85 }));
+          m.rotation.x = -Math.PI / 2; m.position.set(a.x, 0.006, a.z); m.userData.tone = a.tone; gAreas.add(m);
+          labels['area:' + a.id] = { el: ov.appendChild(h('span', { class: 'lab', text: nameOf(a.id) })), x: a.x - a.w / 2 + 0.6, y: 0.05, z: a.z - a.d / 2 + 0.3 };
+        });
+        M.things.forEach(function (t) { var g = model(t); meshes[t.id] = g; gThings.add(g); });
+        theme();
+        dirty = true;
+      }
+      function ring(x, z, r0, r1, c, op) { var m = new THREE.Mesh(new THREE.RingGeometry(r0, r1, 48), new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: op || 0.8, side: THREE.DoubleSide })); m.rotation.x = -Math.PI / 2; m.position.set(x, 0.015, z); gFx.add(m); return m; }
+      function fx() {
+        var key = JSON.stringify([M.zones, M.ghost, M.path, M.hl, M.spots && M.spots.map(function (s) { return [s.x, s.z, s.cls]; })]);
+        if (key === fxKey) return;
+        fxKey = key;
+        while (gFx.children.length) gFx.remove(gFx.children[0]);
+        if (M.zones) M.zones.forEach(function (z) { var p = P(z.id); if (p) { ring(p.x, p.z, 0, NEAR, z.cls ? css('--t3') : css('--accent'), 0.12); ring(p.x, p.z, NEAR - 0.05, NEAR, z.cls ? css('--t3') : css('--accent'), 0.8); } });
+        if (M.ghost) ring(M.ghost.x, M.ghost.z, (M.ghost.r || NEAR) - 0.08, M.ghost.r || NEAR, css('--ghost'), 0.9);
+        M.hl.forEach(function (id) { var p = P(id); if (p) ring(p.x, p.z, 0.5, 0.6, css('--t3'), 0.9); });
+        if (M.path) {
+          var a = M.path.from, b = M.path.to, v = norm(sub(b, a)), L0 = dist(a, b), n = Math.floor(L0 / 0.35), col = css('--accent');
+          for (var i = 0; i < n - 1; i += 2) { var d = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.02, 0.3), new THREE.MeshBasicMaterial({ color: col })); d.position.set(a.x + v.x * (i + 0.5) * 0.35, 0.02, a.z + v.z * (i + 0.5) * 0.35); d.rotation.y = Math.atan2(v.x, v.z); gFx.add(d); }
+          var cone = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.45, 12), new THREE.MeshBasicMaterial({ color: col }));
+          cone.position.set(b.x, 0.05, b.z); cone.rotation.order = 'YXZ'; cone.rotation.y = Math.atan2(v.x, v.z); cone.rotation.x = Math.PI / 2; gFx.add(cone);
+        }
+        if (M.spots) M.spots.forEach(function (s) { var m = new THREE.Mesh(new THREE.CircleGeometry(0.34, 24), new THREE.MeshBasicMaterial({ color: css('--accent'), transparent: true, opacity: 0.18 })); m.rotation.x = -Math.PI / 2; m.position.set(s.x, 0.012, s.z); gFx.add(m); });
+      }
+      function camUpdate() {
+        var v = camView();
+        if (M.cam.mode === 'eye' && v.self) {
+          camera.position.set(v.x, v.h, v.z);
+          camera.lookAt(v.x + v.f.x * 3, v.h - 1.3, v.z + v.f.z * 3);
+          camera.fov = 75;
+        } else {
+          var a = M.cam.yaw * Math.PI / 180, p = M.cam.pitch * Math.PI / 180, D = M.cam.dist;
+          camera.position.set(Math.sin(a) * Math.cos(p) * D, Math.sin(p) * D, Math.cos(a) * Math.cos(p) * D);
+          camera.lookAt(0, 0.4, 0);
+          camera.fov = 50;
+        }
+        camera.updateProjectionMatrix();
+      }
+      var tmp = new THREE.Vector3();
+      function place(el, x, y, z, W, H) {
+        tmp.set(x, y, z).project(camera);
+        if (tmp.z > 1 || tmp.x < -1.2 || tmp.x > 1.2 || tmp.y < -1.2 || tmp.y > 1.2) { el.style.display = 'none'; return; }
+        el.style.display = ''; el.style.left = ((tmp.x + 1) / 2 * W).toFixed(1) + 'px'; el.style.top = ((1 - tmp.y) / 2 * H).toFixed(1) + 'px';
+      }
+      var ovKey = '';
+      function overlays(W, H) {
+        var key = JSON.stringify([M.sceneId, M.pickFigs, M.eyeMark, M.ghostEye, M.spots && M.spots.map(function (s) { return s.id + s.n + (s.cls || ''); }), EN, Object.keys(meshes).length]);
+        if (key !== ovKey) {
+          ovKey = key;
+          Array.prototype.slice.call(ov.querySelectorAll('[data-dyn]')).forEach(function (e) { e.remove(); });
+          M.things.forEach(function (t) {
+            var el = M.pickFigs && isFig(t) ? h('button', { class: 'lab fig', 'data-fig': t.id, 'data-dyn': '1', text: nameOf(t.id) }) : h('span', { class: 'lab' + (isFig(t) ? ' fig' : ''), 'data-dyn': '1', text: nameOf(t.id) });
+            labels[t.id] = { el: ov.appendChild(el), t: t };
+          });
+          if (M.eyeMark) labels['eye:'] = { el: ov.appendChild(h('span', { class: 'eye', 'data-dyn': '1' }, [icon('eye'), L(' 说话的人', ' speaker')])), id: M.eyeMark };
+          else delete labels['eye:'];
+          if (M.ghostEye) labels['ghost:'] = { el: ov.appendChild(h('span', { class: 'eye ghost', 'data-dyn': '1' }, [icon('eye', L('说话的人在哪儿', 'Where the speaker is')), ' ?'])), x: M.ghostEye.x, y: 1.9, z: M.ghostEye.z };
+          else delete labels['ghost:'];
+          Object.keys(labels).forEach(function (k) { if (k.indexOf('spot:') === 0) delete labels[k]; });
+          if (M.spots) M.spots.forEach(function (s) { labels['spot:' + s.id] = { el: ov.appendChild(h('button', { class: 'spot' + (s.cls ? ' ' + s.cls : ''), 'data-spot': s.id, 'data-dyn': '1', 'aria-label': L('位置 ', 'Spot ') + s.n, text: String(s.n) })), x: s.x, y: 0.02, z: s.z }; });
+        }
+        Object.keys(labels).forEach(function (k) {
+          var l = labels[k];
+          if (l.t) { var p = P(l.t.id); if (!p || (M.cam.mode === 'eye' && M.cam.fig === l.t.id)) { l.el.style.display = 'none'; return; } place(l.el, p.x, topOf(l.t) + elevation(l.t, p), p.z, W, H); }
+          else if (l.id) { var q = P(l.id), tt = thingOf(l.id); if (!q || (M.cam.mode === 'eye' && M.cam.fig === l.id)) { l.el.style.display = 'none'; return; } place(l.el, q.x, topOf(tt) + 0.45, q.z, W, H); }
+          else place(l.el, l.x, l.y, l.z, W, H);
+        });
+      }
+      var lastW = 0, lastH = 0;
+      function frame() {
+        if (!alive) return;
+        requestAnimationFrame(frame);
+        var W = holder.clientWidth, H = holder.clientHeight;
+        if (!W || !H) return;
+        if (W !== lastW || H !== lastH) { lastW = W; lastH = H; renderer.setSize(W, H, false); camera.aspect = W / H; dirty = true; }
+        if (!dirty) return;
+        dirty = false;
+        M.things.forEach(function (t) { var g = meshes[t.id], p = P(t.id); if (!g || !p) return; g.position.set(p.x, elevation(t, p), p.z); g.rotation.y = -(p.face || 0) * Math.PI / 180; g.visible = !(M.cam.mode === 'eye' && M.cam.fig === t.id); });
+        fx(); camUpdate(); renderer.render(scene, camera); overlays(W, H);
+      }
+      requestAnimationFrame(frame);
+      return {
+        kind: '3d',
+        setScene: setScene,
+        update: function () { dirty = true; },
+        destroy: function () { alive = false; mo.disconnect(); try { renderer.dispose(); } catch (e) { /* ignore */ } holder.remove(); }
+      };
+    }
+
+    /* ---------- the view box: renderer + camera tools ---------- */
+    var view = h('div', { class: 's3-view', tabindex: '0', 'aria-label': L('场景。方向键绕着转。', 'Scene. Arrow keys turn it.') });
+    var tools = h('div', { class: 's3-tools' });
+    var rootR = h('div');
+    view.append(tools, rootR);
+    var R = Renderer2D(rootR), renderNote = '', want = params.get('view') === '2d' ? 'forced' : '';
+    if (!want) { try { var c0 = document.createElement('canvas'); if (!(c0.getContext('webgl') || c0.getContext('experimental-webgl'))) want = 'nowebgl'; } catch (e) { want = 'nowebgl'; } }
+    renderNote = want === 'forced' ? L('二维图（地址里写了 view=2d）', '2D drawings (view=2d in the address)') : want === 'nowebgl' ? L('二维图：这个浏览器不能显示 3D（没有 WebGL）。题目、检查和证据都一样。', '2D drawings: this browser cannot show 3D (no WebGL). Items, checks and evidence are the same.') : L('正在加载 3D……', 'Loading 3D…');
+    function useRenderer(kind) {
+      R.destroy(); rootR.innerHTML = '';
+      try { R = kind === '3d' ? Renderer3D(rootR) : Renderer2D(rootR); }
+      catch (e) { R = Renderer2D(rootR); renderNote = L('二维图：3D 启动失败。', '2D drawings: 3D failed to start.'); }
+      R.setScene(M); redraw(); renderSide();
+    }
+    if (!want) {
+      var tm = setTimeout(function () { fail('timeout'); }, 9000), settled = false;
+      var s3 = document.createElement('script');
+      function fail(why) { if (settled) return; settled = true; clearTimeout(tm); renderNote = L('二维图：没能从网上加载 3D 库（' + why + '）。题目、检查和证据都一样。', '2D drawings: the 3D library could not be loaded (' + why + '). Items, checks and evidence are the same.'); renderSide(); }
+      s3.src = THREE_URL; s3.async = true;
+      s3.onload = function () { if (settled) return; settled = true; clearTimeout(tm); if (!window.THREE) return fail('no THREE'); renderNote = L('3D 视图（Three.js r128，来自 cdnjs）', '3D view (Three.js r128 from cdnjs)'); useRenderer('3d'); B.emit('view', { renderer: '3d' }); };
+      s3.onerror = function () { fail(L('离线或被拦截', 'offline or blocked')); };
+      document.head.appendChild(s3);
+    }
+
+    var anim = null;
+    function redraw() { R.update(M); renderTools(); renderReadout(); }
+    function setCam(c, why) {
+      M.cam = c;
+      if (c.mode === 'eye') {
+        B.emit('select', { item: st.item ? st.item.id : null, view: 'eye', fig: c.fig });
+        if (st.item && st.item.kind === 'pick' && st.phase === 'pick' && c.fig === st.item.viewer && !st.lookedEarly) { B.hint(st.item.id, 2); st.lookedEarly = true; renderStage(); }
+      } else if (why) B.emit('select', { item: st.item ? st.item.id : null, view: 'outside' });
+      redraw();
+    }
+    function orbit(dy, dp) {
+      var c = M.cam.mode === 'orbit' ? M.cam : { mode: 'orbit', yaw: 0, pitch: 38, dist: 8.6 };
+      M.cam = { mode: 'orbit', yaw: (c.yaw + dy + 360) % 360, pitch: Math.max(8, Math.min(85, c.pitch + (dp || 0))), dist: c.dist };
+      redraw();
+    }
+    var drag = null;
+    view.addEventListener('pointerdown', function (e) { if (e.target.closest('button,[data-spot],[data-fig],input,textarea')) return; drag = { x: e.clientX, y: e.clientY, moved: false }; });
+    window.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.moved && Math.abs(dx) + Math.abs(dy) < 6) return;
+      if (!drag.moved && R.kind === '2d' && Math.abs(dy) > Math.abs(dx)) { drag = null; return; }   // let the page scroll
+      drag.moved = true; drag.x = e.clientX; drag.y = e.clientY;
+      orbit(-dx * 0.5, R.kind === '3d' ? dy * 0.3 : 0);
+    });
+    window.addEventListener('pointerup', function () { if (drag && drag.moved) B.emit('drag', { item: st.item ? st.item.id : null, view: 'orbit', yaw: Math.round(M.cam.yaw) }); drag = null; });
+    view.addEventListener('keydown', function (e) {
+      if (e.target !== view) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); orbit(-15); } else if (e.key === 'ArrowRight') { e.preventDefault(); orbit(15); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); orbit(0, 8); } else if (e.key === 'ArrowDown') { e.preventDefault(); orbit(0, -8); }
+    });
+    view.addEventListener('click', function (e) {
+      var sp = e.target.closest('[data-spot]'), fg = e.target.closest('[data-fig]');
+      if (sp) onSpot(sp.getAttribute('data-spot')); else if (fg) onFig(fg.getAttribute('data-fig'));
+    });
+    view.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var sp = e.target.closest('g[data-spot]'), fg = e.target.closest('g[data-fig]');
+      if (sp) { e.preventDefault(); onSpot(sp.getAttribute('data-spot')); } else if (fg) { e.preventDefault(); onFig(fg.getAttribute('data-fig')); }
+    });
+
+    function eyeCandidates() {
+      var it = st.item, ids = [];
+      if (st.step === 'make') ids = M.things.filter(isFig).map(function (t) { return t.id; });
+      else if (!it) ids = [];
+      else if (it.mode === 'frame') { ids = [it.viewer]; var rt = thingOf(it.ref); if (isFig(rt) || (rt && rt.kind === 'car')) ids.push(it.ref); }
+      else ids = M.things.filter(function (t) { return isFig(t) && t.kind !== 'cat'; }).map(function (t) { return t.id; });
+      return ids.filter(function (id, i) { return thingOf(id) && ids.indexOf(id) === i; });
+    }
+    function renderTools() {
+      tools.innerHTML = '';
+      var it = st.item;
+      tools.append(h('button', { 'aria-pressed': M.cam.mode === 'orbit' ? 'true' : 'false', onclick: function () { setCam({ mode: 'orbit', yaw: 0, pitch: 38, dist: 8.6 }, true); } }, R.kind === '3d' ? L('外面看', 'Outside view') : L('从外面看', 'Outside')));
+      if (child() && it && st.step !== 'make') {
+        var who = it.mode === 'frame' ? (it.kind === 'pick' ? it.viewer : (isFig(thingOf(it.ref)) ? it.ref : it.viewer)) : (M.eyeMark || it.speaker);
+        if (thingOf(who)) tools.append(h('button', { class: 'be', 'aria-pressed': M.cam.mode === 'eye' && M.cam.fig === who ? 'true' : 'false', onclick: function () { setCam({ mode: 'eye', fig: who }); } }, [icon('eye'), L(' 当' + nameOf(who), ' Be ' + nameOf(who))]));
+      } else {
+        eyeCandidates().forEach(function (id) {
+          var cost = it && it.kind === 'pick' && st.phase === 'pick' && id === it.viewer;
+          tools.append(h('button', { 'aria-pressed': M.cam.mode === 'eye' && M.cam.fig === id ? 'true' : 'false', title: L('从' + nameOf(id) + '的眼睛看', 'Look through ' + nameOf(id) + '’s eyes'), onclick: function () { setCam({ mode: 'eye', fig: id }); } },
+            [icon('eye', L('从这个人的眼睛看：', 'Look through the eyes of: ')), ' ' + nameOf(id) + (cost ? L('（算提示）', ' (counts as help)') : '')]));
+        });
+      }
+      tools.append(h('span', { class: 'sep' }));
+      tools.append(h('button', { 'aria-label': L('向左转', 'Turn left'), onclick: function () { orbit(-30); } }, '⟲'), h('button', { 'aria-label': L('向右转', 'Turn right'), onclick: function () { orbit(30); } }, '⟳'));
+      if (R.kind === '3d') tools.append(h('button', { 'aria-label': L('从高处看', 'Look from higher'), onclick: function () { orbit(0, 10); } }, '▲'), h('button', { 'aria-label': L('从低处看', 'Look from lower'), onclick: function () { orbit(0, -10); } }, '▼'));
+      if (M.path && st.step !== 'make' || (st.step === 'make' && st.mode === 'come')) tools.append(h('button', { onclick: playPath }, L('▶ 看它走', '▶ Watch it move')));
+    }
+    function playPath() {
+      if (!M.path) return;
+      var id = M.path.thing, a = M.path.from, b = M.path.to, t0 = performance.now(), dur = 1700;
+      if (anim) cancelAnimationFrame(anim);
+      B.emit('view', { item: st.item ? st.item.id : null, play: 'path' });
+      function step(now) {
+        var k = Math.min(1, (now - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        var back = (now - t0) > dur + 900;
+        var p = M.pos[id];
+        if (back) { p.x = a.x; p.z = a.z; R.update(M); anim = null; return; }
+        p.x = a.x + (b.x - a.x) * e; p.z = a.z + (b.z - a.z) * e;
+        R.update(M);
+        anim = requestAnimationFrame(step);
+      }
+      anim = requestAnimationFrame(step);
+    }
+
+    /* ---------- live readout: the word from the current viewpoint (shown only after an answer) ---------- */
+    var readout = h('div', { class: 's3-read', 'aria-live': 'polite' });
+    function motionOrient(fig) {
+      if (!M.path) return null;
+      if (M.path.thing === fig) return 'selfToListener';
+      return dist(M.path.to, P(fig)) < dist(M.path.from, P(fig)) ? 'to' : 'away';
+    }
+    function renderReadout() {
+      readout.innerHTML = '';
+      var it = st.item;
+      if (st.step === 'make' || !it || !st.answered) return;
+      if (it.mode === 'here') {
+        [M.eyeMark === it.listener ? it.listener : it.speaker, M.eyeMark === it.listener ? it.speaker : it.listener].forEach(function (sp, i) {
+          var li = sp === it.speaker ? it.listener : it.speaker;
+          var z = zoneOf(P(it.target), P(sp), P(li));
+          var cur = M.cam.mode === 'eye' && M.cam.fig === sp;
+          readout.append(h('span', { class: 'chip' + (cur ? ' cur' : '') }, [L(nameOf(sp) + '说：', nameOf(sp) + ' says: '), h('b', { lang: pack.lang, text: pack.demo[z] })]));
+        });
+      } else if (it.mode === 'come') {
+        M.things.filter(function (t) { return isFig(t) && t.kind !== 'cat' && (t.id !== M.path.thing || it.speaker === t.id); }).forEach(function (t) {
+          var o = motionOrient(t.id), cur = M.cam.mode === 'eye' && M.cam.fig === t.id;
+          readout.append(h('span', { class: 'chip' + (cur ? ' cur' : '') }, [L(nameOf(t.id) + '说：', nameOf(t.id) + ' says: '), h('b', { lang: pack.lang, text: pack.motion[o] })]));
+        });
+      } else if (it.mode === 'frame' && it.ref !== 'table') {
+        var ref = thingOf(it.ref), rp = P(it.ref), mp = P(it.mover), v = camView();
+        if (!ref || dist(rp, mp) < 0.3) return;
+        var refN = pack.refNames[it.ref] || nameOf(it.ref);
+        var rel = dirWord(sub(mp, rp), axes('relative', rp, v));
+        readout.append(h('span', { class: 'chip cur' }, [v.name ? L('从' + v.name + '这儿看：', 'From ' + v.name + ': ') : L('从这个角度看：', 'From this view: '), h('b', { lang: pack.lang, text: pack.relFmt.replace('{dir}', pack.dirs[rel]).replace('{ref}', refN) })]));
+        if (rp.face !== undefined) {
+          var own = dirWord(sub(mp, rp), axes('intrinsic', rp));
+          readout.append(h('span', { class: 'chip' }, [L('按' + nameOf(it.ref) + '自己的方向：', 'By the ' + nameOf(it.ref) + '’s own front: '), h('b', { lang: pack.lang, text: pack.relFmt.replace('{dir}', pack.dirs[own]).replace('{ref}', refN) })]));
+        } else readout.append(h('span', { class: 'kb-note', text: L('（' + nameOf(it.ref) + '没有自己的前后左右。转一转，看哪个词跟着变。）', '(The ' + nameOf(it.ref) + ' has no front of its own. Turn the view and watch which word changes.)') }));
+      }
+    }
+
+    /* ---------- items ---------- */
+    function queueFor(mode) { return pack.items.filter(function (it) { return it.mode === mode && it.bands.indexOf(band) >= 0; }); }
+    function enterMode() {
+      if (anim) { cancelAnimationFrame(anim); anim = null; }
+      st.queue = queueFor(st.mode); st.idx = 0; st.sameRun = [];
+      renderBar();
+      if (st.step === 'make') return startMake();
+      showItem();
+    }
+    function showItem() {
+      var it = st.queue[st.idx];
+      renderBar();
+      st.item = it || null; st.answered = false; st.hint = 0; st.tries = []; st.meFirst = null; st.swapAns = null; st.lookedEarly = false; st.feedback = null; st.followSpot = null;
+      if (!it) { st.phase = 'done'; renderStage(); renderSide(); B.emit('complete', { mode: st.mode, band: band, items: st.queue.length }); return; }
+      M.cam = { mode: 'orbit', yaw: 0, pitch: child() ? 42 : 38, dist: child() ? 8 : 8.6 };
+      loadScene(it.scene);
+      if (it.mode === 'frame') {
+        M.eyeMark = null;
+        if (it.kind === 'place') { setupSpots(it); st.phase = 'place'; }
+        else st.phase = 'pick';
+        M.hl = it.kind === 'pick' ? [it.mover] : [];
+      } else {
+        M.hl = it.target ? [it.target] : [];
+        if (child()) { M.eyeMark = it.speaker; st.phase = 'choose'; }
+        else { st.phase = 'eye'; M.pickFigs = true; }
+      }
+      B.emit('view', { item: it.id, mode: it.mode, band: band });
+      redraw(); renderStage(); renderSide();
+      if (child()) later(function () { speakPrompt(); }, 400);
+    }
+    var timers = [];
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function sayTarget(text) { if (!text) return; var r = B.speak(text.replace(/＿＿/g, '…'), pack.speech); if (!r) stageNote(L('这个浏览器不能播放语音。', 'This browser cannot play speech.')); }
+    function speakPrompt() {
+      var it = st.item; if (!it) return;
+      if (it.mode === 'frame' && it.kind === 'place') return sayTarget(it.q);
+      var txt = it.mode === 'frame' ? L('哪句话对？先当' + nameOf(it.viewer) + '看一看。', 'Which one is right? Be ' + nameOf(it.viewer) + ' first and look.') : L(nameOf(M.eyeMark || it.speaker) + '会怎么说？', 'What does ' + nameOf(M.eyeMark || it.speaker) + ' say?');
+      B.speak(txt, EN ? 'en-US' : 'zh-CN');
+    }
+    function stageNote(t) { var n = stage.querySelector('.s3-snote'); if (n) n.textContent = t; }
+
+    /* frame mode: four numbered spots around the reference object; the right one(s) are computed from geometry */
+    function setupSpots(it) {
+      var ref = thingOf(it.ref), rp = P(it.ref), nums = KTBlock.shuffle([1, 2, 3, 4]);
+      M.spots = CARD.map(function (c, i) { var e = extent(ref, c) + (it.mover === 'taxi' ? 1.0 : 0.75); return { id: c.id, n: nums[i], x: rp.x + c.x * e, z: rp.z + c.z * e }; }).sort(function (a, b) { return a.n - b.n; });
+      st.okSpots = it.frames.map(function (fr) { return bestCard(wantVec(it.word, axes(fr, rp, P(it.viewer)))); });
+    }
+    function spotById(id) { return M.spots.filter(function (s) { return s.id === id; })[0]; }
+
+    function onFig(id) {
+      if (st.step === 'make') return;
+      var it = st.item;
+      if (!it || st.phase !== 'eye') return;
+      if (st.meFirst === null) st.meFirst = id;
+      B.emit('drop', { item: it.id, me: id, right: id === it.speaker });
+      if (id === it.speaker) { M.eyeMark = id; M.pickFigs = false; st.phase = 'choose'; st.feedback = null; }
+      else st.feedback = { tone: 'warn', text: L('再读一遍情境：这句话是谁说的？', 'Read the situation again: who says this sentence?') };
+      redraw(); renderStage();
+    }
+    function onSpot(id) {
+      if (st.step === 'make') return makeSpot(id);
+      var it = st.item;
+      if (!it || it.mode !== 'frame' || it.kind !== 'place' || (st.phase !== 'place')) return;
+      var s = spotById(id); M.pos[it.mover].x = s.x; M.pos[it.mover].z = s.z;
+      B.emit('drop', { item: it.id, spot: id, n: s.n });
+      var ok = st.okSpots.indexOf(id) >= 0;
+      if (ok && !child()) { st.followSpot = id; st.phase = 'follow'; redraw(); renderStage(); return; }
+      finishPlace(id, ok, null);
+    }
+    function finishPlace(id, spotOk, other) {
+      var it = st.item, amb = it.frames.length > 1, otherOk = other === null || other === amb;
+      var correct = spotOk && otherOk;
+      B.attempt(it.id, { correct: correct, response: { spot: id, frames: it.frames, otherPossible: other, band: band } });
+      st.tries.push(id);
+      if (!st.tried[st.mode]) st.tried[st.mode] = true;
+      M.spots.forEach(function (s) { s.cls = st.okSpots.indexOf(s.id) >= 0 && (spotOk || st.tries.length > 1) ? 'ok' : s.id === id && !spotOk ? 'bad' : ''; });
+      if (spotOk) { st.answered = true; st.phase = 'after'; }
+      else { st.phase = 'place'; }
+      st.feedback = frameFeedback(it, id, spotOk, other, amb);
+      redraw(); renderStage(); renderSide();
+      if (spotOk) sayTarget(it.q);
+    }
+    function frameFeedback(it, id, spotOk, other, amb) {
+      var ref = thingOf(it.ref), refN = nameOf(it.ref), vN = nameOf(it.viewer), hasFront = P(it.ref).face !== undefined;
+      var relT = L('相对参照（按看的人）', 'relative frame (from the viewer)'), intT = L('固有参照（按东西自己的前面）', 'intrinsic frame (the thing’s own front)');
+      var terms = !child();
+      if (!spotOk) {
+        // which frame would make the chosen spot right?
+        var rp = P(it.ref), alt = ['relative', 'intrinsic'].filter(function (fr) { return (fr === 'relative' || hasFront) && bestCard(wantVec(it.word, axes(fr, rp, P(it.viewer)))) === id; })[0];
+        if (alt === 'intrinsic') return { tone: 'bad', text: child() ? L('这是' + refN + '自己的那一边。这句话说的是从' + vN + '这儿看。', 'That is the ' + refN + '’s own side. The sentence means as seen from ' + vN + '.') : L('按' + refN + '自己的方向，这里是对的；可是这句话在这里只按' + vN + '看过去说（' + relT + '）。再试一次。', 'By the ' + refN + '’s own front this would be right, but here the sentence is said from where ' + vN + ' stands (' + relT + '). Try again.') };
+        if (alt === 'relative') return { tone: 'bad', text: child() ? L('看看' + refN + '的脸朝哪边。', 'Look which way ' + refN + '’s face points.') : L('从' + vN + '这儿看是对的；可是这句话按' + refN + '自己的前面说（' + intT + '）。再试一次。', 'Seen from ' + vN + ' this is right, but the sentence uses the ' + refN + '’s own front (' + intT + '). Try again.') };
+        return { tone: 'bad', text: L('不是这里。听一遍句子，再看看' + (hasFront ? refN + '的脸朝哪边' : '你站在哪儿') + '。', 'Not here. Hear the sentence again and look ' + (hasFront ? 'which way the ' + refN + ' faces' : 'where you stand') + '.') };
+      }
+      var base;
+      if (amb) base = L('两种都说得通：按' + vN + '看过去（' + relT + '），或按' + refN + '自己的前面（' + intT + '）。说的时候讲清楚，比如“从我这儿看”。', 'Both readings work: from where ' + vN + ' stands (' + relT + ') or by the ' + refN + '’s own front (' + intT + '). Say which you mean, e.g. “from where I stand”.');
+      else if (it.frames[0] === 'intrinsic') base = child() ? L('对！看' + refN + '的脸朝哪边。', 'Yes! Look where ' + refN + '’s face points.') : L(refN + '有自己的前面（脸、车头或大门朝的方向），这句话按它自己的方向说（' + intT + '）。', 'The ' + refN + ' has a front of its own (where its face, bonnet or entrance points); this sentence uses it (' + intT + ').');
+      else base = child() ? L('对！从你这儿看过去。', 'Yes! As seen from where you stand.') : L(refN + '没有自己的前后左右，只能按' + vN + '看过去说（' + relT + '）。', 'The ' + refN + ' has no front or sides of its own, so it is said from where ' + vN + ' stands (' + relT + ').');
+      var tail = '';
+      if (other !== null && other !== amb) tail = amb ? L(' 你说另一个位置不可能——其实也可以。', ' You said no other spot was possible: in fact one is.') : L(' 你说另一个位置也可能——这里不行：' + (hasFront ? '这个说法只按一个方向。' : refN + '没有自己的前面。'), ' You said another spot was possible: not here; ' + (hasFront ? 'this wording has only one reading.' : 'the ' + refN + ' has no front of its own.'));
+      return { tone: tail ? 'warn' : '', text: base + tail + (it.extra ? ' ' + T(it.extra, 'zh') : '') };
+    }
+    function pickAnswer(k) {
+      var it = st.item, o = it.options[k];
+      B.attempt(it.id, { correct: !!o.ok, response: { option: k, text: o.t, lookedFirst: !!st.lookedEarly, band: band } });
+      st.tries.push(k); st.tried[st.mode] = true;
+      if (o.ok) {
+        st.answered = true; st.phase = 'after';
+        M.cam = { mode: 'eye', fig: it.viewer };
+        st.feedback = { tone: '', text: L('从' + nameOf(it.viewer) + '的眼睛看：', 'Through ' + nameOf(it.viewer) + '’s eyes: ') + o.t + (child() ? '' : L(' 同一个球，站的地方不同，说法就不同。', ' Same ball; stand somewhere else and the words change.')) };
+        sayTarget(o.t);
+      } else st.feedback = { tone: 'bad', text: L('从你自己这儿看是这样，可是问的是' + nameOf(it.viewer) + '看到的。', 'That may be how it looks from where you are, but the question is what ' + nameOf(it.viewer) + ' sees.') };
+      redraw(); renderStage(); renderSide();
+    }
+
+    /* here / come: choose the form, then the swap */
+    function cur() { return st.phase.indexOf('swap') === 0 ? st.item.swap : st.item; }
+    function ghostFor(form) {
+      var it = st.item, c = cur();
+      M.ghost = null; M.ghostEye = null;
+      if (!form.at) return;
+      if (it.mode === 'here') {
+        if (form.at === 'speaker') M.ghost = Object.assign({}, P(c.speaker));
+        else if (form.at === 'listener') M.ghost = Object.assign({}, P(c.listener));
+        else { var far = M.things.filter(function (t) { return dist(P(t.id), P(c.speaker)) > 2.5 && dist(P(t.id), P(c.listener)) > 2.2 && t.id !== it.target; })[0]; M.ghost = far ? Object.assign({ r: 0.9 }, P(far.id)) : { x: 0, z: -3.5, r: 0.9 }; }
+      } else {
+        var p = form.at === 'start' ? M.path.from : form.at === 'end' ? M.path.to : (P(form.at) || (M.areas.filter(function (a) { return a.id === form.at; })[0]));
+        if (p) M.ghostEye = { x: p.x, z: p.z };
+      }
+    }
+    function sayWrong(form) {
+      var it = st.item, c = cur();
+      if (form.say) return T(form.say, 'zh');
+      if (it.mode === 'here') {
+        var away = pack.demo.listener === pack.demo.far && form.at !== 'speaker';
+        if (form.at === 'speaker') return L('说“' + form.t + '”，听的人会去找说话的' + nameOf(c.speaker) + '身边的东西。', 'With “' + form.t + '”, the listener would look for something by ' + nameOf(c.speaker) + ', the speaker.');
+        if (away) return L('说“' + form.t + '”，听的人会去找离说话人远的东西。', 'With “' + form.t + '”, the listener would look for something away from the speaker.');
+        if (form.at === 'listener') return L('说“' + form.t + '”，听的人会去找听话的' + nameOf(c.listener) + '身边的东西。', 'With “' + form.t + '”, the listener would look for something by ' + nameOf(c.listener) + ', the listener.');
+        return L('说“' + form.t + '”，听的人会去找离两个人都远的东西。', 'With “' + form.t + '”, the listener would look for something far from both of you.');
+      }
+      var place = form.at === 'start' ? L(nameOf(M.path.thing) + '出发的地方', 'where the ' + nameOf(M.path.thing) + ' starts') : form.at === 'end' ? L(nameOf(M.path.thing) + '要去的地方', 'where the ' + nameOf(M.path.thing) + ' is going') : nameOf(form.at);
+      return L('这样说，听的人会以为说话的人在' + place + '（红色虚线的眼睛）。', 'Said like this, the listener would think the speaker is at ' + place + ' (the red dashed eye).');
+    }
+    function rightNote() {
+      var it = st.item, c = cur(), F = (c.forms.filter(function (f) { return f.ok; })[0] || {}).t;
+      if (it.mode === 'here') {
+        var sp = P(c.speaker), li = P(c.listener), tg = P(it.target), z = zoneOf(tg, sp, li), T0 = nameOf(it.target);
+        if (z === 'speaker' && dist(tg, li) <= NEAR) return L(T0 + '离两个人一样近，两个人站在一起：' + F + '。', 'The ' + T0 + ' is just as near to both, and they stand together: ' + F + '.');
+        if (z === 'speaker') return L(T0 + '在说话的' + nameOf(c.speaker) + '身边：' + F + '。', 'The ' + T0 + ' is by ' + nameOf(c.speaker) + ', who is speaking: ' + F + '.');
+        if (z === 'listener') return L(T0 + '在听话的' + nameOf(c.listener) + '身边：' + F + '。', 'The ' + T0 + ' is by ' + nameOf(c.listener) + ', who is listening: ' + F + '.');
+        return L(T0 + '离两个人都远：' + F + '。', 'The ' + T0 + ' is far from both of them: ' + F + '.');
+      }
+      var o = motionOrient(c.speaker), Mv = nameOf(M.path.thing);
+      if (o === 'selfToListener') return L('说话的' + nameOf(c.speaker) + '自己朝听话的' + nameOf(c.listener) + '走过去：' + F + '。', nameOf(c.speaker) + ', the speaker, walks toward ' + nameOf(c.listener) + ', the listener: ' + F + '.');
+      if (o === 'to') return L(Mv + '朝说话的' + nameOf(c.speaker) + '这边来：' + F + '。', 'The ' + Mv + ' moves toward ' + nameOf(c.speaker) + ', who is speaking: ' + F + '.');
+      return L(Mv + '离开说话的' + nameOf(c.speaker) + '，往别处去：' + F + '。', 'The ' + Mv + ' moves away from ' + nameOf(c.speaker) + ', who is speaking: ' + F + '.');
+    }
+    function fillQ(c, form) { return c.q.replace('＿＿', form); }
+    function choose(k) {
+      var it = st.item, c = cur(), f = c.forms[k], swap = st.phase.indexOf('swap') === 0;
+      var ok = !!(f.ok || f.also);
+      var id = swap ? it.id + ':swap' : it.id;
+      if (swap && !child()) ok = ok && st.swapAns === c.ans;
+      B.attempt(id, { correct: ok, response: { form: f.t, me: swap ? c.speaker : st.meFirst, swapAnswer: swap ? st.swapAns : undefined, band: band } });
+      st.tries.push(k); st.tried[st.mode] = true;
+      if (f.ok || f.also) {
+        M.ghost = null; M.ghostEye = null;
+        st.answered = true;
+        st.phase = swap ? 'swap-after' : 'after';
+        var txt = rightNote();
+        if (f.also) txt = T(f.say, 'zh') + ' ' + txt;
+        if (swap && !child() && st.swapAns !== c.ans) txt = (c.ans === 'change' ? L('其实这次要变。', 'In fact it does change this time.') : L('其实这次不用变。', 'In fact it stays the same this time.')) + ' ' + txt;
+        if (!child() && c.extra) txt += ' ' + T(c.extra, 'zh');
+        st.feedback = { tone: '', text: txt };
+        sayTarget(fillQ(c, f.t));
+      } else {
+        ghostFor(f);
+        st.feedback = { tone: 'bad', text: sayWrong(f) + (child() ? '' : L(' 再选一次。', ' Choose again.')) };
+      }
+      redraw(); renderStage(); renderSide();
+    }
+    function toSwap() {
+      var it = st.item, sw = it.swap;
+      st.phase = child() ? 'swap-form' : 'swap-ans'; st.tries = []; st.answered = false; st.feedback = null; st.hint = 0;
+      M.eyeMark = sw.speaker; M.ghost = null; M.ghostEye = null; M.zones = null;
+      if (anim) { cancelAnimationFrame(anim); anim = null; } if (M.path) { M.pos[M.path.thing].x = M.path.from.x; M.pos[M.path.thing].z = M.path.from.z; }
+      B.emit('drop', { item: it.id + ':swap', me: sw.speaker, by: 'page' });
+      redraw(); renderStage();
+      if (child()) later(speakPrompt, 300);
+    }
+    function swapAnswer(a) {
+      var it = st.item, c = it.swap;
+      st.swapAns = a; st.phase = 'swap-form';
+      B.emit('select', { item: it.id + ':swap', answer: a });
+      st.sameRun.push({ a: a, truth: c.ans });
+      var last = st.sameRun.slice(-3);
+      st.warnSame = last.length === 3 && last.every(function (x) { return x.a === 'same'; }) && last.some(function (x) { return x.truth === 'change'; });
+      renderStage();
+    }
+    function hint() {
+      var it = st.item, c = cur();
+      st.hint += 1;
+      B.hint(st.phase.indexOf('swap') === 0 ? it.id + ':swap' : it.id, st.hint);
+      if (st.hint === 2) {
+        if (it.mode === 'here') M.zones = [{ id: c.speaker }, { id: c.listener, cls: 'l' }];
+        else { M.zones = [{ id: c.speaker }]; M.hl = [M.path.thing]; }
+      }
+      redraw(); renderStage();
+    }
+    function next() { if (anim) { cancelAnimationFrame(anim); anim = null; } st.idx += 1; showItem(); }
+
+    /* ---------- step 3: your turn ---------- */
+    function startMake() {
+      st.item = null; st.phase = 'make'; st.answered = false;
+      M.cam = { mode: 'orbit', yaw: 0, pitch: 40, dist: 8.6 };
+      var mk = { n: 0, done: [], feedback: null, text: '', partner: false };
+      st.make = mk;
+      if (st.mode === 'here') { loadScene('make-here'); mk.speaker = 'aki'; mk.slot = 'nearA'; }
+      else if (st.mode === 'come') { loadScene('make-come'); mk.where = 'kitchen'; mk.dir = 'kitchen'; }
+      else { loadScene('make-frame'); mk.ref = 'tree'; mk.frame = 'relative'; mk.spot = null; makeSpots(); }
+      applyMake();
+      B.emit('view', { mode: st.mode, step: 'make', band: band });
+      renderStage(); renderSide();
+    }
+    function makeSpots() {
+      var mk = st.make, ref = thingOf(mk.ref), rp = P(mk.ref), nums = [1, 2, 3, 4];
+      M.spots = CARD.map(function (c, i) { var e = extent(ref, c) + 0.75; return { id: c.id, n: nums[i], x: rp.x + c.x * e, z: rp.z + c.z * e }; });
+    }
+    function applyMake() {
+      var mk = st.make, s = SC.scenes[M.sceneId];
+      if (st.mode === 'here') {
+        var other = mk.speaker === 'aki' ? 'ben' : 'aki';
+        var slot = s.slots[mk.slot]; M.pos.cup.x = slot[0]; M.pos.cup.z = slot[1];
+        M.eyeMark = mk.speaker; M.hl = ['cup'];
+        mk.expect = zoneOf(P('cup'), P(mk.speaker), P(other));
+      } else if (st.mode === 'come') {
+        var sl = s.slots[mk.where]; M.pos.aki.x = sl[0]; M.pos.aki.z = sl[1]; M.pos.aki.face = mk.where === 'kitchen' ? 90 : 270;
+        var k = { x: -2, z: 1.2 }, lv = { x: 2, z: 1.2 };
+        M.path = { thing: 'cat', from: mk.dir === 'kitchen' ? lv : k, to: mk.dir === 'kitchen' ? k : lv };
+        M.pos.cat.x = M.path.from.x; M.pos.cat.z = M.path.from.z; M.pos.cat.face = mk.dir === 'kitchen' ? 270 : 90;
+        M.eyeMark = 'aki';
+        mk.expect = mk.where === mk.dir ? 'to' : 'away';
+      } else {
+        if (mk.spot) { var sp = spotById(mk.spot); M.pos.ball.x = sp.x; M.pos.ball.z = sp.z; mk.expect = dirWord(sub(P('ball'), P(mk.ref)), axes(mk.ref === 'tree' ? 'relative' : mk.frame, P(mk.ref), P('you'))); }
+        else { M.pos.ball.x = 3.6; M.pos.ball.z = 2.6; mk.expect = null; }
+      }
+      redraw();
+    }
+    function makeSpot(id) { var mk = st.make; if (!mk || st.mode !== 'frame') return; mk.spot = id; B.emit('drop', { item: 'make-frame', spot: id }); M.spots.forEach(function (s) { s.cls = s.id === id ? 'ok' : ''; }); applyMake(); renderStage(); }
+    function findForms(text) {
+      var mk = pack.make, src = text;
+      (mk.ignore || []).forEach(function (w) { src = src.split(w).join(' '); });
+      var list = (st.mode === 'here' ? mk.demoForms : mk.motionForms).slice().sort(function (a, b) { return b.t.length - a.t.length; }), found = [];
+      list.forEach(function (f) {
+        if (mk.words) { var re = new RegExp('\\b' + f.t + '\\b', 'i'); if (re.test(src)) { found.push(f); src = src.replace(new RegExp('\\b' + f.t + '\\b', 'ig'), ' '); } }
+        else if (src.indexOf(f.t) >= 0) { found.push(f); src = src.split(f.t).join(' '); }
+      });
+      return found;
+    }
+    function hasWord(text, w) { return pack.make.words ? new RegExp('\\b' + w + '\\b', 'i').test(text) : text.indexOf(w) >= 0; }
+    function checkMake() {
+      var mk = st.make, text = (mk.text || '').trim(), res = { ok: false, msg: '' }, kind;
+      if (!text) return;
+      if (st.mode === 'frame') {
+        if (!mk.spot) { mk.feedback = { tone: 'warn', text: L('先把球放到一个位置上。', 'Put the ball on a spot first.') }; return renderStage(); }
+        var refOk = (pack.make.refWords[mk.ref] || []).some(function (w) { return hasWord(text, w); });
+        var dirs = Object.keys(pack.make.dirWords).filter(function (d) { return pack.make.dirWords[d].some(function (w) { return hasWord(text, w); }); });
+        kind = mk.ref === 'car' && mk.frame === 'intrinsic' ? 'intrinsic' : 'relative';
+        if (!refOk) res.msg = L('句子里没找到“' + pack.make.refWords[mk.ref][0] + '”。', 'The sentence does not mention “' + pack.make.refWords[mk.ref][0] + '”.');
+        else if (dirs.length !== 1) res.msg = dirs.length ? L('句子里有不止一个方向词。', 'The sentence has more than one direction word.') : L('句子里没找到前、后、左、右的说法。', 'No word for front, back, left or right was found.');
+        else if (dirs[0] !== mk.expect) res.msg = L('照你摆的场景，这里应该是“' + pack.dirs[mk.expect] + '”，句子里是“' + pack.dirs[dirs[0]] + '”。', 'For the scene you set up this should be “' + pack.dirs[mk.expect] + '”; the sentence says “' + pack.dirs[dirs[0]] + '”.');
+        else res.ok = true;
+      } else {
+        var found = findForms(text);
+        if (st.mode === 'here') {
+          kind = mk.expect === 'speaker' ? 'near' : 'away';
+          if (!found.length) res.msg = L('句子里没找到指示词。', 'No demonstrative was found in the sentence.');
+          else if (found.length > 1 && !found.every(function (f) { return f.zone.indexOf(mk.expect) >= 0; })) res.msg = L('句子里有几个不同的指示词，只留一个。', 'The sentence has several different demonstratives; keep one.');
+          else if (found[0].zone.indexOf(mk.expect) < 0) res.msg = L('照你摆的场景，杯子' + (mk.expect === 'speaker' ? '在说话人身边' : mk.expect === 'listener' ? '在听话人身边' : '离两个人都远') + '，“' + found[0].t + '”不合适。', 'In your scene the cup is ' + (mk.expect === 'speaker' ? 'by the speaker' : mk.expect === 'listener' ? 'by the listener' : 'far from both') + ', so “' + found[0].t + '” does not fit.');
+          else res.ok = true;
+        } else {
+          kind = mk.expect;
+          var ors = found.map(function (f) { return f.orient; }).filter(function (o, i, a) { return a.indexOf(o) === i; });
+          if (!found.length) res.msg = L('句子里没找到来去类的动词。', 'No come / go verb was found in the sentence.');
+          else if (ors.length > 1) res.msg = L('句子里既有朝这边来的，也有往别处去的，只留一个。', 'The sentence has both a toward-the-speaker and an away verb; keep one.');
+          else if (ors[0] !== mk.expect) res.msg = L('照你摆的场景，猫' + (mk.expect === 'to' ? '朝说话人这边来' : '离开说话人') + '，“' + found[0].t + '”方向反了。', 'In your scene the cat moves ' + (mk.expect === 'to' ? 'toward the speaker' : 'away from the speaker') + ', so “' + found[0].t + '” points the wrong way.');
+          else res.ok = true;
+        }
+      }
+      mk.n += 1;
+      var setup = st.mode === 'here' ? { speaker: mk.speaker, slot: mk.slot } : st.mode === 'come' ? { where: mk.where, dir: mk.dir } : { ref: mk.ref, frame: mk.frame, spot: mk.spot };
+      B.attempt('make-' + st.mode + '-' + mk.n, { correct: res.ok, response: { setup: setup, expect: mk.expect, text: text, kind: kind } });
+      if (res.ok) {
+        mk.done.push({ text: text, kind: kind, setup: setup });
+        var need = st.mode === 'here' ? ['near', 'away'] : st.mode === 'come' ? ['to', 'away'] : ['relative', 'intrinsic'];
+        var have = need.filter(function (k) { return mk.done.some(function (d) { return d.kind === k; }); });
+        var miss = need.filter(function (k) { return have.indexOf(k) < 0; });
+        var label = { near: L('东西在说话人身边', 'the thing by the speaker'), away: st.mode === 'here' ? L('东西不在说话人身边', 'the thing away from the speaker') : L('往别处去', 'moving away'), to: L('朝说话人来', 'moving toward the speaker'), relative: L('按看的人（树，或“从我这儿看”的车）', 'from the viewer (the tree, or the car “from where I stand”)'), intrinsic: L('按车自己的方向', 'by the car’s own front') };
+        mk.feedback = { tone: '', text: L('和你摆的场景一致。', 'It matches the scene you set up.') + (miss.length ? L(' 再摆一个：' + label[miss[0]] + '。', ' Now set up one with ' + label[miss[0]] + '.') : L(' 两种都有了。只说一种（比如都说“' + (st.mode === 'here' ? pack.demo.speaker : st.mode === 'come' ? pack.motion.to : pack.dirs.left) + '”）不算过关。', ' You have both kinds. Using only one kind would not pass.')) };
+        if (!miss.length) B.emit('complete', { mode: st.mode, step: 'make', sentences: mk.done.length });
+      } else mk.feedback = { tone: 'bad', text: res.msg };
+      renderStage(); renderSide();
+    }
+    function childMake(yes) {
+      var mk = st.make; mk.n += 1;
+      var setup = st.mode === 'here' ? { speaker: mk.speaker, slot: mk.slot } : st.mode === 'come' ? { where: mk.where, dir: mk.dir } : { ref: mk.ref, spot: mk.spot };
+      B.attempt('make-' + st.mode + '-' + mk.n, { correct: yes, selfReport: true, response: { setup: setup, expect: mk.expect, judgedBy: 'adult' } });
+      mk.feedback = { tone: '', text: yes ? L('记下来了：大人说对了。换个地方再摆一次。', 'Noted: the adult said it was right. Move things and try once more.') : L('记下来了。换个位置，再说一次。', 'Noted. Move things and say it again.') };
+      renderStage(); renderSide();
+    }
+    function partnerStart() { var mk = st.make; mk.partner = { text: mk.done[mk.done.length - 1].text, setup: mk.done[mk.done.length - 1].setup, kind: mk.done[mk.done.length - 1].kind }; mk.feedback = null; renderStage(); B.emit('view', { step: 'partner', mode: st.mode }); }
+    function partnerPick(v) {
+      var mk = st.make, p = mk.partner, ok;
+      if (st.mode === 'here') { var other = p.setup.speaker === 'aki' ? 'ben' : 'aki', sl = SC.scenes[M.sceneId].slots[v]; var z = zoneOf({ x: sl[0], z: sl[1] }, P(p.setup.speaker === 'aki' ? 'aki' : 'ben'), P(other)); var want = zoneOf({ x: SC.scenes[M.sceneId].slots[p.setup.slot][0], z: SC.scenes[M.sceneId].slots[p.setup.slot][1] }, P(p.setup.speaker), P(other)); ok = z === want || (pack.demo[z] === pack.demo[want]); }
+      else if (st.mode === 'come') ok = v === p.setup.where;
+      else ok = v === p.setup.spot;
+      mk.pn = (mk.pn || 0) + 1;
+      B.attempt('make-' + st.mode + '-partner-' + mk.pn, { correct: ok, selfReport: true, response: { sentence: p.text, partnerChose: v, setup: p.setup, judgedBy: 'partner' } });
+      mk.partner = null;
+      mk.feedback = { tone: ok ? '' : 'warn', text: ok ? L('同伴摆得和你一样：你的句子说清楚了。（记为同伴判断，不算答对题。）', 'Your partner set it up the same way: your sentence was clear. (Recorded as partner-judged, not as a correct answer.)') : L('同伴摆得和你不一样。是句子不清楚，还是同伴看错了？一起看看。（记为同伴判断。）', 'Your partner set it up differently. Was the sentence unclear, or did they misread it? Look together. (Recorded as partner-judged.)') };
+      renderStage(); renderSide();
+    }
+
+    /* ---------- rendering the stage ---------- */
+    function renderBar() {
+      bar.innerHTML = '';
+      // which design variables this age version changes, and why (shared panel from the runtime)
+      var keepOpen = ageBox.firstChild && ageBox.firstChild.open; ageBox.innerHTML = '';
+      var why = KTBlock.ageWhy && KTBlock.ageWhy('space-3d', band); if (why) { why.open = !!keepOpen; ageBox.append(why); }
+      bar.append(h('span', { class: 'kb-note', text: L('对象：', 'For: ') }), h('div', { class: 's3-bands', role: 'group', 'aria-label': L('年龄段', 'Age band') }, [['child', L('儿童', 'Child')], ['youth', L('青少年', 'Youth')], ['adult', L('成人', 'Adult')]].map(function (b) {
+        return h('button', { 'aria-pressed': band === b[0] ? 'true' : 'false', onclick: function () { if (band === b[0]) return; band = b[0]; applyBand(); B.emit('view', { band: band }); enterMode(); renderSide(); } }, b[1]);
+      })));
+      bar.append(h('div', { class: 's3-bands', role: 'group', 'aria-label': L('步骤', 'Step') }, [['practice', L('练习', 'Practice')], ['make', L('自己摆', 'Your turn')]].map(function (b) {
+        return h('button', { 'aria-pressed': st.step === b[0] ? 'true' : 'false', onclick: function () { if (st.step === b[0]) return; st.step = b[0]; enterMode(); renderSide(); } }, b[1]);
+      })));
+      if (st.step === 'practice' && st.queue.length) bar.append(h('span', { class: 'kb-note', text: L('第 ' + Math.min(st.idx + 1, st.queue.length) + ' / ' + st.queue.length + ' 题', 'Item ' + Math.min(st.idx + 1, st.queue.length) + ' / ' + st.queue.length) }));
+    }
+    function qLine(c, filled) {
+      var parts = c.q.split('＿＿');
+      return h('p', { class: 's3-q', lang: pack.lang }, [parts[0], h('span', { class: 'gap' + (filled ? ' ok' : '') }, filled || ' '), parts[1] || '']);
+    }
+    function optionRow(forms, onPick, opts) {
+      opts = opts || {};
+      return h('div', { class: 's3-opts' + (opts.col ? ' col' : '') }, forms.map(function (f, k) {
+        var picked = st.tries.indexOf(k) >= 0, cls = picked ? (f.ok || f.also ? ' right' : ' wrong') : '';
+        return h('span', { class: 's3-opt' }, [
+          h('button', { class: 'f' + cls, lang: pack.lang, disabled: opts.locked, onclick: function () { onPick(k); } }, (opts.col || child() ? '' : (k + 1) + '  ') + f.t),
+          child() || opts.col ? h('button', { class: 'say', 'aria-label': L('听一听', 'Listen'), onclick: function () { sayTarget(f.t); } }, [icon('speaker')]) : null
+        ]);
+      }));
+    }
+    function fbBox() { return st.feedback ? h('div', { class: 'kb-feedback ' + (st.feedback.tone || ''), role: 'status', text: st.feedback.text }) : h('span'); }
+    function renderStage() {
+      stage.innerHTML = '';
+      stage.append(view);
+      if (st.step === 'make') return renderMake();
+      var it = st.item;
+      if (!it) {
+        stage.append(h('p', { class: 's3-done', text: '✔' }), h('p', { class: 'kb-prompt', text: L('这一组做完了。下一步：自己摆一个场景，说一说。', 'This set is done. Next: set up a scene yourself and say it.') }),
+          h('div', { class: 's3-row' }, [h('button', { class: 'kb-btn primary', onclick: function () { st.step = 'make'; enterMode(); renderSide(); } }, L('自己摆 →', 'Your turn →')), h('button', { class: 'kb-btn', onclick: enterMode }, L('再做一遍', 'Do it again'))]));
+        return;
+      }
+      stage.append(readout);
+      var c = cur();
+      var sitText = T(st.phase.indexOf('swap') === 0 ? it.swap.situation : it.situation, 'zh');
+      stage.append(h('p', { class: 's3-sit', text: sitText }));
+      if (it.mode === 'frame') return renderFrame(it);
+      if (st.phase === 'eye') {
+        stage.append(qLine(it, null));
+        stage.append(h('p', { class: 'kb-prompt', text: L('先放好“我”：这句话是谁说的？点他，或点下面的名字。', 'First place “me”: who says this sentence? Click them, or a name below.') }));
+        stage.append(h('div', { class: 's3-opts' }, M.things.filter(function (t) { return isFig(t) && t.kind !== 'cat'; }).map(function (t) { return h('button', { class: 'kb-btn', onclick: function () { onFig(t.id); } }, [icon('eye'), ' ' + nameOf(t.id)]); })));
+        stage.append(fbBox());
+        return;
+      }
+      if (st.phase === 'swap-ans') {
+        var okF = (it.forms.filter(function (f) { return f.ok; })[0] || it.forms[0]).t;
+        stage.append(h('p', { class: 's3-r', lang: pack.lang, text: L('刚才：', 'Before: ') + fillQ(it, okF) }));
+        stage.append(qLine(c, null));
+        stage.append(h('p', { class: 'kb-prompt', text: L('“我”换到了' + nameOf(c.speaker) + '身上。这个词要变吗？', '“Me” has moved to ' + nameOf(c.speaker) + '. Does the word change?') }));
+        stage.append(h('div', { class: 's3-opts' }, [['change', L('要变', 'It changes')], ['same', L('不用变', 'It stays the same')], ['both', L('两种都可以', 'Either is fine')]].map(function (a) { return h('button', { class: 'kb-btn', onclick: function () { swapAnswer(a[0]); } }, a[1]); })));
+        return;
+      }
+      var filled = st.answered ? (c.forms.filter(function (f, k) { return (f.ok || f.also) && st.tries.indexOf(k) >= 0; })[0] || {}).t : null;
+      if (st.phase === 'swap-form' && !child()) stage.append(h('p', { class: 's3-r', text: L('你选了：', 'You said: ') + { change: L('要变', 'it changes'), same: L('不用变', 'it stays the same'), both: L('两种都可以', 'either is fine') }[st.swapAns] + L('。现在选这个词：', '. Now choose the word:') }));
+      stage.append(qLine(c, filled));
+      if (it.r && st.answered && st.phase === 'after') stage.append(h('p', { class: 's3-r', lang: 'zh-Latn', text: it.r }));
+      if (c.r && st.answered && st.phase === 'swap-after') stage.append(h('p', { class: 's3-r', lang: 'zh-Latn', text: c.r }));
+      if (st.warnSame && st.phase === 'swap-form') stage.append(h('div', { class: 'kb-feedback warn', text: L('你连着三次选了“不用变”。你可能没在看“我”在哪儿。', 'Three times in a row you chose “it stays the same”. You may not be looking at where “me” is.') }));
+      if (!st.answered) stage.append(optionRow(c.forms, choose));
+      if (!st.answered && !child()) {
+        var hints = [];
+        if (st.hint >= 1) hints.push(it.mode === 'here' ? L('说话的人在哪儿？这个东西在谁身边？', 'Where is the speaker? Who is the thing next to?') : L('说话的人在哪儿？东西是朝他来，还是离他去？', 'Where is the speaker? Is the thing moving toward them or away?'));
+        if (st.hint >= 2) hints.push(it.mode === 'here' ? L('图上的圈：说话人身边、听话人身边。', 'The circles: near the speaker, near the listener.') : L('图上圈出了说话的人和移动的东西。按“看它走”。', 'The speaker and what moves are circled. Press “Watch it move”.'));
+        if (st.hint >= 3 && it.swap) { var a1 = (it.forms.filter(function (f) { return f.ok; })[0] || {}).t, a2 = (it.swap.forms.filter(function (f) { return f.ok; })[0] || {}).t; hints.push(L('同一件事，两种视点：', 'The same thing from two viewpoints: ') + nameOf(it.speaker) + ' — ' + fillQ(it, a1) + ' / ' + nameOf(it.swap.speaker) + ' — ' + fillQ(it.swap, a2)); }
+        stage.append(h('div', { class: 's3-row' }, [h('button', { class: 'kb-btn', disabled: st.hint >= (it.swap ? 3 : 2), onclick: hint }, L('提示（算辅助）', 'Hint (counts as help)'))].concat(hints.map(function (x) { return h('span', { class: 'kb-note', text: x }); }))));
+      }
+      stage.append(fbBox());
+      if (st.answered) {
+        var nx = st.phase === 'after' && it.swap ? h('button', { class: 'kb-btn primary', onclick: toSwap }, child() ? L('换' + nameOf(it.swap.speaker) + '说 →', 'Now ' + nameOf(it.swap.speaker) + ' →') : L('换一个人说 →', 'Swap the speaker →')) : h('button', { class: 'kb-btn primary', onclick: next }, L('下一题 →', 'Next →'));
+        stage.append(h('div', { class: 's3-row' }, [nx, h('span', { class: 'kb-note', text: child() ? L('按“当' + nameOf(c.speaker) + '”，看看他看到的。', 'Press “Be ' + nameOf(c.speaker) + '” and look.') : L('换到别人的眼睛看看，上面的词跟着变不变。', 'Switch to someone else’s eyes and see whether the word above changes.') })]));
+      }
+      stage.append(h('p', { class: 'kb-note s3-snote' }));
+    }
+    function renderFrame(it) {
+      if (it.kind === 'place') {
+        stage.append(h('p', { class: 's3-q', lang: pack.lang }, [it.q, ' ', h('button', { class: 'kb-btn', 'aria-label': L('听句子', 'Hear the sentence'), onclick: function () { sayTarget(it.q); } }, [icon('speaker')])]));
+        if (it.r) stage.append(h('p', { class: 's3-r', lang: 'zh-Latn', text: it.r }));
+        if (st.phase === 'place') stage.append(h('p', { class: 'kb-prompt', text: L('点一个编号，把' + nameOf(it.mover) + '放过去。', 'Click a number to put the ' + nameOf(it.mover) + ' there.') }), h('div', { class: 's3-opts' }, M.spots.map(function (s) { return h('button', { class: 'kb-btn', onclick: function () { onSpot(s.id); } }, String(s.n)); })));
+        if (st.phase === 'follow') {
+          stage.append(h('p', { class: 'kb-prompt', text: L('别的编号有没有可能也是这句话的意思？', 'Could another number also be what the sentence means?') }),
+            h('div', { class: 's3-opts' }, [h('button', { class: 'kb-btn', onclick: function () { B.emit('select', { item: it.id, otherPossible: true }); finishPlace(st.followSpot, true, true); } }, L('有可能', 'Yes, it could')), h('button', { class: 'kb-btn', onclick: function () { B.emit('select', { item: it.id, otherPossible: false }); finishPlace(st.followSpot, true, false); } }, L('只有这一个', 'No, only this one'))]));
+        }
+      } else {
+        if (!st.answered) stage.append(h('p', { class: 'kb-prompt', text: child() ? L('选一句。', 'Choose one.') : L('选一句。先想，再看：用' + nameOf(it.viewer) + '的眼睛看算提示。', 'Choose one. Think first: looking through ' + nameOf(it.viewer) + '’s eyes counts as help.') }));
+        stage.append(optionRow(it.options.map(function (o) { return { t: o.t, ok: o.ok }; }), pickAnswer, { col: true, locked: st.answered }));
+      }
+      stage.append(fbBox());
+      if (st.answered) stage.append(h('div', { class: 's3-row' }, [h('button', { class: 'kb-btn primary', onclick: next }, L('下一题 →', 'Next →')), h('span', { class: 'kb-note', text: child() ? L('按“当' + nameOf(it.kind === 'pick' ? it.viewer : it.ref) + '”看一看。', 'Press “Be ' + nameOf(it.kind === 'pick' ? it.viewer : it.ref) + '” and look.') : L('绕着转一转，看上面哪个词跟着变、哪个不变。', 'Turn the view and watch which word above changes and which does not.') })]));
+      stage.append(h('p', { class: 'kb-note s3-snote' }));
+    }
+    function choiceRow(lab, opts, val, set) {
+      return h('div', { class: 's3-row' }, [h('span', { class: 'kb-note', text: lab })].concat(opts.map(function (o) {
+        return h('button', { class: 'kb-btn', 'aria-pressed': val === o[0] ? 'true' : 'false', onclick: function () { set(o[0]); } }, o[1]);
+      })));
+    }
+    function renderMake() {
+      var mk = st.make, s = SC.scenes[M.sceneId];
+      stage.append(h('p', { class: 's3-sit', text: child() ? L('自己摆一摆，然后说给大人听。', 'Set it up, then say it to the adult.') : band === 'youth' ? L('自己摆一个场景，写一句话；写对了，再交给同伴照着你的话摆。', 'Set up a scene and write a sentence; when it matches, hand it to a partner who sets it up from your words.') : L('自己摆一个场景，写一句话。要两句：' + (st.mode === 'here' ? '一句东西在说话人身边，一句不在。' : st.mode === 'come' ? '一句朝说话人来，一句往别处去。' : '一句按看的人说，一句按车自己的方向说。'), 'Set up a scene and write a sentence. You need two: ' + (st.mode === 'here' ? 'one with the thing by the speaker, one with it away.' : st.mode === 'come' ? 'one moving toward the speaker, one moving away.' : 'one from the viewer, one by the car’s own front.')) }));
+      if (mk.partner) {
+        stage.append(h('div', { class: 'kb-feedback warn', text: L('交给同伴：先别看场景。读句子，然后摆出来。', 'Hand over to your partner: do not look at the scene yet. Read the sentence, then set it up.') }));
+        stage.append(h('p', { class: 's3-q', lang: pack.lang, text: mk.partner.text }));
+        if (st.mode === 'here') stage.append(h('p', { class: 'kb-note', text: L('说话的是 ', 'Speaking: ') + nameOf(mk.partner.setup.speaker) }), choiceRow(L('杯子在：', 'The cup is: '), [['nearA', L(nameOf('aki') + '身边', 'by ' + nameOf('aki'))], ['nearB', L(nameOf('ben') + '身边', 'by ' + nameOf('ben'))], ['far', L('离两人都远', 'far from both')]], null, partnerPick));
+        else if (st.mode === 'come') stage.append(h('p', { class: 'kb-note', text: L('猫往', 'The cat goes into the ') + nameOf(mk.partner.setup.dir === 'kitchen' ? 'kitchen' : 'living') + L('走。', '.') }), choiceRow(L('说话的人在：', 'The speaker is in: '), [['kitchen', nameOf('kitchen')], ['living', nameOf('living')]], null, partnerPick));
+        else stage.append(choiceRow(L('球在编号：', 'The ball is on spot: '), M.spots.map(function (sp) { return [sp.id, String(sp.n)]; }), null, partnerPick));
+        return;
+      }
+      if (st.mode === 'here') {
+        stage.append(choiceRow(L('谁说话：', 'Who speaks: '), [['aki', nameOf('aki')], ['ben', nameOf('ben')]], mk.speaker, function (v) { mk.speaker = v; B.emit('select', { item: 'make-here', speaker: v }); applyMake(); renderStage(); }));
+        stage.append(choiceRow(L('杯子放在：', 'Put the cup: '), [['nearA', L(nameOf('aki') + '身边', 'by ' + nameOf('aki'))], ['nearB', L(nameOf('ben') + '身边', 'by ' + nameOf('ben'))], ['far', L('离两人都远', 'far from both')]], mk.slot, function (v) { mk.slot = v; B.emit('drop', { item: 'make-here', slot: v }); applyMake(); renderStage(); }));
+      } else if (st.mode === 'come') {
+        stage.append(choiceRow(L('说话的人在：', 'The speaker is in: '), [['kitchen', nameOf('kitchen')], ['living', nameOf('living')]], mk.where, function (v) { mk.where = v; B.emit('drop', { item: 'make-come', where: v }); applyMake(); renderStage(); }));
+        stage.append(choiceRow(L('猫跑进：', 'The cat runs into: '), [['kitchen', nameOf('kitchen')], ['living', nameOf('living')]], mk.dir, function (v) { mk.dir = v; B.emit('select', { item: 'make-come', dir: v }); applyMake(); renderStage(); }));
+      } else {
+        stage.append(choiceRow(L('参照：', 'Reference: '), [['tree', nameOf('tree')], ['car', nameOf('car')]], mk.ref, function (v) { mk.ref = v; mk.spot = null; makeSpots(); applyMake(); renderStage(); }));
+        if (mk.ref === 'car' && !child()) stage.append(choiceRow(L('按谁的方向：', 'Whose front: '), [['relative', L('从我这儿看', 'from where I stand')], ['intrinsic', L('车自己的方向', 'the car’s own')]], mk.frame, function (v) { mk.frame = v; applyMake(); renderStage(); }));
+        stage.append(choiceRow(L('球放在编号：', 'Ball on spot: '), M.spots.map(function (sp) { return [sp.id, String(sp.n)]; }), mk.spot, makeSpot));
+      }
+      if (child()) {
+        stage.append(h('div', { class: 'kb-card s3-adult' }, [h('p', { text: L('给陪着的大人：请孩子指着说一句，例如：', 'For the adult alongside: ask the child to point and say it, e.g. ') + (st.mode === 'here' ? pack.demo.speaker + ' / ' + pack.demo.far : st.mode === 'come' ? pack.motion.to + ' / ' + pack.motion.away : pack.relFmt.replace('{dir}', pack.dirs.front).replace('{ref}', pack.refNames.tree)) + L('。说得和摆的一样吗？', '. Did it match what they set up?') }),
+          h('div', { class: 's3-row' }, [h('button', { class: 'kb-btn', onclick: function () { childMake(true); } }, L('说对了', 'Said it right')), h('button', { class: 'kb-btn', onclick: function () { childMake(false); } }, L('还没有', 'Not yet'))])]));
+      } else {
+        var ta = h('input', { class: 's3-text', type: 'text', lang: pack.lang, value: mk.text, placeholder: T(pack.make.placeholder[st.mode], 'zh'), 'aria-label': L('你的句子', 'Your sentence'), oninput: function (e) { mk.text = e.target.value; }, onkeydown: function (e) { if (e.key === 'Enter') checkMake(); } });
+        stage.append(ta, h('div', { class: 's3-row' }, [h('button', { class: 'kb-btn primary', onclick: checkMake }, L('对照场景检查', 'Check against the scene')),
+          band === 'youth' && mk.done.length ? h('button', { class: 'kb-btn', onclick: partnerStart }, L('交给同伴 →', 'Hand to a partner →')) : null,
+          h('span', { class: 'kb-note', text: L('页面只查指示词、来去或方向词和场景是否一致，别的不判断。', 'The page only checks that the demonstrative, the come/go verb or the direction word fits the scene; nothing else.') })]));
+      }
+      if (mk.feedback) stage.append(h('div', { class: 'kb-feedback ' + (mk.feedback.tone || ''), text: mk.feedback.text }));
+      if (mk.done.length) stage.append(h('ol', { class: 's3-made' }, mk.done.map(function (d) { return h('li', { lang: pack.lang, text: d.text }); })));
+    }
+
+    /* ---------- side panel ---------- */
+    var ADULT_TIP = {
+      here: L('问孩子：“' + '谁在说话？东西在谁身边？”让孩子先指，再选。', 'Ask: “Who is talking? Who is the thing next to?” Let the child point first, then choose.'),
+      come: L('先按“看它走”，问孩子：“它朝谁走？”再按“当……”从那个人的眼睛看。', 'Press “Watch it move” and ask: “Who is it moving to?” Then press “Be …” to look through that one’s eyes.'),
+      frame: L('让孩子站起来，转身面对屏幕，再把球“放”到自己前面、后面；然后当小熊看看。', 'Have the child stand up, face the screen and “put” the ball in front of or behind themselves; then be Bear and look.')
+    };
+    function progress() {
+      return MODES.map(function (m) {
+        var ids = [];
+        pack.items.filter(function (it) { return it.mode === m.id; }).forEach(function (it) { ids.push(it.id); if (it.swap) ids.push(it.id + ':swap'); });
+        var stt = ids.map(function (id) { return B.status(id); }).filter(Boolean);
+        var ind = stt.filter(function (x) { return x === 'independent'; }).length, as = stt.filter(function (x) { return x === 'assisted'; }).length, wr = stt.filter(function (x) { return x === 'wrong'; }).length;
+        return h('li', { text: m.label + L('：第一次就对 ' + ind + '，提示后对 ' + as + '，第一次错 ' + wr, ': right first time ' + ind + ', after help ' + as + ', wrong first ' + wr) });
+      });
+    }
+    var recOpen = false;
+    function renderSide() {
+      side.innerHTML = '';
+      var rule = pack.rules[st.mode], cmp = pack.compare[st.mode];
+      if (band === 'adult') side.append(h('div', { class: 'kb-card s3-rule' }, [h('h2', { text: L('规则', 'The rule') }), h('p', { lang: EN ? 'en' : 'zh', text: T(rule, 'zh') }), h('p', { class: 'kb-note', text: L('和你的母语比：', 'Compared with your first language: ') + T(cmp, 'zh') })]));
+      else if (band === 'youth') side.append(h('div', { class: 'kb-card s3-rule' }, st.tried[st.mode] ? [h('h2', { text: L('规则（你试过以后）', 'The rule (now that you have tried)') }), h('p', { text: T(rule, 'zh') }),
+        st.mode === 'frame' ? h('p', { class: 'kb-note', text: L('两种参照：相对参照＝按看的人；固有参照＝按东西自己的前面。没有前面的东西只有相对参照。', 'Two frames: relative = from the viewer; intrinsic = by the thing’s own front. Things without a front have only the relative frame.') }) : null]
+        : [h('h2', { text: L('规则', 'The rule') }), h('p', { class: 'kb-note', text: L('先自己试一题，规则在你作答后出现。', 'Try one first; the rule appears after your answer.') })]));
+      else side.append(h('div', { class: 'kb-card s3-adult' }, [h('h2', { text: L('给陪着的大人', 'For the adult alongside') }), h('p', { text: ADULT_TIP[st.mode] }), h('p', { class: 'kb-note', text: L('页面会读出问题。孩子先做，再说一句。', 'The page reads the question aloud. The child acts first, then says a sentence.') })]));
+      var recBody = [h('ul', { class: 's3-prog' }, progress()), h('p', { class: 'kb-note', text: L('这儿／那儿、来／去、前后左右分开记录：一种做得好，不代表另一种也会。', 'Here/there, come/go and front/back/left/right are recorded separately: doing well in one says nothing about the others.') })];
+      // recordAudience (age-design.json): the child is not shown a score; the record sits collapsed, addressed to the adult alongside
+      if (child()) side.append(h('details', { class: 'kb-card s3-rec', open: recOpen, ontoggle: function (e) { recOpen = e.target.open; } }, [h('summary', { text: L('给陪着的大人的记录', 'Record for the adult') })].concat(recBody)));
+      else side.append(h('div', { class: 'kb-card' }, [h('h2', { text: L('三种分开记', 'Kept separately') })].concat(recBody)));
+      side.append(h('div', { class: 'kb-card' }, [h('h2', { text: L('视图', 'View') }), h('p', { class: 'kb-note', text: renderNote }),
+        R.kind === '3d' ? h('button', { class: 'kb-btn', onclick: function () { renderNote = L('二维图（自己切换的）', '2D drawings (switched by you)'); useRenderer('2d'); } }, L('换成二维图', 'Use 2D drawings')) : (window.THREE && !want ? h('button', { class: 'kb-btn', onclick: function () { renderNote = L('3D 视图（Three.js r128，来自 cdnjs）', '3D view (Three.js r128 from cdnjs)'); useRenderer('3d'); } }, L('换成 3D', 'Use 3D')) : null),
+        h('p', { class: 'kb-note', text: L('拖动或用方向键绕着转；带眼睛图标的按钮换到某个人的眼睛。', 'Drag or use the arrow keys to turn; the buttons with an eye icon switch to someone’s eyes.') })]));
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.target.closest && e.target.closest('input,textarea')) return;
+      if (!/^[1-9]$/.test(e.key) || st.step === 'make' || !st.item) return;
+      var k = +e.key - 1, it = st.item;
+      if (it.mode === 'frame') { if (st.phase === 'pick' && it.options[k]) pickAnswer(k); else if (st.phase === 'place') { var s = M.spots.filter(function (x) { return x.n === k + 1; })[0]; if (s) onSpot(s.id); } return; }
+      if ((st.phase === 'choose' || st.phase === 'swap-form') && !st.answered && cur().forms[k]) choose(k);
+    });
+
+    enterMode();
+    renderSide();
+  }
+})();
+</script>
+</body>
+</html>

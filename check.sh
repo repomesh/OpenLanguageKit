@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 python3 curriculum/build.py > /dev/null
-for l in en ja zh; do python3 curriculum/check.py $l; done
+for d in curriculum/*/kcs.json; do python3 curriculum/check.py "$(basename "$(dirname "$d")")"; done
 python3 curriculum/primitives/check.py
 python3 blueprint/build.py
 python3 pedagogy/validate.py

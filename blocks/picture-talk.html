@@ -75,6 +75,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -88,6 +89,14 @@
   var app = document.getElementById('app');
   if (!entry.file) { app.textContent = L('未知的数据包：', 'Unknown data pack: ') + setId; return; }
   if (entry.block !== 'picture-talk') { app.textContent = L('数据包 ' + setId + ' 属于积木 ' + entry.block + '，不能在看图说话里打开。', 'Data pack ' + setId + ' belongs to the block ' + entry.block + ' and cannot be opened in Picture Talk.'); return; }
+  // A pack in its own file names the file that holds its scene: registry packs[id].scenes (e.g. picture-es reuses the
+  // park scene drawn in data/picture-talk.js). That file is loaded first.
+  function load(src, then) {
+    var el = document.createElement('script'); el.src = src; el.onload = then;
+    el.onerror = function () { app.textContent = L('数据包加载失败：', 'Could not load the data pack: ') + src; };
+    document.head.appendChild(el); return el;
+  }
+  if (entry.scenes && entry.scenes !== entry.file) { load(entry.scenes, function () { load(entry.file, function () { start(KT_DATA[setId]); }); }); return; }
   var s = document.createElement('script');
   s.src = entry.file;
   s.onload = function () { start(KT_DATA[setId]); };
@@ -109,6 +118,9 @@
     var B = KTBlock.init({ id: 'picture-talk', primitive: 'prim:picture-describe', title: title, set: pack.id });
     document.title = title + ' · Picture Talk';
     var isCJK = pack.parse.order === 'ref-prep';
+    // names of the target language and its usual hedging words, for the prompts (a pack may give inferWords)
+    var LANGNAME = { zh: ['中文', 'Chinese'], en: ['英语', 'English'], es: ['西班牙语', 'Spanish'], fr: ['法语', 'French'], ja: ['日语', 'Japanese'] }[pack.lang] || ['目标语', 'the target language'];
+    var INFERWORDS = pack.inferWords || (pack.lang === 'zh' ? '好像、可能' : 'maybe, I think');
     var modes = [{ id: 'point', label: L('指认', 'Point') }, { id: 'describe', label: L('描述', 'Describe') }, { id: 'judge', label: L('判断', 'Judge') }, { id: 'ask', label: L('提问', 'Ask') }];
     var st = { mode: modes.some(function (m) { return m.id === params.get('mode'); }) ? params.get('mode') : 'point', hideText: false, showReading: true };
     var P, D, J, A;   // per-mode state
@@ -176,14 +188,17 @@
       return h('div', {}, [
         opts.hideText ? h('p', { class: 'pt-sent kb-note', text: L('（只听，不看字）', '(listen only, no text)') }) : h('p', { class: 'pt-sent', lang: pack.lang }, [o.t, o.src === 'kc' ? h('span', { class: 'kb-note', title: T(pack, 'sourceNote') }, ' ★') : null]),
         !opts.hideText && o.r && st.showReading ? h('p', { class: 'pt-read', text: o.r }) : null,
-        showGloss && opts.gloss && o.g ? h('p', { class: 'pt-gloss', text: o.g }) : null
+        showGloss && opts.gloss && T(o, 'g') ? h('p', { class: 'pt-gloss', text: T(o, 'g') }) : null
       ]);
     }
 
     /* ---- deterministic checks over the pack's controlled vocabulary ---- */
     function has(re, text) { return new RegExp(re, 'i').test(text); }
+    // word edges for the regular expressions built here from pack words: unlike \b they also hold next to accented
+    // letters (árbol, café), which \b treats as non-word characters
+    var WB0 = '(?:^|[^0-9A-Za-z_\u00C0-\u024F])', WB1 = '(?![0-9A-Za-z_\u00C0-\u024F])';
     function mentions(el, text) {
-      return pack.els[el].names.some(function (n) { return isCJK ? text.indexOf(n) >= 0 : has('\\b' + esc(n) + '\\b', text); });
+      return pack.els[el].names.some(function (n) { return isCJK ? text.indexOf(n) >= 0 : has(WB0 + esc(n) + WB1, text); });
     }
     function claims(el, text) {
       var out = [];
@@ -192,7 +207,7 @@
         pack.els[ref].names.forEach(function (n) {
           Object.keys(pack.parse.preps).forEach(function (prep) {
             pack.parse.preps[prep].some(function (w) {
-              var re = isCJK ? esc(n) + esc(w) : '\\b' + esc(w) + '\\s+' + pack.parse.det + '(?:\\w+\\s+)?' + esc(n) + '\\b';
+              var re = isCJK ? esc(n) + esc(w) : WB0 + esc(w) + '\\s+' + pack.parse.det + '(?:\\w+\\s+)?' + esc(n) + WB1;
               if (!has(re, text)) return false;
               if (!out.some(function (c) { return c.ref === ref; })) out.push({ prep: prep, ref: ref });
               return true;
@@ -211,7 +226,7 @@
     function numberIn(text) {
       var found = null;
       Object.keys(pack.parse.numbers).forEach(function (w) {
-        var re = isCJK ? esc(w) + pack.parse.numberUnit : '\\b' + esc(w) + '\\b';
+        var re = isCJK ? esc(w) + pack.parse.numberUnit : WB0 + esc(w) + WB1;
         if (has(re, text) && (found === null || pack.parse.numbers[w] > found)) found = pack.parse.numbers[w];
       });
       return found;
@@ -307,8 +322,8 @@
     function resetPoint() {
       var els = active();
       var words = shuffle(els).slice(0, child() ? 6 : 8).map(function (el) { return { id: 'point:w:' + el, el: el, kind: 'word', t: pack.els[el].say, r: pack.els[el].r }; });
-      var sents = shuffle(els).slice(0, child() ? 2 : 6).map(function (el) { var m = pack.els[el].models[0]; return { id: 'point:s:' + el, el: el, kind: 'sent', t: m.t, r: m.r, g: m.g, src: m.src }; });
-      var none = pack.absent.slice(0, child() ? 1 : 2).map(function (a) { return { id: 'point:none:' + a.id, el: null, kind: 'sent', t: a.t, r: a.r, g: a.g, why: T(a, 'why') }; });
+      var sents = shuffle(els).slice(0, child() ? 2 : 6).map(function (el) { var m = pack.els[el].models[0]; return { id: 'point:s:' + el, el: el, kind: 'sent', t: m.t, r: m.r, g: m.g, gEn: m.gEn, src: m.src }; });
+      var none = pack.absent.slice(0, child() ? 1 : 2).map(function (a) { return { id: 'point:none:' + a.id, el: null, kind: 'sent', t: a.t, r: a.r, g: a.g, gEn: a.gEn, why: T(a, 'why') }; });
       P = { queue: words.concat(shuffle(sents.concat(none))), i: 0, resolved: false, wrong: 0, msg: null, tone: '' };
     }
     function pointAnswer(el) {
@@ -408,7 +423,7 @@
         var ta = h('textarea', { class: 'pt-draft', lang: pack.lang, placeholder: L('一行写一句。', 'One sentence per line.'), 'aria-label': L('你的描述', 'Your description'), oninput: function (e) { D.text = e.target.value; } });
         ta.value = D.text;
         panel.append(h('div', { class: 'kb-card' }, [
-          h('p', { class: 'kb-prompt', text: child() ? L('看着图说三句话：有什么？在哪儿？在做什么？', 'Look at the picture and say three sentences: what is there? Where is it? What is it doing?') : L('看着图，用' + (pack.lang === 'zh' ? '中文' : '英语') + '描述它：' + N.sents + ' 到 8 句，一行一句。有什么、有几个、在哪儿、在做什么。', 'Look at the picture and describe it in ' + (pack.lang === 'zh' ? 'Chinese' : 'English') + ': ' + N.sents + ' to 8 sentences, one per line. What is there, how many, where, and what they are doing.') }),
+          h('p', { class: 'kb-prompt', text: child() ? L('看着图说三句话：有什么？在哪儿？在做什么？', 'Look at the picture and say three sentences: what is there? Where is it? What is it doing?') : L('看着图，用' + LANGNAME[0] + '描述它：' + N.sents + ' 到 8 句，一行一句。有什么、有几个、在哪儿、在做什么。', 'Look at the picture and describe it in ' + LANGNAME[1] + ': ' + N.sents + ' to 8 sentences, one per line. What is there, how many, where, and what they are doing.') }),
           h('p', { class: 'kb-note', text: L('提交之后首稿就锁定，再和图核对。页面不能听你说话：口头说的，由你自己或搭档来核对。', 'Once you submit, the first draft is locked and then checked against the picture. The page cannot hear you: what you say aloud is checked by you or a partner.') }),
           child() ? null : ta,
           h('div', { class: 'pt-row' }, [
@@ -489,7 +504,7 @@
       } else chips.push(h('span', { class: 'pt-chip' }, L('还没连到图上', 'Not linked to the picture yet')));
       if (a.struct) chips.push(h('span', { class: 'pt-chip' }, T(a.struct, 'label')));
       a.traps.forEach(function (m) { chips.push(h('span', { class: 'pt-chip warn' }, m)); });
-      if (D.infer[i] && !a.hasInferMark) chips.push(h('span', { class: 'pt-chip warn' }, L('推断要标出来（' + (pack.lang === 'zh' ? '好像、可能' : 'maybe, I think') + '），不能当事实说', 'Mark an inference as one (' + (pack.lang === 'zh' ? '好像、可能' : 'maybe, I think') + '); do not state it as fact')));
+      if (D.infer[i] && !a.hasInferMark) chips.push(h('span', { class: 'pt-chip warn' }, L('推断要标出来（' + INFERWORDS + '），不能当事实说', 'Mark an inference as one (' + INFERWORDS + '); do not state it as fact')));
       var editing = D.edit === i, input;
       return h('div', { class: 'pt-card' + (D.sel === i ? ' sel' : '') }, [
         editing ? (input = h('input', { type: 'text', lang: pack.lang, value: t, style: 'width:100%', 'aria-label': L('修改这一句', 'Edit this sentence') })) :
@@ -624,7 +639,7 @@
             h('p', { class: 'pt-read', hidden: !(q.r && st.showReading), text: q.r || '' }),
             h('div', { class: 'kb-card pt-answer', style: 'margin-top:10px' }, [
               h('h4', { class: 'kb-note', style: 'margin:0', text: L('图的回答', 'The picture\'s answer') }),
-              sentence({ t: q.a, r: q.ar, g: q.ag }, { gloss: true }), speakBtn(q.a),
+              sentence({ t: q.a, r: q.ar, g: q.ag, gEn: q.agEn }, { gloss: true }), speakBtn(q.a),
               h('p', { class: 'kb-note', text: L('依据是图的元素清单里的一条：' + factText(q.fact) + '。页面只会回答清单里有的事。', 'Based on one entry in the picture\'s element list: ' + factText(q.fact) + '. The page only answers what is in the list.') })
             ]),
             h('div', { class: 'pt-row' }, [h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { A.cur = null; A.answered = null; clearMarks(); render(); } }, L('再问一个', 'Ask another'))]));

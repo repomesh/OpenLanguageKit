@@ -63,6 +63,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -132,9 +133,9 @@
           (it.thing ? '<text x="' + mid + '" y="50" font-size="24" text-anchor="middle">' + esc(it.thing) + '</text>' : ''));
       }
       function eye(id, cls) {
-        if (id === 'none') return '<text x="200" y="196" font-size="13" text-anchor="middle" class="' + (cls ? 'sv-m' : 'sv-t') + '">' + esc(L('👁 我不在场（讲别人的事）', '👁 I am not there (telling someone else’s story)')) + '</text>';
+        if (id === 'none') return '<text x="200" y="196" font-size="13" text-anchor="middle" class="' + (cls ? 'sv-m' : 'sv-t') + '">' + esc(L('我不在场（讲别人的事）', 'I am not there (telling someone else’s story)')) + '</text>' + KTBlock.iconSvg('eye', 200, 174, 18);
         var x = X[id]; if (x === undefined) return '';
-        return '<text x="' + (x + 34) + '" y="98" font-size="22" text-anchor="middle">👁</text><text x="' + (x + 34) + '" y="72" font-size="11" text-anchor="middle" class="sv-t">' + esc(o.eyeLabel || L('我', 'me')) + '</text>' +
+        return KTBlock.iconSvg('eye', x + 34, 90, 24) + '<text x="' + (x + 34) + '" y="72" font-size="11" text-anchor="middle" class="sv-t">' + esc(o.eyeLabel || L('我', 'me')) + '</text>' +
           (cls ? '<circle cx="' + (x + 34) + '" cy="90" r="16" class="sv-ghost"/>' : '');
       }
       if (o.me) out.push(eye(o.me));
@@ -178,10 +179,12 @@
       var sh = KTBlock.shuffle(items);
       return mine.length >= 3 ? KTBlock.shuffle(mine).concat(sh.filter(function (x) { return mine.indexOf(x) < 0; })) : sh;
     }
+    // The child version never falls back to standard items: with no shift item flagged `child`, the step is skipped.
+    function shiftSkipped() { return child() && st.mode === 'shift' && !(pack.shifts || []).some(function (it) { return it.child; }); }
     function newRound() {
       st.idx = 0;
       if (st.mode === 'place') st.queue = pool(pack.items).slice(0, child() ? 5 : 8);
-      else if (st.mode === 'shift') st.queue = pool(pack.shifts || []).slice(0, child() ? 3 : 6);
+      else if (st.mode === 'shift') st.queue = shiftSkipped() ? [] : pool(pack.shifts || []).slice(0, child() ? 3 : 6);
       else st.queue = [{ id: 'tell' }];
       begin();
     }
@@ -190,7 +193,7 @@
       st.S = it ? { me: null, arrow: null, placed: false, form: null, tried: [], solved: false, shadow: null, line: false, hint: 0, pair: false,
         moved: null, cat: null, form2: null, tried2: [], lines: [{ o: null, f: null, txt: '' }, { o: null, f: null, txt: '' }], result: null } : null;
       if (it && st.mode === 'shift') st.S.me = it.me1;
-      if (it) B.emit('view', { item: it.id, mode: st.mode }); else B.emit('complete', { mode: st.mode, items: st.queue.length });
+      if (it) B.emit('view', { item: it.id, mode: st.mode }); else if (shiftSkipped()) B.emit('view', { mode: st.mode, skipped: 'no-child-items' }); else B.emit('complete', { mode: st.mode, items: st.queue.length });
       render();
     }
     function next() { st.idx++; begin(); }
@@ -295,7 +298,7 @@
       stage.append(h('div', { class: 'vd-top' }, [
         scene(it, { me: S.me, arrow: S.arrow, side: S.solved ? it.side : null, shadow: S.shadow, line: S.line, anchor: it.anchor, lineText: orientText(it, o), eyeLabel: it.eyeLabel ? T(it.eyeLabel, 'zh') : null, alt: alt(it, S.me, S.arrow) }),
         h('div', { class: 'ctl' }, [h('p', { class: 'sit', text: T(it.situation, 'zh') }),
-          h('span', { class: 'lab', text: it.eyeLabel ? L('👁 放在：', '👁 Put it at:') : L('👁 “我”在：', '👁 “Me” is at:') }),
+          h('span', { class: 'lab' }, [KTBlock.icon('eye'), ' ' + (it.eyeLabel ? L('放在：', 'Put it at:') : L('“我”在：', '“Me” is at:'))]),
           h('div', { class: 'chipbtns' }, it.spots.map(function (sp) { return sp.id; }).concat(it.noneOk ? ['none'] : []).map(function (id) {
             return h('button', { type: 'button', class: 'pb', 'aria-pressed': S.me === id ? 'true' : 'false', disabled: S.placed, onclick: function () { S.me = id; B.emit('drag', { item: it.id, me: id }); render(); } }, id === 'none' ? L('不在场', 'Not there') : spotLabel(spotById(it, id)));
           })),
@@ -336,7 +339,7 @@
           h('div', { class: 'strip' }, [h('p', { class: 'kb-note', text: L('刚才的说法：', 'What was said before:') }), h('p', { lang: pack.lang, class: S.cat && it.ans === 'change' && S.solved ? 'old' : '', text: it.s1 }),
             S.solved && it.s2 ? h('p', { lang: pack.lang }, [L('现在：', 'Now: '), h('mark', { text: it.s2 })]) : null]),
           h('p', { class: 'sit', text: T(it.situation2, 'zh') }),
-          h('span', { class: 'lab', text: L('👁 把“我”挪到：', '👁 Move “me” to:') }),
+          h('span', { class: 'lab' }, [KTBlock.icon('eye'), L(' 把“我”挪到：', ' Move “me” to:')]),
           h('div', { class: 'chipbtns' }, it.spots.map(function (sp) { return sp.id; }).concat(it.noneOk ? ['none'] : []).map(function (id) {
             return h('button', { type: 'button', class: 'pb', 'aria-pressed': S.moved && S.me === id ? 'true' : 'false', disabled: !!S.moved, onclick: function () { moveMe(id); } }, id === 'none' ? L('不在场', 'Not there') : spotLabel(spotById(it, id)));
           }))])]));
@@ -383,6 +386,11 @@
     function renderStage() {
       stage.innerHTML = '';
       var it = st.queue[st.idx];
+      if (!it && shiftSkipped()) {
+        stage.append(h('p', { class: 'kb-prompt', text: L('儿童版跳过这一步：这一组还没有给孩子的“挪视点”题。', 'The child version skips this step: this set has no “move the viewpoint” items for children yet.') }),
+          h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', type: 'button', onclick: function () { st.mode = 'place'; ui.setMode('place'); B.emit('view', { mode: 'place' }); newRound(); } }, L('回到“定位置”', 'Back to “Place yourself”'))]));
+        return;
+      }
       if (!it) {
         stage.append(h('div', { class: 'done', text: '✔' }), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('这个数据包没有这类题。', 'This pack has no items of this kind.') }),
           h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', type: 'button', onclick: newRound }, L('再来一轮', 'Another round'))]));

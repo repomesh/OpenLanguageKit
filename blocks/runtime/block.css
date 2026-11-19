@@ -48,3 +48,19 @@ button { cursor: pointer; }
 .kb-sum { margin: 6px 0; }
 .tone1 { color: var(--t1); } .tone2 { color: var(--t2); } .tone3 { color: var(--t3); } .tone4 { color: var(--t4); } .tone0 { color: var(--t0); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* "Why this age version" panel (KTBlock.ageWhy) */
+.kb-age { margin: 10px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 8px 14px; font-size: .92rem; }
+.kb-age > summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+.kb-age h3 { font-size: .95rem; margin: 14px 0 4px; }
+.kb-age ul { margin: 0; padding-left: 1.2em; } .kb-age li { margin: 4px 0; }
+.kb-age small { display: block; color: var(--muted); font-size: .82rem; font-weight: 400; }
+.kb-age-note { color: var(--muted); font-size: .86rem; }
+.kb-age-scroll { overflow-x: auto; }
+.kb-age table { width: 100%; min-width: 520px; border-collapse: collapse; }
+.kb-age th, .kb-age td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.kb-age thead th { font-size: .82rem; color: var(--muted); }
+.kb-age .on { background: var(--accent-soft, rgba(61,79,224,.09)); } .kb-age thead .on { color: var(--accent); }
+
+/* interface icons (KTBlock.icon): sized by the surrounding text, drawn in its colour */
+.kb-ic { width: 1.1em; height: 1.1em; vertical-align: -0.18em; flex: none; }

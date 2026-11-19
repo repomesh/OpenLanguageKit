@@ -532,3 +532,285 @@
 - en：I'll come / go to your party 判为两种都可以；Come over now! / Go over 的对比是否自然；She had her bag stolen 作为 have something done 的遭遇义
 - zh：“朋友跑进教室来／去了”在讲故事时两种都接受；“他被老师叫到办公室去了”的拼音 qù 是否轻读；第 3 步按“来、去、被”等字查找，“后来、起来”会被误认
 - 各题 at（影子眼睛位置）和 say（这样说意味着什么）的解释请母语老师核对
+
+## picture-book（绘本阅读）
+
+没做到契约的地方：
+
+- 注音撤除：契约要求两次无注音读对之间隔至少一天；这里同一次练习里的两轮就算两次，状态不跨会话保存（只在内存里）。
+- 注音撤除第 2 步“归类读错的地方”（不认识／声调或长短音错／多音字选错／音训搞混）没有做；页面只按干扰项的类型说明错在哪儿，不让学习者自己归类。第 3 步“换一段新材料并答意思题”由“换个地方还认得吗”的新句子代替，没有意思题。
+- 读音检查是三选一（拼音、假名或播放的读音），不是让学习者键入读音；英语和假名词的选项只能播放，依赖浏览器语音合成，没有合成语音时这些题做不了。
+- 口语词连到文字：没有学习者自己说的话、自己的录音和个人识字墙；这里用的是书里的句子，“我的话”卡和“读给家人听”没有做。
+- 看图说只让点图听名称，不检查说了什么（没有事实清单核对，也不听学习者说话）。
+- 预测只在封面、第 3、6、7 页前做，只记有没有根据；没有“它不接这一句”方向牌，也没有第 3 步“你来接”。
+- 语境猜词：没有挡路词分诊、覆盖率仪表和同一个词的三次遭遇；每个新词只在书里出现一次，学习者可以标任何词，但只有数据包里的新词能核对。
+- 推断（prim:reference-chain）只有三道选择题加“依据页”，没有代词链。
+- 复述只看图、自评或听者评；页面只核对打出的文字里有没有选的新词，不检查顺序和连接手段（这些在 story-frames 里做）。
+- 图片角色 book-page 要求“图画出这一页文字说的，不多也不少”；借读书学语言的工作流又要求图补出文字没说的东西（谁推了小船、男孩一路跟着走）。两套文字共用一套图，所以学认字的图比文字多一点背景。
+- 图里留给文字的空白只是上方的天空；页面把文字排在图下或图旁，不压在图上。数据包里的 image 字段可以换成生成图，但看图说的可点区域是按手绘图定的，换图后改成一排声音按钮。
+- 儿童段“给大人看的记录”只是把学习证据收起来换了个名字，没有按“这周会了什么、哪里还要帮”整理给家长。
+
+待母语教师核对：
+
+- en：weir、parkin 作为“要查”的词，以及 “Mind the weir!”“Come and have some parkin!” 对英国读者是否自然；stuck fast 的 fast。
+- en：合成语音读 bat／boot、fog／from、pest／past 是否听得清。
+- zh：拼音按“一、不”标实际变调、三声变调不标；轻声 冬冬 Dōngdong、水里 shuǐ li、河上 hé shang、下面 xià mian、推一推 tuī yi tuī；哎呀 āiyā。
+- zh：“漂到青蛙身边”“一只小船”“顶了它一下”（鸭嘴）“院门口”是否自然；甲子 作为干扰项注 jiǎzi。
+- zh：水闸、糍粑 作为“这一页看不出来”的词（部件只给出类别）。
+- ja：学认字文本的分かち書き与汉字选择（船・川・橋・下・止・紙）是否适合六七岁；あひる 还是 かも。
+- ja：干扰项 ふな、せん、がわ、ばし、しも、か、しまりました；橋 的音高（合成语音）；堰、かきもち 作为“要查”的词；まばたき一つしないで、ちょんとつついた、横たわった木の枝にひっかかって 是否自然。
+- 三种语言的文字是按同一个故事分别写的，不是逐句翻译；请母语老师确认每页文字和图一致，特别是学认字文本里的重复句式。
+
+## space-3d（空间与视角（3D））
+
+没做到契约的地方：
+
+- “我”的标记不能拖动：学习者点人物把 👁 放上去；第 2 步（换视点）由页面把 👁 挪到另一个人身上，学习者判断要不要换词，再选词。
+- 学习者不自己画箭头：来／去组的移动是场景里画好的路线和“看它走”的动画。
+- 第 2 步的三个选项（要变／不用变／两种都可以）都在，但现有题目里没有“两种都可以”的正确答案；带感情色彩的“两种都可以”（受身、てくれる）留给视点与方向积木。
+- 没有实现渐隐（连续答对后缩小场景、不再给 👁）。
+- 只有在“选一句”题里，答前用指定人物的眼睛看才记为提示；自由转动镜头、转到那个人的位置附近不记录为提示。
+- 第 3 步只按受控词表做字面查找（指示词、来去动词、方向词和参照物名称），不理解句子其余部分；日语按片段查找，可能误认；不录音，口头的部分由大人或同伴判断并记为自评。
+- 前后左右组的放置题是听指令做动作，但句子同时以文字显示，没有记录重播次数，也没有字幕开关（prim:listen-and-do 的这部分没做）。
+- 无障碍：二维图的 aria-label 只给出场景名和人物名，没有逐句描述“谁在哪儿、朝哪儿”；3D 的标签是 HTML 浮层，可能互相遮挡。
+- 儿童段没有再分 5–7 岁和 8–12 岁：都做第 2 步（换说话人），情境文字仍然显示，同时由页面读出问题、由大人陪同。
+- 敬语层、授受动词和被动不在本积木里（见视点与方向积木）。
+
+待母语教师核对：
+
+- ja：两人并排时面前的东西两人都用 これ／この（h-cake、h-brochure）；隔几步时对方手边的东西用 それ／その
+- ja：はーい、今行きます 只接受 行きます；ぜひ来てください／パーティーに行ってもいいですか 的对比；儿童题的普通体（きた、いった、おいてね）
+- ja：ボールをベンさんから見て左に置いてください 是否自然；ホテルの前で止めてください 只接受大门那边
+- zh：隔几步时对方手边的东西只接受“那”；“来了！”（朝叫你的人走去）只接受“来”；“树的前边”指树和看的人之间
+- zh：拼音句末“来／去”写成轻声（lai、qu）
+- en：Is it cold over there? / Yes, it’s cold over here 是否自然；Can I come / go to your party? 两种都接受；in front of the hotel 只接受大门那边
+- 三种语言：车横着停时“车的前边”两种理解都接受；“车的左边”（车头朝你）两种理解都接受
+
+## listen-and-do（西班牙语、法语包）
+
+没做到契约的地方：
+
+- es／fr 的房间和地图与英语包完全相同（同一张图、同样的答案），只换了指令和词卡
+- 第 3 步的词卡：尺寸和颜色形容词按所选名词的阴阳性变化（listen-and-do.html 的 npText 为此加了 compose.gender／compose.art）；还没选名词时按阳性显示
+- 西班牙语没有练 estar 表位置（Las llaves están debajo del libro）这一种听后摆放，kt:es-estar-location 没有绑定
+- kt:es-lex-classroom、kt:fr-fn-classroom（课堂指令）、kt:es-ordinals（楼层图）、kt:fr-g-place-adverbs（ici／là-bas）需要另外的场景，这个积木的两张图做不了，没有绑定
+- kt:fr-g-place-prepositions 在这里实际练到了 dans／sur／sous／à côté de，但 primitive-map 没有把它绑到 prim:listen-and-do，所以没有列入 kcs
+
+待母语教师核对：
+
+- es：指令用 tú 的命令式（pon、pinta、gira、sigue、pasa）；否定命令式 No toques、No muevas、No gires 是虚拟式形式，超出 A1，这里只要求听懂
+- es：encima de la mesa／en la mesa／sobre la mesa：这里统一用 encima de，请确认对初学者是否最自然
+- es：junto a la mano izquierda del niño：是否都按男孩自己的左右理解（这里假定是）
+- es：cruce 与 esquina：地图题用 el primer／segundo cruce，有的地区更常说 esquina
+- es：todo recto 是西班牙的说法，拉美不少地方说 derecho；这里没有练
+- es：Pinta … de rojo 与 Colorea … de rojo：这里用 pinta
+- es：Es el edificio de la derecha（m7）与 Está a la derecha 的区别是否需要说明
+- fr：房间里的指令用 tu（Mets、Colorie、Ne touche pas），地图上的指路用 vous（Allez、Prenez、Tournez）：前者像对孩子或朋友说，后者像路人指路；请确认这样混用是否合适
+- fr：la grande balle：说球时 la grosse balle 可能更自然；这里用 grande 是为了和 petite 配对
+- fr：Ne touche pas la tasse rouge 与 Ne touche pas à la tasse rouge：这里用前一种
+- fr：Ne déplace pas le livre 与 Ne bouge pas le livre：这里用 déplacer
+- fr：près de la main gauche du garçon：是否都按男孩自己的左右理解（这里假定是）
+- fr：Continuez tout droit, après le deuxième carrefour（m3）：是否说 Continuez tout droit et passez le deuxième carrefour 更清楚
+- fr：Colorie … en rouge：语音合成读 Colorie 是否正确
+
+## slot-order（西班牙语、法语包）
+
+没做到契约的地方：
+
+- 西班牙语的 ¿ 只能写在第一个词块里（¿Dónde），所以疑问词的位置等于提前告诉了学习者；这几句真正考的是动词和主语的先后
+- 法语排序句避开了元音开头的动词：词块之间由页面加空格，n' aime 这样的省音没法正确显示
+- 法语问号前的空格写在句末标点里（" ?"）
+- 判句的选项只有“对／换了位置也对／违反某条规则”，语体差别（口语省略 ne、倒装问句更正式）放不进去，只写在说明里
+- es：kt:es-clitic-position、kt:es-double-negation、kt:es-interrogatives-a2 等 A2 的语序知识点没有做
+- fr：kt:fr-g-direct-object-pronouns、kt:fr-g-pronoun-y、kt:fr-g-frequency-quantity-adverbs 没有做
+
+待母语教师核对：
+
+- es：Es de mi padre el coche、No habla francés Ana 这类把成分挪到句末的说法在口语里可能出现，页面按常规语序判为不对
+- es：¿Vive aquí tu madre? 与 ¿Tu madre vive aquí? 判为“换了位置也对”，请确认两句的差别怎么向初学者说明
+- es：Llega el tren 与 El tren llega：说明里写“主语在后常用来报告发生了什么”，请确认
+- es：Hoy no trabajo 与 No trabajo hoy：判为“换了位置也对”
+- es：Tengo una de español clase 是为练习造的错句，学习者是否真会这样说不确定（更常见的错误可能是 una español clase）
+- es：带 por qué 的问句（¿Por qué Luis estudia español? 也可以说）没有放进练习
+- fr：口语里常省略 ne（Je parle pas italien），页面没有把这种说法放进判句
+- fr：Tu habites où ? 判为语序正确（口语问句），Où habites-tu ?（倒装）没有放进练习
+- fr：Marie a une voiture petite 判为不对；petit 放在名词后面在特定语境里可能出现
+- fr：Le samedi, nous ne travaillons pas／Demain, est-ce que tu viens ?／Le matin, je me lève tôt 判为“换了位置也对”
+- fr：Est-ce que parlez-vous anglais ? 判为违反“est-ce que 后面不倒装”
+- fr：所有排序句都避开了元音开头的动词，所以没有练 n'、m'、qu' 的省音写法
+- fr：un bon restaurant italien、une petite voiture rouge：两个形容词一前一后的例子是否对 A1 合适
+
+## paradigm-apply（西班牙语、法语包）
+
+没做到契约的地方：
+
+- 页面只对英语包把输入转成小写；es／fr 包里大写开头的输入（手机键盘自动大写）会被判错
+- 页面没有重音字母的输入按钮：está、países、mangeons 里的 ç、é、è 都要学习者自己用键盘打出来，漏了重音符号就算错
+- 一个规则组只有一个形式，所以一种时态的六个人称没法放在同一组里练；es 做了 nosotros、él 两组，fr 只做了 nous
+- “放进句子”的答对反馈把句子的前后两段和答案直接拼在一起（页面行为），es／fr 包在前后段里自己带了空格
+- 儿童怪物词模式（wug）只有英语包有，es／fr 没有做
+- kt:es-ser-present、kt:es-noun-gender、kt:es-present-irregular-yo、kt:es-imperative-affirmative、kt:es-preterite-regular、kt:fr-g-etre-present、kt:fr-g-avoir-present、kt:fr-g-imparfait-forms、kt:fr-g-futur-simple 等绑定在这个原语上的知识点没有做
+
+待母语教师核对：
+
+- es：现在时只做了 nosotros 和 él／ella／usted 两种人称；yo、tú、vosotros、ellos 没有单独成组
+- es：词干变化组把词典标注 (ie)／(ue)／(i) 写在词义里，学习者靠标注判类，练的是“找到最后一个词干元音并改对”；请确认这样处理合适
+- es：u→ue（jugar→juego）、tener／venir（tengo、vengo）没有放进练习
+- es：club 的复数 clubes／clubs 判为两种都对
+- es：país→países、mes→meses 作为“看上去像不变、其实加 -es”的词
+- es：阴性形式没有包括 -or／-ón／-án 结尾的非国籍形容词（trabajador→trabajadora），也没有练复数一致
+- es：leer→leemos、lee 是否对初学者合适
+- es：例句 Ese señor vende periódicos、Los sábados compramos fruta en el mercado 是否自然
+- fr：现在时只做了 nous 的形式（-ger、-cer 的拼写变化在这里才看得出来）；je／tu／il／vous／ils 的词尾没有单独成组，kt:fr-g-present-er 只练到一部分
+- fr：aller→allons 归在规则类并标为“看上去像不规则”；请确认这样处理合适
+- fr：过去分词组只收用 avoir 作助动词的动词；dormir、réussir、grandir 归 -ir→-i
+- fr：lire、dire、boire、mettre 标为“看上去像 -re→-u”的例外
+- fr：名词复数：-ou 结尾的例外（bijou→bijoux）、-ail 结尾的词没有放进练习
+- fr：阴性形式：-el→-elle（naturel）、-et→-ette／-ète、-eur→-euse 没有放进练习；neuf→neuve 也没有
+- fr：例句 Mon frère et moi, nous voyageons souvent／Tu as bien dormi ? 是否自然
+- fr：œil 的连字 œ 在键盘上不好打：这一题只要求写 yeux
+
+## exchange-script（西班牙语、法语包）
+
+没做到契约的地方：
+
+- es／fr 包没有儿童版场景（child: true）；勾选儿童版时页面会退回到全部场景，只是换成表情刻度
+- 场景按时间分支（9:00／16:00／22:00）只做了下午四点这一个时间点（es 邻居场景）
+- 每个场景只有一条主线和几处修补分支；primitive-map 里写的“菜卖完了／上错菜”“尺码不对／缺货／不收卡”只做了法语咖啡馆的“今日特餐卖完了”
+- 对方的话由语音合成朗读（es-ES／fr-FR）；没有装对应语音的浏览器只能看文字
+- tú／usted、tu／vous 的选择只作为个别选项出现，没有做成同一场景换对象的对照（那是 prim:register-calibrate 的事）
+
+待母语教师核对：
+
+- es：酒吧：服务员用 ¿Qué le pongo?（usted）；西班牙不少酒吧会用 tú（¿Qué te pongo?），请确认哪一种更适合教
+- es：Quiero un café con leche 归为“事情办成了，但对方不舒服”：在西班牙的酒吧里是否真的显得生硬，各地感受不同
+- es：Son cuatro euros con veinte／Cuatro con veinte 的说法
+- es：tostada con tomate 是西班牙的早餐说法，拉美不通用
+- es：邻居：Buenas tardes 从午饭后用到天黑，这里把下午四点说 Buenos días 归为要纠正；露西亚的反应 ¡Pero si son las cuatro de la tarde! 是否自然
+- es：邻居：很长的回答归为“对方不舒服”，可能只是显得奇怪而不是冒犯
+- es：服装店：Estoy mirando para un jersey 是为练习造的直译错句
+- es：服装店：¿Qué talla usa?／¿Qué talla tiene? 两种问法；El número 38 归为鞋码
+- es：服装店：jerséis（复数）的拼写；拉美多说 suéter
+- es：Gracias a usted 作为对店员道谢的回应
+- fr：面包店：不回 Bonjour 时店员重复一遍 Bonjour ! 再等；这种反应是否写得过头
+- fr：面包店：Je veux une baguette、Salut ! … s'il te plaît 归为“事情办成了，但对方不舒服”
+- fr：面包店：Et avec ceci ?／Ce sera tout ?／Qu'est-ce que je vous donne ? 的说法；价钱 un euro vingt、trois euros cinquante
+- fr：咖啡馆：C'est quoi, le plat du jour ?（口语）是否改成 Qu'est-ce que c'est, le plat du jour ?
+- fr：咖啡馆：Garçon ! 归为不客气；une carafe d'eau 免费、瓶装水收费
+- fr：咖啡馆：C'était bon ?（服务员收盘子时）与 Ça a été ? 哪个更适合初学者
+- fr：咖啡馆：il n'y a plus de plat du jour／il n'y en a plus
+- fr：公共汽车：Pardon, madame／Excusez-moi, je descends 两种借过的说法；对 Bonne journée ! 回答 De rien 归为要纠正
+- fr：公共汽车：Je suis désolé(e) 的写法（阴阳性）在选项里用括号表示
+- fr：公共汽车：Tenez, votre ticket !（ticket 与 billet）
+
+## real-document-scan（西班牙语、法语包）
+
+没做到契约的地方：
+
+- es／fr 各只有两张单据（英语包四张）：没有告示、表格、车票、收据、价签
+- 每日套餐菜单上的菜没有单价，list 一栏的价格列留空
+- “用出来”一步只核对空里的值，接受的写法列在 ans 里，可能漏掉说得通的写法
+- kt:es-cult-countries-capitals、kt:es-act-reading-a2、kt:fr-act-read-public、kt:fr-lex-shops-city、kt:fr-lex-transport、kt:fr-fn-shopping（收据、价签）等绑定在这个原语上的知识点没有做
+
+待母语教师核对：
+
+- es：es-menu-1：Ensalada mixta 含 atún 是西班牙常见做法，这里靠小字说明；真实菜单多半不写配料
+- es：菜单：menú del día 在周末 solo carta 的写法；Postre o café 作为栏名
+- es：es-menu-2：Suplemento de 3 € 的写法和星号的用法
+- es：es-bus-2：No circula en agosto 作为脚注；真实时刻表多用 Laborables／Festivos 的缩写
+- es：es-bus-5：这张表只有一个方向，问回程属于“单据上没有”；请确认学习者能从表头看出方向
+- es：价格写法 12,50 €（西班牙用逗号）；use 步骤接受 12.50 和 12,50
+- es：use 步骤的句子 Tomo el autobús de las 11:00（西班牙口语更常说 Cojo）
+- fr：菜单：Formule midi (du lundi au vendredi) : entrée + plat ou plat + dessert — 14,50 € 的写法是否像真实菜单
+- fr：fr-menu-2：Soupe à l'oignon 没有标 (V)（常用牛肉高汤），Salade de chèvre chaud 标了 (V)；请确认
+- fr：fr-menu-3：Supplément de 2 € dans les formules 的写法
+- fr：fr-menu-6：坚果过敏的问法 est-ce qu'il y a des noix… 对初学者够用，正式说法是 fruits à coque
+- fr：博物馆：Dernière entrée 45 minutes avant la fermeture；Tarif réduit 的条件 sur présentation d'une carte（真实单据多写 d'un justificatif）
+- fr：fr-musee-4：答案在小字里（n2），表里的 Mardi – vendredi 一行标为“有例外”
+- fr：时间写法 10 h – 18 h；use 步骤接受 15 h、15h、15 heures、15:00
+- fr：use 步骤：Je prends la salade de chèvre chaud en entrée et la quiche aux légumes en plat
+
+## sound-grid（西班牙语、法语包）
+
+没做到契约的地方：
+
+- 法语没有新做：`alphabet-fr` 已经有字母名、带符号的字母、字母组合和不发音的字母四张表。这次只把 `fr-alphabet` 绑到 kt:fr-orth-alphabet、kt:fr-orth-accents、kt:fr-orth-sound-spelling、kt:fr-orth-silent-letters，并改掉了“课程里没有法语”的旧说明；`fr-blend` 没有动
+- kt:es-orth-alphabet、kt:es-phon-vowels、kt:fr-orth-alphabet 在 primitive-map 里没有绑到 prim:sound-spelling-blend（它们的主原语是别的），这里按数据包实际练到的内容列入 kcs，做法同 `en-alphabet`
+- 西班牙语没有做 `blend`（拼读）包；重音规则和重音符号（kt:es-orth-accent 一类）不在这张表里
+- 字母格读的是字母名，读音格读的是含这个音的例词，不单读音素；全部靠浏览器的语音合成，没有真人录音
+- “听音找字”在“字母和读音”表里：ge gi 和 ja jo ju 的例词不同（gente、jamón），所以没有当作同音格；b／v、ll／y 当作同音格，点哪个都算对
+
+待母语教师核对：
+
+- es：字母名 y 用 i griega（学院 2010 年起推荐 ye）、w 用 uve doble、v 用 uve、r 用 erre；页面只读出西班牙常用的一种
+- es：语音合成读单个音节（ma、pu、li……）和字母名（ge、cu、uve doble）是否自然
+- es：ce、ci、z 只标 [θ]，seseo 写在说明里；ll 标 [ʝ]（yeísmo），没有讲仍区分 [ʎ] 的地区
+- es：b、d、g 在元音之间读成擦音没有讲，音标统一标成塞音
+- es：x 只讲了元音之间的 [ks]；词首的 x 和 México 的 [x] 只写在“表外的情况”里
+- es：给英语母语者的类比（father、bed、loch、canyon、butter 的 tt）和中文说明里的拼音类比是否合适
+- fr：`alphabet-fr` 的内容这次没有改，仍未经母语教师核对
+
+## picture-talk（西班牙语、法语包）
+
+没做到契约的地方：
+
+- es／fr 用的是英语包的同一幅公园图（`KT_SCENES["park"]`，注册表里用 `scenes` 指向 data/picture-talk.js），元素、位置和数量完全相同，只换了语言包
+- 颜色（roja、gris、amarillo／rouge、gris、jaune）和穿戴只出现在范例句和词卡里：场景清单里没有颜色，页面不核对；所以 kt:es-lex-colours-objects、kt:es-describe-people、kt:fr-fn-describe-people、kt:fr-lex-clothes 没有绑定
+- 动作用一般现在时，没有练 estar + gerundio／être en train de，kt:es-estar-gerund、kt:fr-g-etre-en-train-de 没有绑定
+- kt:es-place-expressions 在这里实际练到了 encima de／debajo de／al lado de，但 primitive-map 没有把它绑到 prim:picture-describe，所以没有列入 kcs
+- 页面对学习者自己写的句子只按一份固定词表核对名字、位置、数量；阴阳性、动词变位、冠词缩合写错了页面不一定发现（只有 traps 里列的几种会提示）
+- picture-talk.html 为此改了三处：用到带重音字母的词时不再用 \b 断词；说明文字里的“中文／英语”改成按数据包语言显示；中文释义旁可以给英文释义（`gEn`、`agEn`）
+- 提问：法语的数量问句只收 Combien de … est-ce qu'il y a ?，词卡排成别的语序会被判为不对；页面自己在句末加问号，法语问号前没有空格
+- 儿童版沿用场景的 childEls 和各题的 child 标记，没有另写儿童用的句子
+
+待母语教师核对：
+
+- es：Un perro duerme debajo del árbol 这类一般现在时描述对看图说话是否自然（还是应当用 está durmiendo）
+- es：“在……上”统一用 encima de；页面把 en la mesa、sobre la mesa 也算对，en el árbol、en el lago 同样按“在上面”核对
+- es：Un hombre monta en bicicleta；La niña se pone un sombrero 与 La niña lleva un sombrero 的对比
+- es：推断标记只认 creo que、a lo mejor、quizá(s)、tal vez、parece、puede que
+- es：niño／niña 与 chico／chica；taza 与 café（写 un café 页面也算提到了杯子）
+- fr：Un chien dort sous l'arbre 这类一般现在时描述是否自然
+- fr：鸟 dans l'arbre（sur l'arbre 页面也算对）；鸭子 sur le lac（dans le lac 页面也算对）；à côté du lac 与 au bord du lac
+- fr：Un homme fait du vélo；La fille met un chapeau 与 La fille porte un chapeau 的对比
+- fr：Que fait le garçon ? 与 Qu'est-ce que le garçon fait ?；Combien de canards est-ce qu'il y a ? 与 Il y a combien de canards ?
+- fr：推断标记只认 peut-être、je pense、je crois、on dirait、sans doute、probablement、a l'air
+- es／fr：机器语音读整句的停顿、联诵是否自然
+
+## false-friend-check（西班牙语、法语包）
+
+没做到契约的地方：
+
+- 两个包面向英语母语者：形似词（pair）和母语句（native）都是英语，中文界面下说明是中文，但对照的仍是英语，不另给中文对照词
+- false-friend-check.html 为此改了两处：对照词的标签可以由数据包给出（`pairLabel`），例句和释义之间按语言决定加不加空格
+- 西班牙语 18 个词、法语 22 个词，只收编写者有把握的；一组 9 个，其中至少 3 个是真的相同
+- es：molestar 没有“自己用”的三选一；“相同”的词（两个包各 5 个）都没有“自己用”
+- kt:es-fn-feelings 只有 embarazada、molestar 两个词；kt:es-lex-work-study 只有 colegio、profesor、carrera；kt:fr-lex-holidays 只有 location、rester、visiter；kt:fr-lex-education 只有 collège、passer un examen、professeur、question
+- kt:fr-str-guess-context 没有绑定：这个积木不练根据上下文猜词
+- “自己写一句”仍然只核对用了这个词和有没有配套词，句子对不对靠自评
+
+待母语教师核对：
+
+- es：colegio 按西班牙用法解释（给孩子上的学校，多指小学），拉美有的国家指中学
+- es：profesor、carrera 判为“偏移（范围）”；asistir、introducir 判为“偏移（搭配）”（asistir 在正式语体里也有“协助”义，introducir un tema 与英语相合）
+- es：actual 的例句 El director actual se llama Luis; el anterior, Pedro
+- es：留在练习外、待确认的词：constipado、excitado、suspender、educado、realizar、suceso、pariente、recordar、contestar、sopa、largo、vaso、once
+- fr：collège 按法国学制解释；professeur、parents 判为“偏移（范围）”；visiter、assister 判为“偏移（搭配）”
+- fr：monnaie 判为“完全不同”（它也指货币，这里按“零钱、找零”处理）
+- fr：passer un examen 的例句 Elle passe son examen lundi et elle attend les résultats pour juillet；“两种都通”的 Elle passe son examen en juin
+- fr：blessé 的对照错句 *Nous sommes blessés d'avoir une famille si gentille 和它的说明
+- fr：actuellement 的例句用了未完成过去时 j'habitais
+- fr：留在练习外、待确认的词：licence、crayon、entrée、grand、gentil、large、demander、travailler、car、chance、lecture、pièce、figure、éventuellement
+
+## 西班牙语、法语第二批没有做的积木
+
+- number-system-map：页面只分两种语言（`pack.lang === 'en'` 走英语的读数规则，其余走中文的“万”分组），加西班牙语或法语要新写读数解析和分组逻辑，不是加一个数据包能做到的
+- classifier-match：模型是“每个盒子有一个共同属性”的量词搭配，第三步造句写死了中文、日语、英语的句式；名词的阴阳性有好几种词尾线索，冠词还要和数一致，放进这个模型会教错
+- role-marking：模型是“语义角色 → 介词”，对应的是 A1 后面的介词单元，不是开头几个单元；a + el → al、à + le → au 这类缩合，页面“标记 + 空格 + 名词”的拼法表达不了
+
+## 界面图标和儿童版开关（2026-11-17）
+
+- 各积木页面里当作界面图标用的 emoji 换成了 `KTBlock.icon()` 的内联 SVG；留下没换的：✓ ✗ ✕ ★ ☐ ▶ → ← 这类文字符号；`oral-to-print.html` 里孩子用来代表自己句子的图片列表（学习内容）；`viewpoint-direction.html` 示范场景里的人物图片（和数据包的 `pic` 同一种东西）；所有数据包里的 `pic`
+- `picture-book.html`、`space-3d.html` 没有动
+- `exchange-script-es/fr` 没有儿童版场景：现在不显示“儿童版”开关，带 `variant=child` 打开时显示标准版和一行说明
+- `paradigm-apply-es/fr` 没有 wug 题：儿童版只是字大、语速慢、每轮 5 题，和日语、中文包一样，开关保留

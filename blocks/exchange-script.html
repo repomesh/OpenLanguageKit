@@ -73,6 +73,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -113,10 +114,14 @@
     var B = KTBlock.init({ id: 'exchange-script', primitive: 'prim:exchange-script', title: T(pack, 'title'), set: pack.id });
     document.title = T(pack, 'title') + ' · Exchange';
     var modes = [{ id: 'walk', label: L('1 走一遍', '1 Walk through') }, { id: 'review', label: L('2 回看分支', '2 Look back') }, { id: 'say', label: L('3 自己说', '3 Say it yourself') }];
-    function child() { return B.variant === 'child'; }
+    // A pack without child scenarios has no child version: no switch, and variant=child falls back to the
+    // standard version with one visible line saying so (never a silent mix of the two).
+    var hasChild = pack.scenarios.some(function (sc) { return sc.child; });
+    var childFallback = B.variant === 'child' && !hasChild;
+    if (childFallback) { B.variant = 'adult'; document.documentElement.dataset.variant = 'adult'; }
+    function child() { return hasChild && B.variant === 'child'; }
     function pool() {
       var list = pack.scenarios.filter(function (sc) { return child() ? sc.child : true; });
-      if (!list.length) list = pack.scenarios.slice();
       var kc = B.kc;
       if (kc) { var k = list.filter(function (sc) { return (sc.kcs || []).indexOf(kc) >= 0; }); if (k.length) list = k; }
       return list;
@@ -130,13 +135,13 @@
     var focus = params.get('focus');
     st.scen = byId[focus] && (!child() || byId[focus].child) ? focus : pool()[0].id;
 
-    var ui = KTBlock.chrome(B, { title: T(pack, 'title'), subtitle: T(pack, 'subtitle'), modes: modes, mode: st.mode,
+    var ui = KTBlock.chrome(B, { title: T(pack, 'title'), subtitle: T(pack, 'subtitle'), modes: modes, mode: st.mode, childSwitch: hasChild,
       onMode: function (m) { st.mode = m; ui.setMode(m); B.emit('view', { mode: m, scenario: st.scen }); restart(); },
       onVariant: function () { if (pool().indexOf(byId[st.scen]) < 0) st.scen = pool()[0].id; restart(); } });
     var bar = h('div', { class: 'kb-bar' });
     var mainCol = h('div', { class: 'xs-main' });
     var side = h('aside', { class: 'xs-side' });
-    document.getElementById('app').append(ui.header, h('main', { class: 'kb-main' }, [bar, h('div', { class: 'xs-layout' }, [mainCol, side])]), ui.drawer);
+    document.getElementById('app').append(ui.header, h('main', { class: 'kb-main' }, [childFallback ? h('p', { class: 'kb-note', role: 'status', text: L('这一组还没有儿童版，现在显示的是标准版。', 'This set has no child version yet; this is the standard version.') }) : null, bar, h('div', { class: 'xs-layout' }, [mainCol, side])]), ui.drawer);
     B.emit('view', { mode: st.mode, set: pack.id, scenario: st.scen });
 
     function sc() { return byId[st.scen]; }
@@ -167,7 +172,7 @@
       return { rel: rel2, goal: goal, causes: causes, end: endN, detours: detours, pass: goal === 2 && rel2 === 2 && detours === 0 };
     }
     function scaleView(label, v, words) {
-      if (child()) return h('div', { class: 'scale' }, [h('span', { class: 'kb-note', text: label }), h('span', { class: 'face', text: v === null ? '…' : ['☹️', '😐', '😊'][v] })]);
+      if (child()) return h('div', { class: 'scale' }, [h('span', { class: 'kb-note', text: label }), h('span', { class: 'face' }, [v === null ? '…' : KTBlock.icon(['frown', 'meh', 'smile'][v], [L('不太好', 'Not so good'), L('一般', 'In between'), L('好', 'Good')][v])])]);
       var bars = [0, 1, 2].map(function (i) { return h('span', { class: v !== null && i <= v ? 'on' : '' }); });
       return h('div', { class: 'scale' }, [h('span', { class: 'kb-note', text: label + L('：', ': ') + (v === null ? L('还没到结局', 'not at the end yet') : words[v]) }),
         h('div', { class: 'bar ' + (v === 0 ? 'low' : v === 1 ? 'mid' : ''), role: 'img', 'aria-label': label + ' ' + (v === null ? '-' : v + '/2') }, bars)]);
@@ -445,7 +450,7 @@
         var label = n.end ? L('结局', 'End') + (T(n.end, 'note') ? '' : '') : (n.say || T(n, 'narr') || nid);
         var li = h('li', {});
         var btn = h('button', { class: (walked[nid] ? 'walked' : '') + (nid === curId && st.mode !== 'review' ? ' cur' : ''), disabled: !(canJump && k >= 0), title: label,
-          onclick: function () { rewind(k); } }, (n.end ? '🏁 ' : '') + (label.length > 28 ? label.slice(0, 28) + '…' : label));
+          onclick: function () { rewind(k); } }, [n.end ? KTBlock.icon('flag') : null, (n.end ? ' ' : '') + (label.length > 28 ? label.slice(0, 28) + '…' : label)]);
         li.append(btn);
         if (shown[nid]) { li.append(h('span', { class: 'lbl', text: L(' （见上）', ' (see above)') })); return li; }
         shown[nid] = true;

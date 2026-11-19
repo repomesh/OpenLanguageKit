@@ -78,6 +78,25 @@ C59 材料中“英语必须摆出显性连接标记”的普遍断言不成立�
 
 独立 sub-agent 审阅了文档与 JSON，没有审阅随后加入的校验脚本。脚本的执行结果由主 agent 核对。源码没有代码注释。审核并未宣称逐篇全文方法复核。`decisions.tsv` 前四行误填的预估时间戳已由追加记录作废，只可使用其后的实际记录时间。决定内容仍保留，不用那些时间戳推断事件顺序。
 
+## 2026-11-17 增补：年龄、阅读与多模态
+
+本轮为按年龄分段的教学建议和绘本、多模态材料设计增补 18 个节点与 20 条内部边。新节点为 `ped:age-rate-vs-attainment`、`ped:age-instructed-settings`、`ped:age-implicit-explicit`、`ped:young-learner-characteristics`、`ped:total-physical-response`、`ped:adolescent-motivation-autonomy`、`ped:andragogy`、`ped:adult-l2-constraints`、`ped:simple-view-of-reading`、`ped:learning-to-read-vs-reading-to-learn`、`ped:dialogic-reading`、`ped:extensive-reading`、`ped:l2-reading-threshold`、`ped:multimedia-learning`、`ped:dual-coding`、`ped:picture-superiority-vocabulary`、`ped:seductive-details` 和 `ped:embodied-gesture-learning`。
+
+核实方式：每条来源都打开了 ERIC 记录、DOI 的 Crossref 元数据或出版社公开页面。多数来源只读到摘要，记为 `official_index_abstract`（ERIC）、`publisher_abstract_via_crossref_metadata` 或 `scholarly_index_abstract`（OpenAlex）。只读到书目记录的来源（Asher 1969、Dörnyei 2009、Muñoz 2006 专著目录、Clark 与 Paivio 1991）在 `accessNote` 中说明，节点主张不依赖其正文。全文只读了 Macedonia 2014 短综述；Cameron 2001 只读第一章公开节选。
+
+新增 `evidenceStatus` 值 `practitioner_literature_description`，用于教师教育文献的概括描述。两个学习者群体节点放入 `mechanism`，标 `subtype: learner_population_description`，它们不是因果机制。
+
+未能核实、因此没有写入的内容：
+
+- Alderson 1984 的门槛论述（无可打开的在线记录），门槛节点改用 Clarke 1980、Cummins 1979、Bernhardt 与 Kamil 1995 和 Jeon 与 Yamashita 2014。
+- Chall 1983 专著与 Knowles 1980 修订版正文；分别以 1976 年会议论文和 1970 年版的 ERIC 摘要代替。
+- Pinter 的教材类专著；只用了其 2007 年课堂研究的摘要。
+- Boers 等 2017 图片注释研究（出版社拒绝访问且无可读摘要），改用 Acha 2009 与 Boers 2022 综述说明图片不一定有帮助。
+- 固定的“注意力时长”分钟数、儿童“整体记忆语块”、成人“时间有限”“目标驱动”的研究出处。这些在节点中写明为未核实的通行描述或设计假设，不作为研究结论。
+- `ped:cognitive-load-young-learners` 未单独建立；儿童处理图文时的工作记忆限制只见 Acha 2009 一项，写入图片注释节点的限制。
+
+新边中的 `design_inference` 均写明来源不证明本项目效果。本轮没有进行独立 sub-agent 审核，也没有修改 `content-links.json` 候选。结构校验输出为 `PASS: 39 nodes, 41 internal edges, 67 sources, 4 pending candidates, 0 actual cross-graph edges`。
+
 ## 后续研究边界
 
 尚未建立效应量、偏倚风险与研究质量的系统编码，也未实现学习者模型、难度计算器或复习调度器。尚未通过课堂实验验证 C33、C59 或日语对应活动。研究目录的 `shared` 不保证跨语言效果相等。

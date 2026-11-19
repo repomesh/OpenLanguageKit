@@ -76,6 +76,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -326,7 +327,7 @@
         if (p.role === 'form' && cc.cat) { exc = true; label = L('这里只是字形', 'Shape only here'); }
         return h('button', { class: 'ftile' + (exc ? ' exc' : ''), onclick: function () { st.cur = c; st.mode = 'explore'; ui.setMode('explore'); B.emit('select', { item: c.glyph, from: 'family' }); render(); } }, [
           h('span', { class: 'g', text: c.glyph }), readingEl(c), h('span', { class: 'badge cjk', text: meaningOf(c) }),
-          h('span', { class: 'badge rel', text: (exc ? '⚠ ' : '') + label })]);
+          h('span', { class: 'badge rel' }, [exc ? KTBlock.icon('warn') : null, (exc ? ' ' : '') + label])]);
       });
       var head = h('div', { class: 'hero' }, [h('div', { class: 'big', text: cc.glyph }), h('div', { class: 'meta' }, [
         h('p', {}, [h('b', { text: T(cc, 'name') })]),

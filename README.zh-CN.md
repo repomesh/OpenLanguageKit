@@ -1,7 +1,7 @@
 # OpenLanguageKit
 
 <p align="center">
-  <img src="./assets/readme/zh/hero.svg" width="100%" alt="OpenLanguageKit：英语、日语、中文三门课教什么、按什么顺序教、怎么练。950 个知识点，56 种练习方式，96 个现成页面，14 套课程方案。">
+  <img src="./assets/readme/zh/hero.svg" width="100%" alt="OpenLanguageKit：英语、日语、中文、西班牙语、法语课程教什么、按什么顺序教、怎么练。1292 个知识点，56 种练习方式，126 个现成页面，20 套课程方案。">
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
   <a href="https://www.openlangkit.space/create/">规划一个 app</a>
 </p>
 
-做语言学习 app 时，最难临时编出来的是这一部分：**教什么、按什么顺序教、每样东西该怎么练。** OpenLanguageKit 把它整理好了，覆盖英语、日语和中文。全部是普通文件（JSON、HTML、JavaScript），没有依赖，人、老师、写代码的 AI 都可以直接拿去用。
+做语言学习 app 时，最难临时编出来的是这一部分：**教什么、按什么顺序教、每样东西该怎么练。** OpenLanguageKit 把它整理好了，完整覆盖英语、日语和中文，西班牙语和法语做到 A2。全部是普通文件（JSON、HTML、JavaScript），没有依赖，人、老师、写代码的 AI 都可以直接拿去用。
 
 ## 先试一个页面
 
@@ -23,16 +23,18 @@
 <tr><td width="33%" align="center"><a href="https://www.openlangkit.space/blocks/listen-and-do.html?set=listen-and-do-ja&lang=zh"><img src="./blocks/thumbs/ja-listen-and-do.png" width="100%" alt="听指令做动作（日语）: a practice page you can open"></a><br><sub>听指令做动作（日语）</sub></td><td width="33%" align="center"><a href="https://www.openlangkit.space/blocks/ime-convert.html?set=ime-convert-zh&lang=zh"><img src="./blocks/thumbs/zh-ime-convert.png" width="100%" alt="拼音输入：选对同音字: a practice page you can open"></a><br><sub>拼音输入：选对同音字</sub></td><td width="33%" align="center"><a href="https://www.openlangkit.space/blocks/sound-contrast.html?set=sound-contrast-en&lang=zh"><img src="./blocks/thumbs/en-sound-contrast.png" width="100%" alt="英语最小对立辨音: a practice page you can open"></a><br><sub>英语最小对立辨音</sub></td></tr>
 </table>
 
-全部 96 个页面在[展示页](https://www.openlangkit.space/blocks/)。
+全部 126 个页面在[展示页](https://www.openlangkit.space/blocks/)。
 
 ## 里面有什么
 
 | | 是什么 | 数量 |
 | --- | --- | --- |
-| **知识点** | 一个可以教的东西（平假名、过去时、把字句），带讲解、例子、常见错误、怎样算掌握、要先学什么 | 950 个：英语 353，日语 386，中文 211 |
-| **课程方案** | 同一批知识点，为某一类学习者选好、排好：五岁开始学英语的孩子、要去日本生活的成人、会说不会读的华裔孩子 | 14 套 |
+| **知识点** | 一个可以教的东西（平假名、过去时、把字句），带讲解、例子、常见错误、怎样算掌握、要先学什么 | 1292 个：英语 353，日语 386，中文 211，西班牙语 159，法语 183 |
+| **课程方案** | 同一批知识点，为某一类学习者选好、排好：五岁开始学英语的孩子、要去日本生活的成人、会说不会读的华裔孩子 | 20 套 |
 | **练习方式** | 一种活动的设计契约：学习者做什么、页面怎样回应、怎么检查、结果能说明什么、不能说明什么 | 56 种 |
-| **练习页面** | 按这些契约做好的 HTML 页面，每个都登记了它练的是哪些知识点 | 30 个引擎，96 个页面 |
+| **练习页面** | 按这些契约做好的 HTML 页面，每个都登记了它练的是哪些知识点 | 32 个引擎，126 个页面 |
+| **按年龄的教学法** | 12 岁以下、12 岁到大学、成人三个年龄段：一次练多久、讲不讲规则、怎样反馈、图和文字怎么用，以及 56 种练习方式各自怎么变 | 3 个年龄段 |
+| **工作流和图片指令** | 把几种练习排成一次完整活动（绘本阅读有两种读法）；还有一个小工具，为要生成的图片写出提示语和验收清单 | 2 个工作流，8 种图片用途 |
 | **规划器** | 把“谁在学”变成一份按周排好的计划 | 浏览器、Node、命令行都能跑 |
 
 ## 它们怎么连起来
@@ -121,9 +123,12 @@ node blueprint/plan.js --lang ja --track ja-hobby --age 8-12 --who child \
 
 ## 用之前要知道的
 
-- **讲解是用中文写的。** 知识点讲解、例句释义和练习契约是中文，例句本身是所学的语言。练习页面和文档有英文版；课程内容的英文版正在做。文档以中文为准，校验脚本读的是中文文件。
-- **日语和中文内容还没有经过教师核对。** 清单在 `curriculum/REVIEW.md`，每个数据包里也有等母语者确认的 `review` 清单。
+- **大部分讲解是用中文写的。** 英语、日语、中文三门课的知识点讲解、例句释义和练习契约是中文；西班牙语和法语用英文讲解；例句本身是所学的语言。练习页面和文档有英文版；课程内容的英文版正在做。文档以中文为准，校验脚本读的是中文文件。
+- **西班牙语和法语只做到 A2。** B1 及以上还没有建。
+- **日语、中文、西班牙语、法语内容还没有经过教师核对。** 清单在 `curriculum/REVIEW.md` 以及 `curriculum/es/REVIEW.md`、`curriculum/fr/REVIEW.md`，每个数据包里也有等母语者确认的 `review` 清单。
 - **很多页面只做到契约的一部分。** 每个页面没做到什么，写在 `blocks/GAPS.md`。
+- **年龄段的做法有一部分是设计判断。** 每一条都标明依据是引用的研究还是设计推断；都没有在这里用学习者验证过。
+- **这里不生成图片。** 图片指令工具只写出指令，由你发给图片模型并核对结果。
 - **页面不听、不给发音打分。** 声音是浏览器的语音合成，只用来播放。学习者开口说的内容由自己或同伴判断，并且照此记录。
 - **规划器只负责选和排，不负责测。** 排课用的数字是写明的假设，定级问题是自我报告。
 - 一部分英语练习方式指向另一个仓库 `edu-ai-builders/language-learning-asset-library` 里的页面，这里只按 id 引用。

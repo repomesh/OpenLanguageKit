@@ -21,8 +21,8 @@
  *  without the KC id, so its evidence is never attributed to this KC. */
 (function (global) {
   'use strict';
-  var LANGS_ZH = { en: '英语', ja: '日语', zh: '中文', fr: '法语' };
-  var LANGS_EN = { en: 'English', ja: 'Japanese', zh: 'Chinese', fr: 'French' };
+  var LANGS_ZH = { en: '英语', ja: '日语', zh: '中文', fr: '法语', es: '西班牙语' };
+  var LANGS_EN = { en: 'English', ja: 'Japanese', zh: 'Chinese', fr: 'French', es: 'Spanish' };
   var COV_ZH = {
     block: { label: '有现成的学习页面', short: '现成页面' },
     impl: { label: '主要原语有可直接用的页面', short: '可直接用' },

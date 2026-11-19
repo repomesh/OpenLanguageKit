@@ -828,13 +828,19 @@
      "artifact": "fr-alphabet",
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "fr",
-     "note": "示范：课程里没有法语"
+     "note": "字母名、带符号的字母、字母组合、不发音的字母；未经母语教师核对"
     },
     {
      "artifact": "fr-blend",
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "fr",
      "note": "示范：课程里没有法语"
+    },
+    {
+     "artifact": "es-alphabet",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "字母名、五个元音的音节表、19 组字母和读音；重音规则不在这里；未经母语教师核对"
     }
    ]
   },
@@ -1188,6 +1194,42 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "en",
      "note": "抽查是从三个音标里选，不能自己写音标。"
+    },
+    {
+     "artifact": "en-picture-book",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "en",
+     "note": "儿童绘本目标词 boat、under、past、frog、duck、stuck；青少年／成人故事目标词 bus、stop、last、closed、open、night（短元音、辅音连缀、不发音的 e、igh），新句子是招牌和告示文字。读音选项靠合成语音播放。"
+    },
+    {
+     "artifact": "en-picture-book-read",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "en",
+     "note": "儿童绘本 9 个新词（weir、parkin 要查），青少年／成人故事 11 个新词（gasworks、roundabout 要查）；没有覆盖率和三次遭遇。"
+    },
+    {
+     "artifact": "zh-picture-book",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "zh",
+     "note": "儿童绘本目标字 船、水、桥、下、鸭子、停；青少年／成人故事目标字 车、站、夜、开、关、路（招牌高频字，新句子是真实告示），拼音逐词撤除；没有逐字核对等级表。"
+    },
+    {
+     "artifact": "zh-picture-book-read",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "zh",
+     "note": "儿童绘本 12 个新词（水闸、糍粑 要查），青少年／成人故事 11 个新词（萨其马、环岛 要查）；线索可以是图、前后的话或字的部件。"
+    },
+    {
+     "artifact": "ja-picture-book",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "ja",
+     "note": "儿童绘本目标 船、川、橋、下、止まりました、かえる；青少年／成人故事目标 バス、タクシー（片假名、长音）和 夜、店、時間、前（音读／训读），新句子是招牌文字；振假名逐词撤除。橋 可能超出 N4。"
+    },
+    {
+     "artifact": "ja-picture-book-read",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "ja",
+     "note": "儿童绘本 11 个新词（堰、かきもち 要查），青少年／成人故事 11 个新词（たい焼き、ロータリー 要查）；振假名只加在新词上、可以打开。"
     }
    ]
   },
@@ -2601,6 +2643,54 @@
      "artifact": "zh-paradigm-apply-anota",
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh"
+    },
+    {
+     "artifact": "es-paradigm-apply-present",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "只有 nosotros 和 él／ella／usted 两组（规则组 nos、el）；其他人称没有做。"
+    },
+    {
+     "artifact": "es-paradigm-apply-stem",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "只练 yo 的形式；词典标注 (ie)／(ue)／(i) 写在词义里。u→ue（jugar）没有做。"
+    },
+    {
+     "artifact": "es-paradigm-apply-plural",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "例句和判断未经母语教师核对。"
+    },
+    {
+     "artifact": "es-paradigm-apply-fem",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "只练阴性单数形式；复数一致和形容词的位置没有练。"
+    },
+    {
+     "artifact": "fr-paradigm-apply-nous",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "只练 nous 的形式（含 -geons、-çons）；其他人称的词尾没有做。"
+    },
+    {
+     "artifact": "fr-paradigm-apply-pp",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "只练分词形式和 avoir + 分词的填空，不练助动词选择和否定的位置。"
+    },
+    {
+     "artifact": "fr-paradigm-apply-plural",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "例句和判断未经母语教师核对。"
+    },
+    {
+     "artifact": "fr-paradigm-apply-fem",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "只练阴性单数的拼写；复数和读音变化（petit／petite）不判断。"
     }
    ]
   },
@@ -2904,6 +2994,18 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh",
      "note": "对照轨道是英语语序。"
+    },
+    {
+     "artifact": "es-slot-order",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "对照轨道是英语语序；用 kc= 只练某一个知识点的句子。宾语代词只出现在 no me／no lo 两句里。"
+    },
+    {
+     "artifact": "fr-slot-order",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "对照轨道是英语语序。只练语调问句以外的两种问法里的 est-ce que 和口语的“疑问词在句末”；倒装问句只在说明里提到。"
     }
    ]
   },
@@ -4818,6 +4920,18 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh",
      "note": "把…放在…、方位词（里／上／下面／旁边）、别／不要、如果…就…；地图用 一直往前走、到第…个路口、过两个路口、往左／右拐。"
+    },
+    {
+     "artifact": "es-listen-and-do",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "房间：en、encima de、debajo de、al lado de、junto a la mano izquierda del niño，No toques…、Si…；地图：sigue todo recto、gira en la primera／segunda calle a la izquierda／derecha、pasa el cruce。不练 estar 表位置的句子，也不练课堂指令。"
+    },
+    {
+     "artifact": "fr-listen-and-do",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "房间：tu 的命令式（Mets、Colorie、Ne touche pas）加 dans、sur、sous、à côté de；地图：vous 的命令式（Allez tout droit、Prenez la première rue à gauche、Tournez）。不练 ici／là-bas，也不练课堂指令。"
     }
    ]
   },
@@ -4975,6 +5089,18 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh",
      "note": "6 个场景：面馆点餐、打电话改预约、耳机坏了去换、婉拒爬山邀请、夜市讲价和商场不讲价、早上见到老师（儿童版）。没有拼音。"
+    },
+    {
+     "artifact": "es-exchange-script",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "三个场景，用 focus=bar-desayuno／vecina-escalera／tienda-jersey 打开某一个。餐厅的 menú del día、试穿、缺货、不收卡这些分支没有做。"
+    },
+    {
+     "artifact": "fr-exchange-script",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "三个场景，用 focus=boulangerie／cafe-midi／bus-pardon 打开某一个。订位、服装店、不收卡、帮人扶门和迟到的道歉没有做。"
     }
    ]
   },
@@ -5905,6 +6031,18 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh",
      "note": "同一幅图换中文数据包：处所＋有、V着、在＋处所、正在；局限同上"
+    },
+    {
+     "artifact": "es-picture-talk",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "复用英语包的公园图；颜色和穿戴页面不核对；口头描述靠自评；未经母语教师核对"
+    },
+    {
+     "artifact": "fr-picture-talk",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "复用英语包的公园图；颜色和穿戴页面不核对；口头描述靠自评；未经母语教师核对"
     }
    ]
   },
@@ -6537,6 +6675,18 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh",
      "note": "单据上没有拼音辅助；形近字（入口／人口）只在提示里讲。"
+    },
+    {
+     "artifact": "es-real-document-scan",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "两张虚构单据、10 个任务。标牌（Entrada／Salida）、表格和车票没有做；kt:es-telling-time 只练读 24 小时制的时刻表，不练 y cuarto／menos cuarto 的说法。"
+    },
+    {
+     "artifact": "fr-real-document-scan",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "两张虚构单据、11 个任务。kt:fr-fn-restaurant 只练读菜单（套餐包括什么、素菜、加价），订位和点菜在 exchange-script；kt:fr-fn-telling-time 只练读开放时间，不练 et quart／moins le quart 的说法。"
     }
    ]
   },
@@ -6853,6 +7003,24 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "zh",
      "note": "趋向补语的引申义（想起来、说下去）和“叫／让”被动没有做。"
+    },
+    {
+     "artifact": "en-space-3d",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "en",
+     "note": "页面从 CDN（cdnjs）加载 Three.js r128 显示 3D，离线或没有 WebGL 时退回二维图（俯视图加某人眼睛看到的图），题目和证据不变。只练空间远近的 this／that 和 here／there、come／go、bring／take，以及 in front of／behind／to the left of／to the right of；指代前文的 this／that、lend／borrow、between／opposite 没有做。"
+    },
+    {
+     "artifact": "ja-space-3d",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "ja",
+     "note": "页面从 CDN（cdnjs）加载 Three.js r128 显示 3D，离线或没有 WebGL 时退回二维图，题目和证据不变。指不在眼前、双方都知道的东西的 あ（あの店、覚えてる？）和文章里的 そ／あ 不在范围内；两人并排时稍远处用 それ 的说法没有出题；こちら／そちら／あちら 只在“自己摆”的词表里。"
+    },
+    {
+     "artifact": "zh-space-3d",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "zh",
+     "note": "页面从 CDN（cdnjs）加载 Three.js r128 显示 3D，离线或没有 WebGL 时退回二维图，题目和证据不变。以听话人为准的“来”（我明天来看你）和复合趋向补语没有出题（复合趋向见视点与方向积木）。"
     }
    ]
   },
@@ -7639,6 +7807,18 @@
      "repo": "KnowledgeTraceGraph/blocks",
      "language": "en",
      "note": "20 个词：完全不同 3、偏移 10、相同 7。被核对的中文对译词在英文界面下也显示，因为它就是练习的对象；例句的中文译文在英文界面下不显示。"
+    },
+    {
+     "artifact": "es-false-friend-check",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "es",
+     "note": "18 个词，面向英语母语者；“自己用”一步的句子靠自评；未经母语教师核对"
+    },
+    {
+     "artifact": "fr-false-friend-check",
+     "repo": "KnowledgeTraceGraph/blocks",
+     "language": "fr",
+     "note": "22 个词，面向英语母语者；“自己用”一步的句子靠自评；未经母语教师核对"
     }
    ]
   },

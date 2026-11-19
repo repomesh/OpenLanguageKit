@@ -1,0 +1,1287 @@
+{
+ "note": "How age turns into design. age-bands.json says how to do things for each age band. This file says why, which quantity changes, at which layer it changes, and what to measure to check it. Every entry follows the same chain: one concept from the learning sciences, how we read it (and where that reading stops), which design variables it becomes and what value each of the three age bands gets, whether those variables sit in the knowledge point, the course plan or the practice page, and what to record to tell whether it worked. Age boundaries are a convention: how well the learner reads, their goals and their existing level come first. The values here are a starting point for design and have not been tested with this project's learners.",
+ "layers": [
+  {
+   "id": "kc",
+   "label": "Knowledge point",
+   "stays": "The language facts do not change with age: the same knowledge point id, the same forms and example sentences, the same prerequisite links.",
+   "changes": "Which knowledge points go into the course and in what order, whether explanations use technical terms, and which kind of mastery evidence is taken (understands and gets it right, says it, writes it).",
+   "where": "curriculum/<lang>/tracks.json (each age's plan only selects and reorders knowledge points); the mastery field in kcs.json is graded from recognition to production, and age decides which level to reach first."
+  },
+  {
+   "id": "plan",
+   "label": "Course plan",
+   "stays": "Prerequisite links and source coverage: a plan may not skip a required prerequisite knowledge point.",
+   "changes": "How long one session lasts, how much new content comes in each week, how much time is kept for revisiting, how long each knowledge point is expected to take, who studies alongside the learner, and where the material comes from.",
+   "where": "planDefaults in this file (the planner takes these numbers by age band and writes them into the blueprint's assumptions); blueprint/planner.js."
+  },
+  {
+   "id": "block",
+   "label": "Practice page",
+   "stays": "The contract of the practice type: the one thing the learner does, what is checked, and how evidence is recorded (first attempt, whether help was used, self-report does not count as correct).",
+   "changes": "Whether the task is given by sound or by text, how much goes on one screen, whether and when the rule is stated, how feedback is worded, how much space pictures and text each get, who decides the order, and who the record is for.",
+   "where": "variants in age-bands.json (56 practice types x 3 age bands); for pages that support ?band=, the blocks section of this file says, page by page, which variables they change."
+  }
+ ],
+ "planDefaults": {
+  "note": "Planning assumptions, not measured learning times. The planner takes the values by age band. Once the plan is in use, adjust them to how the learner actually performs.",
+  "child": {
+   "sessionMinutes": 15,
+   "minutesPerKc": 25,
+   "reviewShare": 0.3,
+   "newPerSession": "one chunk or 3–5 words"
+  },
+  "youth": {
+   "sessionMinutes": 30,
+   "minutesPerKc": 30,
+   "reviewShare": 0.25,
+   "newPerSession": "one knowledge point"
+  },
+  "adult": {
+   "sessionMinutes": 30,
+   "minutesPerKc": 30,
+   "reviewShare": 0.2,
+   "newPerSession": "one or two knowledge points"
+  }
+ },
+ "constructs": [
+  {
+   "id": "rules",
+   "label": "Rules: whether to state them, and when",
+   "question": "Should this language pattern be stated outright? Before the examples or after?",
+   "answer": {
+    "child": "Not stated; paired examples",
+    "youth": "Try first, then say the rule",
+    "adult": "Rule up front, compared with L1"
+   },
+   "construct": {
+    "claim": "Young learners mostly pick up patterns implicitly through a lot of exposure. This route is slow and needs plenty of input. Older learners can get accurate faster at the start from explicit rules, but explicit knowledge does not turn into fluent use by itself.",
+    "understood": "We read this as a question of timing and wording, not as 'children get no grammar and adults get only grammar'. Every age starts with examples. What differs is who states the pattern, in what words, and at which step.",
+    "limits": "Most of the research is short-term comparisons in classrooms and labs. How much implicit learning ability declines with age is disputed. Children aged 8–12 can already use a pattern put in one plain sentence.",
+    "basis": "literature",
+    "refs": [
+     "ped:age-implicit-explicit",
+     "ped:explicit-implicit-knowledge",
+     "ped:explicit-instruction"
+    ]
+   },
+   "variables": [
+    {
+     "id": "ruleTiming",
+     "label": "When the pattern appears",
+     "layer": "block",
+     "values": {
+      "child": "It does not appear on its own; paired examples let the difference show itself. At 8–12, give one plain sentence after a few correct answers.",
+      "youth": "Do a few examples first and let the learner say the pattern, then give the precise wording.",
+      "adult": "It can be shown at the start or opened at any time; folded by default so it does not get in the way during exercises."
+     }
+    },
+    {
+     "id": "metalanguage",
+     "label": "Whether to use technical terms",
+     "layer": "kc",
+     "values": {
+      "child": "No technical terms; point with 'this one', 'say it that way', colours and positions.",
+      "youth": "A few terms already learned at school, each with an example the first time it appears.",
+      "adult": "Standard terms, with one line comparing to the learner's first language."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Share of new examples answered correctly on the first try without the rule shown",
+     "source": "block",
+     "how": "The share of attempt events with first=true and assisted=false in the reverse half and in transfer items.",
+     "reads": "High: the learner can use the pattern, not just remember the explanation. Items answered correctly only after viewing the rule count as assisted and are left out."
+    },
+    {
+     "label": "How often and when the rule is opened",
+     "source": "block",
+     "how": "hint / reveal events, with the item number.",
+     "reads": "Adults who open it before every item: the pattern is not yet internalised, or the items are too hard. The child version has no such button, so this does not apply."
+    }
+   ]
+  },
+  {
+   "id": "text-channel",
+   "label": "Whether text can carry the task",
+   "question": "Can the learner read the instructions on the screen? Should the task be given by sound, by demonstration or by text?",
+   "answer": {
+    "child": "Voice and demonstration",
+    "youth": "A line or two of text",
+    "adult": "Text; a new script is explained in L1"
+   },
+   "construct": {
+    "claim": "Reading comprehension is roughly decoding times language comprehension: if either one is missing, the learner cannot understand what they read. Someone who is still learning to decode cannot learn new things by reading text.",
+    "understood": "This is not only about children. Children aged 5–7 are still learning to decode in their first language. Adults learning a new writing system (Chinese characters, kana) are likewise 'not yet able to read' in the target language. So we judge two separate things: can the learner understand the language used for explanation, and can they read the target language's script aloud.",
+    "limits": "The simple view of reading is a model proposed for first-language reading. Applying it to a second language and to non-alphabetic scripts is an extension.",
+    "basis": "literature",
+    "refs": [
+     "ped:simple-view-of-reading",
+     "ped:learning-to-read-vs-reading-to-learn",
+     "ped:young-learner-characteristics"
+    ]
+   },
+   "variables": [
+    {
+     "id": "instructionChannel",
+     "label": "How the task is given",
+     "layer": "block",
+     "values": {
+      "child": "Ages 5–7: sound plus demonstration, with no instruction text on screen. Ages 8–12: one short line of text that can be tapped to hear.",
+      "youth": "Text, one or two sentences, saying what this step practises.",
+      "adult": "Text. If the learner does not yet know the target script well, explanations use the learner's first language or the instruction language they choose."
+     }
+    },
+    {
+     "id": "scriptAid",
+     "label": "Reading aids such as pinyin or furigana",
+     "layer": "block",
+     "values": {
+      "child": "Only on words the child can already say; remove after the word is read correctly twice.",
+      "youth": "Shown by default and removed word by word; the learner can see how many they have removed.",
+      "adult": "Hidden by default and shown on tap (a tap counts as help); the learner decides when to stop tapping."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Share read correctly on the first try without a reading aid",
+     "source": "block",
+     "how": "attempt events counted separately by whether the aid was showing.",
+     "reads": "Accuracy while the aid stays on does not show that the learner can read."
+    },
+    {
+     "label": "Items answered correctly only after listening",
+     "source": "block",
+     "how": "Items where read-aloud was tapped before answering are recorded as assisted.",
+     "reads": "Many: the learner understood by ear, not by reading. This is normal while learning to recognise characters, but look at it separately."
+    }
+   ]
+  },
+  {
+   "id": "load",
+   "label": "How much at once, and for how long",
+   "question": "How many things on one screen? How many items in a round? How long is one session?",
+   "answer": {
+    "child": "One thing per screen, 10–15 min",
+    "youth": "One task per screen, 20–30 min",
+    "adult": "Time-boxed, 5–30 min"
+   },
+   "construct": {
+    "claim": "People can attend to only a limited number of things at once. Younger learners hold attention for a shorter time and are more easily drawn away by things unrelated to the task.",
+    "understood": "We turn this into three quantities that can be counted: how many things on one screen the learner has to deal with, how many items in one round, and how many minutes in one session. The specific numbers are design inference; the literature supports only the direction (fewer and shorter for younger learners).",
+    "limits": "There is no standard for minutes or number of items that can be cited directly. The numbers here are a starting point.",
+    "basis": "design_inference",
+    "refs": [
+     "ped:attention",
+     "ped:young-learner-characteristics",
+     "ped:seductive-details"
+    ]
+   },
+   "variables": [
+    {
+     "id": "perScreen",
+     "label": "Amount per screen",
+     "layer": "block",
+     "values": {
+      "child": "One thing per screen: one picture or one sentence, one place to tap.",
+      "youth": "One task per screen; material and questions can sit side by side.",
+      "adult": "Material, questions and the record can be seen on one screen; secondary parts are collapsed."
+     }
+    },
+    {
+     "id": "roundSize",
+     "label": "Items per round",
+     "layer": "block",
+     "values": {
+      "child": "3–6 items, with a clear 'all done' at the end.",
+      "youth": "6–10 items, or the learner chooses how many.",
+      "adult": "By time box: 5 minutes or 15 minutes, with the number of items following from that."
+     }
+    },
+    {
+     "id": "sessionMinutes",
+     "label": "Length of one session",
+     "layer": "plan",
+     "values": {
+      "child": "10–15 minutes, cut into 3–5 short activities that alternate lively and calm.",
+      "youth": "20–30 minutes, one or two tasks.",
+      "adult": "5–30 minutes, split into blocks to fit the time the learner has each day."
+     }
+    },
+    {
+     "id": "stepsPerItem",
+     "label": "Steps per item, and whether a reason is asked",
+     "layer": "block",
+     "values": {
+      "child": "One step per item: choose only, no reason asked.",
+      "youth": "Two or three steps: choose, then say what it rests on.",
+      "adult": "Two or three steps, including \"why\" and the reasons for ruling out the other options."
+     }
+    },
+    {
+     "id": "optionCount",
+     "label": "Options at a time",
+     "layer": "block",
+     "values": {
+      "child": "2–3.",
+      "youth": "3–4.",
+      "adult": "4 or more, including \"neither\" and \"both work\"."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Whether accuracy drops during a round",
+     "source": "block",
+     "how": "First-attempt accuracy in the first half versus the second half of the same round.",
+     "reads": "Clearly lower in the second half: the round is too long, so cut items first."
+    },
+    {
+     "label": "Share of sessions finished and actual duration",
+     "source": "host",
+     "how": "The page does not record duration. The app that hosts it records start, end and any leaving midway.",
+     "reads": "Often unfinished: the session is scheduled too long."
+    }
+   ]
+  },
+  {
+   "id": "pace",
+   "label": "Progress and revisiting",
+   "question": "How much new content per week? How long before coming back to it?",
+   "answer": {
+    "child": "Little new, 30% revisiting",
+    "youth": "25% revisiting",
+    "adult": "More new, 20% revisiting"
+   },
+   "construct": {
+    "claim": "In classroom conditions, older learners start faster. Younger learners progress more slowly, and their advantage only shows after many years of heavy exposure. Retrieving something again after a gap makes it stick better.",
+    "understood": "So a plan for children is not 'the same content made cuter'. It has less new content each week, more revisiting, and the same content coming back in different activities. A plan for adults can bring in new content more densely, but cannot skip revisiting.",
+    "limits": "How many minutes each knowledge point takes and what share goes to revisiting are planning assumptions. They have not been measured.",
+    "basis": "literature",
+    "refs": [
+     "ped:age-rate-vs-attainment",
+     "ped:age-instructed-settings",
+     "ped:spaced-practice",
+     "ped:retrieval-practice"
+    ]
+   },
+   "variables": [
+    {
+     "id": "minutesPerKc",
+     "label": "Expected time per knowledge point",
+     "layer": "plan",
+     "values": {
+      "child": "About 25 minutes, spread over several days; the content comes in smaller pieces (one chunk, a few words).",
+      "youth": "About 30 minutes.",
+      "adult": "About 30 minutes."
+     }
+    },
+    {
+     "id": "reviewShare",
+     "label": "Share of the week spent revisiting",
+     "layer": "plan",
+     "values": {
+      "child": "Three tenths: old content comes back inside new activities.",
+      "youth": "Two and a half tenths.",
+      "adult": "Two tenths, with gaps that gradually get longer."
+     }
+    },
+    {
+     "id": "selection",
+     "label": "Which knowledge points to pick",
+     "layer": "kc",
+     "values": {
+      "child": "The plan picks only what can be heard, said and done in concrete situations; abstract grammar and long reading and writing come later.",
+      "youth": "Priority to what fits the school curriculum, exams and topics of the same age group.",
+      "adult": "Priority to the situations the learner says they need (travel, work, family); the rest is filled in by prerequisite order."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Share answered correctly on the first try after a few days",
+     "source": "host",
+     "how": "The app saves evidence for each knowledge point by date. The first attempt at each revisit is counted separately.",
+     "reads": "Correct on the day but not a few days later: too little revisiting, or the gaps are too long. The page itself does not save across days."
+    },
+    {
+     "label": "Gap between planned weeks and actual weeks",
+     "source": "host",
+     "how": "Compare the agenda in the blueprint with the actual completion dates.",
+     "reads": "A large gap: the minutesPerKc assumption needs changing."
+    }
+   ]
+  },
+  {
+   "id": "feedback",
+   "label": "How feedback is given",
+   "question": "What does the page say after a wrong answer? Who sees the record of right and wrong?",
+   "answer": {
+    "child": "Show the difference, retry; no crosses",
+    "youth": "Say where it went wrong, retry",
+    "adult": "Name the error type; may skip"
+   },
+   "construct": {
+    "claim": "Corrective feedback helps. Explicit feedback (pointing out where the mistake is) is more likely to be noticed than just giving the correct answer, but it only works if the learner gets a chance to try again.",
+    "understood": "At every age: immediate, specific, and a second chance. What differs is how detailed it is (pointing out what differs in this attempt, or naming the type of error) and who reads the record.",
+    "limits": "Most feedback research has teens and adults as subjects. The approach for children is design inference.",
+    "basis": "design_inference",
+    "refs": [
+     "ped:corrective-feedback",
+     "ped:noticing-hypothesis"
+    ]
+   },
+   "variables": [
+    {
+     "id": "feedbackForm",
+     "label": "What is said after a wrong answer",
+     "layer": "block",
+     "values": {
+      "child": "Put the correct answer next to the chosen one so the child can see or hear the difference, then try again straight away; no red cross, no points taken off.",
+      "youth": "Point out where the mistake is, give one sentence of reason, then try again; no comparison with others.",
+      "adult": "Name the type of error, with a link to the rule if wanted; skipping is allowed, and the learner can come back later."
+     }
+    },
+    {
+     "id": "recordAudience",
+     "label": "Who sees the record",
+     "layer": "block",
+     "values": {
+      "child": "For the adult alongside; no score shown to the child.",
+      "youth": "Only for the learner; the learner is told before a teacher sees it.",
+      "adult": "For the learner, with the kinds of items that are still shaky listed by type."
+     }
+    },
+    {
+     "id": "helpAvailable",
+     "label": "Which help is available",
+     "layer": "block",
+     "values": {
+      "child": "Little and fixed: one or two replays; no timer.",
+      "youth": "Hints can be opened; opening one is recorded as help.",
+      "adult": "Hints, slow speed and captions can be turned on by the learner; using them is recorded as help."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Share wrong on the first try and right on the second",
+     "source": "block",
+     "how": "The first and later attempt events on the same item.",
+     "reads": "High: the feedback was used. Still wrong on the retry: the feedback missed the point, or the item is beyond the current level."
+    },
+    {
+     "label": "Share correct only after a hint",
+     "source": "block",
+     "how": "Correct attempts with assisted=true.",
+     "reads": "These do not count as independent mastery. If the share stays high over time, step back."
+    }
+   ]
+  },
+  {
+   "id": "autonomy",
+   "label": "Who decides, and why learn this",
+   "question": "Who sets the order and the goal? Should a step say what it is for?",
+   "answer": {
+    "child": "Pick one of two or three; fixed order",
+    "youth": "Own order, purpose stated",
+    "adult": "Own goal and pace"
+   },
+   "construct": {
+    "claim": "Teenagers are sensitive to being controlled and engage more when they have choices and know the purpose. Adults come with their own goals and experience, want to organise their own learning, and want to use it right away.",
+    "understood": "The range of choice widens with age. Children pick one of two or three options, while the course and the adult keep the order. Teens can set their own order, with the purpose written on each step. Adults set their own goals and pace, and the page makes suggestions rather than rules.",
+    "limits": "These assumptions from adult education come mostly from experience and practice, and the empirical support is weaker than for the entries above.",
+    "basis": "literature",
+    "refs": [
+     "ped:adolescent-motivation-autonomy",
+     "ped:andragogy",
+     "ped:scaffolding"
+    ]
+   },
+   "variables": [
+    {
+     "id": "choice",
+     "label": "What can be chosen",
+     "layer": "block",
+     "values": {
+      "child": "Pick one of two or three themes or characters; the order of steps is fixed, one step at a time.",
+      "youth": "Steps can be done in any order; the learner can choose how many items.",
+      "adult": "The learner chooses which steps to do and for how long, and can jump straight to the parts they are unsure about."
+     }
+    },
+    {
+     "id": "purposeLine",
+     "label": "Whether to say what a step is for",
+     "layer": "block",
+     "values": {
+      "child": "No purpose is stated; a task in a story leads the way.",
+      "youth": "One line on each step: 'what this step practises'.",
+      "adult": "Each step names the ability being practised and where it is used in real situations."
+     }
+    },
+    {
+     "id": "goalOwner",
+     "label": "Who sets the goal",
+     "layer": "plan",
+     "values": {
+      "child": "A parent or teacher sets it, and the plan states the goal for the adult to read.",
+      "youth": "Set together with the learner, matched to what school requires.",
+      "adult": "The learner sets it; start with a self-report and begin from the parts they are unsure about."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Which order the learner chose and what they skipped",
+     "source": "block",
+     "how": "Step-switch events.",
+     "reads": "Always skipping the same step: that step is useless to them, or too hard. It is only a record, with no points taken off."
+    },
+    {
+     "label": "Whether the learner comes back the next day",
+     "source": "host",
+     "how": "Recorded by the app; the page does not know.",
+     "reads": "An indirect signal of motivation. Ask the learner for the reason."
+    }
+   ]
+  },
+  {
+   "id": "mediation",
+   "label": "Who studies alongside, and who judges",
+   "question": "Does someone need to be next to the learner? Who judges whether something said aloud is right?",
+   "answer": {
+    "child": "An adult alongside, who judges",
+    "youth": "With a peer, who judges",
+    "adult": "Alone, against a checklist"
+   },
+   "construct": {
+    "claim": "When someone beside the child asks questions, takes turns in the talk and helps the child say things in full, the child's language grows better (dialogic reading). Support should be removed once the learner can do it alone.",
+    "understood": "The page does not listen to speech or score pronunciation, so every part where the learner speaks needs a person to judge. For children that is the adult alongside, for teens a peer, and for adults the learner themselves or a language partner. All of these judgments are recorded as self-report and do not count as correct answers.",
+    "limits": "The evidence for dialogic reading comes from first-language shared reading with preschool children. Applying it to a second language and to older children is an extension.",
+    "basis": "literature",
+    "refs": [
+     "ped:dialogic-reading",
+     "ped:scaffolding",
+     "ped:zpd",
+     "ped:negotiated-interaction"
+    ]
+   },
+   "variables": [
+    {
+     "id": "alongside",
+     "label": "Who is nearby",
+     "layer": "plan",
+     "values": {
+      "child": "A parent or teacher; the page gives the adult a line they can say as written.",
+      "youth": "Classmates in pairs, or the learner finishes alone and then swaps with a partner.",
+      "adult": "The learner alone; they can find a language partner, but the page does not depend on someone being there."
+     }
+    },
+    {
+     "id": "oralJudge",
+     "label": "Who judges what is said aloud",
+     "layer": "block",
+     "values": {
+      "child": "The adult taps 'got it / not yet'.",
+      "youth": "A peer ticks items against a checklist.",
+      "adult": "The learner checks against a checklist or listens back to a recording."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Result of self or peer judgment",
+     "source": "block",
+     "how": "selfReport events, stored separately from attempts.",
+     "reads": "It only says that 'someone thought it was said'. It cannot be used as evidence of mastery, and peers tend to go easy on each other."
+    }
+   ]
+  },
+  {
+   "id": "picture",
+   "label": "What pictures, sound and movement each do",
+   "question": "Are pictures there to bring out the meaning, or only used when words cannot make it clear?",
+   "answer": {
+    "child": "The picture leads; text is short",
+    "youth": "Picture and text side by side",
+    "adult": "A picture only where words fall short"
+   },
+   "construct": {
+    "claim": "Words paired with a relevant picture are learned better than words alone. Interesting details unrelated to what is being learned reduce learning. Movement and gesture help people remember word meaning.",
+    "understood": "A picture is not decoration. Each picture has one teaching purpose (the eight kinds in image-roles.json). The younger the learner, the more pictures and sound carry; the older, the more pictures retreat to 'where words cannot make it clear'. At any age, nothing unrelated to the task goes in the picture.",
+    "limits": "Most multimedia learning research uses university students learning science content. Applying it to children learning language is an extension.",
+    "basis": "literature",
+    "refs": [
+     "ped:multimedia-learning",
+     "ped:dual-coding",
+     "ped:picture-superiority-vocabulary",
+     "ped:seductive-details",
+     "ped:embodied-gesture-learning",
+     "ped:total-physical-response"
+    ]
+   },
+   "variables": [
+    {
+     "id": "pictureShare",
+     "label": "How much space pictures take and where they go",
+     "layer": "block",
+     "values": {
+      "child": "The picture is the main thing and takes most of the screen; the text is very short and right below the picture.",
+      "youth": "Picture and text sit side by side, the picture takes no more than half, and they can be matched by number.",
+      "adult": "Pictures appear only where words cannot make it clear, placed beside the relevant sentence, and can be tapped to enlarge."
+     }
+    },
+    {
+     "id": "movement",
+     "label": "Whether to use body movement",
+     "layer": "block",
+     "values": {
+      "child": "Listen and do: stand up, point, pick up, with an adult watching.",
+      "youth": "Drag, place and mark on screen; actually moving only happens in group activities.",
+      "adult": "Operate on screen; movement is used for things that are already tied to the body, such as direction and gesture."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Whether the learner still gets it right with the picture removed",
+     "source": "block",
+     "how": "The reverse half: the same word in a new sentence with no picture, counting first-attempt accuracy.",
+     "reads": "Right with the picture, wrong without: the learner is recognising the picture, not the word."
+    },
+    {
+     "label": "Whether a generated picture passes the acceptance checklist",
+     "source": "host",
+     "how": "The acceptance checklist that comes with the image instruction, checked item by item by a person.",
+     "reads": "If any one item fails, do not use that picture."
+    }
+   ]
+  },
+  {
+   "id": "reading-mode",
+   "label": "Learning to read, or reading to learn",
+   "question": "Is the goal of this reading to learn to read this script, or to learn new language by reading?",
+   "answer": {
+    "child": "Picture books, read with an adult",
+    "youth": "Illustrated stories for their age",
+    "adult": "Real-life print with pictures"
+   },
+   "construct": {
+    "claim": "Reading develops in two stages. First learners learn to turn text into words they can already say. Only after that do they use reading to learn what they cannot yet say. Second-language readers need to reach a certain language level before their first-language reading skill can be used.",
+    "understood": "Which kind of reading it is depends on two questions, not on age. Can the learner understand this passage by ear? Can they read this script aloud on their own? Understood by ear but cannot read it aloud: learning to read. Can read it aloud: reading to learn. Both kinds occur at every age. An adult learning Chinese characters or kana is learning to read, and a ten-year-old reading graded English readers can be reading to learn. What age changes is the topic and look of the reading material, whether an adult is present, and how progress is shown.",
+    "limits": "The two-stage account comes from research on first-language reading development. There is no agreed number for where the threshold lies.",
+    "basis": "literature",
+    "refs": [
+     "ped:learning-to-read-vs-reading-to-learn",
+     "ped:simple-view-of-reading",
+     "ped:l2-reading-threshold",
+     "ped:extensive-reading",
+     "ped:dialogic-reading"
+    ]
+   },
+   "variables": [
+    {
+     "id": "material",
+     "label": "What to read",
+     "layer": "plan",
+     "values": {
+      "child": "Picture books: the pictures tell the story, with very short, repetitive text.",
+      "youth": "Short stories or illustrated pieces on topics close to their age group, in a style that is not babyish.",
+      "adult": "Real-life text with pictures: notices, timetables, illustrated instructions, short news reports."
+     }
+    },
+    {
+     "id": "readingPace",
+     "label": "Pace when learning to read",
+     "layer": "block",
+     "values": {
+      "child": "One sentence per page, an adult points along as the child reads; the same book is read several times.",
+      "youth": "Reads alone and removes the aid word by word; can see which words no longer need the aid.",
+      "adult": "Look at the pattern first (radicals, spelling rules), then recognise it in real text; practise in time boxes."
+     }
+    },
+    {
+     "id": "progressDisplay",
+     "label": "How progress is shown",
+     "layer": "block",
+     "values": {
+      "child": "Which page they have reached; accuracy is not shown.",
+      "youth": "Learning to read: how many words no longer need the aid. Reading to learn: how many new words were guessed right and which clues were used.",
+      "adult": "Same as for teens, plus a summary by error type."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Learning to read: number of words read correctly with no aid and no picture",
+     "source": "block",
+     "how": "First correct attempts in the reverse half after the aid is removed.",
+     "reads": "Only this counts as 'can read this word'."
+    },
+    {
+     "label": "Reading to learn: whether guesses at new words are right, and which clues were used",
+     "source": "block",
+     "how": "Word-guessing attempt events plus the clue chosen; for a word the page cannot explain, answering 'this can't be told from here' is the correct answer.",
+     "reads": "Telling 'can be told' from 'cannot be told' matters more than how many guesses were right."
+    }
+   ]
+  },
+  {
+   "id": "use-context",
+   "label": "Where the material comes from, and where it is used",
+   "question": "Whose life do the examples and situations come from? Where will what is learned first be used?",
+   "answer": {
+    "child": "Play, home, stories",
+    "youth": "Friends, school, interests",
+    "adult": "Things they need to get done"
+   },
+   "construct": {
+    "claim": "Transfer of what is learned to new settings does not happen automatically. The closer the practice setting is to the setting of later use, the easier the transfer. Adult learners have little time and specific goals, and their first language is already set, so they compare with it without meaning to.",
+    "understood": "For the same knowledge point, the example situations differ across the three age bands. For children they come from play, home and stories. For teens they come from peers, school and what they watch. For adults they come from the things they need to get done soon. Adults get one more variable: a comparison with the first language, saying where the two are the same and where the first language will mislead.",
+    "limits": "The choice of situations is design inference. That 'adults are more affected by their first language' has support in the literature, but it varies by language pair.",
+    "basis": "design_inference",
+    "refs": [
+     "ped:transfer",
+     "ped:adult-l2-constraints",
+     "ped:andragogy",
+     "ped:young-learner-characteristics"
+    ]
+   },
+   "variables": [
+    {
+     "id": "exampleContext",
+     "label": "Situation of the examples",
+     "layer": "kc",
+     "values": {
+      "child": "Games, home, animals, characters in stories.",
+      "youth": "Classmates, school, hobbies, things they would meet in short videos and games.",
+      "adult": "Travel, work, seeing a doctor, renting a home, and other settings the learner says they need."
+     }
+    },
+    {
+     "id": "l1Compare",
+     "label": "Comparison with the first language",
+     "layer": "block",
+     "values": {
+      "child": "No comparison; for heritage-language children, what they already know is not practised again.",
+      "youth": "Point out the one place where the first language most easily misleads.",
+      "adult": "Each pattern has a fixed line beside it comparing with the first language."
+     }
+    }
+   ],
+   "measures": [
+    {
+     "label": "Share of transfer items in a new setting answered correctly on the first try",
+     "source": "block",
+     "how": "Transfer items are counted separately from the original items.",
+     "reads": "Right on the original items but wrong on transfer items: the learner only remembered those examples."
+    },
+    {
+     "label": "Whether the learner says they used it in a real situation",
+     "source": "host",
+     "how": "The app asks every few days; it is self-report.",
+     "reads": "It is only self-report and cannot be used as evidence of mastery."
+    }
+   ]
+  }
+ ],
+ "blocks": {
+  "picture-book": {
+   "summary": "Both ways of reading work at every age. Children read a picture book; teens and adults read a different story that is not childish and has real print in its pictures. Age changes the material, who is alongside, when the pattern appears, who sets the goal and how the record is worded.",
+   "rows": [
+    {
+     "variable": "material",
+     "child": "The picture book The Blue Paper Boat, 8 pages.",
+     "youth": "The illustrated story The Last Bus, 7 pages, with real print in the pictures (stop sign, timetable, shop notice).",
+     "adult": "The same story, The Last Bus."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "Each step's instruction can be played aloud; a separate box gives the adult alongside words to say.",
+     "youth": "Written instruction plus a “Why this step” line.",
+     "adult": "Written instruction stating what the step trains and why it is here."
+    },
+    {
+     "variable": "choice",
+     "child": "One step at a time, in order.",
+     "youth": "The learner chooses the order of the steps.",
+     "adult": "The learner sets a goal for the unit and a time box of 5, 10 or 15 minutes; a note appears when time is up and nothing is blocked."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "No pattern is shown.",
+     "youth": "Shown only after answering, under “The pattern you just used”.",
+     "adult": "The pattern is visible before answering and does not count as a hint; the “Split it up” hint still counts as help."
+    },
+    {
+     "variable": "l1Compare",
+     "child": "None.",
+     "youth": "None.",
+     "adult": "Each target's pattern comes with one line comparing it to the first language."
+    },
+    {
+     "variable": "scriptAid",
+     "child": "The reading aid is shown first, withdrawn after two aid-free correct rounds for a word, and restored after a wrong answer.",
+     "youth": "The same fade rule, with a growing list of words now read with no help.",
+     "adult": "The same fade rule; opening the aid is recorded as help."
+    },
+    {
+     "variable": "oralJudge",
+     "child": "The adult alongside judges the picture walk and the retell.",
+     "youth": "Every step has a “With a classmate” version; the retell is self-rated against a checklist.",
+     "adult": "The retell is self-rated against a checklist."
+    },
+    {
+     "variable": "recordAudience",
+     "child": "The record is kept under “Record for the adult” and not shown to the child.",
+     "youth": "A record panel sits beside the steps.",
+     "adult": "The record is worded by task as “What this unit got done”, with the goal and the time used."
+    }
+   ]
+  },
+  "space-3d": {
+   "summary": "The same kind of items (how this/that, come/go and front/back/left/right change with viewpoint); age changes the items and how many, the steps per item, when the rule appears, whether feedback uses terms, and who judges the “your turn” step.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "4 here/there items, 3 come/go, 4 front/back/left/right.",
+     "youth": "7, 5 and 7.",
+     "adult": "7, 5 and 7 (4 come/go items in the Chinese pack)."
+    },
+    {
+     "variable": "exampleContext",
+     "child": "Bear and Rabbit; an apple, a ball, a tree, a cake.",
+     "youth": "Two peers and family; a phone, a cup, a poster, a brochure, an umbrella, a trip.",
+     "adult": "The same people; also a file, a party invitation (English and Japanese packs), a hotel and a taxi."
+    },
+    {
+     "variable": "selection",
+     "child": "Front/back items have one reading only (in front of Bear; in front of and behind the tree).",
+     "youth": "Includes “in front of / left of the car”, where two readings are possible.",
+     "adult": "As for youth, plus items such as the hotel entrance that use the thing’s own front only."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "No rule panel; the side panel is “for the adult alongside”.",
+     "youth": "The rule panel is empty until the first answer in that kind of item, then the rule appears; front/back adds a line on the two frames of reference.",
+     "adult": "The rule panel is shown from the start."
+    },
+    {
+     "variable": "l1Compare",
+     "child": "None.",
+     "youth": "None.",
+     "adult": "One comparison sentence, fixed in the language pack, under the rule (the Chinese pack compares with English and Japanese, the English pack with Chinese)."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "Each question is read aloud automatically when it appears and every option has a listen button with a speaker icon; the text stays on screen. A separate panel addresses the adult alongside.",
+     "youth": "Text; nothing is read automatically.",
+     "adult": "Text; nothing is read automatically."
+    },
+    {
+     "variable": "perScreen",
+     "child": "One step per item: choose the word, or click a numbered spot for the ball. On the speaker swap, just choose again.",
+     "youth": "Two or three steps per item: first click who is speaking, then choose the word; on the swap first answer “changes / stays / either”; after a correct placement, “could another spot also be meant?”.",
+     "adult": "Same as youth."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "One short sentence without terms (“Look which way Bear’s face points.”); no hint button.",
+     "youth": "Explains whose viewpoint the sentence uses, with the terms “relative frame” and “intrinsic frame”; two or three hint levels that count as help.",
+     "adult": "Same as youth."
+    },
+    {
+     "variable": "movement",
+     "child": "Front/back only: the adult is told to have the child stand up, turn and do it with their body first; on screen there is one large “Be Bear” button.",
+     "youth": "Turn the scene on screen and look through each person’s eyes.",
+     "adult": "Turn the scene on screen and look through each person’s eyes."
+    },
+    {
+     "variable": "oralJudge",
+     "child": "Your turn: the child sets up the scene and says it aloud; the adult clicks “said it right / not yet”, recorded as adult-judged.",
+     "youth": "Your turn: type a sentence that the page checks against the scene; it can then be handed to a partner who sets up the scene from the sentence, recorded as partner-judged. Nothing is spoken.",
+     "adult": "Your turn: type two sentences (one for each case), checked by the page against the scene. No one else judges."
+    },
+    {
+     "variable": "pictureShare",
+     "child": "The scene is 440 px tall.",
+     "youth": "The scene is 380 px tall.",
+     "adult": "The scene is 320 px tall."
+    },
+    {
+     "variable": "recordAudience",
+     "child": "The record for the three kinds of item sits in a section collapsed by default, “Record for the adult”; the child sees no score.",
+     "youth": "The “Kept separately” card is shown beside the task.",
+     "adult": "The “Kept separately” card is shown beside the task."
+    }
+   ]
+  },
+  "blend": {
+   "summary": "Same words and decoding rules; the child version has shorter rounds, fewer options, and spelling becomes filling one box instead of building the whole word.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "5 items a round; in the exceptions step, 3 exception words plus 3 regular ones.",
+     "default": "8 items a round; 5 plus 5 in the exceptions step."
+    },
+    {
+     "variable": "perScreen",
+     "child": "Reading: 3 pictures to choose from. Spelling: one empty box and 3 tiles; tapping a tile is the answer.",
+     "default": "Reading: 4 pictures. Spelling: build the whole word from a bank of tiles, then press Check."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line of text (“Tap and read. Which one is it?”); the page does not read it aloud.",
+     "default": "One or two sentences of text saying what to do first and next."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "Spelling has one hint (play box by box); no “show the answer” or “clear”.",
+     "default": "Spelling has two hint levels (how many boxes, the tricky box), “show the answer” and “clear”."
+    },
+    {
+     "variable": "scriptAid",
+     "child": "No IPA when a box is tapped; each box plays for 1.3 s.",
+     "default": "IPA shown when a box is tapped; each box plays for 1 s."
+    }
+   ]
+  },
+  "classifier-match": {
+   "summary": "The child version uses one set with at most 3 boxes, skips “what do the things in this box have in common”, and gives no exceptions among the new items.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "Sorting: the one set marked for children, at most 3 boxes. New items: 5.",
+     "default": "Sorting: both sets in turn with all their boxes (2–5). New items: 8."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "No “what each box has in common” step; the round ends when everything is placed.",
+     "default": "After everything is placed, the learner chooses what each box has in common."
+    },
+    {
+     "variable": "perScreen",
+     "child": "New items are only ones the rule predicts; no exception, either-works or none-works items.",
+     "default": "At least a quarter of the new items each round are exceptions, either-works or none-works."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line: “Tap a thing, then tap its basket.”",
+     "default": "One line of text that also mentions the number keys."
+    }
+   ]
+  },
+  "culture-incident": {
+   "summary": "The child version has a single incident between classmates, three plain kinds of cause, and that step is recorded as discussion rather than right or wrong.",
+   "rows": [
+    {
+     "variable": "exampleContext",
+     "child": "One incident per language pack, set at school between classmates or with a teacher (a cookie, an eraser, how to address the teacher).",
+     "default": "6–7 incidents per pack from adult everyday and work settings."
+    },
+    {
+     "variable": "metalanguage",
+     "child": "Three kinds of cause: “what was said”, “how it was said”, “nothing was wrong”.",
+     "default": "Five kinds: the words themselves, politeness or address, topic or timing, a missed unspoken meaning, no cultural misunderstanding."
+    },
+    {
+     "variable": "oralJudge",
+     "child": "Choosing the cause is recorded as a self-report (discussion) and is not tied to the line picked in step 1.",
+     "default": "The page marks the cause right or wrong, and it only counts if the line picked in step 1 was right."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line: “From which line does someone start to feel uncomfortable? Click that line.” The click is the answer; no typed explanation and no Submit button.",
+     "default": "Text: click the line, write one sentence of explanation, which is locked on submit."
+    }
+   ]
+  },
+  "entry-sense-pick": {
+   "summary": "The child version only picks the sense, with no reasons or clue word, 4 sentences a round, and no sentences where two senses fit or the word is part of a fixed phrase.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "4 sentences to look up; 3 notebook entries.",
+     "default": "8 sentences to look up; 5 notebook entries."
+    },
+    {
+     "variable": "perScreen",
+     "child": "One thing per sentence: pick a sense.",
+     "default": "Three things per sentence: pick a sense, give a reason for ruling out each of the others, and click the clue word in the sentence."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "No sentences where two senses both fit or where the word is part of a fixed phrase.",
+     "default": "Every round includes one sentence where two senses fit and one fixed phrase."
+    }
+   ]
+  },
+  "exchange-script": {
+   "summary": "The child version has a single classroom scenario, shows the outcome as faces, and uses plain words for the review categories.",
+   "rows": [
+    {
+     "variable": "exampleContext",
+     "child": "One scenario per pack, all at school (not understanding a word in class, borrowing an eraser, arriving in the morning).",
+     "default": "Six scenarios per pack: rescheduling by phone, ordering, complaining, declining an invitation and so on."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "The outcome is two faces: “Did it work?” and “How they feel”; passing just says “You did it!”.",
+     "default": "The outcome is two scales, Task and Relationship, with words; passing explains that the task is done and the relationship is fine."
+    },
+    {
+     "variable": "metalanguage",
+     "child": "Four review categories in plain words; options always show the actual line.",
+     "default": "Five review categories; options can be shown as the function of each line."
+    }
+   ]
+  },
+  "false-friend-check": {
+   "summary": "The child version has 3 words a round, plain-word verdicts, and no follow-up asking where the meaning shifts.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "3 words to judge; 3 use items.",
+     "default": "9 words to judge; 6 use items."
+    },
+    {
+     "variable": "metalanguage",
+     "child": "The three verdicts read “the same 😀”, “a bit different 🤔”, “totally different 😲”.",
+     "default": "The three verdicts read “same”, “shifted”, “different”."
+    },
+    {
+     "variable": "perScreen",
+     "child": "Choosing “a bit different” completes the judgement.",
+     "default": "After “shifted” the learner must also choose where it shifts (range of meaning, connotation, register, collocation); that choice is scored too."
+    }
+   ]
+  },
+  "figurative-decode": {
+   "summary": "In the English and Chinese packs the child version is a different activity: look at a picture of the words taken literally, then choose the picture of what the speaker means; no irony or hints.",
+   "rows": [
+    {
+     "variable": "pictureShare",
+     "child": "Each item is one sentence plus a picture of its literal meaning; the answers are pictures too (choose one of two).",
+     "default": "No pictures: read a short passage and work out the literal meaning, the gap and the intended meaning in three steps."
+    },
+    {
+     "variable": "roundSize",
+     "child": "6 items in English, 5 in Chinese.",
+     "default": "15–16 passages."
+    },
+    {
+     "variable": "selection",
+     "child": "Only metaphors, idioms and literal sentences; irony and hints are also removed from the three-step mode.",
+     "default": "Includes irony, sarcasm and unstated requests."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "A wrong choice gets “Listen again and think: could that really happen?” and another try.",
+     "default": "Feedback points out, step by step, the gap between the literal layer and the intended meaning."
+    }
+   ]
+  },
+  "listen-and-do": {
+   "summary": "The child version does 5 simple instructions in the room scene only, with no “don’t…” or “if…” items, at most two replays, and no slow speed or captions.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "5 instructions a round, room scene only.",
+     "default": "8 in the room, 6 on the street map; the learner can switch scenes."
+    },
+    {
+     "variable": "selection",
+     "child": "Simple instructions only (the 6 marked for children); no “don’t”, “if…” or “the boy’s left hand” items.",
+     "default": "At least 2 such “do not just act on what you hear” instructions every round."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "Two replays; no slow speed and no captions.",
+     "default": "Unlimited replays; slow speed and captions are available and count as help."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "The instruction is spoken; the on-screen line is just “Listen and do it.”",
+     "default": "The instruction is spoken; the on-screen text explains pressing Done and that nothing is marked yet."
+    }
+   ]
+  },
+  "number-system-map": {
+   "summary": "The child version switches to 5 cards with numbers up to 10,000 and only 4 magnitude bands.",
+   "rows": [
+    {
+     "variable": "selection",
+     "child": "5 cards with numbers up to 10,000, the number alone (three hundred, two thousand five hundred).",
+     "default": "15–16 cards with numbers up to the hundreds of millions, set in sentences (“this town has 150,000 people”)."
+    },
+    {
+     "variable": "perScreen",
+     "child": "4 magnitude bands to choose from: 10+, 100+, 1,000+, 10,000+.",
+     "default": "9 magnitude bands, from 100+ to 10,000,000,000+."
+    }
+   ]
+  },
+  "oral-sound-play": {
+   "summary": "The child version has shorter rounds, and sorting becomes a yes-or-no question about one relation.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "5 words to clap; 4 swaps; 5 sorting items.",
+     "default": "8 words to clap; 6 swaps; 8 sorting items."
+    },
+    {
+     "variable": "perScreen",
+     "child": "Sorting asks one thing: “Do they rhyme?” (Japanese pack: “same number of beats?”), yes or no.",
+     "default": "Sorting chooses among several relations, and 2 items a round are look-alikes that do not fit."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line: “Listen and clap.” The page does not read it aloud.",
+     "default": "One line of text saying whether to clap syllables or phonemes."
+    }
+   ]
+  },
+  "paradigm-apply": {
+   "summary": "In the English pack the child version starts with made-up “wug” words: the child says the form aloud and an adult clicks what was said; in the Japanese and Chinese packs it only has 3 fewer application items.",
+   "rows": [
+    {
+     "variable": "oralJudge",
+     "child": "English pack: the child finishes the sentence aloud and an adult clicks what was said; recorded as partner-judged.",
+     "default": "The learner groups words and fills in forms on screen, and the page marks them."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "English pack: no rule first; the rule is tried straight away on made-up words (gutch → ?).",
+     "default": "First group known words by how they change and work out the rule, then apply it."
+    },
+    {
+     "variable": "roundSize",
+     "child": "4 wug items; 5 application items.",
+     "default": "8 application items (the standard version has no wug tab)."
+    }
+   ]
+  },
+  "picture-talk": {
+   "summary": "Same picture; the child version uses 6 of its elements, describing becomes saying three sentences aloud, and judging is just right or wrong.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "6 elements of the picture (dog, cat, ducks, children, boy, tree); 9 pointing items; 4 sentences to judge; 4 questions.",
+     "default": "All 14 elements; 16 pointing items; 7 sentences to judge; 9 questions."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "No text box for describing: “say three sentences about the picture”, then press “I have said it”.",
+     "default": "Describing means writing 6 to 8 sentences, one per line; “I said it aloud” is an option."
+    },
+    {
+     "variable": "oralJudge",
+     "child": "The page cannot hear what was said: it is checked afterwards against the picture by the child or a partner.",
+     "default": "Written sentences are checked by the page against the picture’s facts; spoken ones are checked by the learner or a partner."
+    },
+    {
+     "variable": "metalanguage",
+     "child": "Judging someone’s description is just “right” or “wrong”.",
+     "default": "Judging is a choice of five: correct, wrong position, wrong number, action and state mixed up, cannot be seen in the picture."
+    }
+   ]
+  },
+  "reading-aid-fade": {
+   "summary": "The rule for withdrawing the reading aid is the same in both versions; the child version only has a smaller, easier check after reading.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "2 words are checked after reading; 4 error-sorting items.",
+     "default": "4 words are checked after reading; 8 error-sorting items."
+    },
+    {
+     "variable": "perScreen",
+     "child": "Each checked word is a choice between two readings; no typing.",
+     "default": "Each checked word offers all candidate readings, or the reading is typed where the pack supports it."
+    }
+   ]
+  },
+  "reading-select": {
+   "summary": "The child version only chooses the reading and never asks why.",
+   "rows": [
+    {
+     "variable": "ruleTiming",
+     "child": "No reason is asked: each place is just a choice of reading.",
+     "default": "Each place needs the reading and the reason (word class and meaning, fixed word, measure word, must be memorised); the reason is dropped only after the character has been right first time in two contexts."
+    },
+    {
+     "variable": "roundSize",
+     "child": "5 items in the new-sentence step.",
+     "default": "The whole list in the new-sentence step."
+    }
+   ]
+  },
+  "repair-and-backchannel": {
+   "summary": "The child version has one classroom conversation and three ways to ask for help; choosing one makes the page say a suitable phrase, with no time limit.",
+   "rows": [
+    {
+     "variable": "exampleContext",
+     "child": "One conversation per pack: following a teacher’s craft instructions (paper boats, scissors, crayons).",
+     "default": "Three per pack: buying a ticket at a desk, a group discussion, a phone call and so on."
+    },
+    {
+     "variable": "choice",
+     "child": "3 moves: ask to repeat, ask to slow down, ask about a word; each with an icon.",
+     "default": "8 moves: also checking by repeating back, showing you are listening, buying time, interrupting politely, bringing the talk back."
+    },
+    {
+     "variable": "perScreen",
+     "child": "After choosing a move the page says a suitable phrase; the learner does not choose the wording.",
+     "default": "After choosing a move the learner also picks the wording from several phrases."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "No time limit; no pause and no “where did I lose it” hint.",
+     "default": "A response time window by default (can be turned off); pause and a “where did I lose it” hint, both counted as help."
+    }
+   ]
+  },
+  "role-marking": {
+   "summary": "The child version has 4 sentences a round, calls the roles “who”, “where”, “where to” and “with whom”, and does not ask why a marker is used.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "4 items a round (only 4 sentences in each pack are marked for children).",
+     "default": "8 items a round, drawn from about 20 sentences."
+    },
+    {
+     "variable": "metalanguage",
+     "child": "Roles are called “who”, “where it happens”, “where to”, “with whom”.",
+     "default": "Roles are called “doer”, “who or what is somewhere”, “where it is”, “arrival point”, “companion” and so on."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "Choosing the right markers finishes the item; no why question.",
+     "default": "After the markers are right, some items also ask why that marker is used."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line: “Look at the picture. Is each one who, where, where to or with whom?”",
+     "default": "One or two sentences: read the sentence, look at the picture, decide the role of each numbered noun."
+    }
+   ]
+  },
+  "sound-contrast": {
+   "summary": "In the English pack the child version uses 5 picture pairs: pictures without spelling, 6 items a round, and after answering it replays both words instead of saying right or wrong; the Japanese and Chinese packs have no child content.",
+   "rows": [
+    {
+     "variable": "pictureShare",
+     "child": "English pack: cards show only a picture (or a number), no spelling or gloss.",
+     "default": "Cards show the spelling, with a picture above it where there is one, and optionally a gloss."
+    },
+    {
+     "variable": "roundSize",
+     "child": "6 listening items; 6 sorting items.",
+     "default": "12 listening items plus 3 same-or-different items; 9 sorting items."
+    },
+    {
+     "variable": "feedbackForm",
+     "child": "The same message right or wrong: “It was this one: (picture). Listen to both words once more.” The right card hops, then the words play A-B-A.",
+     "default": "“Right”, or “You heard X, not Y” in red; the two words side by side with the differing letters marked, then A-B-A."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line with a “🔊 Instructions” button that reads it aloud in the interface language.",
+     "default": "One line of text including the keyboard shortcut (F / J)."
+    },
+    {
+     "variable": "ruleTiming",
+     "child": "No articulation note for the contrast.",
+     "default": "A note on the contrast sits beside the task (tongue position, whether the learner’s first language has the sound)."
+    }
+   ]
+  },
+  "story-frames": {
+   "summary": "Same story; the child version has two cards for guessing where the story goes, skips the flashback junction, and asks for fewer connectives and linking devices.",
+   "rows": [
+    {
+     "variable": "perScreen",
+     "child": "Two direction cards when guessing the next picture: “then…” and “but…”.",
+     "default": "Four direction cards: also “so… / in the end…” and “earlier, it turned out…”."
+    },
+    {
+     "variable": "selection",
+     "child": "The “go back to something earlier” junction is not asked; connectives come from four kinds only: sequence, contrast, flashback, ending.",
+     "default": "The flashback junction is asked too; connectives also include cause, simultaneity and misused distractors."
+    },
+    {
+     "variable": "roundSize",
+     "child": "A retelling needs 2 kinds of linking device.",
+     "default": "A retelling needs 3 kinds of linking device."
+    }
+   ]
+  },
+  "tone-contour": {
+   "summary": "The child version calls the tones flat road, uphill, valley and downhill, leaves out the half third tone and neutral-tone words, and gives fewer options.",
+   "rows": [
+    {
+     "variable": "metalanguage",
+     "child": "Tones are called flat road, uphill, valley, downhill and small dot; answer buttons carry no pitch numbers.",
+     "default": "Tones are labelled “1st tone 55”, “2nd tone 35”, with the traditional names and descriptions in the legend."
+    },
+    {
+     "variable": "selection",
+     "child": "No half third tone; no neutral-tone words in listening.",
+     "default": "The half third tone (falling without rising) is taught and tested; listening includes neutral-tone words."
+    },
+    {
+     "variable": "perScreen",
+     "child": "3 options for a single syllable, 4 tones for words; 2 options for Japanese pitch.",
+     "default": "5 options for listening (four tones plus neutral); 5 for tone-change items (with half third); every possible pattern for Japanese pitch."
+    },
+    {
+     "variable": "pictureShare",
+     "child": "Large contour drawings have no five-level scale and thicker lines.",
+     "default": "Large contour drawings carry the 1–5 scale."
+    }
+   ]
+  },
+  "variety-map": {
+   "summary": "The child version sorts 6 cards into the varieties only, with no “used everywhere” or “actually an error” columns and no third step.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "6 cards a round, two steps (recognise, choose for the setting).",
+     "default": "10 cards a round, three steps (also “keep it consistent”)."
+    },
+    {
+     "variable": "perScreen",
+     "child": "Only the variety columns (for example British, American).",
+     "default": "Two more columns, “used in all varieties” and “error”, with at least one card for each every round."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line: “Tap a card, then tap the side it belongs to.”",
+     "default": "Two or three sentences explaining that cards are unlabelled and that some are common to all or are errors."
+    }
+   ]
+  },
+  "viewpoint-direction": {
+   "summary": "The child version only uses home-and-family situations, 2–3 items a round.",
+   "rows": [
+    {
+     "variable": "roundSize",
+     "child": "2–3 placing items a round (all that the packs mark for children); the viewpoint-shift step is skipped (the packs mark no shift items for children) and the page says so in one line.",
+     "default": "8 placing items a round; 6 viewpoint-shift items."
+    },
+    {
+     "variable": "exampleContext",
+     "child": "Situations are at home: waiting for mum, things between family members.",
+     "default": "Situations involve giving, coming and going, and passives among seniors, friends and others."
+    },
+    {
+     "variable": "instructionChannel",
+     "child": "One short line: “Put the eye (me) in place, draw the arrow, then pick a word.”",
+     "default": "One or two sentences explaining that the arrow shows who gives to whom, where things move, or who is affected."
+    }
+   ]
+  }
+ }
+}

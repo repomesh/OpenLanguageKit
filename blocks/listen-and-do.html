@@ -62,6 +62,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -210,7 +211,7 @@
       out.push('<g class="' + cls + '" data-bld="' + id + '" tabindex="' + (opt.readonly ? '-1' : '0') + '" role="button" aria-label="' + L('房子 ', 'Building ') + id + '">' +
         '<rect class="wall" x="' + b.x + '" y="' + b.y + '" width="40" height="30" rx="3"/>' +
         '<rect x="' + (b.x + 6) + '" y="' + (b.y + 7) + '" width="8" height="7" fill="#f6f1e2"/><rect x="' + (b.x + 26) + '" y="' + (b.y + 7) + '" width="8" height="7" fill="#f6f1e2"/><rect x="' + (b.x + 16) + '" y="' + (b.y + 16) + '" width="8" height="14" fill="#8b7a62"/>' +
-        (opt.answer === id ? '<text x="' + (b.x + 20) + '" y="' + (b.y - 3) + '" text-anchor="middle" font-size="14">⭐</text>' : '') + '</g>');
+        (opt.answer === id ? '<path transform="translate(' + (b.x + 12) + ' ' + (b.y - 17) + ') scale(.68)" d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9-4.3-4.1 5.9-.8L12 3.5z" fill="#f2b01e" stroke="#9a6a00" stroke-width="1.5" stroke-linejoin="round"/>' : '') + '</g>');
     });
     if (opt.answer) out.push('<path d="' + routePath(opt.answer) + '" fill="none" stroke="#2e8b57" stroke-width="4" stroke-dasharray="8 5" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>');
     out.push('<path d="M180 270 l-11 18 h22 z" fill="#3d4fe0"/><circle cx="180" cy="291" r="6" fill="#3d4fe0"/>');
@@ -460,8 +461,11 @@
       B.emit('view', { item: st.comp.id, mode: 'compose', target: tgt });
       render();
     }
+    // optional grammatical gender (es, fr): compose.gender {noun: 'm' | 'f'}, compose.art {m, f} (np key 'art'); size and colour cards may be {m, f}
+    function agr(v, g) { return v && typeof v === 'object' ? v[g] : v; }
     function npText(c) {
-      var parts = { size: c.size ? C.sizes[c.size] : '', color: c.color ? C.colorAdj[c.color] : '', noun: c.noun ? C.nouns[c.noun] : '…' };
+      var g = (c.noun && C.gender && C.gender[c.noun]) || 'm';
+      var parts = { art: C.art ? C.art[g] : '', size: c.size ? agr(C.sizes[c.size], g) : '', color: c.color ? agr(C.colorAdj[c.color], g) : '', noun: c.noun ? C.nouns[c.noun] : '…' };
       return C.np.map(function (k) { return parts[k]; }).filter(Boolean).join(C.npJoin);
     }
     function sentence(c) {
@@ -522,7 +526,7 @@
       return box;
     }
     function palette(it) {
-      var btns = [h('button', { 'aria-pressed': it.tool === 'move' ? 'true' : 'false', title: L('移动：先点东西，再点地方', 'Move: click a thing, then a place'), onclick: function () { it.tool = 'move'; renderStage(); } }, L('✋ 移动', '✋ Move'))];
+      var btns = [h('button', { 'aria-pressed': it.tool === 'move' ? 'true' : 'false', title: L('移动：先点东西，再点地方', 'Move: click a thing, then a place'), onclick: function () { it.tool = 'move'; renderStage(); } }, [KTBlock.icon('hand'), L(' 移动', ' Move')])];
       Object.keys(COLORS).forEach(function (c) {
         btns.push(h('button', { class: 'sw', 'data-c': c, style: 'background:' + COLORS[c], 'aria-pressed': it.tool === c ? 'true' : 'false', 'aria-label': L('涂成' + COLOR_NAME[c][0] + '色', 'Paint ' + COLOR_NAME[c][1]), onclick: function () { it.tool = c; it.sel = null; B.emit('select', { item: it.id, tool: c }); renderStage(); } }));
       });
@@ -621,8 +625,8 @@
           return h('button', { 'aria-pressed': c[key] === o[0] ? 'true' : 'false', disabled: !!c.result, onclick: function () { c[key] = c[key] === o[0] && key !== 'verb' ? null : o[0]; B.emit('select', { item: c.id, card: key, value: c[key] }); renderStage(); } }, o[1]);
         })));
       }
-      var ks = function (m) { return Object.keys(m).map(function (k) { return [k, m[k]]; }); };
-      var comp = [row(L('动作', 'Action'), 'verb', [['put', L('📦 移动', '📦 Move')], ['colour', L('🎨 涂色', '🎨 Colour')]])];
+      var ks = function (m) { return Object.keys(m).map(function (k) { var v = m[k]; return [k, v && typeof v === 'object' ? (v.m === v.f ? v.m : v.m + ' / ' + v.f) : v]; }); };
+      var comp = [row(L('动作', 'Action'), 'verb', [['put', [KTBlock.icon('box'), L(' 移动', ' Move')]], ['colour', [KTBlock.icon('brush'), L(' 涂色', ' Colour')]]])];
       if (c.verb) {
         comp.push(row(L('大小', 'Size'), 'size', ks(C.sizes)), row(L('颜色', 'Colour'), 'color', ks(C.colorAdj)), row(L('东西', 'Thing'), 'noun', ks(C.nouns)));
         comp.push(c.verb === 'put' ? row(L('放到', 'Place'), 'place', ks(C.places).filter(function (p) { return !child() || p[0].indexOf('boy') < 0; })) : row(L('涂成', 'Paint'), 'to', ks(C.colorTo)));

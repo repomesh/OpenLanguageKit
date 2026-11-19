@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 2,
+  "language": "es",
+  "sources": [
+    {
+      "id": "src:es:pcic-grammar",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Gramática. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/02_gramatica_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/02_gramatica_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the full A1 and A2 columns of the Gramática inventory. Units stop at depth x.y (e.g. 9.1 Tiempos verbales de indicativo), one unit per heading × level where the heading has content at that level; chapters 4 (demostrativos) and 5 (posesivos) have no subsections and are registered at chapter level. Sub-bullets (9.1.1 Presente, etc.) are not registered. Stopping depth: numbered sections x.y (chapters 4 and 5 have no subsections, so the chapter is the unit).",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-pronunciation",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Pronunciación y prosodia. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/03_pronunciacion_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/03_pronunciacion_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the full A1-A2 column of Pronunciación y prosodia. This inventory is not split into A1 and A2, so each x.y heading is registered once with level A1 (start of the band) and the id suffix @A1-A2. Depth x.y. Stopping depth: numbered sections x.y; the A1-A2 inventory is not split by level, so each unit is registered once with level A1 (start of the band).",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-orthography",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Ortografía. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/04_ortografia_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/04_ortografia_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the full A1 and A2 columns of Ortografía. Depth x.y, one unit per heading × level with content. Stopping depth: numbered sections x.y.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-functions",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Funciones. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/05_funciones_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/05_funciones_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the full A1 and A2 columns of Funciones. Depth x.y (e.g. 2.9 Expresar acuerdo), one unit per heading × level with content; exponents listed under each heading are not registered. Stopping depth: numbered sections x.y (sub-functions such as 1.2.1 are inside their x.y unit).",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-pragmatic-tactics",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Tácticas y estrategias pragmáticas. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/06_tacticas_pragmaticas_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/06_tacticas_pragmaticas_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the full A1 and A2 columns of Tácticas y estrategias pragmáticas. Depth x.y. Stopping depth: numbered sections x.y.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-genres",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Géneros discursivos y productos textuales. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/07_generos_discursivos_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/07_generos_discursivos_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the A1 and A2 columns of Géneros discursivos y productos textuales. Depth x.y; section 2.1 is a single worked sample (conversación transaccional) which the inventory attaches to A2 and is registered at A2. Stopping depth: numbered sections x.y; 2.1 is a sample (conversación transaccional, nivel A2) registered as one A2 unit.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-general-notions",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Nociones generales. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/08_nociones_generales_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/08_nociones_generales_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_text",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the full A1 and A2 columns of Nociones generales. Depth x.y, one unit per heading × level with content. Stopping depth: numbered sections x.y.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-specific-notions",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Nociones específicas. Inventario A1-A2",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/09_nociones_especificas_inventario_a1-a2.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/09_nociones_especificas_inventario_a1-a2.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_index",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the chapter headings and the A1/A2 column layout of Nociones específicas; units are chapter × level (e.g. 13 Salud e higiene @A2) as requested, not the x.y sub-headings. Cell content was skimmed, not read item by item, so units are marked index_checked. Stopping depth: chapters 1-20 (x), per level; the x.y headings were read but are not separate units.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-cultural-referents",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Referentes culturales. Inventario",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/10_referentes_culturales_inventario.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/10_referentes_culturales_inventario.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_index",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the heading structure of Referentes culturales. This inventory is organised by phases (aproximación, profundización, consolidación), not by CEFR level; only the fase de aproximación headings were registered, at depth x.y, with level null. Item lists (specific names and events) were not read in detail. Stopping depth: numbered sections x.y, fase de aproximación only; not levelled by CEFR, so level is null.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-sociocultural",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Saberes y comportamientos socioculturales. Inventario",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/11_saberes_y_comportamientos_inventario.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/11_saberes_y_comportamientos_inventario.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_index",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the heading structure of Saberes y comportamientos socioculturales. Organised by phases, not CEFR levels; fase de aproximación headings registered at depth x.y with level null. Item lists not read in detail. Stopping depth: numbered sections x.y, fase de aproximación only; level null.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-intercultural",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Habilidades y actitudes interculturales. Inventario",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/12_habilidades_y_actitudes_inventario.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/12_habilidades_y_actitudes_inventario.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_index",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the heading structure of Habilidades y actitudes interculturales. Not graded by level or phase; the four numbered chapters are registered with level null. Stopping depth: chapters 1-4; the inventory is not levelled, level null.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:pcic-learning-procedures",
+      "title": "Instituto Cervantes (2006) Plan curricular del Instituto Cervantes. Niveles de referencia para el español — Procedimientos de aprendizaje. Inventario",
+      "url": "https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/13_procedimientos_aprendizaje_inventario.htm",
+      "mirror": "https://web.archive.org/web/2011/http://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/13_procedimientos_aprendizaje_inventario.htm",
+      "authority": "official_framework",
+      "accessStatus": "checked_index",
+      "checkedOn": "2026-11-17",
+      "scope": "Read on 2026-11-17 from the Internet Archive snapshot of 2011 (cvc.cervantes.es redirected to a maintenance page and the 2026 snapshots were unusable); the inventory text is the 2006 edition as published on the Centro Virtual Cervantes. Read the heading structure of Procedimientos de aprendizaje. Not graded by CEFR level; x.y headings registered with level null. Stopping depth: numbered sections x.y; the inventory is not levelled, level null.",
+      "licenseNote": "Only inventory names, section numbers, headings and levels are registered. All English explanations, examples, mastery statements and error notes are original; no PCIC example sentences or descriptor wording are copied. PCIC © Instituto Cervantes."
+    },
+    {
+      "id": "src:es:cefr-2001",
+      "title": "Council of Europe (2001) Common European Framework of Reference for Languages: Learning, teaching, assessment; and Companion Volume (2020)",
+      "url": "https://www.coe.int/en/web/common-european-framework-reference-languages",
+      "authority": "official_framework",
+      "accessStatus": "unavailable",
+      "checkedOn": "2026-11-17",
+      "scope": "Text not obtained this round; used only as the structural reference for supplement categories (listening, sustained spoken production, mediation). Section numbers to be verified.",
+      "licenseNote": "Only category names are cited."
+    },
+    {
+      "id": "src:es:editorial",
+      "title": "Editorial decision (Language Atlas, Spanish course for English-speaking learners)",
+      "url": null,
+      "authority": "editorial",
+      "accessStatus": "not_applicable",
+      "checkedOn": "2026-11-17",
+      "scope": "Course needs specific to the instruction language (English) that no framework lists, each with a stated rationale.",
+      "licenseNote": "Original."
+    }
+  ]
+}

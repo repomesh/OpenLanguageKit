@@ -22,7 +22,9 @@
   .u.st-tap::after { content: ""; position: absolute; left: 50%; bottom: .15em; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--line); }
   [data-theme="dark"] .u.st-tap::after { background: var(--muted); }
   .u.peeked { box-shadow: inset 0 -3px 0 var(--warn); }
-  .u.peeked::before { content: "👁"; position: absolute; top: -.2em; right: -.35em; font-size: .38em; line-height: 1; }
+  .u.peeked::before { content: ""; position: absolute; top: -.2em; right: -.35em; width: .42em; height: .42em; background: currentColor;
+    -webkit-mask: var(--eye-ic) center / contain no-repeat; mask: var(--eye-ic) center / contain no-repeat; }
+  :root { --eye-ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E"); }
   .u.miss { text-decoration: underline wavy var(--bad); text-underline-offset: .35em; }
   .u.miss:has(.dots) { box-shadow: inset 0 -3px 0 var(--bad); }
   .u.keep rt { color: var(--muted); }
@@ -70,6 +72,7 @@
 </style>
 <script src="runtime/block.js"></script>
 <script src="registry.js"></script>
+<script src="age-design.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -393,7 +396,7 @@
       if (u.keep) cls.push('keep');
       var inner;
       if (pack.aid === 'dots' && Array.isArray(u.aid)) inner = h('span', { class: 'dots' }, u.aid.map(function (g) { return h('span', { class: 'g' }, [g, h('i', { class: g.length > 1 ? 'line' : 'dot' })]); }));
-      else if (u.aid === null) inner = h('span', {}, [u.text, vis ? h('span', { class: 'snd', 'aria-hidden': 'true', text: '🔊' }) : null]);
+      else if (u.aid === null) inner = h('span', {}, [u.text, vis ? h('span', { class: 'snd', 'aria-hidden': 'true' }, [KTBlock.icon('speaker')]) : null]);
       else inner = h('ruby', {}, [u.text, h('rt', { text: u.aid })]);
       var label = u.text + (vis ? (u.aid && !Array.isArray(u.aid) ? ' ' + u.aid : '') : L('（注音隐藏，点一下看）', ' (reading hidden; click to see it)'));
       return h('button', { class: cls.join(' '), 'aria-label': label, onclick: interactive ? function () { peek(id); } : null, tabindex: interactive ? null : '-1' }, inner);
@@ -499,7 +502,7 @@
     function renderQueue() {
       var it = st.queue[st.qIdx];
       if (!it) {
-        stage.append(h('div', { class: 'done', text: st.queue.length ? '✔' : '📭' }), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('没有题。', 'Nothing here.') }),
+        stage.append(h('div', { class: 'done' }, [st.queue.length ? '✔' : KTBlock.icon('inbox')]), h('p', { class: 'kb-prompt', text: st.queue.length ? L('这一轮做完了。', 'Round finished.') : L('没有题。', 'Nothing here.') }),
           h('div', { class: 'tools' }, [h('button', { class: 'kb-btn primary', onclick: enterMode }, L('再来一轮', 'Another round'))]));
         return;
       }
@@ -542,7 +545,7 @@
         h('span', { text: L('显示：上方直接有注音（偷看过或读错过）', 'Shown: the aid is visible (after a peek or a misreading)') }),
         h('span', { text: L('点开：字下有一个小点，点一下才显示', 'Click to show: a small dot under the word') }),
         h('span', { text: L('撤除：没有小点。仍然可以点，但点了会恢复注音', 'Removed: no dot. You can still click, but that brings the aid back') }),
-        h('span', { text: L('👁 = 这一段偷看过；波浪线 = 抽查读错；★ = 一直可以点看（人名等）', '👁 = peeked in this passage; wavy line = misread in a check; ★ = always clickable (names etc.)') })]));
+        h('span', {}, [KTBlock.icon('eye', L('眼睛', 'Eye')), L(' = 这一段偷看过；波浪线 = 抽查读错；★ = 一直可以点看（人名等）', ' = peeked in this passage; wavy line = misread in a check; ★ = always clickable (names etc.)')])]));
       if (st.mode === 'sort' || st.mode === 'keep') side.append(h('div', { class: 'kb-card reverse' }, [h('b', { text: L('反向那一半', 'The reverse half') }),
         h('p', { class: 'kb-note', text: L('多音字换了词、熟字训、人名地名，注音可以一直保留可点；读音对了，意思仍可能错，所以每段都有意思题。', 'A polyphone in a new word, jukujikun and names can keep a clickable aid; a right reading can still go with a wrong meaning, which is why every passage has a meaning question.') })]));
     }
